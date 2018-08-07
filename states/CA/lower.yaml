@@ -1,0 +1,55 @@
+bioguide: CAL000501
+contact_form:
+  method: post
+  action: /ContactPopupSubmit.php
+  steps:
+    - visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=AD07"
+    - fill_in:
+        - name: txtFirstName
+          selector: "#txtFirstName"
+          value: $NAME_FIRST
+          required: true
+        - name: txtLastName
+          selector: "#txtLastName"
+          value: $NAME_LAST
+          required: true
+        - name: txtAddress
+          selector: "#txtAddress"
+          value: $ADDRESS_STREET
+          required: true
+        - name: txtCity
+          selector: "#txtCity"
+          value: $ADDRESS_CITY
+          required: true
+        - name: txtZip
+          selector: "#txtZip"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: txtAreaCode
+          selector: "#txtAreaCode"
+          value: $PHONE_AREA_CODE
+          required: false
+        - name: txtPhone1
+          selector: "#txtPhone1"
+          value: $PHONE3
+          required: false
+        - name: txtPhone2
+          selector: "#txtPhone2"
+          value: $PHONE4
+          required: false
+        - name: txtEmail
+          selector: "#txtEmail"
+          value: $EMAIL
+          required: true
+        - name: jv_text
+          selector: "textarea[name=jv_text]"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: Submit
+          selector: "input[name=submitButton]"
+  success:
+    headers:
+      status: 200
+    body:
+      contains: "Your message has been received."
