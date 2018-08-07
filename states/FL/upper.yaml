@@ -2,7 +2,7 @@
 bioguide: FLL000026
 contact_form:
   method: post
-  action: /members/member-page/email/index.php
+  action: /_Email
   steps:
     - visit: "https://www.flsenate.gov/Senators/s3"
     - click_on:
