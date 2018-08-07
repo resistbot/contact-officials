@@ -12,7 +12,6 @@ contact_form:
         - name: "prefix"
           selector: "select[name=prefix]"
           value: $NAME_PREFIX_NO_PERIOD
-          required: false
           options:
             "Mr": "Mr"
             "Ms": "Ms"
@@ -37,7 +36,6 @@ contact_form:
         - name: address2
           selector: "input[name=address2]"
           value: $ADDRESS_STREET_2
-          required: false
         - name: city
           selector: "input[name=city]"
           value: $ADDRESS_CITY
@@ -53,11 +51,9 @@ contact_form:
         - name: phonezip
           selector: "input[name=phonezip]"
           value: $PHONE_AREA_CODE
-          required: false
         - name: phonenum
           selector: "input[name=phonenum]"
           value: $PHONE7
-          required: false
         - name: email
           selector: "input[name=email]"
           value: $EMAIL

@@ -9,13 +9,6 @@ contact_form:
         - selector: "a.contactSenator"
     - wait:
          - value: 3
-    - fill_in:
-        - name: mathAnswer
-          selector: "#math-test"
-          captcha_selector: "label[for=math-test]"
-          captcha_append_guidance: " = ?"
-          value: $CAPTCHA_SOLUTION
-          required: true
     - select:
         - name: Topic
           selector: "#Topic"
@@ -69,7 +62,6 @@ contact_form:
         - name: State
           selector: "#State"
           value: $ADDRESS_STATE_POSTAL_ABBREV
-          required: false
           options:
             Alabama: AL
             Alaska: AK
@@ -133,14 +125,19 @@ contact_form:
         - name: Zip
           selector: "#Zip"
           value: $ADDRESS_ZIP5
-          required: false
         - name: Telephone
           selector: "#Telephone"
           value: $PHONE
-          required: false
     - uncheck:
         - name: ReceiveUpdates
           selector: "#ReceiveUpdates"
+    - fill_in:
+        - name: mathAnswer
+          selector: "#math-test"
+          captcha_selector: "label[for=math-test]"
+          captcha_append_guidance: " = ?"
+          value: $CAPTCHA_SOLUTION
+          required: true
     - click_on:
         - value: "Send Email"
           selector: "#submitEmailForm"

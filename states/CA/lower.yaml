@@ -28,15 +28,12 @@ contact_form:
         - name: txtAreaCode
           selector: "#txtAreaCode"
           value: $PHONE_AREA_CODE
-          required: false
         - name: txtPhone1
           selector: "#txtPhone1"
           value: $PHONE3
-          required: false
         - name: txtPhone2
           selector: "#txtPhone2"
           value: $PHONE4
-          required: false
         - name: txtEmail
           selector: "#txtEmail"
           value: $EMAIL

@@ -1,2 +1,66 @@
 # District 9 Ausley
 bioguide: FLL000444
+contact_form:
+  method: post
+  action: ./emailrepresentative.aspx
+  steps:
+    - visit: "http://www.flhouse.gov/Sections/Representatives/details.aspx?MemberId=4190&LegislativeTermId=87"
+    - click_on:
+        - selector: "a[title='Email Representative']"
+    - wait:
+         - value: 3
+    - fill_in:
+        - name: "ctl00$ContentPlaceHolder1$txtName"
+          selector: "#ctl00_ContentPlaceHolder1_txtName"
+          value: $NAME_FULL
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtEmailAddress"
+          selector: "#ctl00_ContentPlaceHolder1_txtEmailAddress"
+          value: $EMAIL
+          required: true
+        - name: ctl00$ContentPlaceHolder1$txtAddress
+          selector: "#ctl00_ContentPlaceHolder1_txtAddress"
+          value: $ADDRESS_STREET
+        - name: "ctl00$ContentPlaceHolder1$txtAddress2"
+          selector: "#ctl00_ContentPlaceHolder1_txtAddress2"
+          value: $ADDRESS_STREET_2
+        - name: "ctl00$ContentPlaceHolder1$txtCity"
+          selector: "#ctl00_ContentPlaceHolder1_txtCity"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtState"
+          selector: "#ctl00_ContentPlaceHolder1_txtState"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+        - name: "ctl00$ContentPlaceHolder1$txtZip"
+          selector: "#ctl00_ContentPlaceHolder1_txtZip"
+          value: $ADDRESS_ZIP5
+        - name: "ctl00$ContentPlaceHolder1$txtZip2"
+          selector: "#ctl00_ContentPlaceHolder1_txtZip2"
+          value: $ADDRESS_ZIP4
+        - name: "ctl00$ContentPlaceHolder1$txtAreaCode"
+          selector: "#ctl00_ContentPlaceHolder1_txtAreaCode"
+          value: $PHONE_AREA_CODE
+        - name: "ctl00$ContentPlaceHolder1$txtPhone"
+          selector: "#ctl00_ContentPlaceHolder1_txtPhone"
+          value: $PHONE3
+        - name: "ctl00$ContentPlaceHolder1$txtPhone2"
+          selector: "#ctl00_ContentPlaceHolder1_txtPhone2"
+          value: $PHONE4
+    - click_on:
+        - value: "Continue"
+          selector: "#ctl00_ContentPlaceHolder1_btnSubmitSenderAttri"
+    - wait:
+         - value: 3
+    - fill_in:
+        - name: "ctl00$ContentPlaceHolder1$txtMessage"
+          selector: "#ctl00_ContentPlaceHolder1_txtMessage"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: "Send E-mail"
+          selector: "#ctl00_ContentPlaceHolder1_btnSubmit"
+  success:
+    headers:
+      status: 200
+    body:
+      contains: "E-mail has been successfully sent."
