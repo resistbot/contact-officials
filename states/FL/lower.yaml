@@ -1,14 +1,9 @@
 # District 9 Ausley
-bioguide: FLL000444
 contact_form:
-  method: post
-  action: ./emailrepresentative.aspx
   steps:
     - visit: "http://www.flhouse.gov/Sections/Representatives/details.aspx?MemberId=4190&LegislativeTermId=87"
     - click_on:
         - selector: "a[title='Email Representative']"
-    - wait:
-         - value: 3
     - fill_in:
         - name: "ctl00$ContentPlaceHolder1$txtName"
           selector: "#ctl00_ContentPlaceHolder1_txtName"
@@ -49,8 +44,6 @@ contact_form:
     - click_on:
         - value: "Continue"
           selector: "#ctl00_ContentPlaceHolder1_btnSubmitSenderAttri"
-    - wait:
-         - value: 3
     - fill_in:
         - name: "ctl00$ContentPlaceHolder1$txtMessage"
           selector: "#ctl00_ContentPlaceHolder1_txtMessage"
@@ -60,7 +53,5 @@ contact_form:
         - value: "Send E-mail"
           selector: "#ctl00_ContentPlaceHolder1_btnSubmit"
   success:
-    headers:
-      status: 200
     body:
       contains: "E-mail has been successfully sent."

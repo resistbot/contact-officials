@@ -1,14 +1,9 @@
 # District 3 Montford
-bioguide: FLL000026
 contact_form:
-  method: post
-  action: /_Email
   steps:
     - visit: "https://www.flsenate.gov/Senators/s3"
     - click_on:
         - selector: "a.contactSenator"
-    - wait:
-         - value: 3
     - select:
         - name: Topic
           selector: "#Topic"
@@ -142,7 +137,5 @@ contact_form:
         - value: "Send Email"
           selector: "#submitEmailForm"
   success:
-    headers:
-      status: 200
     body:
       contains: "Your message has been sent"

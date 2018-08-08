@@ -1,13 +1,8 @@
-bioguide: TXL000692
 contact_form:
-  method: post
-  action: /members/member-page/email/index.php
   steps:
     - visit: "https://house.texas.gov/members/member-page/?district=49"
     - click_on:
         - selector: "h4.button-email > a"
-    - wait:
-         - value: 3
     - select:
         - name: "prefix"
           selector: "select[name=prefix]"
@@ -77,7 +72,5 @@ contact_form:
         - value: "Send Message"
           selector: "#email-button"
   success:
-    headers:
-      status: 200
     body:
       contains: "Thank You"

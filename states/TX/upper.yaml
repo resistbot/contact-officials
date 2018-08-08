@@ -1,13 +1,8 @@
-bioguide: TXL000405
 contact_form:
-  method: post
-  action: /memberForm.php
   steps:
     - visit: "https://senate.texas.gov/member.php?d=14"
     - click_on:
         - selector: "p.memmail > a"
-    - wait:
-         - value: 3
     - fill_in:
         - name: sender
           selector: "#sender"
@@ -62,7 +57,5 @@ contact_form:
         - value: "SEND MESSAGE"
           selector: "input.subm1"
   success:
-    headers:
-      status: 200
     body:
       contains: "The information you supplied was reported as having been successfully delivered."

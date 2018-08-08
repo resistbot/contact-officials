@@ -1,7 +1,4 @@
-bioguide: CAL000483
 contact_form:
-  method: post
-  action: /ContactPopupSubmit.php
   steps:
     - visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=AD07"
     - fill_in:
@@ -46,7 +43,5 @@ contact_form:
         - value: Submit
           selector: "input[name=submitButton]"
   success:
-    headers:
-      status: 200
     body:
       contains: "Your message has been received."
