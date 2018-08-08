@@ -92,7 +92,7 @@ contact_form:
         - name: "p::prefix"
           selector: "#prefix"
           value: $PHONE3
-        - name: "lineNumber"
+        - name: lineNumber
           selector: "#lineNumber"
           value: $PHONE4
     - select:

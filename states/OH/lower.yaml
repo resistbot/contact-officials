@@ -1,2 +1,115 @@
 # District 18
 # Boggs
+contact_form:
+  steps:
+    - visit: "http://www.ohiohouse.gov/kristin-boggs"
+    - click_on:
+        - selector: "div.contactModule > div.data > a"
+    - fill_in:
+        - name: tbxFirstName
+          selector: "#tbxFirstName"
+          value: $NAME_FIRST
+          required: true
+        - name: tbxLastName
+          selector: "#tbxLastName"
+          value: $NAME_LAST
+          required: true
+        - name: tbxAddress
+          selector: "#tbxAddress"
+          value: $ADDRESS_STREET
+          required: true
+        - name: tbxCity
+          selector: "#tbxCity"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: ddlState
+          selector: '#ddlState'
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options:
+            - AL
+            - AK
+            - AZ
+            - AR
+            - CA
+            - CO
+            - CT
+            - DE
+            - DC
+            - FL
+            - GA
+            - HI
+            - ID
+            - IL
+            - IN
+            - IA
+            - KS
+            - KY
+            - LA
+            - ME
+            - MD
+            - MA
+            - MI
+            - MN
+            - MS
+            - MO
+            - MT
+            - NE
+            - NV
+            - NH
+            - NJ
+            - NM
+            - NY
+            - NC
+            - ND
+            - OH
+            - OK
+            - OR
+            - PA
+            - RI
+            - SC
+            - SD
+            - TN
+            - TX
+            - UT
+            - VT
+            - VA
+            - WA
+            - WV
+            - WI
+            - WY
+    - fill_in:
+        - name: tbxZipCode
+          selector: "#tbxZipCode"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: tbxAreaCode
+          selector: "#tbxAreaCode"
+          value: $PHONE_AREA_CODE
+          required: true
+        - name: tbxPrefix
+          selector: "#tbxPrefix"
+          value: $PHONE3
+          required: true
+        - name: tbxLineNumber
+          selector: "#tbxLineNumber"
+          value: $PHONE4
+          required: true
+        - name: tbxEmail
+          selector: "#tbxEmail"
+          value: $EMAIL
+          required: true
+        - name: tbxSubject
+          selector: "#tbxSubject"
+          value: $SUBJECT
+          required: true
+        - name: tbxMessage
+          selector: "#tbxMessage"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - selector: "#ibtSubmit"
+  success:
+    body:
+      contains: "Message Sent Successfully"
