@@ -1,5 +1,3 @@
-# District 15
-# Tavares
 contact_form:
   steps:
     - visit: "http://www.ohiosenate.gov/tavares"
