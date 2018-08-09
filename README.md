@@ -2,7 +2,7 @@
 
 Configuration files used by Resistbot to contact state and federal officials.
 
-The focus right now is on writing web form configs for those state legislative bodies which offer consistent contact forms for all members. These forms are as interoperable with the [contact-congress](https://github.com/unitedstates/contact-congress) schema (i.e. Phantom of DC) as possible (see [Schema](#Schema) below).
+The focus right now is on writing web form configs for those state legislative bodies which offer consistent contact forms for all members. These forms are as interoperable as possible with the [contact-congress](https://github.com/unitedstates/contact-congress) schema (i.e. Phantom of DC).
 
 ## Directory and file structure
 
