@@ -35,7 +35,7 @@ Notes:
 - Bio IDs come from Biographical Directory of the United States Congress
   and from Open States. For other officials, we may invent a bio ID.
 
-- `upper` and `lower` correspond to the `chamber` of Open States.
+- `upper` and `lower` correspond to values that `chamber` takes in Open States.
 
 - We will keep `congress` directory as sparse as possible, strongly
   preferring to defer to the config in `contact-congress`.
