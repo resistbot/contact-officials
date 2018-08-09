@@ -1,0 +1,61 @@
+contact_form:
+  steps:
+    - visit: "https://senate.texas.gov/member.php?d=14"
+    - click_on:
+        - selector: "p.memmail > a"
+    - fill_in:
+        - name: sender
+          selector: "#sender"
+          value: $EMAIL
+          required: true
+        - name: prefix
+          selector: "#prefix"
+          value: $NAME_PREFIX
+          required: true
+        - name: fname
+          selector: "#fname"
+          value: $NAME_FIRST
+          required: true
+        - name: lname
+          selector: "#lname"
+          value: $NAME_LAST
+          required: true
+        - name: phone1
+          selector: "#phone1"
+          value: $PHONE_AREA_CODE
+        - name: phone2
+          selector: "#phone2"
+          value: $PHONE7
+        - name: address1
+          selector: "#address1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: address2
+          selector: "#address2"
+          value: $ADDRESS_STREET_2
+        - name: city
+          selector: "#city"
+          value: $ADDRESS_CITY
+          required: true
+        - name: state
+          selector: "#state"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+        - name: zipcode
+          selector: "#zipcode"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: subject
+          selector: "#subject"
+          value: $SUBJECT
+          required: true
+        - name: message
+          selector: "#message"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: "SEND MESSAGE"
+          selector: "input.subm1"
+  success:
+    body:
+      contains: "The information you supplied was reported as having been successfully delivered."

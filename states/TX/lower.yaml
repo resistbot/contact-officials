@@ -1,0 +1,76 @@
+contact_form:
+  steps:
+    - visit: "https://house.texas.gov/members/member-page/?district=49"
+    - click_on:
+        - selector: "h4.button-email > a"
+    - select:
+        - name: "prefix"
+          selector: "select[name=prefix]"
+          value: $NAME_PREFIX_NO_PERIOD
+          options:
+            "Mr": "Mr"
+            "Ms": "Ms"
+            "Miss": "Miss"
+            "Mrs": "Mrs"
+            "Rev": "Rev"
+            "Fr (Father)": "Fr"
+            "Dr (Doctor)": "Dr"
+    - fill_in:
+        - name: name_first
+          selector: "input[name=name_first]"
+          value: $NAME_FIRST
+          required: true
+        - name: name_last
+          selector: "input[name=name_last]"
+          value: $NAME_LAST
+          required: true
+        - name: address
+          selector: "input[name=address]"
+          value: $ADDRESS_STREET
+          required: true
+        - name: address2
+          selector: "input[name=address2]"
+          value: $ADDRESS_STREET_2
+        - name: city
+          selector: "input[name=city]"
+          value: $ADDRESS_CITY
+          required: true
+        - name: state
+          selector: "input[name=state]"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+        - name: zip
+          selector: "input[name=zip]"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: phonezip
+          selector: "input[name=phonezip]"
+          value: $PHONE_AREA_CODE
+        - name: phonenum
+          selector: "input[name=phonenum]"
+          value: $PHONE7
+        - name: email
+          selector: "input[name=email]"
+          value: $EMAIL
+          required: true
+        - name: subject
+          selector: "input[name=subject]"
+          value: $SUBJECT
+          required: true
+        - name: message
+          selector: "textarea[name=message]"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: "Send Message"
+          selector: "#email-button"
+    # That triggers javascript that rewrites the form into a read-only "Does this look right?"
+    # view with the same "Send Message" button.
+    - wait:
+         - value: 3
+    - click_on:
+        - value: "Send Message"
+          selector: "#email-button"
+  success:
+    body:
+      contains: "Thank You"

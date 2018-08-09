@@ -1,0 +1,118 @@
+contact_form:
+  steps:
+    - visit: "http://www.ohiosenate.gov/tavares"
+    - click_on:
+        - selector: "div.email > a"
+    - fill_in:
+        - name: firstName
+          selector: "input[name=firstName]"
+          value: $NAME_FIRST
+          required: true
+        - name: lastName
+          selector: "input[name=lastName]"
+          value: $NAME_LAST
+          required: true
+        - name: address
+          selector: "input[name=address]"
+          value: $ADDRESS_STREET
+          required: true
+        - name: city
+          selector: "input[name=city]"
+          value: $ADDRESS_CITY
+    - select:
+        - name: state
+          selector: 'select[name=state]'
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          options:
+            - AL
+            - AK
+            - AZ
+            - AR
+            - CA
+            - CO
+            - CT
+            - DE
+            - DC
+            - FL
+            - GA
+            - HI
+            - ID
+            - IL
+            - IN
+            - IA
+            - KS
+            - KY
+            - LA
+            - ME
+            - MD
+            - MA
+            - MI
+            - MN
+            - MS
+            - MO
+            - MT
+            - NE
+            - NV
+            - NH
+            - NJ
+            - NM
+            - NY
+            - NC
+            - ND
+            - OH
+            - OK
+            - OR
+            - PA
+            - RI
+            - SC
+            - SD
+            - TN
+            - TX
+            - UT
+            - VT
+            - VA
+            - WA
+            - WV
+            - WI
+            - WY
+    - fill_in:
+        - name: zip
+          selector: "input[name=zip]"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: email
+          selector: "input[name=email]"
+          value: $EMAIL
+          required: true
+        - name: areaCode
+          selector: "#areaCode"
+          value: $PHONE_AREA_CODE
+        - name: "p::prefix"
+          selector: "#prefix"
+          value: $PHONE3
+        - name: lineNumber
+          selector: "#lineNumber"
+          value: $PHONE4
+    - select:
+        - name: subject
+          selector: "select[name=subject]"
+          value: $TOPIC
+          options:
+            "I want to share my thoughts on an issue or piece of legislation.": 0
+            "I need help with a state agency.": 1
+            "I want to recognize someone for an outstanding achievement or milestone.": 2
+            "I would like to schedule a meeting with my state senator.": 3
+            "I am organizing an event and want to invite my state senator.": 4
+            "I have an issue not listed here. ": 5
+    - fill_in:
+        - name: messageText
+          selector: "textarea[name=messageText]"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - selector: "div.contactFormButtons > button[type=submit]"
+  success:
+    body:
+      contains: "MESSAGE SENT SUCCESSFULLY"
