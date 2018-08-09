@@ -82,3 +82,11 @@ The config for OH senate starts with:
 ```
 - visit: "$META_OFFICIAL_URL"
 ```
+
+The meta variables are:
+
+- META_OFFICIAL_DISTRICT: the district of the official, or empty string if official holds statewide office. This corresponds to `district` in Open States and theunitedstates.io Congress data, but normalized such that:
+  a) single-digit district names get a leading zero, e.g. "07".
+  b) at-large districts are "AL".
+  
+- META_OFFICIAL_URL: the URL of the official homepage of the official. This corresponds to `url` in Open States and `url` in  theunitedstates.io Congress data.
