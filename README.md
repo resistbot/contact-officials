@@ -2,7 +2,9 @@
 
 Configuration files used by Resistbot to contact state and federal officials.
 
-## Directory and structure
+The focus right now is on writing web form configs for those state legislative bodies which offer consistent contact forms for all members. These forms are as interoperable with the [contact-congress](https://github.com/unitedstates/contact-congress) schema (i.e. Phantom of DC) as possible (see [Schema](#Schema) below).
+
+## Directory and file structure
 
 ```
 - states
@@ -29,6 +31,7 @@ Configuration files used by Resistbot to contact state and federal officials.
 ```
 
 Notes:
+
 - Bio IDs come from Biographical Directory of the United States Congress
   and from Open States. For other officials, we may invent a bio ID.
 
