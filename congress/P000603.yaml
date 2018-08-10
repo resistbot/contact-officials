@@ -1,0 +1,106 @@
+bioguide: P000603
+contact_form:
+  method: post
+  action: "/connect/email-rand"
+  steps:
+    - visit: "https://www.paul.senate.gov/connect/email-rand"
+    - fill_in:
+        - name: prefix
+          selector: "#edit-prefix"
+          value: $NAME_PREFIX
+          required: true
+        - name: first
+          selector: "#edit-first"
+          value: $NAME_FIRST
+          required: true
+        - name: last
+          selector: "#edit-last"
+          value: $NAME_LAST
+          required: true
+        - name: addr1
+          selector: "#edit-addr1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: city
+          selector: "#edit-city"
+          value: $ADDRESS_CITY
+          required: true
+        - name: zip
+          selector: "#edit-zip"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: phone
+          selector: "#edit-phone"
+          value: $PHONE
+          required: true
+        - name: email
+          selector: "#edit-email"
+          value: $EMAIL
+          required: true
+        - name: subject
+          selector: "#edit-subject"
+          value: $SUBJECT
+          required: true
+        - name: message
+          selector: "#edit-message"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: issue
+          selector: "#edit-issue"
+          value: $TOPIC
+          required: true
+          options:
+            Abortion and Pro-Life: "ABORTION"
+            Adoption: "ADOPTION"
+            Agriculture: "AGR"
+            Animal Welfare: "ANIMAL"
+            Appropriations: "APPROPRIATIONS"
+            Arts and Humanities: "ARTS"
+            Banking: "BANKING"
+            Budget: "BUD"
+            Census: "CENSUS"
+            Courts and Judges - Judicial: "COURTS AND JUDGES"
+            Crime and Law Enforcement: "CRIME"
+            Defense and Armed Services: "DEF"
+            Economic and Rural Development: "ECONOMIC AND RURAL"
+            Education: "EDU"
+            Energy and Natural Resources: "ENE"
+            Environment: "ENV"
+            Foreign Affairs: "FA"
+            Food and Drug Administration: "FDA"
+            FEMA: "FEMA"
+            Government Oversight and Reform: "GOV"
+            Health Care: "HEA"
+            Homeland Security and TSA: "HOM"
+            Housing: "HOUSING"
+            Illegal Drugs: "ILLEGALDRUGS"
+            Immigration and Border Security: "IMM"
+            Intelligence: "INTELLIGENCE"
+            Labor and Pensions: "LABOR"
+            Medicare/Medicaid: "MEDICARE/MEDICAID"
+            Post Offices and Postal Service: "POSTAL"
+            Religion: "RELIGION"
+            Science and Technology: "SCIENCE AND TECH"
+            Small Business: "SMALLBUS"
+            Space and NASA: "SPACE AND NASA"
+            Social Security: "SSEC"
+            Taxes: "TAX"
+            Telecommunications: "TEL"
+            Transportation: "TRA"
+            Trade and Commerce: "TRADE"
+            Veterans Issues: "VETS"
+            Welfare: "WEL"
+    - javascript:
+        - value: document.querySelector("#edit-message").value = document.querySelector("#edit-message").value.replace(/"/g, '');
+    - recaptcha:
+        - value: true
+    - javascript:
+        - value: document.querySelector("#edit-submit--2").click();
+    - find:
+        - selector: ".alert-success"
+  success:
+    headers:
+      status: 200
+    body:
+      contains: Thank you for your email.
