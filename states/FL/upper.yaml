@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "https://www.flsenate.gov/Senators/s3"
+    - visit: "$META_OFFICIAL_URL"
     - click_on:
         - selector: "a.contactSenator"
     - select:

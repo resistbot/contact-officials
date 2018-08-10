@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "http://www.ohiosenate.gov/tavares"
+    - visit: "$META_OFFICIAL_URL"
     - click_on:
         - selector: "div.email > a"
     - fill_in:

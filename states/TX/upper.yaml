@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "https://senate.texas.gov/member.php?d=14"
+    - visit: "$META_OFFICIAL_URL"
     - click_on:
         - selector: "p.memmail > a"
     - fill_in:
