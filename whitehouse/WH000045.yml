@@ -1,5 +1,3 @@
-# TODO: THIS IS NOT A VALID FILE, IT NEEDS TO BE UPDATED
-
 # YAML conversion from whitehouse.py
 #
 # The bioguide has been made up since the whitehouse doesn't have one.
@@ -12,72 +10,67 @@
 #
 # Heads Up:
 #   - Mailing address only has one field, but could be multiple lines
-#   - Message length max of 32000 chars
+#   - Message length max of 2000 chars
 #   - Last name, email max of 80 chars
 #   - Phone number max of 40 chars
 #   - Postal code max of 20 chars
 
-bioguide: WH000045
 contact_form:
-  method: post
-  action: "https://wh45.secure.force.com/PublicForms/apex/VisualAntidote__FFNSubmitEndpoint"
   steps:
     - visit: "https://forms.whitehouse.gov/contact/"
     - select:
-      - name: Contact.Case.B.Who_are_you_trying_to_contact__c
-        selector: "#Contact.Case.B.Who_are_you_trying_to_contact__c"
-        value: $TOPIC
+      - name: Contact.Case.Who_are_you_trying_to_contact__c
+        selector: "#Contact\\.Case\\.Who_are_you_trying_to_contact__c"
+        value: "Contact the President"
         required: true
         options:
           - "Contact the President"
           - "Help with a Federal Agency"
-    - wait:
-      - value: 2
     - fill_in:
       - name: Contact.FirstName
-        selector: "#Contact.FirstName"
+        selector: "#Contact\\.FirstName"
         value: $NAME_FIRST
         required: true
       - name: Contact.LastName
-        selector: "#Contact.LastName"
+        selector: "#Contact\\.LastName"
         value: $NAME_LAST
         required: true
       - name: Contact.Email
-        selector: "#Contact.Email"
+        selector: "#Contact\\.Email"
         value: $EMAIL
         required: true
       - name: Contact.HomePhone
-        selector: "#Contact.HomePhone"
+        selector: "#Contact\\.HomePhone"
         value: $PHONE
         required: true
       - name: Contact.MailingStreet
-        selector: "#Contact.MailingStreet"
+        selector: "#Contact\\.MailingStreet"
         value: $ADDRESS_STREET
         required: true
       - name: Contact.MailingCity
-        selector: "#Contact.MailingCity"
+        selector: "#Contact\\.MailingCity"
         value: $ADDRESS_CITY
         required: true
       - name: Contact.MailingPostalCode
-        selector: "#Contact.MailingPostalCode"
+        selector: "#Contact\\.MailingPostalCode"
         value: $ADDRESS_ZIP5
         required: true
-      - name: Contact.Case.B.Description
-        selector: "#Contact.Case.B.Description"
+      - name: Contact.Case.Description
+        selector: "#Contact\\.Case\\.Description"
         value: $MESSAGE
         required: false
     - select:
       - name: Contact.Salutation
-        selector: "#Contact.Salutation"
+        selector: "#Contact\\.Salutation"
         value: $NAME_PREFIX
-        required: false
+        required: true
         options:
           - Mr
           - Ms.
           - Mrs.
           - Dr.
-      - name: Contact.Local_State__c
-        selector: "#Contact.Local_State__c"
+      - name: Contact.MailingState
+        selector: "#Contact\\.MailingState"
         value: $ADDRESS_STATE
         required: true
         options:
@@ -146,16 +139,10 @@ contact_form:
           - Wyoming
     - uncheck:
       - name: Contact.Contact_Us_Email_Opt_In__c
-        selector: "#Contact.Contact_Us_Email_Opt_In__c"
-    - javascript:
-      - value: document.querySelector("#Contact.Case.B.Description").value = document.querySelector("#Contact.Case.B.Description").value.replace(/"/g, '');
-    - javascript:
-      - value: "Array.prototype.forEach.call(document.querySelectorAll('style,[rel=\"stylesheet\"],[type=\"text/css\"]'), function(element){ try{ element.parentNode.removeChild(element) } catch(err){} });"
+        selector: "#Contact\\.Contact_Us_Email_Opt_In__c"
     - click_on:
       - value: Send
         selector: "#btnsubmit"
   success:
-    headers:
-      status: 200
     body:
       contains: Thank you for your submission!
