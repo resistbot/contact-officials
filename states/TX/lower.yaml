@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "https://house.texas.gov/members/member-page/?district=49"
+    - visit: "$META_OFFICIAL_URL"
     - click_on:
         - selector: "h4.button-email > a"
     - select:

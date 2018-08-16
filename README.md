@@ -70,7 +70,9 @@ So it would be expedient if we can, in states with consistent forms per chamber,
 
 Let's make it possible for form configs to reference dynamically an individual district or URL.
 
-We introduce notion of “meta variable”, and make it possible to include `$META_VARIABLES` in the `visit` directive. For example, the CA senator config starts with:
+We introduce notion of “meta variable”, and make it possible to include `$META_VARIABLES` anywhere in the document. They will simply be replaced with the value of the variable, i.e. `config.replace('$META_OFFICIAL_DISTRICT', '07')`. The context must take care of quoting, if necessary.
+
+For example, the CA senator config starts with:
 ```
 - visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=SD$META_OFFICIAL_DISTRICT"
 ```
@@ -85,8 +87,8 @@ The config for OH senate starts with:
 
 The meta variables are:
 
-- META_OFFICIAL_DISTRICT: the district of the official, or empty string if official holds statewide office. This corresponds to `district` in Open States and theunitedstates.io Congress data, but normalized such that:
+- `$META_OFFICIAL_DISTRICT`: the district of the official, or empty string if official holds statewide office. This corresponds to `district` in Open States and theunitedstates.io Congress data, but normalized such that:
   a) single-digit district names get a leading zero, e.g. "07".
   b) at-large districts are "AL".
-  
-- META_OFFICIAL_URL: the URL of the official homepage of the official. This corresponds to `url` in Open States and `url` in  theunitedstates.io Congress data.
+
+- `$META_OFFICIAL_URL`: the URL of the official homepage of the official. This corresponds to `url` in Open States and `url` in  theunitedstates.io Congress data.

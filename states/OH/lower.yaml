@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "http://www.ohiohouse.gov/kristin-boggs"
+    - visit: "$META_OFFICIAL_URL"
     - click_on:
         - selector: "div.contactModule > div.data > a"
     - fill_in:
