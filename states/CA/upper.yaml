@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=SD06"
+    - visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=SD$META_OFFICIAL_DISTRICT"
     - fill_in:
         - name: txtFirstName
           selector: "#txtFirstName"

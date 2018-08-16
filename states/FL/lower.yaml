@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "http://www.flhouse.gov/Sections/Representatives/details.aspx?MemberId=4190&LegislativeTermId=87"
+    - visit: "$META_OFFICIAL_URL"
     - click_on:
         - selector: "a[title='Email Representative']"
     - fill_in:
