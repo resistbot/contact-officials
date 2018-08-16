@@ -5,7 +5,7 @@ hope they are useful for other civil advocacy projects. Let us know how
 you use them! Feel free to send pull requests with improvements or new
 configs for other public officials!
 
-# License
+### License
 This code is licensed under the Affero GPL, version 3.0 or later:
 [LICENSE.md](LICENSE.md).
 
