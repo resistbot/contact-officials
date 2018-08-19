@@ -1,4 +1,4 @@
-# White Pages
+# Contact Officials
 
 Configuration files used by Resistbot to contact state and federal officials with their web forms.
 
