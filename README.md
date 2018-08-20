@@ -92,3 +92,19 @@ The meta variables are:
   b) at-large districts are "AL".
 
 - `$META_OFFICIAL_URL`: the URL of the official homepage of the official. This corresponds to `url` in Open States and `url` in  theunitedstates.io Congress data.
+
+- `$META_OFFICIAL_LAST_SEGMENT_OF_URL`: One can't directly visit a NJ state
+    legislator's URL (e.g.
+    http://www.njleg.state.nj.us/members/bio.asp?Leg=47) directly without
+    being served a redirect! The only way to get to such a URL is by
+    clicking on a link from e.g. the roster, which sets some server-side
+    session state. Meta variable `$META_OFFICIAL_LAST_SEGMENT_OF_URL` helps
+    click on the legislator's link from the roster.
+
+- `$META_OFFICIAL_STATE_LEGISLATOR_INDEX`: Even after visiting a
+    legislator's personal webpage, and clicking contact link, one is taken
+    to a page that lists a district's 1 senator and 2 representatives, with
+    checkboxes for each. For assemblymembers, the only way we can select the
+    right checkbox here is to introduce meta variable
+    `$META_OFFICIAL_STATE_LEGISLATOR_INDEX` which identifies the
+    legislator's index in this list, 1-indexed.
