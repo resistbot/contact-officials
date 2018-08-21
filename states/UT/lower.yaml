@@ -1,0 +1,37 @@
+contact_form:
+  steps:
+    - visit: "$META_OFFICIAL_URL"
+    - fill_in:
+        - name: your-name
+          selector: "input[name=your-name]"
+          value: $NAME_FULL
+          required: true
+        - name: your-phone
+          selector: "input[name=your-phone]"
+          value: $PHONE
+          required: true
+        - name: your-email
+          selector: "input[name=your-email]"
+          value: $EMAIL
+          required: true
+        - name: your-subject
+          selector: "input[name=your-subject]"
+          value: $SUBJECT
+          required: true
+        - name: your-address
+          selector: "input[name=your-address]"
+          value: $ADDRESS_STREET_CITY_STATE
+          required: true
+        - name: your-zip
+          selector: "input[name=your-zip]"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: your-message
+          selector: "textarea[name=your-message]"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - selector: "input[value='Send Message']"
+  success:
+    body:
+      contains: "Thank you for your message."
