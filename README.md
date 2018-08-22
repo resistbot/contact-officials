@@ -42,16 +42,22 @@ Notes:
 
 ## Schema
 
-Schema is same as [that of unitedstates/contact-congress](https://github.com/unitedstates/contact-congress/blob/master/documentation/schema.md) with these changes:
+Schema is based on [that of unitedstates/contact-congress](https://github.com/unitedstates/contact-congress/blob/master/documentation/schema.md) with these changes:
 
-* New variables PHONE_AREA_CODE, PHONE3, PHONE4, PHONE7, NAME_FULL, NAME_PREFIX_NO_PERIOD.
+* New variables `PHONE_AREA_CODE`, `PHONE3`, `PHONE4`, `PHONE7`, `NAME_FULL`, `NAME_PREFIX_NO_PERIOD`, `ADDRESS_STREET_CITY_STATE`.
 
 * `bioguide`, `contact_form.method`, and `contact_form.action` are optional.
 
 * In `fill_in` steps, `captcha_selector` can be an element enclosing text.
   The processor should strip non-word characters from beginning and end of this element's `textContent`,
   append `captcha_append_guidance` if present, and then submit this for textual
-  captcha solving.
+  captcha solving. See `states/FL/upper.yaml` for an example.
+
+* In `fill_in` steps with image captchas, `captcha_image_extension` can
+  optionally specify filename extension of the image, for example `png`. This
+  is necessary to use if the `src` of the `img` element does not have an image
+  format extension, which 2captcha requires. See `states/SC/upper.yaml`
+  for an example.
 
 * Introduction of meta variables, described below.
 
@@ -70,46 +76,50 @@ So it would be expedient if we can, in states with consistent forms per chamber,
 
 Let's make it possible for form configs to reference dynamically an individual district or URL.
 
-We introduce notion of “meta variable”, and make it possible to include `$META_VARIABLES` anywhere in the document. They will simply be replaced with the value of the variable, i.e. `config.replace('$META_OFFICIAL_DISTRICT', '07')`. The context must take care of quoting, if necessary.
+We introduce notion of “meta variable”, and make it possible to include `$META_VARIABLES` anywhere in the document. They will simply be replaced with the value of the variable, i.e. `config.replace('$META_OFFICIAL_DISTRICT_ZFILL', '07')`. The context must take care of quoting, if necessary.
 
 For example, the CA senator config starts with:
 ```
-- visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=SD$META_OFFICIAL_DISTRICT"
+- visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=SD$META_OFFICIAL_DISTRICT_ZFILL"
 ```
 and the CA representative config with:
 ```
-- visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=AD$META_OFFICIAL_DISTRICT"
+- visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=AD$META_OFFICIAL_DISTRICT_ZFILL"
 ```
 The config for OH senate starts with:
 ```
 - visit: "$META_OFFICIAL_URL"
 ```
 
-The meta variables are:
+Config files in `contact-officials` assume meta variables defined as
+follows:
 
-- `$META_OFFICIAL_DISTRICT`: the district of the official, or empty
+- `$META_OFFICIAL_DISTRICT`: The district of the official, or empty
     string if official holds statewide office. This corresponds to
     `district` in Open States and theunitedstates.io Congress data.
 
 - `$META_OFFICIAL_DISTRICT_ZFILL`: District normalized such that
     single-digit district names get a leading zero, e.g. "07".
 
-- `$META_OFFICIAL_URL`: the URL of the official homepage of the
+- `$META_OFFICIAL_URL`: The URL of the official homepage of the
     official. This corresponds to `url` in Open States and `url` in
     theunitedstates.io Congress data.
 
-- `$META_OFFICIAL_LAST_SEGMENT_OF_URL`: One can't directly visit a NJ state
+- `$META_OFFICIAL_LAST_SEGMENT_OF_URL`: Everything after the last slash
+    in the official's URL. One can't directly visit a NJ state
     legislator's URL (e.g.
     http://www.njleg.state.nj.us/members/bio.asp?Leg=47) directly without
     being served a redirect! The only way to get to such a URL is by
     clicking on a link from e.g. the roster, which sets some server-side
-    session state. Meta variable `$META_OFFICIAL_LAST_SEGMENT_OF_URL` helps
-    click on the legislator's link from the roster.
+    session state. This meta variable helps click on the legislator's
+    link from the roster.
 
-- `$META_OFFICIAL_STATE_LEGISLATOR_INDEX`: Even after visiting a
-    legislator's personal webpage, and clicking contact link, one is taken
-    to a page that lists a district's 1 senator and 2 representatives, with
-    checkboxes for each. For assemblymembers, the only way we can select the
-    right checkbox here is to introduce meta variable
-    `$META_OFFICIAL_STATE_LEGISLATOR_INDEX` which identifies the
-    legislator's index in this list, 1-indexed.
+- `$META_OFFICIAL_STATE_LEGISLATOR_INDEX`: The index (1-indexed) of the
+    official in list of the chamber legislators by alphabetical order by
+    last name of state lower chamber legislators in alphabetical name.
+    Even after visiting a NJ legislator's personal webpage, and clicking
+    contact link, one is taken to a page that lists a district's 1 senator
+    and 2 representatives, with checkboxes for each. For assemblymembers,
+    the only way we can select the right checkbox here is to introduce
+    this meta variable which identifies the legislator's index in this list,
+    1-indexed.
