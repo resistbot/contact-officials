@@ -1,0 +1,37 @@
+# This config is identical to AZ/upper.yaml.
+contact_form:
+  steps:
+    - visit: "$META_OFFICIAL_URL"
+    - click_on:
+        - selector: "a[href*='emailazleg/?legislatorId']"
+    - fill_in:
+        - name: contact_name
+          selector: "#contact_name"
+          value: $NAME_FULL
+        - name: contact_legDist
+          selector: "#contact_legDist"
+          value: "$META_OFFICIAL_DISTRICT"
+        - name: contact_phone
+          selector: "#contact_phone"
+          value: $PHONE
+        - name: contact_email
+          selector: "#contact_email"
+          value: $EMAIL
+        - name: subject
+          selector: "#subject"
+          value: $SUBJECT
+          required: true
+        - name: comments
+          selector: "#commentsText"
+          value: $MESSAGE
+          required: true
+        - name: ans
+          selector: "#ans"
+          value: "3"  # "Enter the number resulting from the following: four minus one."
+          required: true
+    - click_on:
+        - value: Send Email
+          selector: "input[value='Send Email']"
+  success:
+    body:
+      contains: "Your email has been successfully submitted."

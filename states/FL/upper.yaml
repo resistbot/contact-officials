@@ -133,7 +133,7 @@ contact_form:
           value: $CAPTCHA_SOLUTION
           required: true
     - click_on:
-        - value: "Send Email"
+        - value: Send Email
           selector: "#submitEmailForm"
   success:
     body:
