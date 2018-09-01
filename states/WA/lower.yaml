@@ -2,6 +2,12 @@ contact_form:
   steps:
     - visit: "http://leg.wa.gov/house/representatives/Pages/default.aspx"
     - click_on:
+        # This is tricky. WA House of Representatives has two representatives per district.
+        # The contact form URL is https://app.leg.wa.gov/pbc/memberEmail/<district>/<1 or 2>,
+        # where the <1 or 2> is an arbitrary "position".
+        # We have no way of knowing the position, so we navigate to the roster
+        # and do a fancy selector based on district and legislator's last name
+        # to find the email link of the legislator we want.
         - selector: "div.memberInformation[data-filtertext*='$META_OFFICIAL_LAST_NAME $META_OFFICIAL_DISTRICT '] span.visible-lg > a[href*='https://app.leg.wa.gov/pbc/memberEmail']"
     - fill_in:
         - name: "Address.Street"
