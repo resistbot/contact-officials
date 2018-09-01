@@ -123,3 +123,7 @@ follows:
     the only way we can select the right checkbox here is to introduce
     this meta variable which identifies the legislator's index in this list,
     1-indexed.
+
+- `$META_OFFICIAL_FIRST_NAME`: First name of official.
+
+- `$META_OFFICIAL_LAST_NAME`: Last name of official.
