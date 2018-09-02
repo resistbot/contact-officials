@@ -1,0 +1,72 @@
+contact_form:
+  steps:
+    - visit: "http://leg.wa.gov/house/representatives/Pages/default.aspx"
+    - click_on:
+        # This is tricky. WA House of Representatives has two representatives per district.
+        # The contact form URL is https://app.leg.wa.gov/pbc/memberEmail/<district>/<1 or 2>,
+        # where the <1 or 2> is an arbitrary "position".
+        # We have no way of knowing the position, so we navigate to the roster
+        # and do a fancy selector based on district and legislator's last name
+        # to find the email link of the legislator we want.
+        - selector: "div.memberInformation[data-filtertext*='$META_OFFICIAL_LAST_NAME $META_OFFICIAL_DISTRICT '] span.visible-lg > a[href*='https://app.leg.wa.gov/pbc/memberEmail']"
+    - fill_in:
+        - name: "Address.Street"
+          selector: "#Address_Street"
+          value: $ADDRESS_STREET
+          required: true
+        - name: Address.City
+          selector: "#Address_City"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "Address.State"
+          selector: "#Address_State"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+        - name: "Address.Zip"
+          selector: "#Address_Zip"
+          value: $ADDRESS_ZIP5
+          required: true
+    - click_on:
+        - value: Verify District
+          selector: "#ValidateAddressButton"
+    - wait:
+        - value: 3
+    - fill_in:
+        - name: FirstName
+          selector: "#FirstName"
+          value: $NAME_FIRST
+          required: true
+        - name: LastName
+          selector: "#LastName"
+          value: $NAME_LAST
+          required: true
+        - name: Email
+          selector: "#Email"
+          value: $EMAIL
+          required: true
+        - name: ConfirmEmail
+          selector: "#ConfirmEmail"
+          value: $EMAIL
+          required: true
+        - name: PhoneNumber
+          selector: "#PhoneNumber"
+          value: $PHONE_PARENTHESES
+        - name: CommentSubject
+          selector: "#CommentSubject"
+          value: $SUBJECT
+          required: true
+        - name: Comment
+          selector: "#Comment"
+          value: $MESSAGE
+          required: true
+    - check:
+      - name: ''
+        selector: "label[for=ResponseRequested_True]"
+        value: ''
+        required: Yes
+    - click_on:
+        - value: Submit Form
+          selector: "#FormSubmitButton"
+  success:
+    body:
+      contains: "Your e-mail was successfully sent."
