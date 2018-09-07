@@ -1,0 +1,74 @@
+contact_form:
+  steps:
+    - visit: "http://www.governor.maryland.gov/mail/"
+    - fill_in:
+        - name: "firstname"
+          selector: "#firstname"
+          value: $NAME_FIRST
+          required: true
+        - name: "lastname"
+          selector: "#lastname"
+          value: $NAME_LAST
+          required: true
+        - name: "street"
+          selector: "#street"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "city"
+          selector: "#city"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "zipcode"
+          selector: "#zipcode"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "zip+4"
+          selector: "#zip\\+4"
+          value: $ADDRESS_ZIP4
+          required: false
+        - name: "areacode"
+          selector: "#AreaCode"
+          value: $PHONE_AREA_CODE
+          required: true
+        - name: "phoneprefix"
+          selector: "#prefix\\#"
+          value: $PHONE3
+          required: true
+        - name: "extension"
+          selector: "#extension\\#"
+          value: $PHONE4
+          required: true
+        - name: "emailaddress"
+          selector: "#emailaddress"
+          value: $EMAIL
+          required: true
+        - name: "subjectline"
+          selector: "#subject\\ line"
+          value: $SUBJECT
+          required: true
+        - name: "emailmessage"
+          selector: "#emailmessage"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: "pickSubject"
+          selector: "#pickSubject"
+          value: $TOPIC
+          required: true
+          options:
+            "Disabilities": "Disabilities"
+            "Economic Development": "Economic Development"
+            "Education Issues": "Education Issues"
+            "Energy Issues": "Energy Issues"
+            "Environment Issues": "Environment Issues"
+            "Health Care Issues": "Health Care Issues"
+            "Higher Education": "Higher Education   "
+            "Public Safety Issues": "Public Safety Issues"
+            "Transportation Issues": "Transportation Issues"
+            "Veterans Issues": "Veterans Issues"
+    - click_on:
+        - value: Submit
+          selector: "#btnSbt"
+  success:
+    body:
+      contains: "Thank you for Writing"

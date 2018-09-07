@@ -1,0 +1,49 @@
+contact_form:
+  steps:
+    - visit: "http://apps.das.ohio.gov/governorcommunications/contactgovernor.aspx"
+    - fill_in:
+        - name: "txtFirstName_text"
+          selector: "#txtFirstName_text"
+          value: $NAME_FIRST
+          required: true
+        - name: "txtLastName_text"
+          selector: "#txtLastName_text"
+          value: $NAME_LAST
+          required: true
+        - name: "txtStreet_text"
+          selector: "#txtStreet_text"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "txtCity_text"
+          selector: "#txtCity_text"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "txtZIPCode_text"
+          selector: "#txtZIPCode_text"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "txtPhone_text"
+          selector: "#txtPhone_text"
+          value: $PHONE
+          required: false
+        - name: "txtEmail_text"
+          selector: "#txtEmail_text"
+          value: $EMAIL
+          required: true
+        - name: "txtSubject_text"
+          selector: "#txtSubject_text"
+          value: $SUBJECT
+          required: true
+        - name: "txtMessage_text"
+          selector: "#txtMessage_text"
+          value: $MESSAGE
+          required: true
+    # Selects the general option for Issue. We can't use Select here because the website implements the dropdown as a list and not a select.
+    - javascript:
+        - value: "Telerik.Web.UI.RadComboBox.ComboBoxes[0].get_items()._array[1].select()"
+    - click_on:
+        - value: "Submit"
+          selector: "#btnSubmit"
+  success:
+    body:
+      contains: "Your Request has been successfully submitted!"
