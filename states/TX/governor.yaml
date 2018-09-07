@@ -18,7 +18,7 @@ contact_form:
           options: US_STATES
         - name: "ctl00$ContentPlaceHolder1$DropDownList2"
           selector: "#ctl00_ContentPlaceHolder1_DropDownList2"
-          value: $TOPIC
+          value: "Other"
           required: true
           options:
             "Property Tax": "161"
