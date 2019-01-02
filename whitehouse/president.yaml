@@ -1,12 +1,4 @@
-# YAML conversion from whitehouse.py
-#
-# The bioguide has been made up since the whitehouse doesn't have one.
-# Cleverly, it's `WH` for _W_hite _H_ouse and `45` for current president.
-# Should be safe since bioguide IDs only have one letter at beginning.
-#
-# Functions for interacting with the White House Contact page
-# NB: If the contact form is ever updated, this will break
-#
+# Submits message to the White House Contact page.
 #
 # Heads Up:
 #   - Mailing address only has one field, but could be multiple lines
