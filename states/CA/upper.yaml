@@ -44,4 +44,4 @@ contact_form:
           selector: "input[name=submitButton]"
   success:
     body:
-      contains: "Your message has been received."
+      contains: "you for contacting"
