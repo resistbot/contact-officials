@@ -44,4 +44,4 @@ contact_form:
           selector: "input[name=submitButton]"
   success:
     body:
-      contains: "you for contacting"
+      contains: "hank you"
