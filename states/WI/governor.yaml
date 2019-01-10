@@ -1,0 +1,32 @@
+contact_form:
+  steps:
+    - visit: "https://appengine.egov.com/apps/wi/Governor/contact"
+    - fill_in:
+        - name: "c93c5e3e-d662-4c02-9d23-147ab2aae9fb"
+          selector: "#c93c5e3e-d662-4c02-9d23-147ab2aae9fb"
+          value: $NAME_FIRST
+          required: true
+        - name: "58d21f38-d110-4404-865b-d73347364952"
+          selector: "[id='58d21f38-d110-4404-865b-d73347364952']"
+          value: $NAME_LAST
+          required: true
+        - name: "c371fa4c-18cf-4ea2-892f-ce3a3f1d5572"
+          selector: "#c371fa4c-18cf-4ea2-892f-ce3a3f1d5572"
+          value: $PHONE
+          required: true
+        - name: "3f284242-794c-4ca1-9a77-3add14a3e383"
+          selector: "[id='3f284242-794c-4ca1-9a77-3add14a3e383']"
+          value: $EMAIL
+          required: true
+        - name: "bdd27ef2-99fc-4221-ad25-f3df913cd644"
+          selector: "#bdd27ef2-99fc-4221-ad25-f3df913cd644"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: Submit
+          selector: "#nextButton"
+  success:
+    body:
+      contains: "Your message was sent!"
