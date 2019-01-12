@@ -1,0 +1,80 @@
+contact_form:
+  steps:
+    - visit: "https://azgovernor.gov/engage/form/contact-governor-ducey"
+    - check:
+        - name: "submitted[reason]"
+          selector: "#edit-submitted-reason-2"
+          value: "Comment"
+          required: true
+    - fill_in:
+        - name: "submitted[first_name]"
+          selector: "#edit-submitted-first-name"
+          value: $NAME_FIRST
+          required: true
+        - name: "submitted[last_name]"
+          selector: "#edit-submitted-last-name"
+          value: $NAME_LAST
+          required: true
+        - name: "submitted[email_address]"
+          selector: "#edit-submitted-email-address"
+          value: $EMAIL
+          required: true
+        - name: "submitted[street_address]"
+          selector: "#edit-submitted-street-address"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "submitted[street_city]"
+          selector: "#edit-submitted-city"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "submitted[zip_code]"
+          selector: "#edit-submitted-zip-code"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "submitted[comments]"
+          selector: "#edit-submitted-comments"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: "submitted[salutation]"
+          selector: "#edit-submitted-salutation"
+          value: $NAME_PREFIX
+          required: true
+          options:
+            "Mr.": "Mr."
+            "Ms.": "Ms."
+            "Mrs.": "Mrs."
+            "Dr.": "Dr."
+        - name: "submitted[state]"
+          selector: "#edit-submitted-state"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options: US_STATES
+        - name: "submitted[subject]"
+          selector: "#edit-submitted-subject"
+          value: "Other"
+          required: true
+          options:
+            "Budget": "Budget"
+            "Inmate & Corrections Dept": "Inmate Corrections Dept"
+            "DCS Dept of Child Safety (Formerly CPS)": "DCS Dept of Child Safety Formerly CPS"
+            "DES Dept of Economic Security": "DES Dept of Economic Security"
+            "Education": "Education"
+            "Environment": "Environment"
+            "Health & Healthcare": "Health Healthcare"
+            "Immigration & Border": "Immigration Border"
+            "Legislation (Bills)": "Legislation Bills"
+            "Motor Vehicle": "Motor Vehicle"
+            "Recognition, Photo & Other Request": "Recognition Photo Other Request"
+            "Senior Issues": "Senior Issues"
+            "Taxes": "Taxes"
+            "Veterans & Military": "Veterans Military"
+            "Other": "Other"
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: Send Email
+          selector: ".webform-submit"
+  success:
+    body:
+      contains: "Your email has been sent."
