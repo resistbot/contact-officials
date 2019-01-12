@@ -1,7 +1,6 @@
 contact_form:
   steps:
-#    - visit: "$META_OFFICIAL_URL"
-    - visit: "https://senate.utah.gov/jani-iwamoto"
+    - visit: "$META_OFFICIAL_URL"
     - fill_in:
         - name: fname
           selector: "input[name=fname]"
