@@ -53,36 +53,9 @@ contact_form:
           selector: "input[name=email]"
           value: $EMAIL
           required: true
-    - select:
-        - name: "subject"
-          selector: "select[name=subject]"
-          value: $TOPIC
-          required: true
-          options:
-            "Agriculture": "Agriculture"
-            "Child Protective Services (CPS)": "Child Protective Services (CPS)"
-            "Child Support": "Child Support"
-            "CHIP": "CHIP"
-            "Education": "Education"
-            "Energy": "Energy"
-            "Higher Education": "Higher Education"
-            "Historical Commission": "Historical Commission"
-            "Housing/community affairs": "Housing/community affairs"
-            "Hunting/sporting issues": "Hunting/sporting issues"
-            "Immigration": "Immigration"
-            "Insurance": "Insurance"
-            "Licensing/regulation": "Licensing/regulation"
-            "Medicaid": "Medicaid"
-            "Medical": "Medical"
-            "Natural Resources": "Natural Resources"
-            "Public Safety": "Public Safety"
-            "Scheduling": "Scheduling"
-            "Taxes/ Appraisal district": "Taxes/ Appraisal district"
-            "TCEQ (environment)": "TCEQ (environment)"
-            "Trans-Texas Corridor": "Trans-Texas Corridor"
-            "TX Workforce/employment issues": "TX Workforce/employment issues"
-            "TXDoT": "TXDoT"
-            "Utilities": "Utilities"
+        - name: subject
+          selector: "input[name=subject]"
+          value: $SUBJECT
     - fill_in:
         - name: message
           selector: "textarea[name=message]"

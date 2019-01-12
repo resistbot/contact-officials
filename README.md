@@ -44,7 +44,7 @@ Notes:
 
 Schema is based on [that of unitedstates/contact-congress](https://github.com/unitedstates/contact-congress/blob/master/documentation/schema.md) with these changes:
 
-* New variables `PHONE_AREA_CODE`, `PHONE3`, `PHONE4`, `PHONE7`, `NAME_FULL`, `NAME_PREFIX_NO_PERIOD`, `ADDRESS_STREET_CITY_STATE`.
+* New variables `PHONE_AREA_CODE`, `PHONE3`, `PHONE4`, `PHONE7`, `NAME_FULL`, `NAME_PREFIX_NO_PERIOD`, `ADDRESS_STREET_CITY_STATE`, `ADDRESS_FULL`.
 
 * `bioguide`, `contact_form.method`, and `contact_form.action` are optional.
 
@@ -63,7 +63,7 @@ Schema is based on [that of unitedstates/contact-congress](https://github.com/un
 
 ## Meta variables
 
-Collectively, state legislatures are huge. Let’s look at the three most populous states plus Ohio. These are the largest states that offer contact forms for their legislators.
+Collectively, state legislatures are huge. Let’s look at the three most populous states plus Ohio. These are the largest states that offer web contact forms for their legislators.
 
 * CA: 40 senators, 80 assemblymembers
 * TX: 31 senators, 150 representatives
