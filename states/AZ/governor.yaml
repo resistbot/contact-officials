@@ -77,4 +77,4 @@ contact_form:
           selector: ".webform-submit"
   success:
     body:
-      contains: "Thank you for contacting Governor Ducey. Your email has been sent."
+      contains: "Your email has been sent."
