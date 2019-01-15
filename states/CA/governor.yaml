@@ -1,0 +1,118 @@
+# Selecting "Have Comment" on the first page results in a different second page depending on the subject selection:
+# - Most second pages will have a "Pro / Con" radio selection.
+# - Selecting "OTHER" topic presents a "subject field".
+# - Selecting "Scheduling - Request" presents an entirely different page with many options.
+
+# Selecting "Need Help" on the first page results in a consistent second page
+# regardless of the topic chosen on the first page. In the config, we are
+# simply choosing "OTHER". The second page also includes constituent name and
+# address when "need help" is selected.
+
+contact_form:
+  steps:
+    - visit: "https://govapps.gov.ca.gov/gov40mail/"
+    - check:
+        - name: "comment"
+          selector: input[name="comment"][value="help"]
+          value: "help"
+          required: true
+    - fill_in:
+        - name: "fname"
+          selector: "#fname"
+          value: $NAME_FIRST
+          required: true
+        - name: "lname"
+          selector: "#lname"
+          value: $NAME_LAST
+          required: true
+        - name: "email"
+          selector: "#email"
+          value: $EMAIL
+          required: true
+    - select:
+        - name: "subject"
+          selector: "#subject"
+          value: "OTHER"
+          required: true
+          options:
+            "Animal Issues/Concerns": "6154"
+            "Attorney General": "5511"
+            "Child Protective Services": "38184"
+            "Clemency - Commutation of Sentence": "54389"
+            "Clemency - Pardon": "44283"
+            "Consumer Affairs Issues/Concerns": "22912"
+            "DIR - Workers Compensation": "38182"
+            "DMV Issues/Concerns": "6286"
+            "Education Issues/Concerns": "6159"
+            "Employment Development Department": "5653"
+            "Energy Issues/Concerns": "40848"
+            "Environment Issues/Concerns": "6151"
+            "Fair Employment and Housing": "5680"
+            "Food & Ag Issues/Concerns": "6298"
+            "Franchise Tax Board Issues/Concerns": "6287"
+            "Gun Control": "38193"
+            "Health & Human Services Agency": "5734"
+            "Immigration Issues/Concerns": "5997"
+            "Inspector General": "29174"
+            "Insurance Issues/Concerns": "5773"
+            "Labor and Workforce Development Agency": "38192"
+            "Legislation Issues/Concerns": "6157"
+            "Medi-Cal Issues/Concerns": "5824"
+            "OTHER": "1"
+            "Parole - Governors Review": "54336"
+            "Parole Issues/Concerns": "38196"
+            "Press Office": "34661"
+            "Prison Issues/Concerns": "41011"
+            "Public Records Request": "38183"
+            "Public Utilities Commission": "38195"
+            "Request - Commemorative Message from the Governor": "38197"
+            "Request - Contribution/Donation": "5585"
+            "Request - General": "34805"
+            "Scheduling - Request": "57712"
+            "Student Correspondence": "5784"
+            "Teacher Credentialing Issues/Concerns": "6301"
+            "Transportation - Caltrans": "5541"
+            "UC/CSU Issues/Concerns": "6096"
+            "Water Issues/Concerns": "6127"
+            "Veteran Issues/Concerns": "38188"
+    - check:
+        - name: "reply"
+          selector: "#reply"
+          value: "1"
+          required: true
+    - click_on:
+        - value: "Continue"
+          selector: "input[name='Submit']"
+    - fill_in:
+        - name: address
+          selector: "input[name='address']"
+          value: $ADDRESS_STREET
+          required: true
+        - name: city
+          selector: "input[name='city']"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "state"
+          selector: "input[name='state']"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+        - name: "zip"
+          selector: "input[name='zip']"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "phone"
+          selector: "input[name='phone']"
+          value: $PHONE
+          required: true
+        - name: "newsubject"
+          selector: "input[name='newsubject']"
+          value: $SUBJECT
+        - name: "message"
+          selector: "textarea[name='message']"
+          value: $MESSAGE
+    - click_on:
+        - value: "Send Email"
+          selector: input[type="submit"]
+  success:
+    body:
+      contains: "MESSAGE COMPLETE"
