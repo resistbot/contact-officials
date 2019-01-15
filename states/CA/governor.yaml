@@ -1,9 +1,12 @@
 # Selecting "Have Comment" on the first page results in a different second page depending on the subject selection:
-  ## Most second pages will have a "pro / con" radio selection.
-  ## Selecting "other" topic presents a "subject field"
-  ## Selecting "scheduling - request presents an entirely different page with many options"
+# - Most second pages will have a "Pro / Con" radio selection.
+# - Selecting "OTHER" topic presents a "subject field".
+# - Selecting "Scheduling - Request" presents an entirely different page with many options.
 
-# Selecting "Need help" on the first page results in a consistent second page regardless of the topic chosen on the first page. In the config, we are simply choosing "other".  The second page also includes constituent name and address when "need help" is selected.
+# Selecting "Need Help" on the first page results in a consistent second page
+# regardless of the topic chosen on the first page. In the config, we are
+# simply choosing "OTHER". The second page also includes constituent name and
+# address when "need help" is selected.
 
 contact_form:
   steps:
@@ -108,7 +111,7 @@ contact_form:
           selector: "textarea[name='message']"
           value: $MESSAGE
     - click_on:
-        - value: "Continue"
+        - value: "Send Email"
           selector: input[type="submit"]
   success:
     body:
