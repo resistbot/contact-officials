@@ -47,9 +47,9 @@ easier for everybody to be heard in local politics.
 Notes:
 
 - Bio IDs come from Biographical Directory of the United States Congress
-  and from OpenStates.
+  and from Open States.
 
-- `upper` and `lower` correspond to values that `chamber`/`post.label` takes in OpenStates.
+- `upper` and `lower` correspond to values that `chamber`/`post.label` takes in Open States.
 
 - We will keep `congress` directory as sparse as possible, strongly
   preferring to make changes upstream and defer to the config in `contact-congress`.
@@ -110,13 +110,13 @@ follows:
 
 - `$META_OFFICIAL_DISTRICT`: The district of the official, or empty
     string if official holds statewide office. This corresponds to
-    `district` in OpenStates and theunitedstates.io Congress data.
+    `district` in Open States and theunitedstates.io Congress data.
 
 - `$META_OFFICIAL_DISTRICT_ZFILL`: District normalized such that
     single-digit district names get a leading zero, e.g. "07".
 
 - `$META_OFFICIAL_URL`: The URL of the official homepage of the
-    official. This corresponds to `url` in OpenStates and `url` in
+    official. This corresponds to `url` in Open States and `url` in
     theunitedstates.io Congress data.
 
 - `$META_OFFICIAL_LAST_SEGMENT_OF_URL`: Everything after the last slash
