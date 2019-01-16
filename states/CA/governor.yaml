@@ -13,7 +13,7 @@ contact_form:
     - visit: "https://govapps.gov.ca.gov/gov40mail/"
     - check:
         - name: "comment"
-          selector: input[name="comment"][value="help"]
+          selector: "input[name='comment'][value='help']"
           value: "help"
           required: true
     - fill_in:
@@ -112,7 +112,7 @@ contact_form:
           value: $MESSAGE
     - click_on:
         - value: "Send Email"
-          selector: input[type="submit"]
+          selector: "input[type='submit']"
   success:
     body:
       contains: "MESSAGE COMPLETE"
