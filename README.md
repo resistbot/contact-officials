@@ -2,43 +2,57 @@
 
 Configuration files used by Resistbot to contact state and federal officials with their web forms.
 
-The focus right now is on writing web form configs for those state legislative bodies which offer consistent contact forms for all members. These forms are as interoperable as possible with the [unitedstates/contact-congress](https://github.com/unitedstates/contact-congress) schema (i.e. Phantom of DC).
+The focus right now is on writing web form configs for 1) governors and
+2) state legislative bodies which offer consistent contact forms for all
+members. These forms are as interoperable as possible with the
+[unitedstates/contact-congress](https://github.com/unitedstates/contact-congress)
+schema (i.e. Phantom of DC).
+
+## Want to contribute? Help people write to their governors!
+
+The document [*Teach Resistbot to send a message to a US Governor*](https://docs.google.com/document/d/1TAXWDPfISgRY_qESNGzfT4tFKFaDF3PPUPLK_vZI4Bs)
+walks you through the steps to contribute a new `governor.yaml` to this repo.
+
+Resistbot lets any American easily write a message to their governor. After you
+[teach Resistbot to use a governor’s official web contact form](https://docs.google.com/document/d/1TAXWDPfISgRY_qESNGzfT4tFKFaDF3PPUPLK_vZI4Bs)
+by writing a new `governor.yaml`, Resistbot will be able to deliver
+messages immediately to that governor. You'll have made it faster and
+easier for everybody to be heard in local politics.
 
 ## Directory and file structure
 
 ```
 - states
   - CA
-    - rep_type
-      * upper.yaml  # form config that applies for all members of California State Senate
-      * lower.yaml  # for all members of California State Assembly
-      * CAL000501.yaml  # if we want to use different form config for Sen. de León than other CA senators
+    * upper.yaml  # form config that applies for all members of California State Senate
+    * lower.yaml  # for all members of California State Assembly
+    * governor.yaml  # for CA governor
+    * CAL000501.yaml  # e.g. if we want to use different form config for Sen. de León than other CA senators
 
   - TX
-    - rep_type
-      * upper.yaml  # for all members of Texas State Senate
-      * lower.yaml  # for all members of Texas State House of Representatives
+    * upper.yaml  # for all members of Texas State Senate
+    * lower.yaml  # for all members of Texas State House of Representatives
 
-  ... directories for other states which have consistent web forms...
+  ... directories for other states ...
 
 - congress
-  * P000603.yaml  # for Rand Paul, resistbot uses this intead of contact-congress/P000603.yaml
-  ... configs for other Members of Congress for whom resistbot has its own setup ...
+  * P000603.yaml  # for Rand Paul, Resistbot uses this intead of contact-congress/P000603.yaml
+  ... configs for other Members of Congress for whom Resistbot has its own setup ...
 
 - whitehouse
-  * WH000045.yml  # for the 45th president (TODO)
-  ... configs for other federal executives with web forms, as resistbot adds support ...
+  * president.yml  # for the White House
+  ... configs for other federal executives with web forms, as Resistbot adds support ...
 ```
 
 Notes:
 
 - Bio IDs come from Biographical Directory of the United States Congress
-  and from Open States. For other officials, we may invent a bio ID.
+  and from OpenStates.
 
-- `upper` and `lower` correspond to values that `chamber` takes in Open States.
+- `upper` and `lower` correspond to values that `chamber`/`post.label` takes in OpenStates.
 
 - We will keep `congress` directory as sparse as possible, strongly
-  preferring to defer to the config in `contact-congress`.
+  preferring to make changes upstream and defer to the config in `contact-congress`.
 
 ## Schema
 
@@ -96,13 +110,13 @@ follows:
 
 - `$META_OFFICIAL_DISTRICT`: The district of the official, or empty
     string if official holds statewide office. This corresponds to
-    `district` in Open States and theunitedstates.io Congress data.
+    `district` in OpenStates and theunitedstates.io Congress data.
 
 - `$META_OFFICIAL_DISTRICT_ZFILL`: District normalized such that
     single-digit district names get a leading zero, e.g. "07".
 
 - `$META_OFFICIAL_URL`: The URL of the official homepage of the
-    official. This corresponds to `url` in Open States and `url` in
+    official. This corresponds to `url` in OpenStates and `url` in
     theunitedstates.io Congress data.
 
 - `$META_OFFICIAL_LAST_SEGMENT_OF_URL`: Everything after the last slash
