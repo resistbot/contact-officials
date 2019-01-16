@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "http://www.governor.maryland.gov/mail/"
+    - visit: "https://governor.maryland.gov/contact-the-governor/"
     - fill_in:
         - name: "firstname"
           selector: "#firstname"

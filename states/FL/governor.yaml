@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "https://www.flgov.com/contact-gov-scott/email-the-governor/"
+    - visit: "https://www.flgov.com/email-the-governor/"
     - fill_in:
         - name: "formBuilderForm[Name]"
           selector: "#fieldformBuilderFieldName"
