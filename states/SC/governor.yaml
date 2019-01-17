@@ -65,5 +65,5 @@ contact_form:
         - value: "Submit"
           selector: "#btn_submit"
   success:
-    body:
-      contains: "About the Governor"
+    alert:
+      contains: "Thank You for contacting"
