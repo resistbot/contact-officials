@@ -1,0 +1,71 @@
+contact_form:
+  steps:
+    - visit: "https://iqconnect.lmhostediq.com/iqextranet/EForm.aspx?__cid=FSL_SC_GOV&__fid=100000"
+    - fill_in:
+        - name: "qi_3_prefix"
+          selector: "#qi_3_prefix"
+          value: $NAME_PREFIX
+          required: false
+        - name: "qi_3_first_name"
+          selector: "#qi_3_first_name"
+          value: $NAME_FIRST
+          required: true
+        - name: "qi_3_last_name"
+          selector: "#qi_3_last_name"
+          value: $NAME_LAST
+          required: true
+        - name: "qi_3_addr_1"
+          selector: "#qi_3_addr_1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "qi_3_city"
+          selector: "#qi_3_city"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "qi_3_zip"
+          selector: "#qi_3_zip"
+          value: $ADDRESS_ZIP5
+          required: false
+        - name: "qi_3_email"
+          selector: "#qi_3_email"
+          value: $EMAIL
+          required: true
+        - name: "qi_3_hphone"
+          selector: "#qi_3_hphone"
+          value: $PHONE
+          required: false
+        - name: "qi_7"
+          selector: "#qi_7"
+          value: $SUBJECT
+          required: true
+        - name: "qi_9"
+          selector: "#qi_9"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: "qi_3_state"
+          selector: "#qi_3_state"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options: US_STATES_AND_TERRITORIES
+        - name: "qi_5"
+          selector: "#qi_5"
+          value: OTHER
+          required: true
+          options:
+            "Budget/Taxes": "BUDGET_TAXES"
+            "Health": "HEALTH"
+            "Energy/Environment": "ENERGY_ENVIRONMENT"
+            "Legal": "LEGAL"
+            "Infrastructure": "INFRASTRUCTURE"
+            "Commerce/Economic Development": "COMMERCE_ECONDEVELOP"
+            "Federal": "FEDERAL"
+            "Other": "OTHER"
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit"
+          selector: "#btn_submit"
+  success:
+    alert:
+      contains: "Thank You for contacting"
