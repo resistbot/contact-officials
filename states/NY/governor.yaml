@@ -45,7 +45,7 @@ contact_form:
     - select:
         - name: "submitted[contact_form_state]"
           selector: "#edit-submitted-contact-form-state"
-          value: "$ADDRESS_STATE_POSTAL_ABBREV"
+          value: "$ADDRESS_STATE_FULL"
           options:
             "Alabama": "Alabama"
             "Alaska": "Alaska"
@@ -160,7 +160,7 @@ contact_form:
           required: true
     - click_on:
         - value: "Submit"
-          selector: "input[type='submit']"
-  sucess:
+          selector: "input[type='submit'][name='op']"
+  success:
     body:
       contains: "Thank you for your submission"
