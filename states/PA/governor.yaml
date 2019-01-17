@@ -1,10 +1,9 @@
 contact_form:
   steps:
     - visit: "https://www.governor.pa.gov/contact/#OnlineForm"
-# This is a pop-up frame to sign up for a newsletter.  It only appears once on a normal browser.
+    # This click is to close a pop-up frame to sign up for a newsletter.  It only appears once on a normal browser:
     - click_on:
         - selector: "#newsletterModal2 > button"
-  #  - visit: "https://www.governor.pa.gov/contact/#OnlineForm"
     - select:
         - name: "nf-field-1341"
           selector: "#nf-field-1341"
@@ -196,6 +195,9 @@ contact_form:
     - click_on:
         - value: "Submit"
           selector: "#nf-field-1471"
+    # The submit button on the page changes to "processing" for a substantial length of time.  An unscientific test averaged about 10 seconds before the success message appears.  A 20 second delay seems to be a reasonable compromise between speed and ensuring success.
+    - wait:
+        - value: 20
   success:
     body:
       contains: "Your form has been successfully submitted."
