@@ -73,6 +73,9 @@ Schema is based on [that of unitedstates/contact-congress](https://github.com/un
   format extension, which 2captcha requires. See `states/SC/upper.yaml`
   for an example.
 
+* In `success` section, instead of `body`, one can specify text that
+  must match an alert. See `states/WA/governor.yaml` for an example.
+
 * Introduction of meta variables, described below.
 
 ## Meta variables
