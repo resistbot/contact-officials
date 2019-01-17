@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "https://iqconnect.lmhostediq.com/iqextranet/EForm.aspx?__cid=FSL_SC_GOV&__fid=100001"
+    - visit: "https://iqconnect.lmhostediq.com/iqextranet/EForm.aspx?__cid=FSL_SC_GOV&__fid=100000"
     - fill_in:
         - name: "qi_3_prefix"
           selector: "#qi_3_prefix"
@@ -34,12 +34,12 @@ contact_form:
           selector: "#qi_3_hphone"
           value: $PHONE
           required: false
-        - name: "qi_6"
-          selector: "#qi_6"
+        - name: "qi_7"
+          selector: "#qi_7"
           value: $SUBJECT
           required: true
-        - name: "qi_8"
-          selector: "#qi_8"
+        - name: "qi_9"
+          selector: "#qi_9"
           value: $MESSAGE
           required: true
     - select:
@@ -50,7 +50,7 @@ contact_form:
           options: US_STATES_AND_TERRITORIES
         - name: "qi_5"
           selector: "#qi_5"
-          value: $TOPIC
+          value: OTHER
           required: true
           options:
             "Budget/Taxes": "BUDGET_TAXES"
@@ -60,7 +60,9 @@ contact_form:
             "Infrastructure": "INFRASTRUCTURE"
             "Commerce/Economic Development": "COMMERCE_ECONDEVELOP"
             "Federal": "FEDERAL"
-            "Education": "EDUCATION"
+            "Other": "OTHER"
+    - recaptcha:
+        - value: true
     - click_on:
         - value: "Submit"
           selector: "#btn_submit"
