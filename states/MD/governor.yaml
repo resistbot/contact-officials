@@ -2,73 +2,93 @@ contact_form:
   steps:
     - visit: "https://governor.maryland.gov/contact-the-governor/"
     - fill_in:
-        - name: "firstname"
-          selector: "#firstname"
+        - name: "textarea-your-message"
+          selector: "#your-message"
+          value: $MESSAGE
+          required: true
+        - name: "first-name"
+          selector: "#first-name"
           value: $NAME_FIRST
           required: true
-        - name: "lastname"
-          selector: "#lastname"
+        - name: "last-name"
+          selector: "#last-name"
           value: $NAME_LAST
           required: true
-        - name: "street"
-          selector: "#street"
+        - name: "addr-1"
+          selector: "#addr-1"
           value: $ADDRESS_STREET
           required: true
         - name: "city"
           selector: "#city"
           value: $ADDRESS_CITY
           required: true
-        - name: "zipcode"
-          selector: "#zipcode"
+        - name: "zip"
+          selector: "#zip"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "zip+4"
-          selector: "#zip\\+4"
-          value: $ADDRESS_ZIP4
-          required: false
-        - name: "areacode"
-          selector: "#AreaCode"
-          value: $PHONE_AREA_CODE
-          required: true
-        - name: "phoneprefix"
-          selector: "#prefix\\#"
-          value: $PHONE3
-          required: true
-        - name: "extension"
-          selector: "#extension\\#"
-          value: $PHONE4
-          required: true
-        - name: "emailaddress"
-          selector: "#emailaddress"
+        - name: "email"
+          selector: "#email"
           value: $EMAIL
           required: true
-        - name: "subjectline"
-          selector: "#subject\\ line"
-          value: $SUBJECT
-          required: true
-        - name: "emailmessage"
-          selector: "#emailmessage"
-          value: $MESSAGE
-          required: true
     - select:
-        - name: "pickSubject"
-          selector: "#pickSubject"
-          value: $TOPIC
+        - name: "state"
+          selector: "#state"
+          value: $ADDRESS_STATE_FULL
           required: true
           options:
+            "Maryland": "Maryland"
+            "DC": "DC"
+            "Virginia": "Virginia"
+        - name: "menu-612"
+          selector: "select[name='menu-612']"
+          value: "Other"
+          required: true
+          options:
+            "Agriculture": "Agriculture"
+            "Animal Welfare": "Animal Welfare"
+            "Banking": "Banking"
+            "Broadband": "Broadband"
+            "Child Custody": "Child Custody"
+            "Correctional Services": "Correctional Services"
+            "Criminal Justice": "Criminal Justice"
+            "Developmental Disabilities Administration": "Developmental Disabilities Administration"
             "Disabilities": "Disabilities"
             "Economic Development": "Economic Development"
-            "Education Issues": "Education Issues"
-            "Energy Issues": "Energy Issues"
-            "Environment Issues": "Environment Issues"
-            "Health Care Issues": "Health Care Issues"
-            "Higher Education": "Higher Education   "
-            "Public Safety Issues": "Public Safety Issues"
-            "Transportation Issues": "Transportation Issues"
-            "Veterans Issues": "Veterans Issues"
+            "Education": "Education"
+            "Emergency Preparedness": "Emergency Preparedness"
+            "Energy": "Energy"
+            "Energy Assistance": "Energy Assistance"
+            "Environment": "Environment"
+            "Funding Request": "Funding Request"
+            "Gaming": "Gaming"
+            "Grant Request": "Grant Request"
+            "Health": "Health"
+            "Higher Education": "Higher Education"
+            "Homeland Security": "Homeland Security"
+            "Housing": "Housing"
+            "Human Rights": "Human Rights"
+            "Human Services": "Human Services"
+            "Immigration": "Immigration"
+            "Infrastructure": "Infrastructure"
+            "Insurance": "Insurance"
+            "Jobs": "Jobs"
+            "Juvenile Services": "Juvenile Services"
+            "Legislation": "Legislation"
+            "LGBT Rights": "LGBT Rights"
+            "Military/Naval Affairs": "Military/Naval Affairs"
+            "Other": "Other"
+            "Parks and Recreation": "Parks and Recreation"
+            "Public Safety": "Public Safety"
+            "Public Utilities": "Public Utilities"
+            "Taxes": "Taxes"
+            "Tourism": "Tourism"
+            "Transportation": "Transportation"
+            "Unemployment": "Unemployment"
+            "Veterans Affairs": "Veterans Affairs"
+            "Women's Issues": "Women's Issues"
     - click_on:
         - value: Submit
-          selector: "#btnSbt"
+          selector: "#cf7-submit"
   success:
     body:
-      contains: "Thank you for Writing"
+      contains: "Thank You for Contacting"
