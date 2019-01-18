@@ -1,0 +1,121 @@
+contact_form:
+  steps:
+    - visit: "https://governor.nc.gov/contact/contact-governor-cooper"
+    - fill_in:
+        - name: submitted[first_name]
+          selector: "#edit-submitted-first-name"
+          value: $NAME_FIRST
+          required: true
+          # max length: 20
+        - name: "submitted[last_name]"
+          selector: "#edit-submitted-last-name"
+          value: $NAME_LAST
+          required: true
+          # max length: 30
+        - name: "submitted[city]"
+          selector: "#edit-submitted-city"
+          value: $ADDRESS_CITY
+          required: true
+          # max length: 128
+    # This contact form uses some kind of reformatted style for the drop down box using a list inside spans.  The JS below just removes the "display; none" style from the underlying select element so that Selenium can interact with it.
+    - javascript:
+        - value: "document.querySelector('#edit-submitted-state').removeAttribute('style');"
+    - select:
+        - name: "submitted[state]"
+          selector: "#edit-submitted-state"
+          value: "$ADDRESS_STATE_POSTAL_ABBREV"
+          required: true
+          options:
+            "AL": "Alabama"
+            "AK": "Alaska"
+            "AS": "American Samoa"
+            "AZ": "Arizona"
+            "AR": "Arkansas"
+            "CA": "California"
+            "CO": "Colorado"
+            "CT": "Connecticut"
+            "DE": "Delaware"
+            "DC": "District of Columbia"
+            "FL": "Florida"
+            "GA": "Georgia"
+            "GU": "Guam"
+            "HI": "Hawaii"
+            "ID": "Idaho"
+            "IL": "Illinois"
+            "IN": "Indiana"
+            "IA": "Iowa"
+            "KS": "Kansas"
+            "KY": "Kentucky"
+            "LA": "Louisiana"
+            "ME": "Maine"
+            "MH": "Marshall Islands"
+            "MD": "Maryland"
+            "MA": "Massachusetts"
+            "MI": "Michigan"
+            "MN": "Minnesota"
+            "MS": "Mississippi"
+            "MO": "Missouri"
+            "MT": "Montana"
+            "NE": "Nebraska"
+            "NV": "Nevada"
+            "NH": "New Hampshire"
+            "NJ": "New Jersey"
+            "NM": "New Mexico"
+            "NY": "New York"
+            "NC": "North Carolina"
+            "ND": "North Dakota"
+            "MP": "Northern Marianas Islands"
+            "OH": "Ohio"
+            "OK": "Oklahoma"
+            "OR": "Oregon"
+            "PW": "Palau"
+            "PA": "Pennsylvania"
+            "PR": "Puerto Rico"
+            "RI": "Rhode Island"
+            "SC": "South Carolina"
+            "SD": "South Dakota"
+            "TN": "Tennessee"
+            "TX": "Texas"
+            "UT": "Utah"
+            "VT": "Vermont"
+            "VI": "Virgin Islands"
+            "VA": "Virginia"
+            "WA": "Washington"
+            "WV": "West Virginia"
+            "WI": "Wisconsin"
+            "WY": "Wyoming"
+    - fill_in:
+        - name: "submitted[email]"
+          selector: "#edit-submitted-email"
+          value: $EMAIL
+          required: true
+    - check:
+        - name: "submitted[does_this_email_require_a_response]"
+          selector: "#edit-submitted-does-this-email-require-a-response-1"
+          value: "1"
+          required: true
+    - fill_in:
+        - name: "submitted[phone_number]"
+          selector: "#edit-submitted-phone-number"
+          value: "$PHONE"
+    - check:
+        - name: "submitted[issue]"
+          selector: "#edit-submitted-issue-11"
+          value: "11"
+          required: true
+    - fill_in:
+        - name: "submitted[other_issue]"
+          selector: "#edit-submitted-other-issue"
+          value: "$SUBJECT"
+        - name: "submitted[message]"
+          selector: "#edit-submitted-message"
+          value: "$MESSAGE"
+          require: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit"
+          selector: "#webform-client-form-11 > div.form-actions > input"
+  success:
+    body:
+      contains: "This message confirms we have received your email"
