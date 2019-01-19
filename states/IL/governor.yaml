@@ -1,0 +1,81 @@
+contact_form:
+  steps:
+    - visit: "https://www2.illinois.gov/sites/gov/contactus/Pages/VoiceAnOpinion.aspx"
+    - select:
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Prefix_x0020_Name"
+          selector: "#ctl00_ContentPlaceHolder1_DropDownList1"
+          value: $NAME_PREFIX
+          required: true
+          options:
+            "Mr.": "2"
+            "Ms.": "3"
+            "Mrs.": "1"
+            "Dr.": "5"
+        - name: "ctl00$ContentPlaceHolder1$Dropdownlist3"
+          selector: "#ctl00_ContentPlaceHolder1_Dropdownlist3"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options: US_STATES
+        - name: "ctl00$ContentPlaceHolder1$DropDownList2"
+          selector: "#ctl00_ContentPlaceHolder1_DropDownList2"
+          value: "Other"
+          required: true
+          options:
+            "Property Tax": "161"
+            "Insurance": "162"
+            "Education - Public": "157"
+            "Environment": "152"
+            "Gun Control": "158"
+            "Immigration": "140"
+            "Renewable Energy": "155"
+            "Transportation": "153"
+            "Water Issues": "156"
+            "Other": "160"
+    - fill_in:
+        - name: "ctl00$ContentPlaceHolder1$txtFirst"
+          selector: "#ctl00_ContentPlaceHolder1_txtFirst"
+          value: $NAME_FIRST
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtLast"
+          selector: "#ctl00_ContentPlaceHolder1_txtLast"
+          value: $NAME_LAST
+          required: true
+        - name: "ctl00$ContentPlaceHolder1#txtAddress"
+          selector: "#ctl00_ContentPlaceHolder1_txtAddress"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtCity"
+          selector: "#ctl00_ContentPlaceHolder1_txtCity"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtZip"
+          selector: "#ctl00_ContentPlaceHolder1_txtZip"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtEmail"
+          selector: "#ctl00_ContentPlaceHolder1_txtEmail"
+          value: $EMAIL
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtEmail2"
+          selector: "#ctl00_ContentPlaceHolder1_txtEmail2"
+          value: $EMAIL
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtPhone"
+          selector: "#ctl00_ContentPlaceHolder1_txtPhone"
+          value: $PHONE
+          required: false
+        - name: "ctl00$ContentPlaceHolder1$txtMessage"
+          selector: "#ctl00_ContentPlaceHolder1_txtMessage"
+          value: $MESSAGE
+          required: true
+    - check:
+        - name: "ctl00$ContentPlaceHolder1$RadioButtonList1$0"
+          selector: "#ctl00_ContentPlaceHolder1_RadioButtonList1_0"
+          value: "1"
+          required: true
+    - click_on:
+        - value: "Send Message"
+          selector: "#ctl00_ContentPlaceHolder1_Button1"
+  success:
+    body:
+      contains: "Thank You for Contacting"
