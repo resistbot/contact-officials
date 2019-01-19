@@ -117,9 +117,9 @@ contact_form:
           selector: "#edit-submitted-contact-information-zip"
           value: "$ADDRESS_ZIP5"
           # max length: 128
-        - name: "submitted[contact_information][home_phone]"
-          selector: "#edit-submitted-contact-information-home-phone"
-          value: "$PHONE"
+        # - name: "submitted[contact_information][home_phone]"
+        #   selector: "#edit-submitted-contact-information-home-phone"
+        #   value: "$PHONE"
         - name: "submitted[contact_information][email]"
           selector: "#edit-submitted-contact-information-email"
           value: "$EMAIL"
