@@ -1,5 +1,9 @@
 contact_form:
   steps:
+    # Example: https://senate.texas.gov/member.php?d=14
+    # Example: https://senate.texas.gov/member.php?d=1
+    # (These forms are slightly different, thus the
+    # 'skip_if_element_not_present' below.)
     - visit: "$META_OFFICIAL_URL"
     - click_on:
         - selector: "p.memmail > a"
@@ -12,6 +16,9 @@ contact_form:
           selector: "#prefix"
           value: $NAME_PREFIX
           required: true
+          # Prefix is required on some senators' forms, and not present
+          # at all on others.
+          skip_if_element_not_present: true
         - name: fname
           selector: "#fname"
           value: $NAME_FIRST

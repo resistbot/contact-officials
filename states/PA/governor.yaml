@@ -1,0 +1,203 @@
+contact_form:
+  steps:
+    - visit: "https://www.governor.pa.gov/contact/#OnlineForm"
+    # This click is to close a pop-up frame to sign up for a newsletter.  It only appears once on a normal browser:
+    - click_on:
+        - selector: "#newsletterModal2 > button"
+    - select:
+        - name: "nf-field-1341"
+          selector: "#nf-field-1341"
+          value: $NAME_PREFIX
+          options:
+            "Mr.": "Mr."
+            "Mrs.": "Mrs."
+            "Miss": "Miss"
+            "Ms.": "Ms"
+            "Dr.": "Dr."
+            "Prof.": "Prof."
+            "Rev.": "Rev."
+            "Other": "Other"
+    - fill_in:
+        - name: "nf-field-1351"
+          selector: "#nf-field-1351"
+          value: $NAME_FIRST
+          required: true
+          # max length: 50
+        - name: "nf-field-1361"
+          selector: "#nf-field-1361"
+          value: $NAME_LAST
+          required: true
+          # max length: 50
+        - name: "nf-field-1371"
+          selector: "#nf-field-1371"
+          value: "$ADDRESS_STREET"
+          required: true
+          # max length: 100
+        - name: "nf-field-1381"
+          selector: "#nf-field-1381"
+          value: "$ADDRESS_CITY"
+          required: true
+          # max length: 100
+    - select:
+        - name: "nf-field-1391"
+          selector: "#nf-field-1391"
+          value: "$ADDRESS_STATE_POSTAL_ABBREV"
+          required: true
+          options:
+            "AL": "Alabama"
+            "AK": "Alaska"
+            "AZ": "Arizona"
+            "AR": "Arkansas"
+            "CA": "California"
+            "CO": "Colorado"
+            "CT": "Connecticut"
+            "DE": "Delaware"
+            "FL": "Florida"
+            "GA": "Georgia"
+            "HI": "Hawaii"
+            "ID": "Idaho"
+            "IL": "Illinois"
+            "IN": "Indiana"
+            "IA": "Iowa"
+            "KS": "Kansas"
+            "KY": "Kentucky"
+            "LA": "Louisiana"
+            "ME": "Maine"
+            "MD": "Maryland"
+            "MA": "Massachusetts"
+            "MI": "Michigan"
+            "MN": "Minnesota"
+            "MS": "Mississippi"
+            "MO": "Missouri"
+            "MT": "Montana"
+            "NE": "Nebraska"
+            "NV": "Nevada"
+            "NH": "New Hampshire"
+            "NJ": "New Jersey"
+            "NM": "New Mexico"
+            "NY": "New York"
+            "NC": "North Carolina"
+            "ND": "North Dakota"
+            "OH": "Ohio"
+            "OK": "Oklahoma"
+            "OR": "Oregon"
+            "PA": "Pennsylvania"
+            "RI": "Rhode Island"
+            "SC": "South Carolina"
+            "SD": "South Dakota"
+            "TN": "Tennessee"
+            "TX": "Texas"
+            "UT": "Utah"
+            "VT": "Vermont"
+            "VA": "Virginia"
+            "WA": "Washington"
+            "WV": "West Virginia"
+            "WI": "Wisconsin"
+            "WY": "Wyoming"
+            "DC": "Washington DC"
+            "AE": "ARMED FORCES AFRICA \ CANADA \ EUROPE \ MIDDLE EAST"
+            "AA": "ARMED FORCES AMERICA (EXCEPT CANADA)"
+            "AP": "ARMED FORCES PACIFIC"
+        - name: "nf-field-1401"
+          selector: "#nf-field-1401"
+          value: "$ADDRESS_COUNTY"
+          required: true
+          options:
+            "out of state": "Out of State"
+            "adams": "Adams"
+            "allegheny": "Allegheny"
+            "armstrong": "Armstrong"
+            "beaver": "Beaver"
+            "bedford": "Bedford"
+            "berks": "Berks"
+            "blair": "Blair"
+            "bradford": "Bradford"
+            "bucks": "Bucks"
+            "butler": "Butler"
+            "cambria": "Cambria"
+            "cameron": "Cameron"
+            "carbon": "Carbon"
+            "centre": "Centre"
+            "chester": "Chester"
+            "clarion": "Clarion"
+            "clearfield": "Clearfield"
+            "clinton": "Clinton"
+            "columbia": "Columbia"
+            "crawford": "Crawford"
+            "cumberland": "Cumberland"
+            "dauphin": "Dauphin"
+            "delaware": "Delaware"
+            "elk": "Elk"
+            "erie": "Erie"
+            "fayette": "Fayette"
+            "forest": "Forest"
+            "franklin": "Franklin"
+            "fulton": "Fulton"
+            "greene": "Greene"
+            "huntingdon": "Huntingdon"
+            "indiana": "Indiana"
+            "jefferson": "Jefferson"
+            "juniata": "Juniata"
+            "lackawanna": "Lackawanna"
+            "lancaster": "Lancaster"
+            "lawrence": "Lawrence"
+            "lebanon": "Lebanon"
+            "lehigh": "Lehigh"
+            "luzerne": "Luzerne"
+            "lycoming": "Lycoming"
+            "mckean": "McKean"
+            "mercer": "Mercer"
+            "mifflin": "Mifflin"
+            "monroe": "Monroe"
+            "montgomery": "Montgomery"
+            "montour": "Montour"
+            "northampton": "Northampton"
+            "northumberland": "Northumberland"
+            "perry": "Perry"
+            "philadelphia": "Philadelphia"
+            "pike": "Pike"
+            "potter": "Potter"
+            "schuylkill": "Schuylkill"
+            "snyder": "Snyder"
+            "somerset": "Somerset"
+            "sullivan": "Sullivan"
+            "susquehanna": "Susquehanna"
+            "tioga": "Tioga"
+            "union": "Union"
+            "venango": "Venango"
+            "warren": "Warren"
+            "washington": "Washington"
+            "wayne": "Wayne"
+            "westmoreland": "Westmoreland"
+            "wyoming": "Wyoming"
+            "york": "York"
+    - fill_in:
+        - name: "zip"
+          selector: "#nf-field-1411"
+          value: $ADDRESS_ZIP5
+          required: true
+          # max length: 5
+        - name: "email"
+          selector: "#nf-field-1421"
+          value: "$EMAIL"
+          required: true
+        - name: "phone"
+          selector: "#nf-field-1431"
+          value: $PHONE
+          required: true
+        - name: "nf-field-1461"
+          selector: "#nf-field-1461"
+          value: "$MESSAGE"
+          required: true
+          # max length: 5000
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit"
+          selector: "#nf-field-1471"
+    # The submit button on the page changes to "processing" for a substantial length of time.  An unscientific test averaged about 10 seconds before the success message appears.  A 20 second delay seems to be a reasonable compromise between speed and ensuring success.
+    - wait:
+        - value: 10
+  success:
+    body:
+      contains: "Your form has been successfully submitted."
