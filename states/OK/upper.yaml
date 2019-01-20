@@ -1,0 +1,59 @@
+contact_form:
+  steps:
+    - visit: "http://www.oksenate.gov/Senators/biographies/SendEmails.aspx"
+    - fill_in:
+        - name: TextBoxName
+          selector: "#TextBoxName"
+          value: $NAME_FULL
+          required: true
+        - name: TextBoxAddress
+          selector: "#TextBoxAddress"
+          value: $ADDRESS_STREET
+          required: true
+        - name: TextBoxCity
+          selector: "#TextBoxCity"
+          value: $ADDRESS_CITY
+          required: true
+        - name: TextBoxState
+          selector: "#TextBoxState"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+        - name: TextBoxZip
+          selector: "#TextBoxZip"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: TextBoxPhoneNumber
+          selector: "#TextBoxPhoneNumber"
+          value: $PHONE
+        - name: TextBoxSendersEmailAddress
+          selector: "#TextBoxSendersEmailAddress"
+          value: $EMAIL
+          required: true
+        - name: TextBoxSubject
+          selector: "#TextBoxSubject"
+          value: $SUBJECT
+          required: true
+    - select:
+        - name: DropDownListReceiver
+          selector: '#DropDownListReceiver'
+          # Example: George Young
+          value: "George Young"
+#          value: "$META_OFFICIAL_FULL_NAME"
+          required: true
+    - fill_in:
+        - name: TextBoxMessage
+          selector: "#TextBoxMessage"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: Submit
+          selector: "#ButtonSubmit"
+    - wait:
+        # Since we cannot wait for a success message to appear,
+        # explicitly give some time for form submission to finish.
+        - value: 15
+  success:
+    body:
+      # There is no good way to verify success after the click.
+      # The form displays a message by populating an <input> field... oy.
+      contains: "RESULTS"
