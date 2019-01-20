@@ -1,8 +1,7 @@
 contact_form:
   steps:
     # Example: https://www.okhouse.gov/Members/Contact.aspx?District=99
-#    - visit: "$META_OFFICIAL_URL"
-    - visit: "https://www.okhouse.gov/Members/Contact.aspx?District=99"
+    - visit: "$META_OFFICIAL_URL"
     - fill_in:
         - name: txtFirstName
           selector: "#txtFirstName"

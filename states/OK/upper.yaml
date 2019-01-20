@@ -37,8 +37,7 @@ contact_form:
         - name: DropDownListReceiver
           selector: '#DropDownListReceiver'
           # Example: George Young
-          value: "George Young"
-#          value: "$META_OFFICIAL_FULL_NAME"
+          value: "$META_OFFICIAL_FULL_NAME"
           required: true
     - fill_in:
         - name: TextBoxMessage
