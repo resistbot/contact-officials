@@ -115,7 +115,7 @@ contact_form:
         - value: true
     - click_on:
         - value: "Submit"
-          selector: "#webform-client-form-11 > div.form-actions > input"
+          selector: "input[value=Submit][name=op]"
   success:
     body:
       contains: "This message confirms we have received your email"

@@ -1,0 +1,157 @@
+# Only required fields are the email address, message and captcha.
+
+contact_form:
+  steps:
+    - visit: "https://dcforms.dc.gov/webform/executive-office-mayor-ask-mayor"
+    - select:
+        - name: "submitted[contact_information][prefix]"
+          selector: "#edit-submitted-contact-information-prefix"
+          value: "$NAME_PREFIX_NO_PERIOD"
+          options:
+            "Mr": "Mr."
+            "Mrs": "Mrs."
+            "Ms": "Ms."
+            "Dr": "Dr."
+            "Rev": "Rev."
+    - fill_in:
+        - name: "submitted[contact_information][first_name]"
+          selector: "#edit-submitted-contact-information-first-name"
+          value: $NAME_FIRST
+          # max length: 128
+        # There is a middle initial on the form, so here are the selectors for the sake of completeness, but we don't appear to have that data.
+        # - name: "submitted[contact_information][initial]"
+        #   selector: "#edit-submitted-contact-information-initial"
+        #   value: ""
+        # # max length: 1
+        - name: "submitted[contact_information][last_name]"
+          selector: "#edit-submitted-contact-information-last-name"
+          value: "$NAME_LAST"
+          # max length: 128
+    # - select:
+    #     - name: "submitted[contact_information][suffix]"
+    #       selector: "#edit-submitted-contact-information-suffix"
+    #       value: "selected"
+    #       options:
+    #         "selected": ""
+    #         "jr": "Jr."
+    #         "sr": "Sr."
+    #         "i": "I"
+    #         "ii": "II"
+    #         "iii": "III"
+    #         "iv": "IV"
+    #         "v": "V"
+    - fill_in:
+        - name: "submitted[contact_information][address]"
+          selector: "#edit-submitted-contact-information-address"
+          value: "$ADDRESS_STREET"
+          # max length: 128
+        - name: "submitted[contact_information][city]"
+          selector: "#edit-submitted-contact-information-city"
+          value: "$ADDRESS_CITY"
+          # max length: 128
+    - select:
+        - name: "submitted[contact_information][state]"
+          selector: "#edit-submitted-contact-information-state"
+          value: "$ADDRESS_STATE_POSTAL_ABBREV"
+          options:
+            "AL": "Alabama"
+            "AK": "Alaska"
+            "AS": "American Samoa"
+            "AZ": "Arizona"
+            "AR": "Arkansas"
+            "CA": "California"
+            "CO": "Colorado"
+            "CT": "Connecticut"
+            "DE": "Delaware"
+            "DC": "District of Columbia"
+            "FL": "Florida"
+            "GA": "Georgia"
+            "GU": "Guam"
+            "HI": "Hawaii"
+            "ID": "Idaho"
+            "IL": "Illinois"
+            "IN": "Indiana"
+            "IA": "Iowa"
+            "KS": "Kansas"
+            "KY": "Kentucky"
+            "LA": "Louisiana"
+            "ME": "Maine"
+            "MH": "Marshall Islands"
+            "MD": "Maryland"
+            "MA": "Massachusetts"
+            "MI": "Michigan"
+            "MN": "Minnesota"
+            "MS": "Mississippi"
+            "MO": "Missouri"
+            "MT": "Montana"
+            "NE": "Nebraska"
+            "NV": "Nevada"
+            "NH": "New Hampshire"
+            "NJ": "New Jersey"
+            "NM": "New Mexico"
+            "NY": "New York"
+            "NC": "North Carolina"
+            "ND": "North Dakota"
+            "MP": "Northern Marianas Islands"
+            "OH": "Ohio"
+            "OK": "Oklahoma"
+            "OR": "Oregon"
+            "PW": "Palau"
+            "PA": "Pennsylvania"
+            "PR": "Puerto Rico"
+            "RI": "Rhode Island"
+            "SC": "South Carolina"
+            "SD": "South Dakota"
+            "TN": "Tennessee"
+            "TX": "Texas"
+            "UT": "Utah"
+            "VT": "Vermont"
+            "VI": "Virgin Islands"
+            "VA": "Virginia"
+            "WA": "Washington"
+            "WV": "West Virginia"
+            "WI": "Wisconsin"
+            "WY": "Wyoming"
+    - fill_in:
+        - name: "submitted[contact_information][zip]"
+          selector: "#edit-submitted-contact-information-zip"
+          value: "$ADDRESS_ZIP5"
+          # max length: 128
+        # - name: "submitted[contact_information][home_phone]"
+        #   selector: "#edit-submitted-contact-information-home-phone"
+        #   value: "$PHONE"
+        - name: "submitted[contact_information][email]"
+          selector: "#edit-submitted-contact-information-email"
+          value: "$EMAIL"
+          required: true
+    - select:
+        - name: "submitted[message][subject_list]"
+          selector: "#edit-submitted-message-subject-list"
+          value: "other"
+          options:
+            "Education": "Education"
+            "Children_and_Families": "Children and Families"
+            "Public_Safety_and_Justice": "Public Safety and Justice"
+            "Economic_Development": "Economic Development"
+            "District_Services": "District Services"
+            "Customer_Service": "Customer Service"
+            "Policy_and_Current_Event_Suggestions": "Policy and Current Event Suggestions"
+            "Send_Us_Your_CapStat_Ideas": "Send Us Your CapStat Ideas"
+            "other": "Other, please specify below"
+    - fill_in:
+        - name: "submitted[message][message]"
+          selector: "#edit-submitted-message-message"
+          value: "$MESSAGE"
+          required: true
+        - name: "captcha_response"
+          selector: "#edit-captcha-response"
+          captcha_selector: "#webform-client-form-1221716 > div > fieldset.captcha.form-wrapper > div > div.form-item.form-type-textfield.form-item-captcha-response > span"
+          captcha_append_guidance: " = ?"
+          value: $CAPTCHA_SOLUTION
+          required: true
+    - click_on:
+        - name: "Submit"
+          selector: "#edit-submit"
+  success:
+    body:
+      contains: "Thank you, your message has been delivered"
