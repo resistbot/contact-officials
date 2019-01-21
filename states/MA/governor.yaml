@@ -1,0 +1,49 @@
+contact_form:
+  steps:
+    - visit: "https://www.mass.gov/forms/email-the-governors-office"
+    - fill_in:
+        - name: "field49751862"
+          selector: "#field49751862"
+          value: $NAME_FIRST
+          required: true
+        - name: "field49751877"
+          selector: "#field49751877"
+          value: $NAME_LAST
+          required: true
+        - name: "field49751885"
+          selector: "#field49751885"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "field49751935"
+          selector: "#field49751935"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "field49751937"
+          selector: "#field49751937"
+          value: $ADDRESS_STATE_FULL
+          required: true
+        - name: "field49752148"
+          selector: "#field49752148"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "field49751979"
+          selector: "#field49751979"
+          value: $PHONE
+          required: true
+        - name: "field49752019"
+          selector: "#field49752019"
+          value: $EMAIL
+          required: true
+        - name: "field49751965"
+          selector: "#field49751965"
+          value: $SUBJECT
+        - name: "field49752026"
+          selector: "#field49752026"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: "Submit Form"
+          selector: "#fsSubmitButton1744869"
+  success:
+    body:
+      contains: "The form was submitted successfully"
