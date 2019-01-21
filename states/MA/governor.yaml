@@ -1,3 +1,5 @@
+# Note that sometimes a feedback box pops up upon initial load of the page.  This doesn't show up every time, and doesn't appear twice in a row, so resubmissions will be successful if the feedback box is first encountered.
+
 contact_form:
   steps:
     - visit: "https://www.mass.gov/forms/email-the-governors-office"
