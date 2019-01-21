@@ -1,0 +1,104 @@
+contact_form:
+  steps:
+    # Example: https://www.okhouse.gov/Members/Contact.aspx?District=99
+    - visit: "$META_OFFICIAL_URL"
+    - fill_in:
+        - name: txtFirstName
+          selector: "#txtFirstName"
+          value: $NAME_FIRST
+          required: true
+        - name: txtLastName
+          selector: "#txtLastName"
+          value: $NAME_LAST
+          required: true
+        - name: txtAddress
+          selector: "#txtAddress"
+          value: $ADDRESS_STREET
+          required: true
+        - name: txtCity
+          selector: "#txtCity"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: ddlState
+          selector: "#ddlState"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          options:
+            AL: AL
+            AK: AK
+            AZ: AZ
+            AR: AR
+            CA: CA
+            CO: CO
+            CT: CT
+            DE: DE
+            DC: DC
+            FL: FL
+            GA: GA
+            HI: HI
+            ID: ID
+            IL: IL
+            IN: IN
+            IA: IA
+            KS: KS
+            KY: KY
+            LA: LA
+            ME: ME
+            MD: MD
+            MA: MA
+            MI: MI
+            MN: MN
+            MS: MS
+            MO: MO
+            MT: MT
+            NE: NE
+            NV: NV
+            NH: NH
+            NJ: NJ
+            NM: NM
+            NY: NY
+            NC: NC
+            ND: ND
+            OH: OH
+            OK: OK
+            OR: OR
+            PA: PA
+            RI: RI
+            SC: SC
+            SD: SD
+            TN: TN
+            TX: TX
+            UT: UT
+            VT: VT
+            VA: VA
+            WA: WA
+            WV: WV
+            WI: WI
+            WY: WY
+    - fill_in:
+        - name: txtZipCode
+          selector: "#txtZipCode"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: txtPhone
+          selector: "#txtPhone"
+          value: $PHONE
+          required: true
+        - name: txtEmail
+          selector: "#txtEmail"
+          value: $EMAIL
+          required: true
+        - name: txtSubject
+          selector: "#txtSubject"
+          value: $SUBJECT
+          required: true
+        - name: txtBody
+          selector: "#txtBody"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: Send E-Mail
+          selector: "#btnSend"
+  success:
+    body:
+      contains: "Your message has been sent"

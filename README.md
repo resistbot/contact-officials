@@ -144,3 +144,6 @@ follows:
 - `$META_OFFICIAL_FIRST_NAME`: First name of official.
 
 - `$META_OFFICIAL_LAST_NAME`: Last name of official.
+
+- `$META_OFFICIAL_FULL_NAME`: Full name of official (first and
+  last, separated by a space).

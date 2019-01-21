@@ -1,0 +1,44 @@
+contact_form:
+  steps:
+    - visit: "https://www.ok.gov/triton/contact.php?ac=347&id=322"
+    - fill_in:
+        - name: uname
+          selector: "#uname"
+          value: $NAME_FULL
+          required: true
+        - name: semail
+          selector: "#semail"
+          value: $EMAIL
+          required: true
+    - select:
+        - name: topic
+          selector: "#topic"
+          value: "Other"
+          required: true
+          options:
+            "Criminal Justice Reform": "980"
+            "Education": "981"
+            "Energy": "982"
+            "Government Accountability": "983"
+            "Healthcare": "984"
+            "Military & Veterans": "985"
+            "Needing Assistance with an Agency": "986"
+            "Other": "991"
+            "Press": "992"
+            "Prolife": "987"
+            "Public Safety": "988"
+            "Taxes": "990"
+            "Transportation": "989"
+    - fill_in:
+        - name: message
+          selector: "#message"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: Send Message
+          selector: "input[value='Send Message']"
+  success:
+    body:
+      contains: "Your message has been sent"
