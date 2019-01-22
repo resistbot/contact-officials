@@ -1,0 +1,139 @@
+contact_form:
+  steps:
+    - visit: "https://somgovweb.state.mi.us/GovRelations/ShareOpinion.aspx"
+    - fill_in:
+        - name: "ctl00$Content$OpinionPrefix"
+          selector: "#Content_OpinionPrefix"
+          value: $NAME_PREFIX
+          required: true
+        - name: "ctl00$Content$OpinionFirstName"
+          selector: "#Content_OpinionFirstName"
+          value: $NAME_FIRST
+          required: true
+        - name: "ctl00$Content$OpinionLastName"
+          selector: "#Content_OpinionLastName"
+          value: $NAME_LAST
+          required: true
+        - name: "ctl00$Content$OpinionAddress"
+          selector: "#Content_OpinionAddress"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "ctl00$Content$OpinionCity"
+          selector: "#Content_OpinionCity"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: "ctl00$Content$OpinionState"
+          selector: "#Content_OpinionState"
+          value: $ADDRESS_STATE_FULL
+          required: true
+          options:
+            "AL": "Alabama"
+            "AK": "Alaska"
+            "AZ": "Arizona"
+            "AR": "Arkansas"
+            "CA": "California"
+            "CO": "Colorado"
+            "CT": "Connecticut"
+            "DE": "Delaware"
+            "DC": "District of Columbia"
+            "FL": "Florida"
+            "GA": "Georgia"
+            "HI": "Hawaii"
+            "ID": "Idaho"
+            "IL": "Illinois"
+            "IN": "Indiana"
+            "IA": "Iowa"
+            "KS": "Kansas"
+            "KY": "Kentucky"
+            "LA": "Louisiana"
+            "ME": "Maine"
+            "MD": "Maryland"
+            "MA": "Massachusetts"
+            "MI": "Michigan"
+            "MN": "Minnesota"
+            "MS": "Mississippi"
+            "MO": "Missouri"
+            "MT": "Montana"
+            "NE": "Nebraska"
+            "NV": "Nevada"
+            "NH": "New Hampshire"
+            "NJ": "New Jersey"
+            "NM": "New Mexico"
+            "NY": "New York"
+            "NC": "North Carolina"
+            "ND": "North Dakota"
+            "OH": "Ohio"
+            "OK": "Oklahoma"
+            "OR": "Oregon"
+            "PA": "Pennsylvania"
+            "RI": "Rhode Island"
+            "SC": "South Carolina"
+            "SD": "South Dakota"
+            "TN": "Tennessee"
+            "TX": "Texas"
+            "UT": "Utah"
+            "VT": "Vermont"
+            "VA": "Virginia"
+            "WA": "Washington"
+            "WV": "West Virginia"
+            "WI": "Wisconsin"
+            "WY": "Wyoming"
+    - fill_in:
+        - name: "ctl00$Content$OpinionZipCode"
+          selector: "#Content_OpinionZipCode"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "ctl00$Content$OpinionPhone"
+          selector: "#Content_OpinionPhone"
+          value: $PHONE
+          required: true
+        - name: "ctl00$Content$OpinionEmail"
+          selector: "#Content_OpinionEmail"
+          value: $EMAIL
+          required: true
+    - select:
+        - name: "ctl00$Content$OpinionIssue"
+          selector: "#Content_OpinionIssue"
+          value: "1f2eb027-7631-e111-b4af-00219b8d8c66"
+          required: true
+          options:
+            "1492754f-49c5-e511-99db-00219b8d8c68": "* Flint Resident"
+            "0174d47a-85d4-e411-8e74-00219b8d8c68": "* Flint Water"
+            "406a7fcf-2d5b-e211-9168-00219b8d8c68": "* 2019 State Budget Proposal"
+            "70b2f5e4-ebcb-e411-9e5c-00219b8d8c68": "* Department of Talent and Economic Development"
+            "3ba41b59-a3d7-e411-8e74-00219b8d8c68": "* Detroit Public Schools"
+            "6d712412-7131-e111-b4af-00219b8d8c66": "* Education"
+            "c7aa5814-5a40-e511-95d6-00219b8d8c68": "* Energy"
+            "b88bd42c-5a40-e511-95d6-00219b8d8c68": "* Environment"
+            "a48df34a-78e5-e211-8fbb-00219b8d8c68": "* Fireworks"
+            "20674245-3d39-e011-bfcb-00219b8d8c66": "* Gas Prices"
+            "3fd97c62-6369-e211-8ed4-00219b8d8c68": "* Great Lakes"
+            "2a621f32-fd45-e211-8e57-00219b8d8c68": "* Gun Legislation"
+            "23a6eaf4-7031-e111-b4af-00219b8d8c66": "* Health &amp; Wellness"
+            "15cc884f-3d39-e011-bfcb-00219b8d8c66": "* Immigration"
+            "90b3a092-285b-e211-9168-00219b8d8c68": "* Jobs &amp; Economy"
+            "c238711a-285b-e211-9168-00219b8d8c68": "* Law &amp; Public Safety"
+            "6c48c7d2-9aeb-e011-aa08-00219b8d8c66": "* No-Fault Auto Insurance"
+            "1f2eb027-7631-e111-b4af-00219b8d8c66": "* Other / Unknown"
+            "bff62df2-7331-e111-b4af-00219b8d8c66": "* Public Assistance Reform"
+            "e32c1bd1-7431-e111-b4af-00219b8d8c66": "* Taxation"
+            "816c675e-0912-e911-80d0-00155dd80f09": "Repeal the Pension Tax"
+            "c56ea783-2b49-e111-bd20-00219b8d8c66": "Roads and Infrastructure"
+    - fill_in:
+        - name: "ctl00$Content$OpinionText"
+          selector: "#Content_OpinionText"
+          value: $MESSAGE
+          required: true
+          # max length: 2000
+        - name: "ctl00$Content$RadCaptcha1$CaptchaTextBox"
+          selector: "#Content_RadCaptcha1_CaptchaTextBox"
+          captcha_selector: "#Content_RadCaptcha1_CaptchaImageUP"
+          value: $CAPTCHA_SOLUTION
+          required: true
+    - click_on:
+        - value: "Submit"
+          selector: "#Content_btnSubmit"
+  success:
+    body:
+      contains: "Thank you, your request has been submitted"
