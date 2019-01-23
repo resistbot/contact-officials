@@ -1,0 +1,116 @@
+contact_form:
+  steps:
+    # Main page is found here; https://www.tn.gov/governor/contact-us.html.  The form is inside of an iframe, accessed by the link below.
+    - visit: "https://iqconnect.lmhostediq.com/iqextranet/EForm.aspx?__cid=FSL_TN_DFA&__fid=100000"
+    - fill_in:
+        - name: "qi_1_first_name"
+          selector: "#qi_1_first_name"
+          value: $NAME_FIRST
+          required: true
+        - name: "qi_1_last_name"
+          selector: "#qi_1_last_name"
+          value: $NAME_LAST
+          required: true
+        - name: "qi_1_addr_1"
+          selector: "#qi_1_addr_1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "qi_1_city"
+          selector: "#qi_1_city"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: "qi_1_state"
+          selector: "#qi_1_state"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options:
+            "AL": "Alabama"
+            "AK": "Alaska"
+            "AS": "America Samoa"
+            "AZ": "Arizona"
+            "AR": "Arkansas"
+            "CA": "California"
+            "CO": "Colorado"
+            "CT": "Connecticut"
+            "DC": "D.C."
+            "D.C.": "D.C."
+            "DE": "Delaware"
+            "FM": "Federated States of Micronesia"
+            "FL": "Florida"
+            "FC": "Foreign Correspondence"
+            "GA": "Georgia"
+            "GU": "Guam"
+            "HI": "Hawaii"
+            "ID": "Idaho"
+            "IL": "Illinois"
+            "IN": "Indiana"
+            "IA": "Iowa"
+            "KS": "Kansas"
+            "KY": "Kentucky"
+            "LA": "Louisiana"
+            "ME": "Maine"
+            "MH": "Marshall Islands"
+            "MD": "Maryland"
+            "MA": "Massachusetts"
+            "MI": "Michigan"
+            "MN": "Minnesota"
+            "MS": "Mississippi"
+            "MO": "Missouri"
+            "MT": "Montana"
+            "NE": "Nebraska"
+            "NV": "Nevada"
+            "NH": "New Hampshire"
+            "NJ": "New Jersey"
+            "NM": "New Mexico"
+            "NY": "New York"
+            "NC": "North Carolina"
+            "ND": "North Dakota"
+            "MP": "Northern Mariana Islands"
+            "OH": "Ohio"
+            "OK": "Oklahoma"
+            "OR": "Oregon"
+            "PW": "Palau"
+            "PA": "Pennsylvania"
+            "PR": "Puerto Rico"
+            "RI": "Rhode Island"
+            "SC": "South Carolina"
+            "SD": "South Dakota"
+            "TN": "Tennessee"
+            "TX": "Texas"
+            "TT": "Trust Territory"
+            "UT": "Utah"
+            "VT": "Vermont"
+            "VI": "Virgin Islands"
+            "VA": "Virginia"
+            "WA": "Washington"
+            "WV": "West Virginia"
+            "WI": "Wisconsin"
+            "WY": "Wyoming"
+    - fill_in:
+        - name: "qi_1_zip"
+          selector: "#qi_1_zip"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "qi_1_email"
+          selector: "#qi_1_email"
+          value: $EMAIL
+          required: true
+        - name: "qi_1_hphone"
+          selector: "#qi_1_hphone"
+          value: ""
+        - name: "qi_2"
+          selector: "#qi_2"
+          value: $SUBJECT
+        - name: "qi_3"
+          selector: "#qi_3"
+          value: $MESSAGE
+          # max length: 10000 ## How generous.
+    - javascript:
+        - value: "document.getElementById('qi_6').value = new Date().toLocaleDateString();"
+    - click_on:
+        - value: "Send"
+          selector: "#btn_submit"
+  success:
+    alert:
+      contains: "Your message has been submitted"
