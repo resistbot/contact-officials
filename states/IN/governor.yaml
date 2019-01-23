@@ -192,6 +192,7 @@ contact_form:
           value: $ADDRESS_ZIP5
           required: true
           # max length: 5
+        # Phone is available, but not required by the form.  Here's the selector in case it's desired in the future.
         - name: "phone"
           selector: "#phone"
           value: ""
