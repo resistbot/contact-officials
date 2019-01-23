@@ -95,7 +95,7 @@ contact_form:
     - select:
         - name: "ctl00$Content$OpinionIssue"
           selector: "#Content_OpinionIssue"
-          value: "1f2eb027-7631-e111-b4af-00219b8d8c66"
+          value: "* Other / Unknown"
           required: true
           options:
             "1492754f-49c5-e511-99db-00219b8d8c68": "* Flint Resident"
