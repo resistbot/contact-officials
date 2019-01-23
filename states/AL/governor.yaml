@@ -1,0 +1,108 @@
+# Max length is not used at this time.  However, unitedstates/contact-congress has an option for it, so it is included in this form as a comment in case there is a desire to implement it in the future.
+
+contact_form:
+  steps:
+    - visit: "https://contact.governor.alabama.gov/contact.aspx"
+    - select:
+        - name: "ctl00$ContentPlaceHolder1$PREFIX"
+          selector: "#ContentPlaceHolder1_PREFIX"
+          value: $NAME_PREFIX
+          required: true
+          options:
+            "Mr.": "Mr."
+            "Ms.": "Ms."
+            "Mrs.": "Mrs."
+            "Dr.": "Dr."
+    - fill_in:
+        - name: "ctl00$ContentPlaceHolder1$FIRSTNAME"
+          selector: "#ContentPlaceHolder1_FIRSTNAME"
+          value: $NAME_FIRST
+          required: true
+          # max length: 60
+        - name: "ctl00$ContentPlaceHolder1$LASTNAME"
+          selector: "#ContentPlaceHolder1_LASTNAME"
+          value: $NAME_LAST
+          required: true
+          # max length: 60
+        - name: "ctl00$ContentPlaceHolder1$EMAILADDRESS"
+          selector: "#ContentPlaceHolder1_EMAILADDRESS"
+          value: $EMAIL
+          required: true
+          # max length: 100
+        - name: "ctl00$ContentPlaceHolder1$PHONE1"
+          selector: "#ContentPlaceHolder1_PHONE1"
+          value: $PHONE_AREA_CODE
+          required: true
+          # max length: 3
+        - name: "ctl00$ContentPlaceHolder1$PHONE2"
+          selector: "#ContentPlaceHolder1_PHONE2"
+          value: $PHONE3
+          required: true
+          # max length: 3
+        - name: "ctl00$ContentPlaceHolder1$PHONE3"
+          selector: "#ContentPlaceHolder1_PHONE3"
+          value: $PHONE4
+          required: true
+          # max length: 4
+        - name: "ctl00$ContentPlaceHolder1$STREET_ADDRESS"
+          selector: "#ContentPlaceHolder1_STREET_ADDRESS"
+          value: $ADDRESS_STREET
+          required: true
+          # max length: 200
+        - name: "ctl00$ContentPlaceHolder1$CITY"
+          selector: "#ContentPlaceHolder1_CITY"
+          value: $ADDRESS_CITY
+          required: true
+          # max length: 100
+        - name: "ctl00$ContentPlaceHolder1$STATE"
+          selector: "#ContentPlaceHolder1_STATE"
+          value: $ADDRESS_STATE_FULL
+          required: true
+          # max length: 25
+        - name: "ctl00$ContentPlaceHolder1$ZIP_CODE"
+          selector: "#ContentPlaceHolder1_ZIP_CODE"
+          value: $ADDRESS_ZIP5
+          required: true
+          # max length: 25
+    - select:
+        - name: "ctl00$ContentPlaceHolder1$EMAIL_ISSUE"
+          selector: "#ContentPlaceHolder1_EMAIL_ISSUE"
+          value: "MISCELLANEOUS"
+          required: true
+          options:
+            "CONSERVATION": "Conservation"
+            "DHR": "Department of Human Resources"
+            "DISASTER": "Disaster Assistance"
+            "ALEA-DRIVER LICENSE": "Driver License"
+            "BUD": "Economy &amp; Budget"
+            "EDU-GENERAL": "Education"
+            "ENVIRONMENT": "Environment"
+            "DOC-EXECUTIONS": "Executions"
+            "HC-GENERAL": "Healthcare"
+            "ISSUE-IMMIGRATION": "Immigration"
+            "INSURANCE-GENERAL": "Insurance"
+            "LABOR": "Labor"
+            "LS": "Legislative Session 2018"
+            "MILITARY": "Military"
+            "NRA": "NRA - Second Amendment"
+            "PARDONS &amp;PAROLES": "Pardons &amp; Paroles"
+            "FLAG": "Request for Flag"
+            "REQUEST FOR FUNDING": "Request for Funding"
+            "LETTERS - CEREMONIAL": "Request for Greeting Letter"
+            "REQUEST FOR ITEMS": "Request Photo/Request for Item"
+            "SENIOR SERVICES-GEN": "Senior Assistance"
+            "DOT": "Transportation"
+            "MISCELLANEOUS": "Other Issue"
+    - fill_in:
+        - name: "ctl00$ContentPlaceHolder1$COMMENTS"
+          selector: "#ContentPlaceHolder1_COMMENTS"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Email This Form"
+          selector: "#ContentPlaceHolder1_btnEmail"
+  success:
+    body:
+      contains: "Thank You for sharing your comments with"
