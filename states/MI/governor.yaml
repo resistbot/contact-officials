@@ -25,7 +25,7 @@ contact_form:
     - select:
         - name: "ctl00$Content$OpinionState"
           selector: "#Content_OpinionState"
-          value: $ADDRESS_STATE_FULL
+          value: $ADDRESS_STATE_POSTAL_ABBREV
           required: true
           options:
             "AL": "Alabama"
