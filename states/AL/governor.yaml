@@ -56,7 +56,7 @@ contact_form:
           # max length: 100
         - name: "ctl00$ContentPlaceHolder1$STATE"
           selector: "#ContentPlaceHolder1_STATE"
-          value: $ADDRESS_STATE_FULL
+          value: $ADDRESS_STATE_POSTAL_ABBREV
           required: true
           # max length: 25
         - name: "ctl00$ContentPlaceHolder1$ZIP_CODE"
