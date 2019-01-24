@@ -1,0 +1,42 @@
+contact_form:
+  steps:
+    # Note that the form is inside of an iframe on this website: https://www.colorado.gov/governor/share-your-comments
+    - visit: "https://www.tfaforms.com/4679739?faIframeUniqueId=49cteb2vyx&hostURL=https%3A%2F%2Fwww.colorado.gov%2Fgovernor%2Fshare-your-comments"
+    # This is a radio button asking if the comment is related to proposed legislation, and checks the "no" radio button.
+    - javascript:
+        - value: "document.querySelector('#tfa_2746').checked = true;"
+    - fill_in:
+        - name: "tfa_2748"
+          selector: "#tfa_2748"
+          value: $SUBJECT
+          required: true
+        - name: "tfa_2725"
+          selector: "#tfa_2725"
+          value: $MESSAGE
+          required: true
+        - name: "tfa_62"
+          selector: "#tfa_62"
+          value: $NAME_FIRST
+          required: true
+        - name: "tfa_63"
+          selector: "#tfa_63"
+          value: $NAME_LAST
+          required: true
+        - name: "tfa_64"
+          selector: "#tfa_64"
+          value: $EMAIL
+          required: true
+    - select:
+        - name: "tfa_71"
+          selector: "#tfa_71"
+          value: $ADDRESS_COUNTY
+          required: true
+    # This is the confidentiality statement that prevents correspondence from being publicly disclosed.  At the time of this design the box is checked by default, but this JS ensures that the checkbox is selected.
+    - javascript:
+        - value: "document.getElementById('tfa_2727').checked = true;"
+    - click_on:
+        - value: "Submit"
+          selector: "#submit_button"
+  success:
+    body:
+      contains: "Thank you for submitting your comments"
