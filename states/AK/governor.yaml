@@ -1,0 +1,160 @@
+# Max length is not used at this time.  However, unitedstates/contact-congress has an option for it, so it is included in this form as a comment in case there is a desire to implement it in the future.
+
+
+contact_form:
+  steps:
+    - visit: "http://aws.state.ak.us/CrmForms/Home/Feedback"
+    - select:
+        - name: "Title"
+          selector: "#Title"
+          value: $NAME_PREFIX
+          options:
+            "Mr.": "Mr."
+            "Ms.": "Ms."
+            "Mrs.": "Mrs."
+    - fill_in:
+        - name: "FirstName"
+          selector: "#FirstName"
+          value: $NAME_FIRST
+          required: true
+          # max length: 50
+        - name: "LastName"
+          selector: "#LastName"
+          value: $NAME_LAST
+          required: true
+          # max length: 50
+        - name: "Address"
+          selector: "#Address"
+          value: $ADDRESS_STREET
+          # max length: 150
+        - name: "City"
+          selector: "#City"
+          value: $ADDRESS_CITY
+          required: true
+          # max length: 50
+    - select:
+        - name: "State"
+          selector: "#State"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          # Not required, per se.  Defaults to AK.
+          options:
+            "AL": "AL"
+            "AR": "AR"
+            "AZ": "AZ"
+            "CA": "CA"
+            "CO": "CO"
+            "CT": "CT"
+            "DC": "DC"
+            "DE": "DE"
+            "FL": "FL"
+            "GA": "GA"
+            "HI": "HI"
+            "IA": "IA"
+            "ID": "ID"
+            "IL": "IL"
+            "IN": "IN"
+            "KS": "KS"
+            "KY": "KY"
+            "LA": "LA"
+            "MA": "MA"
+            "MD": "MD"
+            "ME": "ME"
+            "MI": "MI"
+            "MN": "MN"
+            "MO": "MO"
+            "MS": "MS"
+            "MT": "MT"
+            "NC": "NC"
+            "ND": "ND"
+            "NE": "NE"
+            "NH": "NH"
+            "NJ": "NJ"
+            "NM": "NM"
+            "NV": "NV"
+            "NY": "NY"
+            "OH": "OH"
+            "OK": "OK"
+            "OR": "OR"
+            "PA": "PA"
+            "RI": "RI"
+            "SC": "SC"
+            "SD": "SD"
+            "TN": "TN"
+            "TX": "TX"
+            "UT": "UT"
+            "VA": "VA"
+            "VT": "VT"
+            "WA": "WA"
+            "WI": "WI"
+            "WV": "WV"
+            "WY": "WY"
+    - fill_in:
+        - name: "Zip"
+          selector: "#Zip"
+          value: $ADDRESS_ZIP5
+          required: true
+          # max length: 5
+        # Note, Phone is not required by the form.  It is included here as a comment in case there is a desire to implement in the future
+        # - name: "HomePhone"
+        #   selector: "#HomePhone"
+        #   value: $PHONE
+        #   # max length: 13
+        - name: "Email"
+          selector: "#Email"
+          value: $EMAIL
+          required: true
+          # max length: 150
+    - select:
+        - name: "Topic"
+          selector: "#Topic"
+          value: "Other"
+          required: true
+          options:
+            "Other": "Other</option"
+            "Administration": "Administration</option"
+            "Alaska Court System": "Alaska Court System</option"
+            "Alaska Marine Highway": "Alaska Marine Highway</option"
+            "Alaska's Economy": "Alaska's Economy</option"
+            "Arctic Issues": "Arctic Issues</option"
+            "Budget": "Budget</option"
+            "Business Concern": "Business Concern</option"
+            "Commerce": "Commerce</option"
+            "Community and Local Government Issues": "Community and Local Government Issues</option"
+            "Corrections": "Corrections</option"
+            "Education": "Education</option"
+            "Environmental Concerns": "Environmental Concerns</option"
+            "Fish and Game": "Fish and Game</option"
+            "Health and Social Services": "Health and Social Services</option"
+            "Labor and Employment": "Labor and Employment</option"
+            "Law and Legal Concerns": "Law and Legal Concerns</option"
+            "Law Enforcement": "Law Enforcement</option"
+            "Legislation": "Legislation</option"
+            "Medicaid Reform and Expansion": "Medicaid Reform and Expansion</option"
+            "Military and Veterans": "Military and Veterans</option"
+            "Mining": "Mining</option"
+            "Natural Gas Pipeline": "Natural Gas Pipeline</option"
+            "Oil and Gas Development": "Oil and Gas Development</option"
+            "Public Safety": "Public Safety</option"
+            "Revenue": "Revenue</option"
+            "State Services": "State Services</option"
+            "State/Federal Issues": "State/Federal Issues</option"
+            "Sustainable Alaska Plan": "Sustainable Alaska Plan</option"
+            "Transportation": "Transportation</option"
+            "University of Alaska": "University of Alaska</option"
+    - fill_in:
+        - name: "TopicDetails"
+          selector: "#TopicDetails"
+          value: $SUBJECT
+          # max length: 100
+        - name: "Comments"
+          selector: "#Comments"
+          value: $MESSAGE
+          # max length: 4000
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit Feedback"
+          selector: "input[type='submit'][name='submit']"
+  success:
+    body:
+      contains: "Your feedback has been received"
