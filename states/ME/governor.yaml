@@ -1,0 +1,34 @@
+contact_form:
+  steps:
+    - visit: "https://www.maine.gov/governor/mills/contact"
+    - fill_in:
+        - name: "name"
+          selector: "#name"
+          value: $NAME_FIRST
+          required: true
+        - name: "lname"
+          selector: "#lname"
+          value: $NAME_LAST
+          required: true
+        - name: "email"
+          selector: "#email"
+          value: $EMAIL
+          required: true
+          # Phone is not required by the form, but there is an optional field that we could use in the future if desired.
+        - name: "phone"
+          selector: "#phone"
+          value: ""
+        - name: "comments"
+          selector: "#comments"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit"
+          selector: "#Submit"
+    - wait:
+        - value: 10
+  success:
+    body:
+      contains: "Thank you for contacting Governor"
