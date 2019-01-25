@@ -1,0 +1,124 @@
+contact_form:
+  steps:
+    - visit: "https://www.oregon.gov/gov/Pages/share-your-opinion.aspx"
+    - fill_in:
+        - name: "Prefix"
+          selector: "input[name='Prefix']"
+          value: $NAME_PREFIX
+        - name: "First Name"
+          selector: "input[name='First Name']"
+          value: $NAME_FIRST
+          required: true
+        - name: "Last Name"
+          selector: "input[name='Last Name']"
+          value: $NAME_LAST
+          required: true
+        - name: "address1"
+          selector: "input[name='address1']"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "City"
+          selector: "input[name='City']"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: "state"
+          selector: "#state"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options:
+            "AL": "Alabama"
+            "AK": "Alaska"
+            "AZ": "Arizona"
+            "AR": "Arkansas"
+            "CA": "California"
+            "CO": "Colorado"
+            "CT": "Connecticut"
+            "DE": "Delaware"
+            "DC": "District of Columbia"
+            "FL": "Florida"
+            "GA": "Georgia"
+            "HI": "Hawaii"
+            "ID": "Idaho"
+            "IL": "Illinois"
+            "IN": "Indiana"
+            "IA": "Iowa"
+            "KS": "Kansas"
+            "KY": "Kentucky"
+            "LA": "Louisiana"
+            "ME": "Maine"
+            "MD": "Maryland"
+            "MA": "Massachusetts"
+            "MI": "Michigan"
+            "MN": "Minnesota"
+            "MS": "Mississippi"
+            "MO": "Missouri"
+            "MT": "Montana"
+            "NE": "Nebraska"
+            "NV": "Nevada"
+            "NH": "New Hampshire"
+            "NJ": "New Jersey"
+            "NM": "New Mexico"
+            "NY": "New York"
+            "NC": "North Carolina"
+            "ND": "North Dakota"
+            "OH": "Ohio"
+            "OK": "Oklahoma"
+            "OR": "Oregon"
+            "PA": "Pennsylvania"
+            "RI": "Rhode Island"
+            "SC": "South Carolina"
+            "SD": "South Dakota"
+            "TN": "Tennessee"
+            "TX": "Texas"
+            "UT": "Utah"
+            "VT": "Vermont"
+            "VA": "Virginia"
+            "WA": "Washington"
+            "WV": "West Virginia"
+            "WI": "Wisconsin"
+            "WY": "Wyoming"
+    - fill_in:
+        - name: "Zip"
+          selector: "input[name='Zip']"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "Email"
+          selector: "input[name='Email']"
+          value: $EMAIL
+          required: true
+        - name: "homephone"
+          selector: "input[name='homephone']"
+          value: $PHONE
+          required: true
+    # As there is no 'other' choice, here we are entering a random option via the choose directive.
+    - choose:
+        - name: "issue"
+          selector: "#topic option"
+          value: #random
+          required: true
+          options:
+            "Agriculture and Animal Welfare": "AG"
+            "Economy and Jobs": "ECO"
+            "Education": "EDU"
+            "Energy": "ENG"
+            "Federal Issues": "FED"
+            "Health Care": "HC"
+            "Human and Social Services": "HSS"
+            "Immigration and Diversity": "DIV"
+            "Military and Emergency Management": "MIL"
+            "Natural Resources and Wildlife": "NAT"
+            "Public Employee Benefits": "BENE"
+            "Public Safety": "PS"
+            "Taxes": "TAX"
+            "Transportation": "TRANS"
+    - fill_in:
+        - name: "messagebody"
+          selector: "#messagebody"
+          value: $MESSAGE
+    - click_on:
+        - value: "Submit"
+          selector: "input[name='formsend']"
+  success:
+    body:
+      contains: "your input means a great deal"
