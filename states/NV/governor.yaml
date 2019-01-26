@@ -52,7 +52,6 @@ contact_form:
           selector: "#dnf_class_values_communication__primary_constituent__0__address__0__state_"
           value: $ADDRESS_STATE_POSTAL_ABBREV
           options:
-            "": ""
             "AL": "Alabama"
             "AK": "Alaska"
             "AZ": "Arizona"
