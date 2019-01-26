@@ -110,9 +110,6 @@ contact_form:
     - click_on:
         - value: "Send Now"
           selector: "#dnn7787SendNow"
-    # Wait for the "processing" button to go to the next page before looking for the success criteria.
-    - wait:
-        - value:  5
   success:
     body:
       contains: "Your form has been submitted"
