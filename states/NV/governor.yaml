@@ -1,0 +1,170 @@
+contact_form:
+  steps:
+    # Note this is an iframe within http://gov.nv.gov/Contact/Email_the_Governor/
+    - visit: "https://nevada-voice.symplicity.com//contact_form/dee804819c38673f2500f9f724ac487b"
+    - select:
+        - name: "dnf_class_values[communication][primary_constituent][0][prefix]"
+          selector: "#dnf_class_values_communication__primary_constituent__0__prefix_"
+          value: $NAME_PREFIX
+          required: true
+          options:
+            "Miss": "Miss"
+            "Mr.": "Mr."
+            "Mrs.": "Mrs."
+            "Ms.": "Ms."
+            "Mr. and Mrs.": "Mr. and Mrs."
+            "Reverend": "Reverend"
+            "Father": "Father"
+            "Dr.": "Dr."
+            "Atty": "Atty"
+            "Prof": "Prof"
+            "Coach": "Coach"
+            "Ofc": "Ofc"
+    - fill_in:
+        - name: "dnf_class_values[communication][primary_constituent][0][fname]"
+          selector: "#dnf_class_values_communication__primary_constituent__0__fname_"
+          value: $NAME_FIRST
+          required: true
+        - name: dnf_class_values[communication][primary_constituent][0][lname]
+          selector: "#dnf_class_values_communication__primary_constituent__0__lname_"
+          value: $NAME_LAST
+          required: true
+        - name: "dnf_class_values[communication][primary_constituent][0][email]"
+          selector: "#dnf_class_values_communication__primary_constituent__0__email_"
+          value: $EMAIL
+          required: true
+        # Phone is not required by this form, but it is included here in case it needs to be implemented in the future.
+        - name: "dnf_class_values[communication][primary_constituent][0][phone]"
+          selector: "#dnf_class_values_communication__primary_constituent__0__phone_"
+          value: ""
+        - name: "dnf_class_values[communication][primary_constituent][0][address][0][street]"
+          selector: "#dnf_class_values_communication__primary_constituent__0__address__0__street_"
+          value: $ADDRESS_STREET
+        - name: "dnf_class_values[communication][primary_constituent][0][address][0][zip]"
+          selector: "#dnf_class_values_communication__primary_constituent__0__address__0__zip_"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "dnf_class_values[communication][primary_constituent][0][address][0][city]"
+          selector: "#dnf_class_values_communication__primary_constituent__0__address__0__city_"
+          value: $ADDRESS_CITY
+    - select:
+        - name: "dnf_class_values[communication][primary_constituent][0][address][0][state]"
+          selector: "#dnf_class_values_communication__primary_constituent__0__address__0__state_"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          options:
+            "AL": "Alabama"
+            "AK": "Alaska"
+            "AZ": "Arizona"
+            "AR": "Arkansas"
+            "CA": "California"
+            "CO": "Colorado"
+            "CT": "Connecticut"
+            "DE": "Delaware"
+            "DC": "District of Columbia"
+            "FL": "Florida"
+            "GA": "Georgia"
+            "HI": "Hawaii"
+            "ID": "Idaho"
+            "IL": "Illinois"
+            "IN": "Indiana"
+            "IA": "Iowa"
+            "KS": "Kansas"
+            "KY": "Kentucky"
+            "LA": "Louisiana"
+            "ME": "Maine"
+            "MD": "Maryland"
+            "MA": "Massachusetts"
+            "MI": "Michigan"
+            "MN": "Minnesota"
+            "MS": "Mississippi"
+            "MO": "Missouri"
+            "MT": "Montana"
+            "NE": "Nebraska"
+            "NV": "Nevada"
+            "NH": "New Hampshire"
+            "NJ": "New Jersey"
+            "NM": "New Mexico"
+            "NY": "New York"
+            "NC": "North Carolina"
+            "ND": "North Dakota"
+            "OH": "Ohio"
+            "OK": "Oklahoma"
+            "OR": "Oregon"
+            "PA": "Pennsylvania"
+            "RI": "Rhode Island"
+            "SC": "South Carolina"
+            "SD": "South Dakota"
+            "TN": "Tennessee"
+            "TX": "Texas"
+            "UT": "Utah"
+            "VT": "Vermont"
+            "VA": "Virginia"
+            "WA": "Washington"
+            "WV": "West Virginia"
+            "WI": "Wisconsin"
+            "WY": "Wyoming"
+            "PR": "Puerto Rico"
+            "FM": "Micronesia"
+        - name: "dnf_class_values[communication][topic]"
+          selector: "#dnf_class_values_communication__topic_"
+          value: "Other"
+          required: true
+          options:
+            "0040480": "Agriculture"
+            "0040840": "Arts"
+            "0040460": "Autograph"
+            "0040440": "Boards/Commissions"
+            "0040420": "Budget/Spending"
+            "0040380": "Crime/Drugs"
+            "0040860": "Cultural Affairs"
+            "0040360": "Economic Development"
+            "0040340": "Education"
+            "0040940": "Elections"
+            "0040010": "Employment Security"
+            "0040320": "Energy"
+            "0040300": "Environment"
+            "0040740": "Federal Agencies"
+            "0040980": "Flag Status"
+            "0040280": "Health"
+            "0040260": "Housing"
+            "0040920": "Immigration"
+            "0040660": "Inmate"
+            "0040760": "Insurance"
+            "0040240": "Jobs"
+            "0040220": "Labor"
+            "0040200": "Legislation"
+            "0040960": "Local Gov't"
+            "0040180": "Motor Vehicles"
+            "0040160": "Natural Resources"
+            "0040500": "Other"
+            "0040780": "Public Safety"
+            "0040800": "Public Utilities"
+            "0040400": "Recognition"
+            "0040120": "Regulatory Reform"
+            "0040100": "Science/Technology"
+            "0040620": "Scouts"
+            "0040080": "Small Business"
+            "0040580": "Student Letter"
+            "0040820": "Taxation"
+            "0040700": "Thank you"
+            "0040040": "Transportation"
+            "0040030": "Unaccompanied Children"
+            "0040020": "Unemployment"
+            "0040560": "Veterans"
+            "0040540": "Welfare"
+            "0040520": "Wildlife"
+    - fill_in:
+        - name: "dnf_class_values[communication][title]"
+          selector: "#dnf_class_values_communication__title_"
+          value: $SUBJECT
+          required: true
+        - name: "dnf_class_values[communication][content]"
+          selector: "#dnf_class_values_communication__content_"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: "Submit"
+          selector: "input[type='submit']"
+  success:
+    body:
+      contains: "Your message has been sent"
