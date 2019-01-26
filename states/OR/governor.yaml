@@ -95,7 +95,7 @@ contact_form:
     - choose:
         - name: "issue"
           selector: "#topic option"
-          value: #random
+          value: $TOPIC
           required: true
           options:
             "Agriculture and Animal Welfare": "AG"
