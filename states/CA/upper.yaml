@@ -43,5 +43,4 @@ contact_form:
         - value: Submit
           selector: "input[name=submitButton]"
   success:
-    body:
-      contains: "hank you"
+    selector: "input[value='Close Window']"
