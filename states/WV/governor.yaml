@@ -20,7 +20,7 @@ contact_form:
         required: true
       - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff6_1$ctl00$ctl00$TextField"
         selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff6_1_ctl00_ctl00_TextField"
-        value: $ADDRESS_STATE_FULL
+        value: $ADDRESS_STATE_POSTAL_ABBREV
         required: true
       - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff7_1$ctl00$ctl00$TextField"
         selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff7_1_ctl00_ctl00_TextField"
@@ -40,7 +40,7 @@ contact_form:
         required: true
     - click_on:
         - value: "Submit"
-          selector: ".btn"
+          selector: "input[type='button'][name='btnFormAction']"
   success:
     body:
       contains: "Thank you for your submission."
