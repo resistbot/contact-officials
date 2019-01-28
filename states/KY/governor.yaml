@@ -59,6 +59,8 @@ contact_form:
           "Dr.": "Dr."
     - recaptcha:
         - value: true
+          callback: "wpformsRecaptchaCallback"
+          selector: ".wpforms-recaptcha-hidden"
     - click_on:
         - value: "wpforms-submit"
           selector: "#wpforms-submit-459"
