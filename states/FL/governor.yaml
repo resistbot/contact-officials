@@ -2,102 +2,35 @@ contact_form:
   steps:
     - visit: "https://www.flgov.com/email-the-governor/"
     - fill_in:
-        - name: "formBuilderForm[Name]"
-          selector: "#fieldformBuilderFieldName"
+        - name: "your-name"
+          selector: "input[name='your-name']"
           value: $NAME_FULL
           required: true
-        - name: "formBuilderForm[Email]"
-          selector: "#fieldformBuilderFieldEmail"
+        - name: "your-email"
+          selector: "input[name='your-email']"
           value: $EMAIL
           required: true
-        - name: "formBuilderForm[Zip_Code]"
-          selector: "#fieldformBuilderFieldZip_Code"
-          value: $ADDRESS_ZIP5
+        - name: "your-county"
+          selector: "input[name='your-county']"
+          value: $ADDRESS_COUNTY
           required: true
-        - name: "formBuilderForm[Subject]"
-          selector: "#fieldformBuilderFieldSubject"
+        - name: "your-subject"
+          selector: "input[name='your-subject']"
           value: $SUBJECT
-          required: false
-        - name: "formBuilderForm[Message]"
-          selector: "#fieldformBuilderFieldMessage"
+          required: true
+        - name: "your-message"
+          selector: "textarea[name='your-message']"
           value: $MESSAGE
           required: true
-    - select:
-        - name: "formBuilderForm[County]"
-          selector: "select[name='formBuilderForm[County]']"
-          value: $ADDRESS_COUNTY
-          required: false
-          options:
-            "Alachua": "2"
-            "Baker": "3"
-            "Bay": "4"
-            "Bradford": "5"
-            "Brevard": "6"
-            "Broward": "7"
-            "Calhoun": "8"
-            "Charlotte": "9"
-            "Citrus": "10"
-            "Clay": "11"
-            "Collier": "12"
-            "Columbia": "13"
-            "DeSoto": "14"
-            "Dixie": "15"
-            "Duval": "16"
-            "Escambia": "17"
-            "Flagler": "18"
-            "Franklin": "19"
-            "Gadsden": "20"
-            "Gilchrist": "21"
-            "Glades": "22"
-            "Gulf": "23"
-            "Hamilton": "24"
-            "Hardee": "25"
-            "Hendry": "26"
-            "Hernando": "27"
-            "Highlands": "28"
-            "Hillsborough": "29"
-            "Holmes": "30"
-            "Indian River": "31"
-            "Jackson": "32"
-            "Jefferson": "33"
-            "Lafayette": "34"
-            "Lake": "35"
-            "Lee": "36"
-            "Leon": "37"
-            "Levy": "38"
-            "Liberty": "39"
-            "Madison": "40"
-            "Manatee": "41"
-            "Marion": "42"
-            "Martin": "43"
-            "Miami-Dade": "44"
-            "Monroe": "45"
-            "Nassau": "46"
-            "Okaloosa": "47"
-            "Okeechobee": "48"
-            "Orange": "49"
-            "Osceola": "50"
-            "Palm Beach": "51"
-            "Pasco": "52"
-            "Pinellas": "53"
-            "Polk": "54"
-            "Putnam": "55"
-            "Saint Johns": "56"
-            "Saint Lucie": "57"
-            "Santa Rosa": "58"
-            "Sarasota": "59"
-            "Seminole": "60"
-            "Sumter": "61"
-            "Suwannee": "62"
-            "Taylor": "63"
-            "Union": "64"
-            "Volusia": "65"
-            "Wakulla": "66"
-            "Walton": "67"
-            "Washington": "68"
+        - name: "captcha-778"
+          selector: "input[name='captcha-778']"
+          captcha_selector: ".wpcf7-captcha-captcha-778"
+          captcha_append_guidance: "Input this code:"
+          value: $CAPTCHA_SOLUTION
+          required: true
     - click_on:
-        - value: "Send!"
-          selector: "input[name='Submit']"
+        - value: "Send"
+          selector: "input[type='submit']"
   success:
     body:
-      contains: "Thank you. Your message has been sent."
+      contains: "Your form was successfully submitted"
