@@ -1,0 +1,58 @@
+contact_form:
+  steps:
+    - visit: "https://governor.vermont.gov/contact-us/message"
+    - fill_in:
+      - name: "submitted[FIRST]"
+        selector: "#edit-submitted-first"
+        value: $NAME_FIRST
+        required: true
+      - name: "submitted[LAST]"
+        selector: "#edit-submitted-last"
+        value: $NAME_LAST
+        required: true
+      - name: "submitted[EMAIL]"
+        selector: "#edit-submitted-email"
+        value: $EMAIL
+        required: true
+      - name: "submitted[ADDR1]"
+        selector: "#edit-submitted-addr1"
+        value: $ADDRESS_STREET
+        required: true
+      - name: "submitted[ADDR2]"
+        selector: "#edit-submitted-addr2"
+        value: $ADDRESS_STREET_2
+        required: false
+      - name: "submitted[CITY]"
+        selector: "#edit-submitted-city"
+        value: $ADDRESS_CITY
+        required: true
+      - name: "submitted[ZIP]"
+        selector: "#edit-submitted-zip"
+        value: $ADDRESS_ZIP5
+        required: false
+      - name: "submitted[PHONE]"
+        selector: "#edit-submitted-phone"
+        value: $PHONE
+        required: true
+      - name: "submitted[MSG]"
+        selector: "#edit-submitted-msg"
+        value: $MESSAGE
+        required: true
+    - select:
+      - name: "submitted[STATE]"
+        selector: "#edit-submitted-state"
+        value: $ADDRESS_STATE_POSTAL_ABBREV
+        required: true
+        options: US_STATES
+      - name: "submitted[ISSUE]"
+        selector: "#edit-submitted-issue"
+        value: "Other"
+        required: true
+    - click_on:
+        - value: "EMAIL.OPTIN" # De-select the opt-in to emails
+          selector: "#edit-submitted-affl-1"
+        - value: "Send Message"
+          selector: "#edit-submit"
+  success:
+    body:
+      contains: "Your submission has been received"
