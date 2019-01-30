@@ -1,0 +1,69 @@
+contact_form:
+  steps:
+    - visit: "https://governor.ky.gov/contact/"
+    - fill_in:
+      - name: "wpforms[fields][5]"
+        selector: "#wpforms-459-field_5"
+        value: $NAME_FIRST
+        required: true
+      - name: "wpforms[fields][6]"
+        selector: "#wpforms-459-field_6"
+        value: $NAME_LAST
+        required: true
+      - name: "wpforms[fields][8]"
+        selector: "#wpforms-459-field_8"
+        value: $ADDRESS_STREET
+        required: true
+      - name: "wpforms[fields][19]"
+        selector: "#wpforms-459-field_19"
+        value: $ADDRESS_STREET_2
+        required: false
+      - name: "wpforms[fields][13]"
+        selector: "#wpforms-459-field_13"
+        value: $ADDRESS_CITY
+        required: true
+      - name: "wpforms[fields][10]"
+        selector: "#wpforms-459-field_10"
+        value: $ADDRESS_ZIP5
+        required: true
+      - name: "wpforms[fields][14]"
+        selector: "#wpforms-459-field_14"
+        value: $PHONE_DIGITS_ONLY
+        required: true
+      - name: "wpforms[fields][1]"
+        selector: "#wpforms-459-field_1"
+        value: $EMAIL
+        required: true
+      - name: "wpforms[fields][20]"
+        selector: "#wpforms-459-field_20"
+        value: $SUBJECT
+        required: true
+      - name: "wpforms[fields][2]"
+        selector: "#wpforms-459-field_2"
+        value: $MESSAGE
+        required: true
+    - select:
+      - name: "wpforms[fields][9]"
+        selector: "#wpforms-459-field_9"
+        value: $ADDRESS_STATE_FULL
+        required: true
+        options: US_STATES
+      - name: "wpforms[fields][12]"
+        selector: "#wpforms-459-field_12"
+        value: $NAME_PREFIX
+        required: false
+        options:
+          "Mr.": "Mr."
+          "Ms.": "Ms."
+          "Mrs.": "Mrs."
+          "Dr.": "Dr."
+    - recaptcha:
+        - value: true
+          callback: "wpformsRecaptchaCallback"
+          selector: ".wpforms-recaptcha-hidden"
+    - click_on:
+        - value: "wpforms-submit"
+          selector: "#wpforms-submit-459"
+  success:
+    body:
+      contains: "Thanks for contacting us! We will be in touch with you shortly."
