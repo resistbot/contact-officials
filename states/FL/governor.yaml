@@ -1,6 +1,8 @@
 contact_form:
   steps:
     - visit: "https://www.flgov.com/email-the-governor/"
+    - wait:
+        - value: 5
     - fill_in:
         - name: "your-name"
           selector: "input[name='your-name']"
