@@ -47,12 +47,12 @@ contact_form:
         selector: "#wpforms-459-field_9"
         value: $ADDRESS_STATE_FULL
         required: true
-        options: US_STATES #TODO is this right?
+        options: US_STATES
       - name: "wpforms[fields][12]"
         selector: "#wpforms-459-field_12"
         value: $NAME_PREFIX
         required: false
-        options: # TODO add more?
+        options:
           "Mr.": "Mr."
           "Ms.": "Ms."
           "Mrs.": "Mrs."
