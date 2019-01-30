@@ -73,8 +73,14 @@ Schema is based on [that of unitedstates/contact-congress](https://github.com/un
   format extension, which 2captcha requires. See `states/SC/upper.yaml`
   for an example.
 
-* In `success` section, instead of `body`, one can specify text that
-  must match an alert. See `states/WA/governor.yaml` for an example.
+* In a `success` section, instead of `body`, one can specify text that must match an alert, or one
+  can specify a CSS selector for an element that must be found. See `states/WA/governor.yaml` for
+  an example of the alert functionality, and `states/CA/lower.yaml` for an example of a CSS selector.
+
+* In `recaptcha` section, a `callback_name` and `callback_param` can optionally be defined. If the
+  recaptcha callback is not defined in a data-callback attribute on the captcha element, its callback will
+  need to be found and explicitly passed as `callback_name`. If the callback requires the captcha
+  element be passed as a param, a selector for the element must be given as `callback_param`.
 
 * Introduction of meta variables, described below.
 
@@ -82,7 +88,7 @@ Schema is based on [that of unitedstates/contact-congress](https://github.com/un
 
 Collectively, state legislatures are huge. Let’s look at the three most populous states plus Ohio. These are the largest states that offer web contact forms for their legislators.
 
-* CA: 40 senators, 80 assemblymembers
+* CA: 40 senators, 80 assembly members
 * TX: 31 senators, 150 representatives
 * FL: 40 senators, 120 representatives
 * OH: 33 senators, 99 representatives
