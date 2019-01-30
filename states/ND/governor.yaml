@@ -1,0 +1,26 @@
+contact_form:
+  steps:
+    - visit: "https://www.governor.nd.gov/contact-us"
+    - fill_in:
+      - name: "submitted[name]"
+        selector: "#edit-submitted-name"
+        value: $NAME_FULL
+        required: true
+      - name: "submitted[subject]"
+        selector: "#edit-submitted-subject"
+        value: $SUBJECT
+        required: true
+      - name: "submitted[email_address]"
+        selector: "#edit-submitted-email-address"
+        value: $EMAIL
+        required: true
+      - name: "submitted[comments]"
+        selector: "#edit-submitted-comments"
+        value: $MESSAGE
+        required: true
+    - click_on:
+        - value: Submit
+          selector: "button[name='op']"
+  success:
+    body:
+      contains: Thank you for your message.
