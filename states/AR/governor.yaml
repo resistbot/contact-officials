@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "https://arkansasgov.wufoo.com/embed/z10gjhti00fynaz/def/embedKey=z10gjhti00fynaz606148&entsource=&referrer=https%3Awuslashwuslashgithub.comwuslashresistbotwuslashcontact-officialswuslashissueswuslash71&header=hide"
+    - visit: "https://arkansasgov.wufoo.com/forms/?formname=z10gjhti00fynaz"
     - fill_in:
       - name: "Field9"
         selector: "#Field9"
