@@ -1,0 +1,56 @@
+contact_form:
+  steps:
+    - visit: "https://gov.idaho.gov/contact-us/"
+    - fill_in:
+      - name: "first-name"
+        selector: "#user-first-name"
+        value: $NAME_FIRST
+        required: true
+      - name: "last-name"
+        selector: "#user-last-name"
+        value: $NAME_LAST
+        required: true
+      - name: "addr1"
+        selector: "#user-address-line1"
+        value: $ADDRESS_STREET
+        required: true
+      - name: "addr2"
+        selector: "#user-address-line2"
+        value: $ADDRESS_STREET_2
+        required: false
+      - name: "city"
+        selector: "#user-city"
+        value: $ADDRESS_CITY
+        required: true
+      - name: "zip-code"
+        selector: "#user-zipcode"
+        value: $ADDRESS_ZIP5
+        required: true
+      - name: "email"
+        selector: "#user-email"
+        value: $EMAIL
+        required: true
+      - name: "message"
+        selector: "#the-message"
+        value: $MESSAGE
+        required: true
+    - select:
+      - name: "prefix"
+        selector: "#user-prefix"
+        value: $NAME_PREFIX
+        required: false
+      - name: "state"
+        selector: "#user-state"
+        value: $ADDRESS_STATE_FULL # Values are fully spelled out, no abbrev.
+        required: true
+        options: US_STATES
+      - name: "topic"
+        selector: "#user-topic"
+        value: "Other"
+        required: true
+    - click_on:
+      - value: "Send"
+        selector: ".wpcf7-submit"
+  success:
+    body:
+      contains: "Thank you for your message. It has been sent."
