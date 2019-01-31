@@ -1,0 +1,36 @@
+contact_form:
+  steps:
+    - visit: "https://governor.delaware.gov/email-governor-carney/"
+    - fill_in:
+        - name: "name"
+          selector: "#name"
+          value: $NAME_FULL
+          required: true
+        - name: "email"
+          selector: "#email"
+          value: $EMAIL
+          required: true
+        - name: "phone"
+          selector: "#phone"
+          value: $PHONE_DIGITS_ONLY
+          required: true
+        - name: "subject"
+          selector: "#subject"
+          value: $SUBJECT
+          required: true
+        - name: "description"
+          selector: "#description"
+          value: $MESSAGE
+          required: true
+        - name: "CaptchaInput"
+          selector: "#CaptchaInput"
+          captcha_selector: "#CaptchaDiv"
+          captcha_append_guidance: "Type the above number:"
+          value: $CAPTCHA_SOLUTION
+          required: true
+    - click_on:
+        - value: "Submit"
+          selector: "#govContactSubmit"
+  success:
+    body:
+      contains: "Thank you for contacting us."
