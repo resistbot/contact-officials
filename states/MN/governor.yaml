@@ -1,0 +1,99 @@
+contact_form:
+  steps:
+    - visit: "https://mn.gov/governor/contact/"
+    - fill_in:
+        - name: "prefix"
+          selector: "#prefix"
+          value: $NAME_PREFIX
+          required: true
+        - name: "firstname"
+          selector: "#firstname"
+          value: $NAME_FIRST
+          required: true
+        - name: "lastname"
+          selector: "#lastname"
+          value: $NAME_LAST
+          required: true
+        - name: "address1"
+          selector: "#address1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "address2"
+          selector: "#address2"
+          value: $ADDRESS_STREET_2
+          required: false
+        - name: "city"
+          selector: "#city"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "zipcode"
+          selector: "#zipcode"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "phone"
+          selector: "#phone"
+          value: $PHONE
+          required: true
+        - name: "email"
+          selector: "#email"
+          value: $EMAIL
+          required: true
+        - name: "subject"
+          selector: "#subject"
+          value: $SUBJECT
+          required: true
+        - name: "comment"
+          selector: "#comment"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: "state"
+          selector: "#state"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options: US_STATES
+        - name: "topic"
+          selector: "#topic"
+          value: "Others"
+          required: true
+          options:
+            "Agriculture": "Agriculture"
+            "Budget": "Budget"
+            "Commerce and Banking": "Commerce and Banking"
+            "Education, Higher": "Education Higher"
+            "Education, K-12": "Education K-12"
+            "Elections": "Elections"
+            "Energy": "Energy"
+            "Environment": "Environment"
+            "Federal Relations": "Federal Relations"
+            "Gambling": "Gambling"
+            "Health and Human Services": "Health and Human Services"
+            "Health Insurance": "Health Insurance"
+            "Housing": "Housing"
+            "Human Rights": "Human Rights"
+            "Jobs and Training": "Jobs and Training"
+            "Labor and Industry": "Labor and Industry"
+            "Military Affairs": "Military Affairs"
+            "Public Safety, Crimes": "Public Safety, Crimes"
+            "Senior Issues": "Senior Issues"
+            "Student Project": "Student Project"
+            "Taxes": "Taxes"
+            "Telecommunications": "Telecommunications"
+            "Transportation and Infrastructure": "Transportation and Infrastructure"
+            "Tribal Issues": "Tribal Issues"
+            "Veterans Affairs": "Veterans Affairs"
+            "Others": "Others"
+        - name: "response"
+          selector: "#response"
+          value: "yes"
+          required: true
+          options:
+            "Yes, please contact me": "yes"
+            "No, you do not need to respond": "no"
+    - recaptcha:
+        - value: true
+    - click_on:
+        - selector: "button.btn-primary[type='Submit']"
+  success:
+    body:
+      contains: "Thank you for contacting us"
