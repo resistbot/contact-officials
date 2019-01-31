@@ -93,8 +93,7 @@ contact_form:
     - recaptcha:
         - value: true
     - click_on:
-        - value: ""
-          selector: "button.btn-primary[type='Submit']"
+        - selector: "button.btn-primary[type='Submit']"
   success:
     body:
       contains: "Thank you for contacting us"
