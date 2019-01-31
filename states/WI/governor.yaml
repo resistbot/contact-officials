@@ -24,6 +24,7 @@ contact_form:
           required: true
     - recaptcha:
         - value: true
+          recaptcha_selector: "#captchaUI"
     - click_on:
         - value: Submit
           selector: "#nextButton"
