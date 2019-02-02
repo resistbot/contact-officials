@@ -31,7 +31,6 @@ contact_form:
     - recaptcha:
         - value: true
           recaptcha_selector: "#grecaptcha"
-          google_key: "6Lf8pQgUAAAAAObfNtDnhl9wBb9Ll9nZrLVSFctX"
     - click_on:
         - value: "Submit"
           selector: "#btn-submit"
