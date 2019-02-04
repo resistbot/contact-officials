@@ -1,0 +1,39 @@
+contact_form:
+  steps:
+    - visit: "http://gov.louisiana.gov/index.cfm/form/home/4"
+    - fill_in:
+        - name: "firstName"
+          selector: "#field-288"
+          value: $NAME_FIRST
+          required: true
+        - name: "lastName"
+          selector: "input[type='text'][name='lastName']"
+          value: "$NAME_LAST"
+          required: true
+        - name: "email"
+          selector: "#field-289"
+          value: "$EMAIL"
+          required: true
+        - name: "f290"
+          selector: "#field-290"
+          value: $ADDRESS_COUNTY
+          required: false
+    - check:
+        - name: "f291"
+          selector: "input[type='radio'][value='Other']"
+          value: "Other"
+          required: false
+    - fill_in:
+        - name: "f293"
+          selector: "#field-293"
+          value: $MESSAGE
+          required: false #Yes, really.
+    - recaptcha:
+        - value: true
+          recaptcha_selector: "#grecaptcha"
+    - click_on:
+        - value: "Submit"
+          selector: "#btn-submit"
+  success:
+    body:
+      contains: "Your email has been received and will be reviewed"
