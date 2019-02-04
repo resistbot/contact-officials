@@ -1,0 +1,32 @@
+contact_form:
+  steps:
+    - visit: "https://governor.kansas.gov/questions_form/"
+    - fill_in:
+        - name: "input_1"
+          selector: "#input_20_1"
+          value: $NAME_FIRST
+          required: true
+        - name: "input_2"
+          selector: "#input_20_2"
+          value: $NAME_LAST
+          required: true
+        - name: "input_5"
+          selector: "#input_20_5"
+          value: $PHONE_DIGITS_ONLY
+          required: true
+        - name: "input_6"
+          selector: "#input_20_6"
+          value: $EMAIL
+          required: true
+        - name: "input_7"
+          selector: "#input_20_7"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit"
+          selector: "#gform_submit_button_20"
+  success:
+    body:
+      contains: "Thanks for contacting us"
