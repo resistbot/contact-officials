@@ -1,0 +1,60 @@
+contact_form:
+  steps:
+    - visit: "http://www.governor.ri.gov/contact/"
+    - fill_in:
+        - name: "firstname"
+          selector: "#firstname"
+          value: $NAME_FIRST
+          required: true
+        - name: "lastname"
+          selector: "#lastname"
+          value: $NAME_LAST
+          required: true
+        - name: "email"
+          selector: "#email"
+          value: $EMAIL
+          required: true
+        - name: "area"
+          selector: "#area"
+          value: $PHONE_AREA_CODE
+          required: true
+          # max length: 3
+        - name: "exchange"
+          selector: "#exchange"
+          value: $PHONE3
+          required: true
+          # max length: 3
+        - name: "phnum"
+          selector: "#phnum"
+          value: $PHONE4
+          required: true
+          # max length: 4
+        - name: "address1"
+          selector: "#address1"
+          value: $ADDRESS_STREET
+        - name: "address2"
+          selector: "#address2"
+          value: $ADDRESS_STREET_2
+        - name: "city"
+          selector: "#city"
+          value: $ADDRESS_CITY
+        - name: "state"
+          selector: "#state"
+          value: "ADDRESS_STATE_POSTAL_ABBREV"
+          # max length: 2
+        - name: "zip"
+          selector: "#zip"
+          value: $ADDRESS_ZIP5
+          # max length: 5
+        - name: "message"
+          selector: "#message"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "submit"
+          selector: "#submitcontact"
+  success:
+    body:
+      contains: "Thank you for emailing Governor"
