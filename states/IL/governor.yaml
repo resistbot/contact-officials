@@ -3,79 +3,68 @@ contact_form:
     - visit: "https://www2.illinois.gov/sites/gov/contactus/Pages/VoiceAnOpinion.aspx"
     - select:
         - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Prefix_x0020_Name"
-          selector: "#ctl00_ContentPlaceHolder1_DropDownList1"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Prefix_x0020_Name"
           value: $NAME_PREFIX
-          required: true
           options:
             "Mr.": "2"
             "Ms.": "3"
             "Mrs.": "1"
             "Dr.": "5"
-        - name: "ctl00$ContentPlaceHolder1$Dropdownlist3"
-          selector: "#ctl00_ContentPlaceHolder1_Dropdownlist3"
-          value: $ADDRESS_STATE_POSTAL_ABBREV
-          required: true
-          options: US_STATES
-        - name: "ctl00$ContentPlaceHolder1$DropDownList2"
-          selector: "#ctl00_ContentPlaceHolder1_DropDownList2"
-          value: "Other"
-          required: true
-          options:
-            "Property Tax": "161"
-            "Insurance": "162"
-            "Education - Public": "157"
-            "Environment": "152"
-            "Gun Control": "158"
-            "Immigration": "140"
-            "Renewable Energy": "155"
-            "Transportation": "153"
-            "Water Issues": "156"
-            "Other": "160"
     - fill_in:
-        - name: "ctl00$ContentPlaceHolder1$txtFirst"
-          selector: "#ctl00_ContentPlaceHolder1_txtFirst"
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$First_x0020_Name"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_First_x0020_Name"
           value: $NAME_FIRST
           required: true
-        - name: "ctl00$ContentPlaceHolder1$txtLast"
-          selector: "#ctl00_ContentPlaceHolder1_txtLast"
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Last_x0020_Name"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Last_x0020_Name"
           value: $NAME_LAST
           required: true
-        - name: "ctl00$ContentPlaceHolder1#txtAddress"
-          selector: "#ctl00_ContentPlaceHolder1_txtAddress"
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Address"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Address"
           value: $ADDRESS_STREET
           required: true
-        - name: "ctl00$ContentPlaceHolder1$txtCity"
-          selector: "#ctl00_ContentPlaceHolder1_txtCity"
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Address2"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Address2"
+          value: $ADDRESS_STREET_2
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$City"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_City"
           value: $ADDRESS_CITY
           required: true
-        - name: "ctl00$ContentPlaceHolder1$txtZip"
-          selector: "#ctl00_ContentPlaceHolder1_txtZip"
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$State"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_State"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Zip"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Zip"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "ctl00$ContentPlaceHolder1$txtEmail"
-          selector: "#ctl00_ContentPlaceHolder1_txtEmail"
-          value: $EMAIL
-          required: true
-        - name: "ctl00$ContentPlaceHolder1$txtEmail2"
-          selector: "#ctl00_ContentPlaceHolder1_txtEmail2"
-          value: $EMAIL
-          required: true
-        - name: "ctl00$ContentPlaceHolder1$txtPhone"
-          selector: "#ctl00_ContentPlaceHolder1_txtPhone"
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Phone"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Phone"
           value: $PHONE
           required: false
-        - name: "ctl00$ContentPlaceHolder1$txtMessage"
-          selector: "#ctl00_ContentPlaceHolder1_txtMessage"
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Email"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Email"
+          value: $EMAIL
+          required: true
+    - select:
+         # We skip the "Issue" selector; it is optional and defaults to "".
+         # This "Position" is required tho.
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Position"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Position"
+          value: "None"
+          required: true
+          options:
+            "Support": "Support"
+            "Oppose": "Oppose"
+            "None": "None"
+    - fill_in:
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Comment"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Comment"
           value: $MESSAGE
           required: true
-    - check:
-        - name: "ctl00$ContentPlaceHolder1$RadioButtonList1$0"
-          selector: "#ctl00_ContentPlaceHolder1_RadioButtonList1_0"
-          value: "1"
-          required: true
     - click_on:
-        - value: "Send Message"
-          selector: "#ctl00_ContentPlaceHolder1_Button1"
+        - value: "Submit"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_SOIFeedbackSubmit"
   success:
     body:
-      contains: "Thank You for Contacting"
+      contains: "Your message has been received"
