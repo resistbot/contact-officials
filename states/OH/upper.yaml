@@ -1,8 +1,6 @@
 contact_form:
   steps:
-    - visit: "$META_OFFICIAL_URL"
-    - click_on:
-        - selector: "div.email > a"
+    - visit: "$META_OFFICIAL_URL/contact"
     - fill_in:
         - name: firstName
           selector: "input[name=firstName]"

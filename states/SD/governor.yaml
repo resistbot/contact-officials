@@ -1,0 +1,53 @@
+contact_form:
+  steps:
+    - visit: "http://sd.gov/govmail/email.aspx"
+    - fill_in:
+        - name: "txtFname"
+          selector: "#txtFname"
+          value: $NAME_FIRST
+          required: true
+        - name: "txtLname"
+          selector: "#txtLname"
+          value: $NAME_LAST
+          required: true
+        - name: "txtStAddress"
+          selector: "#txtStAddress"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "txtCity"
+          selector: "#txtCity"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "txtState"
+          selector: "#txtState"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+        - name: "txtZIP"
+          selector: "#txtZIP"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "txtEmail"
+          selector: "#txtEmail"
+          value: $EMAIL
+          required: true
+        - name: "txtDesc"
+          selector: "#txtDesc"
+          value: $SUBJECT
+          required: true
+        - name: "txtMessage"
+          selector: "#txtMessage"
+          value: $MESSAGE
+          required: true
+    - check:
+        - name: "Roptions"
+          selector: "#radResponse2"
+          value: "radResponse2"
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit"
+          selector: "#btnEmail"
+  success:
+    body:
+      contains: "Thank you for contacting the Governor"
