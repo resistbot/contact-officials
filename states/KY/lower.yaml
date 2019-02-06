@@ -1,8 +1,7 @@
 contact_form:
   steps:
     # Example: https://legislature.ky.gov/Legislators/legislatorcontact?DistrictNumber=57
-    - visit: "https://legislature.ky.gov/Legislators/legislatorcontact?DistrictNumber=57"
-#    - visit: "https://legislature.ky.gov/Legislators/legislatorcontact?DistrictNumber=$META_OFFICIAL_DISTRICT"
+    - visit: "https://legislature.ky.gov/Legislators/legislatorcontact?DistrictNumber=$META_OFFICIAL_DISTRICT"
     - fill_in:
         - name: "ctl00$ctl00$m$g_4230bf03_19e3_4990_9528_e504042b8b66$txtFullName"
           selector: "#ctl00_ctl00_m_g_4230bf03_19e3_4990_9528_e504042b8b66_txtFullName"
