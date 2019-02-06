@@ -1,6 +1,9 @@
 contact_form:
   steps:
     - visit: "https://www2.illinois.gov/sites/gov/contactus/Pages/VoiceAnOpinion.aspx"
+
+    # We skip the optional prefix.
+
     - select:
         - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Prefix_x0020_Name"
           selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Prefix_x0020_Name"
