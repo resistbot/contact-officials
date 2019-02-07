@@ -10,6 +10,29 @@ contact_form:
           selector: "#input_20_2"
           value: $NAME_LAST
           required: true
+        - name: "input_15.1"
+          selector: "#input_20_15_1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "input_15.2"
+          selector: "#input_20_15_2"
+          value: $ADDRESS_STREET_2
+          required: false
+        - name: "input_15.3"
+          selector: "#input_20_15_3"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: "input_15.4"
+          selector: "#input_20_15_4"
+          value: $ADDRESS_STATE_FULL
+          required: true
+          options: US_STATES
+    - fill_in:
+        - name: "input_15.5"
+          selector: "#input_20_15_5"
+          value: $ADDRESS_ZIP5
+          required: true
         - name: "input_5"
           selector: "#input_20_5"
           value: $PHONE_DIGITS_ONLY
