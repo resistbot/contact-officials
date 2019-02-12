@@ -60,7 +60,7 @@ contact_form:
           selector: "#edit-submitted-please-provide-a-brief-description-about-your-request-concern"
           value: $MESSAGE
           required: true
-    - choose:
+    - select:
         - name: "submitted[please_select_which_agency_your_request_relates_to]"
           selector: "#edit-submitted-please-select-which-agency-your-request-relates-to"
           value: "- None -"
