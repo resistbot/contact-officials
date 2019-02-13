@@ -26,22 +26,24 @@ contact_form:
         - name: "input_8"
           selector: "#input_1_8"
           value: $EMAIL
-    - select:
-      # This is a regional location select that doesn't correlate directly to city or county.  This still needs some work.
-        - name: "input_18"
-          selector: "#input_1_18"
-          value: "$ADDRESS_COUNTY"
-          required: true
-          options:
-            "O'ahu": "Oʻahu"
-            "East Hawaiʻi Island": "East Hawaiʻi Island"
-            "West Hawaiʻi Island": "West Hawaiʻi Island"
-            "Maui": "Maui"
-            "Molokaʻi": "Molokaʻi"
-            "Lanaʻi": "Lanaʻi"
-            "Kaua'i": "Kauaʻi"
-            "Mainland U.S.": "Mainland U.S."
-            "International": "International"
+    - javascript:
+        - value: "test js"
+    # - select:
+    #   # This is a regional location select that doesn't correlate directly to city or county.  This still needs some work.
+    #     - name: "input_18"
+    #       selector: "#input_1_18"
+    #       value: "$ADDRESS_COUNTY"
+    #       required: true
+    #       options:
+    #         "O'ahu": "Oʻahu"
+    #         "East Hawaiʻi Island": "East Hawaiʻi Island"
+    #         "West Hawaiʻi Island": "West Hawaiʻi Island"
+    #         "Maui": "Maui"
+    #         "Molokaʻi": "Molokaʻi"
+    #         "Lanaʻi": "Lanaʻi"
+    #         "Kaua'i": "Kauaʻi"
+    #         "Mainland U.S.": "Mainland U.S."
+    #         "International": "International"
     - fill_in:
         - name: "input_9.1"
           selector: "#input_1_9_1"
