@@ -158,6 +158,9 @@ contact_form:
           selector: "#edit-submitted-message"
           value: "$MESSAGE"
           required: true
+    # In the case of the constituent's prefix being unavailable on the form option (Dr. is a good example), select the "blank", which the form will accept.
+    - javascript:
+        - value: "if ( document.getElementById('edit-submitted-salutation').value == '' ) { document.getElementById('edit-submitted-salutation').value = 'blank' } ;"
     - click_on:
         - value: "Submit"
           selector: "input[type='submit'][name='op']"
