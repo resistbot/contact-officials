@@ -4,7 +4,7 @@ contact_form:
     - select:
         - name: "select-issue"
           selector: "#select-issue"
-          value: "Other"
+          value: "General"
           required: false
           options:
             "General": "General"
@@ -70,7 +70,7 @@ contact_form:
           selector: "#select-county"
           value: $ADDRESS_COUNTY
           required: false
-          options: 
+          options:
             "Adams": "Adams County"
             "Allen": "Allen County"
             "Ashland": "Ashland County"
