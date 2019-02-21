@@ -60,7 +60,7 @@ contact_form:
     - recaptcha:
         - value: true
           callback: "wpformsRecaptchaCallback"
-          selector: ".wpforms-recaptcha-hidden"
+          callback_selector: ".wpforms-recaptcha-hidden"
     - click_on:
         - value: "wpforms-submit"
           selector: "#wpforms-submit-459"
