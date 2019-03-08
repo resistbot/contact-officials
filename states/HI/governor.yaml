@@ -26,24 +26,6 @@ contact_form:
         - name: "input_8"
           selector: "#input_1_8"
           value: $EMAIL
-    - javascript:
-        - value: "test js"
-    # - select:
-    #   # This is a regional location select that doesn't correlate directly to city or county.  This still needs some work.
-    #     - name: "input_18"
-    #       selector: "#input_1_18"
-    #       value: "$ADDRESS_COUNTY"
-    #       required: true
-    #       options:
-    #         "O'ahu": "Oʻahu"
-    #         "East Hawaiʻi Island": "East Hawaiʻi Island"
-    #         "West Hawaiʻi Island": "West Hawaiʻi Island"
-    #         "Maui": "Maui"
-    #         "Molokaʻi": "Molokaʻi"
-    #         "Lanaʻi": "Lanaʻi"
-    #         "Kaua'i": "Kauaʻi"
-    #         "Mainland U.S.": "Mainland U.S."
-    #         "International": "International"
     - fill_in:
         - name: "input_9.1"
           selector: "#input_1_9_1"
@@ -287,11 +269,46 @@ contact_form:
           selector: "#input_1_11"
           value: $MESSAGE
           required: true
+    # The address county is added temporarily so that the JS that follows can grab it and use it.  It is then cleared once the JS is done with it.
+    - fill_in:
+        - name: "input_9.2"
+          selector: "#input_1_9_2"
+          value: $ADDRESS_COUNTY
+    - javascript:
+        - value: "var county = document.getElementById('input_1_9_2').value;
+        var zip = document.getElementById('input_1_9_5').value;
+
+        const zipList = ['96719', '96755', '96743', '96738', '96740', '96725', '96750', '96704', '96722', '96726', '96763']
+
+        const countyHash = {
+          'Hawaii' : 'East Hawaiʻi Island',
+          'Honolulu' : 'Oʻahu',
+          'Kalawao' : 'Molokaʻi',
+          'Kauai' : 'Kauaʻi',
+          'Maui' : 'Maui'
+        }
+
+        var region = function findRegion(county,zip) {
+          if (zip == '96763') {
+            var r = 'Lanaʻi';
+          }
+          else if (zipList.includes(zip)) {
+            var r = 'West Hawaiʻi Island';
+          }
+          else {
+            var r = countyHash[county];
+          }
+          return r
+        }
+
+        document.getElementById('input_1_18').value = region(county,zip);
+        document.getElementById('input_1_9_2').value ='';"
     - recaptcha:
         - value: true
-    # - click_on:
-    #     - value: "Submit"
-    #       selector: "#gform_submit_button_1"
+          recaptcha_selector: "#input_1_17"
+    - click_on:
+        - value: "Submit"
+          selector: "#gform_submit_button_1"
   success:
     body:
-      contains:
+      contains: "Mahalo for your email"
