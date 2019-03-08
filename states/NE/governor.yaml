@@ -1,0 +1,153 @@
+contact_form:
+  steps:
+    - visit: "https://governor.nebraska.gov/contact-form"
+    - fill_in:
+        - name: "00 Prefix"
+          selector: "input[id='00_prefix']"
+          value: $NAME_PREFIX
+          required: true
+        - name: "01 First Name"
+          selector: "input[id='01_fname']"
+          value: $NAME_FIRST
+          required: true
+        - name: "02 Last Name"
+          selector: "input[id='02_lname']"
+          value: $NAME_LAST
+          required: true
+        - name: "03 Email"
+          selector: "input[id='03_email']"
+          value: $EMAIL
+          required: true
+        - name: "04 Address"
+          selector: "input[id='04_address']"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "05 City"
+          selector: "input[id='05_city']"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: "06 State"
+          selector: "select[id='06_state']"
+          value: $ADDRESS_STATE_FULL
+          required: true
+          options:
+            "ALABAMA": "Alabama"
+            "ALASKA": "Alaska"
+            "ARIZONA": "Arizona"
+            "ARKANSAS": "Arkansas"
+            "CALIFORNIA": "California"
+            "COLORADO": "Colorado"
+            "CONNECTICUT": "Connecticut"
+            "DELAWARE": "Delaware"
+            "DISTRICT_OF_COLUMBIA": "District of Columbia"
+            "FLORIDA": "Florida"
+            "GEORGIA": "Georgia"
+            "HAWAII": "Hawaii"
+            "IDAHO": "Idaho"
+            "ILLINOIS": "Illinois"
+            "INDIANA": "Indiana"
+            "IOWA": "Iowa"
+            "KANSAS": "Kansas"
+            "KENTUCKY": "Kentucky"
+            "LOUISIANA": "Louisiana"
+            "MAINE": "Maine"
+            "MARYLAND": "Maryland"
+            "MASSACHUSETTS": "Massachusetts"
+            "MICHIGAN": "Michigan"
+            "MINNESOTA": "Minnesota"
+            "MISSISSIPPI": "Mississippi"
+            "MISSOURI": "Missouri"
+            "MONTANA": "Montana"
+            "NEBRASKA": "Nebraska"
+            "NEVADA": "Nevada"
+            "NEW_HAMPSHIRE": "New Hampshire"
+            "NEW_JERSEY": "New Jersey"
+            "NEW_MEXICO": "New Mexico"
+            "NEW_YORK": "New York"
+            "NORTH_CAROLINA": "North Carolina"
+            "NORTH_DAKOTA": "North Dakota"
+            "OHIO": "Ohio"
+            "OKLAHOMA": "Oklahoma"
+            "OREGON": "Oregon"
+            "PENNSYLVANIA": "Pennsylvania"
+            "RHODE_ISLAND": "Rhode Island"
+            "SOUTH_CAROLINA": "South Carolina"
+            "SOUTH_DAKOTA": "South Dakota"
+            "TENNESSEE": "Tennessee"
+            "TEXAS": "Texas"
+            "UTAH": "Utah"
+            "VERMONT": "Vermont"
+            "VIRGINIA": "Virginia"
+            "WASHINGTON": "Washington"
+            "WEST_VIRGINIA": "West Virginia"
+            "WISCONSIN": "Wisconsin"
+            "WYOMING": "Wyoming"
+            "AMERICAN_SAMOA": "American Samoa"
+            "FEDERATED_STATES_OF_MICRONESIA": "Federated States of Micronesia"
+            "GUAM": "Guam"
+            "MARSHALL_ISLANDS": "Marshall Islands"
+            "NORTHERN_MARIANA_ISLANDS": "Northern Mariana Islands"
+            "PALAU": "Palau"
+            "PUERTO_RICO": "Puerto Rico"
+            "US_MINOR_OUTLYING_ISLANDS": "U.S. Minor Outlying Islands"
+            "VIRGIN_ISLANDS": "Virgin Islands"
+            "ARMED_FORCES_AMERICAS": "Armed Forces Americas (AA)"
+            "ARMED_FORCES_EUROPE": "Armed Forces Europe (AE)"
+            "ARMED_FORCES_PACIFIC": "Armed Forces Pacific (AP)"
+            "ALBERTA": "Alberta"
+            "BRITISH_COLUMBIA": "British Columbia"
+            "MANITOBA": "Manitoba"
+            "NEW_BRUNSWICK": "New Brunswick"
+            "NEWFOUNDLAND_AND_LABRADOR": "Newfoundland and Labrador"
+            "NORTHWEST_TERRITORIES": "Northwest Territories"
+            "NOVA_SCOTIA": "Nova Scotia"
+            "NUNAVUT": "Nunavut"
+            "ONTARIO": "Ontario"
+            "PRINCE_EDWARD_ISLAND": "Prince Edward Island"
+            "QUEBEC": "Québec"
+            "SASKATCHEWAN": "Saskatchewan"
+            "YUKON": "Yukon"
+    - fill_in:
+        - name: "07 Zipcode"
+          selector: "input[id='07_zipcode']"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "08 Phone Number"
+          selector: "input[id='08_phone']"
+          value: $PHONE
+          required: true
+      # As there is no 'other' choice, here we are entering a random option via the choose directive.
+    - choose:
+        - name: "09 Topic"
+          selector: "select[name='09 Topic'] option"
+          value: $TOPIC
+          required: true
+          options:
+            "Taxes": "TAX"
+            "Pardons": "PARD"
+            "Judiciary": "JUD"
+            "Immigration": "IMM"
+            "Health and Human Services": "HLTH_HMN_SVC"
+            "Veterans": "VET"
+            "Transportation": "TRANS"
+            "Gun Rights": "GUNS"
+            "Insurance": "INSUR"
+            "Corrections": "CORRECT"
+            "Labor – Unemployment Issues": "LABOR"
+            "Legislative": "“LEG”"
+            "Patrol": "PATROL"
+            "Agriculture": "AGRI"
+    - fill_in:
+        - name: "10 Comments or Suggestions"
+          selector: "textarea[id='10_comments']"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Send"
+          selector: "#mySubmitButton"
+  success:
+    body:
+      contains: "your request was successfully submitted"

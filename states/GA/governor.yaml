@@ -1,0 +1,80 @@
+contact_form:
+  steps:
+    - visit: "https://gov.georgia.gov/webform/constituent-services"
+    - fill_in:
+        - name: "submitted[first_name]"
+          selector: "#edit-submitted-first-name"
+          value: $NAME_FIRST
+          required: true
+          # max length: 128
+        - name: "submitted[last_name]"
+          selector: "#edit-submitted-last-name"
+          value: $NAME_LAST
+          required: true
+          # max length: 128
+        - name: "submitted[title]"
+          selector: "#edit-submitted-title"
+          value: $NAME_PREFIX
+          required: true
+          # max length: 128
+        - name: "submitted[address_line_1]"
+          selector: "#edit-submitted-address-line-1"
+          value: $ADDRESS_STREET
+          required: true
+          # max length: 128
+        - name: "submitted[address_line_2]"
+          selector: "#edit-submitted-address-line-2"
+          value: $ADDRESS_STREET_2
+          required: false
+          # max length: 128
+        - name: "submitted[city]"
+          selector: "#edit-submitted-city"
+          value: $ADDRESS_CITY
+          required: true
+          # max length: 128
+    - select:
+        - name: "submitted[state]"
+          selector: "#edit-submitted-state"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options: US_STATES
+    - fill_in:
+        - name: "submitted[zip_code]"
+          selector: "#edit-submitted-zip-code"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "submitted[phone_number]"
+          selector: "#edit-submitted-phone-number"
+          value: $PHONE_DIGITS_ONLY
+          required: true
+        - name: "submitted[email]"
+          selector: "#edit-submitted-email"
+          value: $EMAIL
+          required: true
+        - name: "submitted[organization_name]"
+          selector: "#edit-submitted-organization-name"
+          value: "None"
+          required: true
+          # max length: 128
+        - name: "submitted[please_provide_a_brief_description_about_your_request___concern]"
+          selector: "#edit-submitted-please-provide-a-brief-description-about-your-request-concern"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: "submitted[please_select_which_agency_your_request_relates_to]"
+          selector: "#edit-submitted-please-select-which-agency-your-request-relates-to"
+          value: "- None -"
+          required: false
+          options:
+            "Education": "1"
+            "Healthcare": "2"
+            "Legislature": "3"
+            "Child Support": "4"
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit"
+          selector: "#edit-submit"
+  success:
+    body:
+      contains: "Thank you for contacting Constituent Services"

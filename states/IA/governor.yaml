@@ -1,0 +1,59 @@
+contact_form:
+  steps:
+    - visit: "https://governor.iowa.gov/constituent-services/register-an-opinion"
+    - fill_in:
+        - name: "submitted[contact_information][first_name]"
+          selector: "#edit-submitted-contact-information-first-name"
+          value: $NAME_FIRST
+          required: true
+        - name: "submitted[contact_information][last_name]"
+          selector: "#edit-submitted-contact-information-last-name"
+          value: $NAME_LAST
+          required: true
+        - name: "submitted[contact_information][email]"
+          selector: "#edit-submitted-contact-information-email"
+          value: $EMAIL
+          required: true
+        - name: "submitted[contact_information][address_1]"
+          selector: "#edit-submitted-contact-information-address-1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "submitted[contact_information][address_2]"
+          selector: "#edit-submitted-contact-information-address-2"
+          value: $ADDRESS_STREET_2
+          required: false
+        - name: "submitted[contact_information][city]"
+          selector: "#edit-submitted-contact-information-city"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "submitted[contact_information][zip]"
+          selector: "#edit-submitted-contact-information-zip"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "submitted[contact_information][phone]"
+          selector: "#edit-submitted-contact-information-phone"
+          value: $PHONE_DIGITS_ONLY
+          required: true
+        - name: "submitted[message][message]"
+          selector: "#edit-submitted-message-message"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: "submitted[contact_information][state]"
+          selector: "#edit-submitted-contact-information-state"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options: US_STATES
+        - name: "submitted[message][message_subject]"
+          selector: "#edit-submitted-message-message-subject"
+          value: "Other"
+          required: true
+    # To prevent being detected as spam
+    - wait:
+        - value: 5
+    - click_on:
+        - value: "Submit"
+          selector: ".webform-submit"
+  success:
+    body:
+      contains: "Thank you, your submission has been received."

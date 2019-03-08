@@ -1,0 +1,110 @@
+contact_form:
+  steps:
+    # Main page: https://portal.ct.gov/Office-of-the-Governor/Contact/Email-Governor-Lamont
+    # Form is in iframe accessed by link below
+    - visit: "https://portaldir.ct.gov/governor/ShareOpinion.aspx"
+    - fill_in:
+      - name: "ctl00$DataContentPlaceHolder$txtRequestorFirstName"
+        selector: "#ctl00_DataContentPlaceHolder_txtRequestorFirstName"
+        value: $NAME_FIRST
+        required: true
+        # max length: 40
+      - name: "ctl00$DataContentPlaceHolder$txtRequestorLastName"
+        selector: "#ctl00_DataContentPlaceHolder_txtRequestorLastName"
+        value: $NAME_LAST
+        required: true
+        # max length: 40
+      - name: "ctl00$DataContentPlaceHolder$txtStreetAddr"
+        selector: "#ctl00_DataContentPlaceHolder_txtStreetAddr"
+        value: $ADDRESS_STREET
+        required: false
+        # max length: 60
+      - name: "ctl00$DataContentPlaceHolder$txtCity"
+        selector: "#ctl00_DataContentPlaceHolder_txtCity"
+        value: $ADDRESS_CITY
+        required: false
+        # max length: 40
+      - name: "ctl00$DataContentPlaceHolder$txtState"
+        selector: "#ctl00_DataContentPlaceHolder_txtState"
+        value: $ADDRESS_STATE_POSTAL_ABBREV
+        required: false
+        # max length: 2
+        # defaults to CT
+      - name: "ctl00$DataContentPlaceHolder$ZipCode"
+        selector: "#ctl00_DataContentPlaceHolder_ZipCode"
+        value: $ADDRESS_ZIP5
+        required: true
+        # max length: 10
+      - name: "ctl00$DataContentPlaceHolder$PhoneNumber"
+        selector: "#ctl00_DataContentPlaceHolder_PhoneNumber"
+        value: $PHONE
+        required: false
+        # max length 14
+      - name: "ctl00$DataContentPlaceHolder$EmailAddress"
+        selector: "#ctl00_DataContentPlaceHolder_EmailAddress"
+        value: $EMAIL
+        required: true
+        # max length: 50
+      - name: "ctl00$DataContentPlaceHolder$txtComments"
+        selector: "#ctl00_DataContentPlaceHolder_txtComments"
+        value: $MESSAGE
+        required: true
+        # max length: 4000
+      # For the sake of completeness, here's the suffix selector, but we don't
+      # have that for users.
+      # - name: "ctl00$DataContentPlaceHolder$txtNameSuffix"
+      #   selector: "#ctl00_DataContentPlaceHolder_txtNameSuffix"
+      #   value: $NAME_SUFFIX
+      #   required: false
+    - select:
+      - name: "ctl00$DataContentPlaceHolder$ddInterestArea"
+        selector: "#ctl00_DataContentPlaceHolder_ddInterestArea"
+        value: $TOPIC
+        options:
+          HEALTHAHA: "Affordable Healthcare Act"
+          BANKINGGEN: "Banking"
+          BUDGETGEN: "Budget"
+          CONSUMGEN: "Consumer Protection"
+          CORRECTGEN: "Corrections"
+          DDSGEN: "Developmental Services"
+          JUDICIALGEN: "Judicial / Legal"
+          ECONDEVGEN: "Economic Development"
+          EDUCGEN: "Education"
+          ENERGYGEN: "Energy"
+          ENVIROGEN: "Environment"
+          COMMENTSGEN: "General Comments"
+          COMPLAINTSGEN: "General Complaints"
+          HEALTHGEN: "Healthcare Issues"
+          HIGHERED: "Higher Education"
+          INSURANCEGEN: "Insurance"
+          LEGISLATIVEISSUE: "Legislative"
+          HOUSINGMORTGEN: "Mortgage Issues"
+          PUBSAFEGEN: "Public Safety"
+          REVSVCGENERAL: "Revenue Services"
+          DOTGEN: "Transportation"
+          VETGENERAL: "Veterans"
+      - name: "ctl00$DataContentPlaceHolder$ddNameTitle"
+        selector: "#ctl00_DataContentPlaceHolder_ddNameTitle"
+        value: $NAME_PREFIX
+        required: false
+        options:
+          "Mr.": "Mr."
+          "Mrs.": "Mrs."
+          "Mr. and Mrs.": "Mr. and Mrs."
+          "Ms.": "Ms."
+          "Miss": "Miss"
+          "Dr.": "Dr."
+          "The Honorable": "The Honorable"
+          "Congressman": "Congressman"
+          "Congresswoman": "Congresswoman"
+          "Representative": "Representative"
+          "The Reverend": "The Reverend"
+          "Father": "Father"
+          "Rabbi": "Rabbi"
+          "Chaplin": "Chaplin"
+    - click_on:
+      - name: "ctl00$SubmitContentPlaceHolder$btnSub"
+        selector: "#ctl00_SubmitContentPlaceHolder_btnSub"
+  success:
+    body:
+      contains: "Your email has been received"

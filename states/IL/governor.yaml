@@ -1,0 +1,73 @@
+contact_form:
+  steps:
+    - visit: "https://www2.illinois.gov/sites/gov/contactus/Pages/VoiceAnOpinion.aspx"
+
+    # We skip the optional prefix.
+
+    - select:
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Prefix_x0020_Name"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Prefix_x0020_Name"
+          value: $NAME_PREFIX
+          options:
+            "Mr.": "2"
+            "Ms.": "3"
+            "Mrs.": "1"
+            "Dr.": "5"
+    - fill_in:
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$First_x0020_Name"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_First_x0020_Name"
+          value: $NAME_FIRST
+          required: true
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Last_x0020_Name"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Last_x0020_Name"
+          value: $NAME_LAST
+          required: true
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Address"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Address"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Address2"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Address2"
+          value: $ADDRESS_STREET_2
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$City"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_City"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$State"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_State"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Zip"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Zip"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Phone"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Phone"
+          value: $PHONE
+          required: false
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Email"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Email"
+          value: $EMAIL
+          required: true
+    - select:
+         # We skip the "Issue" selector; it is optional and defaults to "".
+         # This "Position" is required tho.
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Position"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Position"
+          value: "None"
+          required: true
+          options:
+            "Support": "Support"
+            "Oppose": "Oppose"
+            "None": "None"
+    - fill_in:
+        - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Comment"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Comment"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: "Submit"
+          selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_SOIFeedbackSubmit"
+  success:
+    body:
+      contains: "Your message has been received"

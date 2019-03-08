@@ -2,55 +2,43 @@ contact_form:
   steps:
     - visit: "$META_OFFICIAL_URL"
     - click_on:
-        - selector: "a[title='Email Representative']"
+        - selector: "a[title='Contact Member']"
     - fill_in:
-        - name: "ctl00$ContentPlaceHolder1$txtName"
-          selector: "#ctl00_ContentPlaceHolder1_txtName"
+        - name: "ctl00$MainContent$Name"
+          selector: "#Name"
           value: $NAME_FULL
           required: true
-        - name: "ctl00$ContentPlaceHolder1$txtEmailAddress"
-          selector: "#ctl00_ContentPlaceHolder1_txtEmailAddress"
+        - name: "ctl00$MainContent$EmailAddress"
+          selector: "#EmailAddress"
           value: $EMAIL
           required: true
-        - name: ctl00$ContentPlaceHolder1$txtAddress
-          selector: "#ctl00_ContentPlaceHolder1_txtAddress"
+        - name: "ctl00$MainContent$Address"
+          selector: "#Address"
           value: $ADDRESS_STREET
-        - name: "ctl00$ContentPlaceHolder1$txtAddress2"
-          selector: "#ctl00_ContentPlaceHolder1_txtAddress2"
+          required: false
+        - name: "ctl00$MainContent$Address2"
+          selector: "#ctl00_MainContent_Address2"
           value: $ADDRESS_STREET_2
-        - name: "ctl00$ContentPlaceHolder1$txtCity"
-          selector: "#ctl00_ContentPlaceHolder1_txtCity"
+          required: false
+        - name: "ctl00$MainContent$City"
+          selector: "#City"
           value: $ADDRESS_CITY
           required: true
-        - name: "ctl00$ContentPlaceHolder1$txtState"
-          selector: "#ctl00_ContentPlaceHolder1_txtState"
-          value: $ADDRESS_STATE_POSTAL_ABBREV
-        - name: "ctl00$ContentPlaceHolder1$txtZip"
-          selector: "#ctl00_ContentPlaceHolder1_txtZip"
+        - name: "ctl00$MainContent$Zip"
+          selector: "#Zip"
           value: $ADDRESS_ZIP5
-        - name: "ctl00$ContentPlaceHolder1$txtZip2"
-          selector: "#ctl00_ContentPlaceHolder1_txtZip2"
-          value: $ADDRESS_ZIP4
-        - name: "ctl00$ContentPlaceHolder1$txtAreaCode"
-          selector: "#ctl00_ContentPlaceHolder1_txtAreaCode"
-          value: $PHONE_AREA_CODE
-        - name: "ctl00$ContentPlaceHolder1$txtPhone"
-          selector: "#ctl00_ContentPlaceHolder1_txtPhone"
-          value: $PHONE3
-        - name: "ctl00$ContentPlaceHolder1$txtPhone2"
-          selector: "#ctl00_ContentPlaceHolder1_txtPhone2"
-          value: $PHONE4
-    - click_on:
-        - value: "Continue"
-          selector: "#ctl00_ContentPlaceHolder1_btnSubmitSenderAttri"
-    - fill_in:
-        - name: "ctl00$ContentPlaceHolder1$txtMessage"
-          selector: "#ctl00_ContentPlaceHolder1_txtMessage"
+          required: false
+        - name: "ctl00$MainContent$Phone"
+          selector: "#Phone"
+          value: $PHONE
+          required: false
+        - name: "ctl00$MainContent$Message"
+          selector: "#Message"
           value: $MESSAGE
           required: true
     - click_on:
         - value: "Send E-mail"
-          selector: "#ctl00_ContentPlaceHolder1_btnSubmit"
+          selector: "#btnSubmit"
   success:
     body:
       contains: "E-mail has been successfully sent."
