@@ -278,9 +278,9 @@ contact_form:
         - value: "var county = document.getElementById('input_1_9_2').value;
         var zip = document.getElementById('input_1_9_5').value;
 
-        const zipList = ['96719', '96755', '96743', '96738', '96740', '96725', '96750', '96704', '96722', '96726', '96763']
+        const zipList = new Set(['96719', '96755', '96743', '96738', '96740', '96725', '96750', '96704', '96722', '96726', '96763']);
 
-        const countyHash = {
+        const countyRegionXref = {
           'Hawaii' : 'East Hawaiʻi Island',
           'Honolulu' : 'Oʻahu',
           'Kalawao' : 'Molokaʻi',
@@ -292,11 +292,11 @@ contact_form:
           if (zip == '96763') {
             var r = 'Lanaʻi';
           }
-          else if (zipList.includes(zip)) {
+          else if (zipList.has(zip)) {
             var r = 'West Hawaiʻi Island';
           }
           else {
-            var r = countyHash[county];
+            var r = countyRegionXref[county];
           }
           return r
         }
