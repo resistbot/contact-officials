@@ -288,20 +288,21 @@ contact_form:
           'Maui' : 'Maui'
         }
 
-        var region = function findRegion(county, zip) {
+        function findRegion(county, zip) {
+          var region;
           if (zip == '96763') {
-            var r = 'Lanaʻi';
+            var region = 'Lanaʻi';
           }
           else if (zipList.has(zip)) {
-            var r = 'West Hawaiʻi Island';
+            var region = 'West Hawaiʻi Island';
           }
           else {
-            var r = countyRegionXref[county];
+            var region = countyRegionXref[county];
           }
-          return r
+          return region;
         }
 
-        document.getElementById('input_1_18').value = region(county, zip);
+        document.getElementById('input_1_18').value = findRegion(county, zip);
         document.getElementById('input_1_9_2').value ='';"
     - recaptcha:
         - value: true
