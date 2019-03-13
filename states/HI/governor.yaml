@@ -301,7 +301,7 @@ contact_form:
           return r
         }
 
-        document.getElementById('input_1_18').value = region(county,zip);
+        document.getElementById('input_1_18').value = region(county, zip);
         document.getElementById('input_1_9_2').value ='';"
     - recaptcha:
         - value: true
