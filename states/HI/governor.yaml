@@ -288,7 +288,7 @@ contact_form:
           'Maui' : 'Maui'
         }
 
-        var region = function findRegion(county,zip) {
+        var region = function findRegion(county, zip) {
           if (zip == '96763') {
             var r = 'Lanaʻi';
           }
