@@ -277,7 +277,7 @@ contact_form:
     - javascript:
         # Hawaii has a 'region' dropdown that doesn't correlate directly to any address component we currently collect.  So we have connected the region to a county where we can, and a zip code where we cannot.  The JS below handles this and selects the appropriate option value.
         # NOTE: The apostrophes in the values of the countyRegionXref hash (the region names) are right apostrophes (Unicode U+2019).  The regular straight apostrophe (Unicode U+0027) will not match on the form.
-        - value: "var county = document.getElementById('input_1_9_2').value;
+        - value: "var county = document.getElementById('input_1_9_2');
         var zip = document.getElementById('input_1_9_5').value;
 
         const zipList = new Set(['96719', '96755', '96743', '96738', '96740', '96725', '96750', '96704', '96722', '96726', '96763']);
@@ -304,7 +304,7 @@ contact_form:
           return region;
         }
 
-        document.getElementById('input_1_18').value = findRegion(county, zip);
+        document.getElementById('input_1_18').value = findRegion(county.value, zip);
         county.value ='';"
     - recaptcha:
         - value: true
