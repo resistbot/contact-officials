@@ -92,4 +92,4 @@ contact_form:
           selector: "input[name='Next']"
   success:
     body:
-      contains: Thank you for contacting me.
+      contains: "I appreciate your taking the time"
