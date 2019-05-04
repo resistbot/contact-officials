@@ -33,6 +33,8 @@ contact_form:
     - click_on:
         - value: "Send"
           selector: "input[type='submit']"
+    - wait:
+        - value: 5
   success:
     body:
       contains: "Your form was successfully submitted"
