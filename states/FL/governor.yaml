@@ -34,7 +34,7 @@ contact_form:
         - value: "Send"
           selector: "input[type='submit']"
     - wait:
-        - value: 5
+        - value: 10
   success:
     body:
       contains: "Your form was successfully submitted"
