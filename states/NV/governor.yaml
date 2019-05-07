@@ -1,10 +1,12 @@
 contact_form:
   steps:
-    # Note this is an iframe within http://gov.nv.gov/Contact/Email_the_Governor/
-    - visit: "https://nevada-voice.symplicity.com//contact_form/dee804819c38673f2500f9f724ac487b"
+    - visit: "http://gov.nv.gov/Contact/Email_the_Governor_Form/"
+    # This JS clears the default values in the text fields.  This is needed because our data would otherwise append and fail the form.
+    - javascript:
+        - value: "f = document.getElementById('aspnetForm'); for (var i = 0; i < f.length; i++) { f[i].value = '';};"
     - select:
-        - name: "dnf_class_values[communication][primary_constituent][0][prefix]"
-          selector: "#dnf_class_values_communication__primary_constituent__0__prefix_"
+        - name: "Prefix"
+          selector: "#Prefix"
           value: $NAME_PREFIX
           required: true
           options:
@@ -21,35 +23,35 @@ contact_form:
             "Coach": "Coach"
             "Ofc": "Ofc"
     - fill_in:
-        - name: "dnf_class_values[communication][primary_constituent][0][fname]"
-          selector: "#dnf_class_values_communication__primary_constituent__0__fname_"
+        - name: "fName"
+          selector: "#fName"
           value: $NAME_FIRST
           required: true
-        - name: dnf_class_values[communication][primary_constituent][0][lname]
-          selector: "#dnf_class_values_communication__primary_constituent__0__lname_"
+        - name: "lName"
+          selector: "#lName"
           value: $NAME_LAST
           required: true
-        - name: "dnf_class_values[communication][primary_constituent][0][email]"
-          selector: "#dnf_class_values_communication__primary_constituent__0__email_"
+        - name: "email"
+          selector: "#email"
           value: $EMAIL
           required: true
         # Phone is not required by this form, but it is included here in case it needs to be implemented in the future.
-        - name: "dnf_class_values[communication][primary_constituent][0][phone]"
-          selector: "#dnf_class_values_communication__primary_constituent__0__phone_"
+        - name: "Phone"
+          selector: "#Phone"
           value: ""
-        - name: "dnf_class_values[communication][primary_constituent][0][address][0][street]"
-          selector: "#dnf_class_values_communication__primary_constituent__0__address__0__street_"
+        - name: "street"
+          selector: "#street"
           value: $ADDRESS_STREET
-        - name: "dnf_class_values[communication][primary_constituent][0][address][0][zip]"
-          selector: "#dnf_class_values_communication__primary_constituent__0__address__0__zip_"
+        - name: "zipcode"
+          selector: "#zipcode"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "dnf_class_values[communication][primary_constituent][0][address][0][city]"
-          selector: "#dnf_class_values_communication__primary_constituent__0__address__0__city_"
+        - name: "City"
+          selector: "#City"
           value: $ADDRESS_CITY
     - select:
-        - name: "dnf_class_values[communication][primary_constituent][0][address][0][state]"
-          selector: "#dnf_class_values_communication__primary_constituent__0__address__0__state_"
+        - name: "state"
+          selector: "#state"
           value: $ADDRESS_STATE_POSTAL_ABBREV
           options:
             "AL": "Alabama"
@@ -105,66 +107,66 @@ contact_form:
             "WY": "Wyoming"
             "PR": "Puerto Rico"
             "FM": "Micronesia"
-        - name: "dnf_class_values[communication][topic]"
-          selector: "#dnf_class_values_communication__topic_"
+        - name: "Topic"
+          selector: "#Topic"
           value: "Other"
           required: true
           options:
-            "0040480": "Agriculture"
-            "0040840": "Arts"
-            "0040460": "Autograph"
-            "0040440": "Boards/Commissions"
-            "0040420": "Budget/Spending"
-            "0040380": "Crime/Drugs"
-            "0040860": "Cultural Affairs"
-            "0040360": "Economic Development"
-            "0040340": "Education"
-            "0040940": "Elections"
-            "0040010": "Employment Security"
-            "0040320": "Energy"
-            "0040300": "Environment"
-            "0040740": "Federal Agencies"
-            "0040980": "Flag Status"
-            "0040280": "Health"
-            "0040260": "Housing"
-            "0040920": "Immigration"
-            "0040660": "Inmate"
-            "0040760": "Insurance"
-            "0040240": "Jobs"
-            "0040220": "Labor"
-            "0040200": "Legislation"
-            "0040960": "Local Gov't"
-            "0040180": "Motor Vehicles"
-            "0040160": "Natural Resources"
-            "0040500": "Other"
-            "0040780": "Public Safety"
-            "0040800": "Public Utilities"
-            "0040400": "Recognition"
-            "0040120": "Regulatory Reform"
-            "0040100": "Science/Technology"
-            "0040620": "Scouts"
-            "0040080": "Small Business"
-            "0040580": "Student Letter"
-            "0040820": "Taxation"
-            "0040700": "Thank you"
-            "0040040": "Transportation"
-            "0040030": "Unaccompanied Children"
-            "0040020": "Unemployment"
-            "0040560": "Veterans"
-            "0040540": "Welfare"
-            "0040520": "Wildlife"
+            "Agriculture": "Agriculture"
+            "Arts": "Arts"
+            "Autograph": "Autograph"
+            "Boards/Commissions": "Boards/Commissions"
+            "Budget/Spending": "Budget/Spending"
+            "Crime/Drugs": "Crime/Drugs"
+            "Cultural Affairs": "Cultural Affairs"
+            "Economic Development": "Economic Development"
+            "Education": "Education"
+            "Elections": "Elections"
+            "Employment Security": "Employment Security"
+            "Energy": "Energy"
+            "Environment": "Environment"
+            "Federal Agencies": "Federal Agencies"
+            "Flag Status": "Flag Status"
+            "Health": "Health"
+            "Housing": "Housing"
+            "Immigration": "Immigration"
+            "Inmate": "Inmate"
+            "Insurance": "Insurance"
+            "Jobs": "Jobs"
+            "Labor": "Labor"
+            "Legislation": "Legislation"
+            "Local Gov't": "Local Gov't"
+            "Motor Vehicles": "Motor Vehicles"
+            "Natural Resources": "Natural Resources"
+            "Other": "Other"
+            "Public Safety": "Public Safety"
+            "Public Utilities": "Public Utilities"
+            "Recognition": "Recognition"
+            "Regulatory Reform": "Regulatory Reform"
+            "Science/Technology": "Science/Technology"
+            "Scouts": "Scouts"
+            "Small Business": "Small Business"
+            "Student Letter": "Student Letter"
+            "Taxation": "Taxation"
+            "Thank you": "Thank you"
+            "Transportation": "Transportation"
+            "Unaccompanied Children": "Unaccompanied Children"
+            "Unemployment": "Unemployment"
+            "Veterans": "Veterans"
+            "Welfare": "Welfare"
+            "Wildlife": "Wildlife"
     - fill_in:
-        - name: "dnf_class_values[communication][title]"
-          selector: "#dnf_class_values_communication__title_"
+        - name: "Subject"
+          selector: "#Subject"
           value: $SUBJECT
           required: true
-        - name: "dnf_class_values[communication][content]"
-          selector: "#dnf_class_values_communication__content_"
+        - name: "message"
+          selector: "#message"
           value: $MESSAGE
           required: true
     - click_on:
-        - value: "Submit"
+        - value: "Submit Form"
           selector: "input[type='submit']"
   success:
     body:
-      contains: "Your message has been sent"
+      contains: "Thank you for taking the time to contact me"
