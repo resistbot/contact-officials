@@ -1,115 +1,50 @@
 contact_form:
   steps:
-    - visit: "http://governor.mt.gov/Contact/Share-Your-Comments-with-Governor-Bullock"
+    - visit: "https://svc.mt.gov/gov/contact/shareopinion"
     - fill_in:
-        - name: "dnn7787Prefix"
-          selector: "#dnn7787Prefix"
+        - name: "sockeye_prefix"
+          selector: "#sockeye_prefix"
           value: $NAME_PREFIX
-        - name: "dnn7787FirstName"
-          selector: "#dnn7787FirstName"
+          required: false
+        - name: "sockeye_firstname"
+          selector: "#sockeye_firstname"
           value: $NAME_FIRST
           required: true
-        - name: "dnn7787LastName"
-          selector: "#dnn7787LastName"
+        - name: "sockeye_lastname"
+          selector: "#sockeye_lastname"
           value: $NAME_LAST
           required: true
-        - name: "dnn7787Email"
-          selector: "#dnn7787Email"
+        - name: "sockeye_email"
+          selector: "#sockeye_email"
           value: $EMAIL
           required: true
-        - name: "dnn7787MailingAddress"
-          selector: "#dnn7787MailingAddress"
+        - name: "sockeye_mailingaddress"
+          selector: "#sockeye_mailingaddress"
           value: $ADDRESS_STREET
           required: true
-        - name: "dnn7787City"
-          selector: "#dnn7787City"
+        - name: "sockeye_city"
+          selector: "#sockeye_city"
           value: $ADDRESS_CITY
           required: true
-    - select:
-        - name: "dnn7787State"
-          selector: "#dnn7787State"
-          value: $ADDRESS_STATE_FULL
-          options:
-            "Alabama": "Alabama"
-            "Alaska": "Alaska"
-            "American Samoa": "American Samoa"
-            "Arizona": "Arizona"
-            "Arkansas": "Arkansas"
-            "California": "California"
-            "Colorado": "Colorado"
-            "Connecticut": "Connecticut"
-            "Delaware": "Delaware"
-            "District of Columbia": "District of Columbia"
-            "Federated States of Micronesia": "Federated States of Micronesia"
-            "Florida": "Florida"
-            "Georgia": "Georgia"
-            "Guam": "Guam"
-            "Hawaii": "Hawaii"
-            "Idaho": "Idaho"
-            "Illinois": "Illinois"
-            "Indiana": "Indiana"
-            "Iowa": "Iowa"
-            "Kansas": "Kansas"
-            "Kentucky": "Kentucky"
-            "Louisiana": "Louisiana"
-            "Maine": "Maine"
-            "Marshall Islands": "Marshall Islands"
-            "Maryland": "Maryland"
-            "Massachusetts": "Massachusetts"
-            "Michigan": "Michigan"
-            "Minnesota": "Minnesota"
-            "Minor Outlying Islands": "Minor Outlying Islands"
-            "Mississippi": "Mississippi"
-            "Missouri": "Missouri"
-            "Montana": "Montana"
-            "Nebraska": "Nebraska"
-            "Nevada": "Nevada"
-            "New Hampshire": "New Hampshire"
-            "New Jersey": "New Jersey"
-            "New Mexico": "New Mexico"
-            "New York": "New York"
-            "North Carolina": "North Carolina"
-            "North Dakota": "North Dakota"
-            "Northern Mariana Islands": "Northern Mariana Islands"
-            "Ohio": "Ohio"
-            "Oklahoma": "Oklahoma"
-            "Oregon": "Oregon"
-            "Palau": "Palau"
-            "Pennsylvania": "Pennsylvania"
-            "Puerto Rico": "Puerto Rico"
-            "Rhode Island": "Rhode Island"
-            "South Carolina": "South Carolina"
-            "South Dakota": "South Dakota"
-            "Tennessee": "Tennessee"
-            "Texas": "Texas"
-            "Utah": "Utah"
-            "Vermont": "Vermont"
-            "Virgin Islands": "Virgin Islands"
-            "Virginia": "Virginia"
-            "Washington": "Washington"
-            "West Virginia": "West Virginia"
-            "Wisconsin": "Wisconsin"
-            "Wyoming": "Wyoming"
-    - fill_in:
-        - name: "dnn7787ZipCode"
-          selector: "#dnn7787ZipCode"
+        - name: "sockeye_zipcode"
+          selector: "#sockeye_zipcode"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "dnn7787Phone"
-          selector: "#dnn7787Phone"
+        - name: "sockeye_phone"
+          selector: "#sockeye_phone"
           value: $PHONE
           required: true
-        - name: "dnn7787Comments"
-          selector: "#dnn7787Comments"
+        - name: "sockeye_comments"
+          selector: "#sockeye_comments"
           value: $MESSAGE
-    - check:
-        - name: "dnn7787RespondtoOpinion"
-          selector: "#dnn7787RespondtoOpinion-0"
-          value: "Yes"
           required: true
+    - javascript:
+        - value: "document.querySelector('#sockeye_topicid_Id').value = '774f284b-f466-e911-82d5-0050568c6a15'; document.querySelector('#sockeye_topicid_LogicalName').value = 'sockeye_topic'; document.querySelector('#sockeye_topicid_Name').value = 'General Comments';"
+    - recaptcha:
+        - value: true
     - click_on:
-        - value: "Send Now"
-          selector: "#dnn7787SendNow"
+        - value: "Submit"
+          selector: "#xrmform-footer input"
   success:
     body:
-      contains: "Your form has been submitted"
+      contains: "Thank you for your comments"
