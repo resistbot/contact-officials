@@ -33,8 +33,7 @@ contact_form:
     - click_on:
         - value: "Send"
           selector: "input[type='submit']"
-    - wait:
-        - value: 10
   success:
+    timeout: 120
     body:
       contains: "Your form was successfully submitted"
