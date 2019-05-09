@@ -56,6 +56,8 @@ contact_form:
     - wait:
         - value: 5
     # Confirmation screen.
+    - javascript:
+        - value: "document.querySelector('#hdn-f1d59b73-aee4-469a-9e8a-38efdaca963e').click()"
     - click_on:
         - name: next
           selector: "#nextButton"
