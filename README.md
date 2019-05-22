@@ -75,7 +75,7 @@ Schema is based on [that of unitedstates/contact-congress](https://github.com/un
 
 * In a `success` section, instead of `body`, one can specify text that must match an alert, or one
   can specify a CSS selector for an element that must be found. See `states/WA/governor.yaml` for
-  an example of the alert functionality, and `states/CA/lower.yaml` for an example of a CSS selector.
+  an example of the alert functionality, and `states/CA/lower.yaml` for an example of a CSS selector.  You can also specify a custom `timeout` directive, in seconds, to wait for the success criteria to appear.  See `states/FL/governor.yaml` for an example.
 
 * In `recaptcha` section, a `callback` and `callback_selector` can optionally be defined. If the
   recaptcha callback is not defined in a data-callback attribute on the captcha element, its callback will
