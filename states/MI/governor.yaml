@@ -126,11 +126,8 @@ contact_form:
           value: $MESSAGE
           required: true
           # max length: 2000
-        - name: "ctl00$Content$RadCaptcha1$CaptchaTextBox"
-          selector: "#Content_RadCaptcha1_CaptchaTextBox"
-          captcha_selector: "#Content_RadCaptcha1_CaptchaImageUP"
-          value: $CAPTCHA_SOLUTION
-          required: true
+    - recaptcha:
+        - value: true
     - click_on:
         - value: "Submit"
           selector: "#Content_btnSubmit"
