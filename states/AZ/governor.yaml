@@ -1,6 +1,9 @@
 contact_form:
   steps:
     - visit: "https://azgovernor.gov/engage/form/contact-governor-ducey"
+    - click_on:
+        - selector: "#splash-block-close"
+          value: "close"
     - check:
         - name: "submitted[reason]"
           selector: "#edit-submitted-reason-2"
@@ -26,6 +29,10 @@ contact_form:
         - name: "submitted[street_city]"
           selector: "#edit-submitted-city"
           value: $ADDRESS_CITY
+          required: true
+        - name: "submitted[phone_number]"
+          selector: "#edit-submitted-phone-number"
+          value: $PHONE
           required: true
         - name: "submitted[zip_code]"
           selector: "#edit-submitted-zip-code"
