@@ -1,9 +1,10 @@
 contact_form:
   steps:
     - visit: "https://azgovernor.gov/engage/form/contact-governor-ducey"
-    - click_on:
-        - selector: "#splash-block-close"
-          value: "close"
+    # This is to close a pop up that is no longer there.  Saving it just in case it comes back.
+    # - click_on:
+    #     - selector: "#splash-block-close"
+    #       value: "close"
     - check:
         - name: "submitted[reason]"
           selector: "#edit-submitted-reason-2"
