@@ -234,8 +234,6 @@ contact_form:
           value: "$MESSAGE"
           required: true
           # max length: 5000
-#    - recaptcha:
-#        - value: true
     - click_on:
         - value: "Submit"
           selector: "#nf-field-3331"
