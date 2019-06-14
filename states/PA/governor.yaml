@@ -5,8 +5,8 @@ contact_form:
     - click_on:
         - selector: "#newsletterModal2 > button"
     - select:
-        - name: "nf-field-1341"
-          selector: "#nf-field-1341"
+        - name: "nf-field-3181"
+          selector: "#nf-field-3181"
           value: $NAME_PREFIX
           options:
             "Mr.": "Mr."
@@ -18,29 +18,29 @@ contact_form:
             "Rev.": "Rev."
             "Other": "Other"
     - fill_in:
-        - name: "nf-field-1351"
-          selector: "#nf-field-1351"
+        - name: "nf-field-3191"
+          selector: "#nf-field-3191"
           value: $NAME_FIRST
           required: true
           # max length: 50
-        - name: "nf-field-1361"
-          selector: "#nf-field-1361"
+        - name: "nf-field-3201"
+          selector: "#nf-field-3201"
           value: $NAME_LAST
           required: true
           # max length: 50
-        - name: "nf-field-1371"
-          selector: "#nf-field-1371"
+        - name: "nf-field-3221"
+          selector: "#nf-field-3221"
           value: "$ADDRESS_STREET"
           required: true
           # max length: 100
-        - name: "nf-field-1381"
-          selector: "#nf-field-1381"
+        - name: "nf-field-3231"
+          selector: "#nf-field-3231"
           value: "$ADDRESS_CITY"
           required: true
           # max length: 100
     - select:
-        - name: "nf-field-1391"
-          selector: "#nf-field-1391"
+        - name: "nf-field-3251"
+          selector: "#nf-field-3251"
           value: "$ADDRESS_STATE_POSTAL_ABBREV"
           required: true
           options:
@@ -98,8 +98,8 @@ contact_form:
             "AE": "ARMED FORCES AFRICA \ CANADA \ EUROPE \ MIDDLE EAST"
             "AA": "ARMED FORCES AMERICA (EXCEPT CANADA)"
             "AP": "ARMED FORCES PACIFIC"
-        - name: "nf-field-1401"
-          selector: "#nf-field-1401"
+        - name: "nf-field-3241"
+          selector: "#nf-field-3241"
           value: "$ADDRESS_COUNTY"
           required: true
           options:
@@ -173,28 +173,72 @@ contact_form:
             "york": "York"
     - fill_in:
         - name: "zip"
-          selector: "#nf-field-1411"
+          selector: "#nf-field-3261"
           value: $ADDRESS_ZIP5
           required: true
           # max length: 5
         - name: "email"
-          selector: "#nf-field-1421"
+          selector: "#nf-field-3271"
           value: "$EMAIL"
           required: true
         - name: "phone"
-          selector: "#nf-field-1431"
+          selector: "#nf-field-3281"
           value: $PHONE
           required: true
-        - name: "nf-field-1461"
-          selector: "#nf-field-1461"
+    - select:
+        - name: "nf-field-3311"
+          selector: "#nf-field-3311"
+          value: "Other"
+          required: true
+          options:
+            "agriculture": "Agriculture"
+            "animal-welfare": "Animal welfare"
+            "banking": "Banking"
+            "broadband": "Broadband"
+            "child-custody": "Child custody"
+            "correctional-services": "Correctional services"
+            "criminal-justice": "Criminal justice"
+            "disabilities": "Disabilities"
+            "early-childhood-education-pre-k": "Early childhood education/Pre-K"
+            "economic-development": "Economic development"
+            "education-k-12": "Education (K-12)"
+            "emergency-preparedness": "Emergency preparedness"
+            "energy": "Energy"
+            "energy-assistance": "Energy assistance"
+            "environment": "Environment"
+            "gaming": "Gaming"
+            "health": "Health"
+            "health-insurance": "Health insurance"
+            "higher-education": "Higher education"
+            "housing": "Housing"
+            "human-rights": "Human rights"
+            "human-services": "Human services"
+            "infrastructure": "Infrastructure"
+            "insurance-any-kind-except-health": "Insurance (any kind except health)"
+            "jobs": "Jobs"
+            "legislation": "Legislation"
+            "lgbt-issues": "LGBT issues"
+            "military-veterans-affairs": "Military/veterans affairs"
+            "other": "Other"
+            "parks-and-recreation": "Parks and recreation"
+            "public-safety": "Public safety"
+            "public-utilities": "Public utilities"
+            "taxes": "Taxes"
+            "tourism": "Tourism"
+            "transportation": "Transportation"
+            "unemployment": "Unemployment"
+            "women-s-issues": "Women’s issues"
+    - fill_in:
+        - name: "nf-field-3321"
+          selector: "#nf-field-3321"
           value: "$MESSAGE"
           required: true
           # max length: 5000
-    - recaptcha:
-        - value: true
+#    - recaptcha:
+#        - value: true
     - click_on:
         - value: "Submit"
-          selector: "#nf-field-1471"
+          selector: "#nf-field-3331"
     # The submit button on the page changes to "processing" for a substantial length of time.  An unscientific test averaged about 10 seconds before the success message appears.  A 20 second delay seems to be a reasonable compromise between speed and ensuring success.
     - wait:
         - value: 10
