@@ -83,13 +83,6 @@ contact_form:
             "Tribal Issues": "Tribal Issues"
             "Veterans Affairs": "Veterans Affairs"
             "Others": "Others"
-        # - name: "response"
-        #   selector: "#response"
-        #   value: "yes"
-        #   required: true
-        #   options:
-        #     "Yes, please contact me": "yes"
-        #     "No, you do not need to respond": "no"
     - recaptcha:
         - value: true
     - click_on:
