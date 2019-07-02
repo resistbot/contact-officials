@@ -75,11 +75,6 @@ contact_form:
             "UC/CSU Issues/Concerns": "6096"
             "Water Issues/Concerns": "6127"
             "Veteran Issues/Concerns": "38188"
-    - check:
-        - name: "reply"
-          selector: "#reply"
-          value: "1"
-          required: true
     - click_on:
         - value: "Continue"
           selector: "input[name='Submit']"
