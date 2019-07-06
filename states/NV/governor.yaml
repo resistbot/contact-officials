@@ -169,4 +169,4 @@ contact_form:
           selector: "input[type='submit']"
   success:
     body:
-      contains: "Thank you for taking the time to contact me"
+      contains: "Thank you!"
