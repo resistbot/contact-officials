@@ -1,12 +1,9 @@
 contact_form:
   steps:
-    - visit: "http://gov.nv.gov/Contact/Email_the_Governor_Form/"
-    # This JS clears the default values in the text fields.  This is needed because our data would otherwise append and fail the form.
-    - javascript:
-        - value: "f = document.getElementById('aspnetForm'); for (var i = 0; i < f.length; i++) { f[i].value = '';};"
+    - visit: "http://gov.nv.gov/ContacttheGovernor.aspx"
     - select:
-        - name: "Prefix"
-          selector: "#Prefix"
+        - name: "SelectPrefix"
+          selector: "#SelectPrefix"
           value: $NAME_PREFIX
           required: true
           options:
@@ -23,35 +20,36 @@ contact_form:
             "Coach": "Coach"
             "Ofc": "Ofc"
     - fill_in:
-        - name: "fName"
-          selector: "#fName"
+        - name: "tbfName"
+          selector: "#tbfName"
           value: $NAME_FIRST
           required: true
-        - name: "lName"
-          selector: "#lName"
+        - name: "tbLastName"
+          selector: "#tbLastName"
           value: $NAME_LAST
           required: true
-        - name: "email"
-          selector: "#email"
+        - name: "tbEmail"
+          selector: "#tbEmail"
           value: $EMAIL
           required: true
-        # Phone is not required by this form, but it is included here in case it needs to be implemented in the future.
-        - name: "Phone"
-          selector: "#Phone"
-          value: ""
-        - name: "street"
-          selector: "#street"
+        - name: "tbPhone"
+          selector: "#tbPhone"
+          value: $PHONE
+          required: true
+        - name: "tbStreet"
+          selector: "#tbStreet"
           value: $ADDRESS_STREET
-        - name: "zipcode"
-          selector: "#zipcode"
+        - name: "tbZip"
+          selector: "#tbZip"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "City"
-          selector: "#City"
+        - name: "tbCity"
+          selector: "#tbCity"
           value: $ADDRESS_CITY
+          required: true
     - select:
-        - name: "state"
-          selector: "#state"
+        - name: "SelectState"
+          selector: "#SelectState"
           value: $ADDRESS_STATE_FULL
           options:
             "Alabama": "Alabama"
@@ -107,8 +105,8 @@ contact_form:
             "Wyoming": "Wyoming"
             "Puerto Rico": "Puerto Rico"
             "Micronesia": "Micronesia"
-        - name: "Topic"
-          selector: "#Topic"
+        - name: "SelectTopic"
+          selector: "#SelectTopic"
           value: "Other"
           required: true
           options:
@@ -156,17 +154,19 @@ contact_form:
             "Welfare": "Welfare"
             "Wildlife": "Wildlife"
     - fill_in:
-        - name: "Subject"
-          selector: "#Subject"
+        - name: "tbSubject"
+          selector: "#tbSubject"
           value: $SUBJECT
           required: true
-        - name: "message"
-          selector: "#message"
+        - name: "taCustomerMessage"
+          selector: "#taCustomerMessage"
           value: $MESSAGE
           required: true
+    - recaptcha:
+        - value: true
     - click_on:
-        - value: "Submit Form"
+        - value: "Submit"
           selector: "input[type='submit']"
   success:
     body:
-      contains: "Thank you for taking the time to contact me"
+      contains: "Thank you!"
