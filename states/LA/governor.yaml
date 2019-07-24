@@ -30,7 +30,6 @@ contact_form:
           required: false #Yes, really.
     - recaptcha:
         - value: true
-          recaptcha_selector: "#grecaptcha"
     - click_on:
         - value: "Submit"
           selector: "#btn-submit"
