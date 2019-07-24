@@ -2,25 +2,35 @@ contact_form:
   steps:
     - visit: "https://www.governor.nd.gov/contact-us"
     - fill_in:
-      - name: "submitted[name]"
-        selector: "#edit-submitted-name"
-        value: $NAME_FULL
+      - name: "your_first_name"
+        selector: "#edit-your-first-name"
+        value: $NAME_FIRST
         required: true
-      - name: "submitted[subject]"
-        selector: "#edit-submitted-subject"
-        value: $SUBJECT
+      - name: "last_name"
+        selector: "#edit-last-name"
+        value: $NAME_LAST
         required: true
-      - name: "submitted[email_address]"
-        selector: "#edit-submitted-email-address"
+      - name: "email_address"
+        selector: "#edit-email-address"
         value: $EMAIL
         required: true
-      - name: "submitted[comments]"
-        selector: "#edit-submitted-comments"
+      - name: "phone_number"
+        selector: "#edit-phone-number"
+        value: ""
+        required: false
+      - name: "subject"
+        selector: "#edit-subject"
+        value: $SUBJECT
+        required: true
+      - name: "comments"
+        selector: "#edit-comments"
         value: $MESSAGE
         required: true
+    - wait:
+      - value: 7
     - click_on:
-        - value: Submit
-          selector: "button[name='op']"
+      - value: Submit
+        selector: "#edit-submit"
   success:
     body:
-      contains: Thank you for your message.
+      contains: "Your message has been sent"
