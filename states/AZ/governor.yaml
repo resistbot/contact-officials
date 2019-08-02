@@ -6,13 +6,13 @@ contact_form:
     #     - selector: "#splash-block-close"
     #       value: "close"
     - check:
-        - name: "submitted[reason]"
-          selector: "#edit-submitted-reason-2"
+        - name: "edit-submitted-fid-40"
+          selector: "#edit-submitted-fid-40-2"
           value: "Comment"
           required: true
     - select:
-        - name: "submitted[salutation]"
-          selector: "#edit-submitted-salutation"
+        - name: "submitted[_fid_9]"
+          selector: "#edit-submitted-fid-9"
           value: $NAME_PREFIX
           required: true
           options:
@@ -21,48 +21,48 @@ contact_form:
             "Mrs.": "Mrs."
             "Dr.": "Dr."
     - fill_in:
-        - name: "submitted[first_name]"
-          selector: "#edit-submitted-first-name"
+        - name: "submitted[_fid_10]"
+          selector: "#edit-submitted-fid-10"
           value: $NAME_FIRST
           required: true
-        - name: "submitted[last_name]"
-          selector: "#edit-submitted-last-name"
+        - name: "submitted[_fid_11]"
+          selector: "#edit-submitted-fid-11"
           value: $NAME_LAST
           required: true
-        - name: "submitted[email_address]"
-          selector: "#edit-submitted-email-address"
+        - name: "submitted[_fid_20]"
+          selector: "#edit-submitted-fid-20"
           value: $EMAIL
           required: true
         - name: "submitted[conf_email_address]"
           selector: "#edit-submitted-conf-email-address"
           value: $EMAIL
           required: true
-        - name: "submitted[phone_number]"
-          selector: "#edit-submitted-phone-number"
+        - name: "submitted[_fid_21]"
+          selector: "#edit-submitted-fid-21"
           value: $PHONE
           required: true
-        - name: "submitted[street_address]"
-          selector: "#edit-submitted-street-address"
+        - name: "submitted[_fid_14]"
+          selector: "#edit-submitted-fid-14"
           value: $ADDRESS_STREET
           required: true
-        - name: "submitted[street_city]"
-          selector: "#edit-submitted-city"
+        - name: "submitted[_fid_16]"
+          selector: "#edit-submitted-fid-16"
           value: $ADDRESS_CITY
           required: true
     - select:
-        - name: "submitted[state]"
-          selector: "#edit-submitted-state"
+        - name: "submitted[_fid_17]"
+          selector: "#edit-submitted-fid-17"
           value: $ADDRESS_STATE_POSTAL_ABBREV
           required: true
           options: US_STATES
     - fill_in:
-        - name: "submitted[zip_code]"
-          selector: "#edit-submitted-zip-code"
+        - name: "submitted[_fid_18]"
+          selector: "#edit-submitted-fid-18"
           value: $ADDRESS_ZIP5
           required: true
     - select:
-        - name: "submitted[county]"
-          selector: "#edit-submitted-county"
+        - name: "submitted[_fid_26]"
+          selector: "#edit-submitted-fid-26"
           value: $ADDRESS_COUNTY
           required: true
           options:
@@ -82,8 +82,8 @@ contact_form:
             "Yuma": "Yuma"
             "Uknown": "I don't know" #[sic]
     - fill_in:
-        - name: "submitted[subject]"
-          selector: "#edit-submitted-subject"
+        - name: "submitted[_fid_6]"
+          selector: "#edit-submitted-fid-6"
           value: "Other"
           required: true
           options:
@@ -99,12 +99,12 @@ contact_form:
             "Recognition Photo Other Request": "Recognition, Photo &amp; Other Request"
             "Other": Other"
     - fill_in:
-        - name: "submitted[topic]"
-          selector: "#edit-submitted-topic"
+        - name: "submitted[_fid_37]"
+          selector: "#edit-submitted-fid-37"
           value: $SUBJECT
           required: true
-        - name: "submitted[comments]"
-          selector: "#edit-submitted-comments"
+        - name: "submitted[_fid_22]"
+          selector: "#edit-submitted-fid-22"
           value: $MESSAGE
           required: true
     - recaptcha:
