@@ -71,7 +71,7 @@ contact_form:
           required: true
         - name: "ZIP"
           selector: "#ZIP"
-          value: $ADDRESS_ZIP_PLUS_4
+          value: $ADDRESS_ZIP5
           required: true
         - name: "EMAIL"
           selector: "input[name='EMAIL']"
