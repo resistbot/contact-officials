@@ -142,6 +142,9 @@ contact_form:
     - click_on:
         - value: Submit
           selector: "#btn_submit"
+    - click_on:
+        - value: Submit
+          selector: "#btn_rev_submit"
   success:
     alert:
       contains: "been submitted"
