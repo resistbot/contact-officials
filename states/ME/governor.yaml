@@ -1,34 +1,62 @@
 contact_form:
   steps:
-    - visit: "https://www.maine.gov/governor/mills/contact"
+    # iframe inside"https://www.maine.gov/governor/mills/contact/share-your-opinion"
+    - visit: "https://iqconnect.lmhostediq.com/iqextranet/EForm.aspx?__cid=FSL_MEGOV&__fid=100008"
     - fill_in:
-        - name: "name"
-          selector: "#name"
+        - name: "qi_1_prefix"
+          selector: "#qi_1_prefix"
+          value: $NAME_PREFIX
+          required: false
+        - name: "qi_1_first_name"
+          selector: "#qi_1_first_name"
           value: $NAME_FIRST
           required: true
-        - name: "lname"
-          selector: "#lname"
+        - name: "qi_1_last_name"
+          selector: "#qi_1_last_name"
           value: $NAME_LAST
           required: true
-        - name: "email"
-          selector: "#email"
+        - name: "qi_1_addr_1"
+          selector: "#qi_1_addr_1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "qi_1_city"
+          selector: "#qi_1_city"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: "qi_1_state"
+          selector: "#qi_1_state"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options: US_STATE_ABBREVIATIONS
+    - fill_in:
+        - name: "qi_1_zip"
+          selector: "#qi_1_zip"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "qi_1_email"
+          selector: "#qi_1_email"
           value: $EMAIL
           required: true
-          # Phone is not required by the form, but there is an optional field that we could use in the future if desired.
-        - name: "phone"
-          selector: "#phone"
-          value: ""
-        - name: "comments"
-          selector: "#comments"
+        - name: "qi_1_hphone"
+          selector: "#qi_1_hphone"
+          value: $PHONE
+          required: true
+        - name: "qi_2"
+          selector: "#qi_2"
           value: $MESSAGE
           required: true
-    - recaptcha:
-        - value: true
+    # Need to unhide the element to click it.
+    - javascript:
+        - value: "document.querySelector('#qi_3_0').classList.remove('hidden');"
+    - check:
+        - name: "qi_3"
+          selector: "#qi_3_0"
+          value: "RESPONSE REQUIRED"
+          required: true
     - click_on:
         - value: "Submit"
-          selector: "#Submit"
-    - wait:
-        - value: 10
+          selector: "#btn_submit"
   success:
-    body:
+    alert:
       contains: "Thank you for contacting Governor"
