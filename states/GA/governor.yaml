@@ -1,69 +1,63 @@
 contact_form:
   steps:
-    - visit: "https://gov.georgia.gov/webform/constituent-services"
+    - visit: "https://gov.georgia.gov/contact-us/constituent-services"
     - fill_in:
-        - name: "submitted[prefix]"
-          selector: "#edit-submitted-prefix"
+        - name: "prefix"
+          selector: "#edit-prefix"
           value: $NAME_PREFIX
           required: false
-          # max length: 128
-        - name: "submitted[first_name]"
-          selector: "#edit-submitted-first-name"
+        - name: "first_name"
+          selector: "#edit-first-name"
           value: $NAME_FIRST
           required: true
-          # max length: 128
-        - name: "submitted[last_name]"
-          selector: "#edit-submitted-last-name"
+        - name: "last_name"
+          selector: "#edit-last-name"
           value: $NAME_LAST
           required: true
-          # max length: 128
-        - name: "submitted[address_line_1]"
-          selector: "#edit-submitted-address-line-1"
+        - name: "address_line_1"
+          selector: "#edit-address-line-1"
           value: $ADDRESS_STREET
           required: true
-          # max length: 128
-        - name: "submitted[address_line_2]"
-          selector: "#edit-submitted-address-line-2"
+        - name: "address_line_2"
+          selector: "#edit-address-line-2"
           value: $ADDRESS_STREET_2
           required: false
-          # max length: 128
-        - name: "submitted[city]"
-          selector: "#edit-submitted-city"
+        - name: "city"
+          selector: "#edit-city"
           value: $ADDRESS_CITY
           required: true
-          # max length: 128
     - select:
-        - name: "submitted[state]"
-          selector: "#edit-submitted-state"
+        - name: "state"
+          selector: "#edit-state"
           value: $ADDRESS_STATE_POSTAL_ABBREV
           required: true
           options: US_STATES
     - fill_in:
-        - name: "submitted[zip_code]"
-          selector: "#edit-submitted-zip-code"
+        - name: "zip_code"
+          selector: "#edit-zip-code"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "submitted[phone_number]"
-          selector: "#edit-submitted-phone-number"
+        - name: "phone_number"
+          selector: "#edit-phone-number"
           value: $PHONE_DIGITS_ONLY
           required: true
-        - name: "submitted[email]"
-          selector: "#edit-submitted-email"
+        - name: "email"
+          selector: "#edit-email"
           value: $EMAIL
           required: true
         # The field text is on the screen, but the text box is gone.  Assume it will be back in the future.
         # - name: "submitted[organization_name]"
-        #   selector: "#edit-submitted-organization-name"
+        #   selector: "#edit-organization-name"
         #   value: "None"
         #   required: true
           # max length: 128
-        - name: "submitted[please_provide_a_brief_description_about_your_request___concern]"
-          selector: "#edit-submitted-please-provide-a-brief-description-about-your-request-concern"
+        - name: "please_provide_a_brief_description_about_your_request___concern"
+          selector: "#edit-please-provide-a-brief-description-about-your-request-concern"
           value: $MESSAGE
           required: true
     - select:
-        - name: "submitted[please_select_which_agency_your_request_relates_to]"
-          selector: "#edit-submitted-please-select-which-agency-your-request-relates-to"
+        - name: "please_select_which_agency_your_request_relates_to"
+          selector: "#edit-please-select-which-agency-your-request-relates-to"
           value: "- None -"
           required: false
           options:
@@ -95,7 +89,7 @@ contact_form:
         - value: true
     - click_on:
         - value: "Submit"
-          selector: "#edit-submit"
+          selector: "input[name='op']"
     # NOTE: Selenium cannot take screenshots when there are alerts present.  You may need to disable screenshots when running in debug mode.
     - alert:
         - value: "accept"
