@@ -80,7 +80,7 @@ Schema is based on [that of unitedstates/contact-congress](https://github.com/un
 * In `recaptcha` section, a `callback` and `callback_selector` can optionally be defined. If the
   recaptcha callback is not defined in a data-callback attribute on the captcha element, its callback will
   need to be found and explicitly passed as `callback`. If the callback requires the captcha
-  element be passed as a param, a selector for the element must be given as `callback_selector`.
+  element be passed as a param, a selector for the element must be given as `callback_selector`.  The `recaptcha` section also allows an optional `version` parameter.  This is used when V3 is utilized by a form, and currently 'V3' is the only acceptable value.
 
 * Introduction of meta variables, described below.
 
