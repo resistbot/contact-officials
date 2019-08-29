@@ -1,8 +1,8 @@
 contact_form:
   steps:
-    - visit: "https://www16.state.nj.us/GOV_TRANS_APPLICANTS/BTCustomServlet"
+    - visit: "https://www-njlib.state.nj.us/GOV_TRANS_APPLICANTS/BTCustomServlet"
     - select:
-        - name: ISSUE
+        - name: "ISSUE"
           selector: "#ISSUE"
           value: "Other"
           required: true
@@ -48,6 +48,10 @@ contact_form:
             "Unclaimed Property": "Unclaimed Property"
             "Unemployment": "Unemployment"
             "Other": "Other"
+        - name: "PREFIX"
+          selector: "#PREFIX"
+          value: $NAME_PREFIX
+          required: false
     - fill_in:
         - name: "FIRSTNAME"
           selector: "#FIRSTNAME"
@@ -67,7 +71,7 @@ contact_form:
           required: true
         - name: "ZIP"
           selector: "#ZIP"
-          value: $ADDRESS_ZIP_PLUS_4
+          value: $ADDRESS_ZIP5
           required: true
         - name: "EMAIL"
           selector: "input[name='EMAIL']"
@@ -92,4 +96,4 @@ contact_form:
           selector: "input[name='Next']"
   success:
     body:
-      contains: Thank you for contacting me.
+      contains: "I appreciate your taking the time"

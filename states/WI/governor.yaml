@@ -18,6 +18,30 @@ contact_form:
           selector: "[id='3f284242-794c-4ca1-9a77-3add14a3e383']"
           value: $EMAIL
           required: true
+        - name: "0aa6dc0a-0f03-40cc-8814-69dd73e083d9"
+          selector: "[id='0aa6dc0a-0f03-40cc-8814-69dd73e083d9']"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "e7b347e9-78a1-49ed-b555-cea63cf5dedf"
+          selector: "#e7b347e9-78a1-49ed-b555-cea63cf5dedf"
+          value: $ADDRESS_STREET_2
+          required: false
+        - name: "5f7b93ff-42bd-4e5d-9294-95d07beb0c7f"
+          selector: "[id='5f7b93ff-42bd-4e5d-9294-95d07beb0c7f']"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: "0eb310cf-cc2a-4655-916e-70ed68341e22"
+          selector: "[id='0eb310cf-cc2a-4655-916e-70ed68341e22']"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options: US_STATES
+    - fill_in:
+        - name: "a1976ed4-0af0-4db0-8754-18040d665e9f"
+          selector: "#a1976ed4-0af0-4db0-8754-18040d665e9f"
+          value: $ADDRESS_ZIP5
+          required: true
+          # max length: 10
         - name: "bdd27ef2-99fc-4221-ad25-f3df913cd644"
           selector: "#bdd27ef2-99fc-4221-ad25-f3df913cd644"
           value: $MESSAGE
@@ -26,7 +50,16 @@ contact_form:
         - value: true
           recaptcha_selector: "#captchaUI"
     - click_on:
-        - value: Submit
+        - name: next
+          selector: "#nextButton"
+    # There's a little spinny that comes up and does not complete in the default wait time.
+    - wait:
+        - value: 5
+    # Confirmation screen.
+    - javascript:
+        - value: "document.querySelector('#hdn-f1d59b73-aee4-469a-9e8a-38efdaca963e').click()"
+    - click_on:
+        - name: next
           selector: "#nextButton"
   success:
     body:

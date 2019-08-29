@@ -48,6 +48,9 @@ contact_form:
           selector: "#edit-submitted-message-message-subject"
           value: "Other"
           required: true
+    # To prevent being detected as spam
+    - wait:
+        - value: 5
     - click_on:
         - value: "Submit"
           selector: ".webform-submit"

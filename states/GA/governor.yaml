@@ -1,0 +1,98 @@
+contact_form:
+  steps:
+    - visit: "https://gov.georgia.gov/contact-us/constituent-services"
+    - fill_in:
+        - name: "prefix"
+          selector: "#edit-prefix"
+          value: $NAME_PREFIX
+          required: false
+        - name: "first_name"
+          selector: "#edit-first-name"
+          value: $NAME_FIRST
+          required: true
+        - name: "last_name"
+          selector: "#edit-last-name"
+          value: $NAME_LAST
+          required: true
+        - name: "address_line_1"
+          selector: "#edit-address-line-1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "address_line_2"
+          selector: "#edit-address-line-2"
+          value: $ADDRESS_STREET_2
+          required: false
+        - name: "city"
+          selector: "#edit-city"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: "state"
+          selector: "#edit-state"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options: US_STATES
+    - fill_in:
+        - name: "zip_code"
+          selector: "#edit-zip-code"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "phone_number"
+          selector: "#edit-phone-number"
+          value: $PHONE_DIGITS_ONLY
+          required: true
+        - name: "email"
+          selector: "#edit-email"
+          value: $EMAIL
+          required: true
+        # The field text is on the screen, but the text box is gone.  Assume it will be back in the future.
+        # - name: "submitted[organization_name]"
+        #   selector: "#edit-organization-name"
+        #   value: "None"
+        #   required: true
+          # max length: 128
+        - name: "please_provide_a_brief_description_about_your_request___concern"
+          selector: "#edit-please-provide-a-brief-description-about-your-request-concern"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: "please_select_which_agency_your_request_relates_to"
+          selector: "#edit-please-select-which-agency-your-request-relates-to"
+          value: "- None -"
+          required: false
+          options:
+            "": "- None -"
+            "1": "Child Protective Services"
+            "2": "Child Support"
+            "3": "Consumer Protection"
+            "4": "Corrections (Prison System)"
+            "5": "Dept. of Agriculture"
+            "6": "Dept. of Community Affairs/Housing"
+            "7": "Dept. of Community Health"
+            "8": "Dept. of Driver Services"
+            "9": "Dept. of Natural Resources"
+            "10": "Dept. of Labor"
+            "11": "Dept. of Revenue"
+            "12": "Dept. of Public Safety"
+            "13": "Dept. of Veterans Services"
+            "14": "Education"
+            "15": "Environment"
+            "16": "Federal"
+            "17": "Food Stamps"
+            "18": "Foster Care"
+            "19": "Healthcare"
+            "20": "Legal"
+            "21": "Legislature"
+            "22": "Medicaid"
+            "23": "Transportation"
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit"
+          selector: "input[name='op']"
+    # NOTE: Selenium cannot take screenshots when there are alerts present.  You may need to disable screenshots when running in debug mode.
+    - alert:
+        - value: "accept"
+  success:
+    body:
+      contains: "Thank you for contacting Constituent Services"

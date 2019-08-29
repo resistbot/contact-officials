@@ -34,5 +34,6 @@ contact_form:
         - value: "Send"
           selector: "input[type='submit']"
   success:
+    timeout: 120
     body:
       contains: "Your form was successfully submitted"

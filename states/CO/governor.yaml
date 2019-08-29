@@ -1,7 +1,7 @@
 contact_form:
   steps:
     # Note that the form is inside of an iframe on this website: https://www.colorado.gov/governor/share-your-comments
-    - visit: "https://www.tfaforms.com/4679739?faIframeUniqueId=49cteb2vyx&hostURL=https%3A%2F%2Fwww.colorado.gov%2Fgovernor%2Fshare-your-comments"
+    - visit: "https://www.tfaforms.com/4679739?faIframeUniqueId=s8vcn0npxw&hostURL=https%3A%2F%2Fwww.colorado.gov%2Fgovernor%2Fshare-your-comments"
     # This is a radio button asking if the comment is related to proposed legislation, and checks the "no" radio button.
     - check:
         - name: "tfa_2746"
@@ -38,6 +38,9 @@ contact_form:
         - name: "tfa_2727"
           selector: "#tfa_2727"
           value: "tfa_2727"
+    - recaptcha:
+        - value: true
+          callback: "enableSubmitButton"
     - click_on:
         - value: "Submit"
           selector: "#submit_button"
