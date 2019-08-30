@@ -27,7 +27,7 @@ contact_form:
           required: true
         - name: ans
           selector: "#ans"
-          value: "3"  # "Enter the number resulting from the following: four minus one."
+          value: "2"  # "Enter the number resulting from the following: three minus one."
           required: true
     - click_on:
         - value: Send Email
