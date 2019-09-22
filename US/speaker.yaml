@@ -1,0 +1,102 @@
+contact_form:
+  steps:
+    - visit: "https://www.speaker.gov/contact"
+    - fill_in:
+        - name: "submitted[first_name]"
+          selector: "#edit-submitted-first-name"
+          value: $NAME_FIRST
+          required: true
+          # max length: 200
+        - name: "submitted[last_name]"
+          selector: "#edit-submitted-last-name"
+          value: $NAME_LAST
+          required: true
+          # max length: 200
+        - name: "submitted[address]"
+          selector: "#edit-submitted-address"
+          value: $ADDRESS_STREET
+          required: false
+          # max length: 200
+        - name: "submitted[city]"
+          selector: "#edit-submitted-city"
+          value: $ADDRESS_CITY
+          required: true
+          # max length: 200
+    - select:
+        - name: "submitted[state]"
+          selector: "#edit-submitted-state"
+          value: $ADDRESS_STATE_FULL
+          required: false
+          options:
+            "Alabama": "Alabama"
+            "Alaska": "Alaska"
+            "Arizona": "Arizona"
+            "Arkansas": "Arkansas"
+            "California": "California"
+            "Colorado": "Colorado"
+            "Connecticut": "Connecticut"
+            "Delaware": "Delaware"
+            "District of Columbia": "District of Columbia"
+            "Florida": "Florida"
+            "Georgia": "Georgia"
+            "Hawaii": "Hawaii"
+            "Idaho": "Idaho"
+            "Illinois": "Illinois"
+            "Indiana": "Indiana"
+            "Iowa": "Iowa"
+            "Kansas": "Kansas"
+            "Kentucky": "Kentucky"
+            "Louisiana": "Louisiana"
+            "Maine": "Maine"
+            "Maryland": "Maryland"
+            "Massachusetts": "Massachusetts"
+            "Michigan": "Michigan"
+            "Minnesota": "Minnesota"
+            "Mississippi": "Mississippi"
+            "Missouri": "Missouri"
+            "Montana": "Montana"
+            "Nebraska": "Nebraska"
+            "Nevada": "Nevada"
+            "New Hampshire": "New Hampshire"
+            "New Jersey": "New Jersey"
+            "New Mexico": "New Mexico"
+            "New York": "New York"
+            "North Carolina": "North Carolina"
+            "North Dakota": "North Dakota"
+            "Ohio": "Ohio"
+            "Oklahoma": "Oklahoma"
+            "Oregon": "Oregon"
+            "Pennsylvania": "Pennsylvania"
+            "Rhode Island": "Rhode Island"
+            "South Carolina": "South Carolina"
+            "South Dakota": "South Dakota"
+            "Tennessee": "Tennessee"
+            "Texas": "Texas"
+            "Utah": "Utah"
+            "Vermont": "Vermont"
+            "Virginia": "Virginia"
+            "Washington": "Washington"
+            "West Virginia": "West Virginia"
+            "Wisconsin": "Wisconsin"
+            "Wyoming": "Wyoming"
+    - fill_in:
+        - name: "submitted[zip]"
+          selector: "#edit-submitted-zip"
+          value: $ADDRESS_ZIP5
+          required: false
+        - name: "submitted[email]"
+          selector: "#edit-submitted-email"
+          value: $EMAIL
+          required: true
+        - name: "submitted[comments]"
+          selector: "#edit-submitted-comments"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - name: "op"
+          selector: "input[name='op'][type='submit'][value='Send Email']"
+  success:
+    body:
+      contains: "Thank you, your message has been sent"
