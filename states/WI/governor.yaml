@@ -1,54 +1,68 @@
 contact_form:
   steps:
-    - visit: "https://appengine.egov.com/apps/wi/Governor/contact"
+    - visit: "https://appengine.egov.com/apps/wi/governor/voice-an-opinion"
     - fill_in:
-        - name: "c93c5e3e-d662-4c02-9d23-147ab2aae9fb"
-          selector: "#c93c5e3e-d662-4c02-9d23-147ab2aae9fb"
+          # Note, this form's selector IDs change frequently.  The selector notation below is required when an element's id begins with a digit.  For the ease of updates, each field uses this method to make copy and paste easier for each form change.
+        - name: "6c1794d8-7ae5-4b89-b552-a05a59b9a329"
+          selector: "[id='6c1794d8-7ae5-4b89-b552-a05a59b9a329']"
           value: $NAME_FIRST
           required: true
-        - name: "58d21f38-d110-4404-865b-d73347364952"
-          selector: "[id='58d21f38-d110-4404-865b-d73347364952']"
+        - name: "adcd697c-cea5-4307-86ef-216bfcdca720"
+          selector: "[id='adcd697c-cea5-4307-86ef-216bfcdca720']"
           value: $NAME_LAST
           required: true
-        - name: "c371fa4c-18cf-4ea2-892f-ce3a3f1d5572"
-          selector: "#c371fa4c-18cf-4ea2-892f-ce3a3f1d5572"
+        - name: "41c4a0e6-63c4-45f9-b39f-37ccee527853"
+          selector: "[id='41c4a0e6-63c4-45f9-b39f-37ccee527853']"
           value: $PHONE
           required: true
-        - name: "3f284242-794c-4ca1-9a77-3add14a3e383"
-          selector: "[id='3f284242-794c-4ca1-9a77-3add14a3e383']"
+        - name: "dafe7f23-9f89-44b5-a32e-07855b06d3e6"
+          selector: "[id='dafe7f23-9f89-44b5-a32e-07855b06d3e6']"
           value: $EMAIL
           required: true
-        - name: "0aa6dc0a-0f03-40cc-8814-69dd73e083d9"
-          selector: "[id='0aa6dc0a-0f03-40cc-8814-69dd73e083d9']"
+        - name: "c0896250-6dd7-4007-aae7-52498a722fed"
+          selector: "[id='c0896250-6dd7-4007-aae7-52498a722fed']"
           value: $ADDRESS_STREET
           required: true
-        - name: "e7b347e9-78a1-49ed-b555-cea63cf5dedf"
-          selector: "#e7b347e9-78a1-49ed-b555-cea63cf5dedf"
+        - name: "0889b701-2265-4164-9448-80be906eff42"
+          selector: "[id='0889b701-2265-4164-9448-80be906eff42']"
           value: $ADDRESS_STREET_2
           required: false
-        - name: "5f7b93ff-42bd-4e5d-9294-95d07beb0c7f"
-          selector: "[id='5f7b93ff-42bd-4e5d-9294-95d07beb0c7f']"
+        - name: "a4644918-7093-4510-a350-6015cfcdc14a"
+          selector: "[id='a4644918-7093-4510-a350-6015cfcdc14a']"
           value: $ADDRESS_CITY
           required: true
     - select:
-        - name: "0eb310cf-cc2a-4655-916e-70ed68341e22"
-          selector: "[id='0eb310cf-cc2a-4655-916e-70ed68341e22']"
+        - name: "6fb68941-d640-4f9c-b088-db44c91a663d"
+          selector: "[id='6fb68941-d640-4f9c-b088-db44c91a663d']"
           value: $ADDRESS_STATE_POSTAL_ABBREV
           required: true
           options: US_STATES
     - fill_in:
-        - name: "a1976ed4-0af0-4db0-8754-18040d665e9f"
-          selector: "#a1976ed4-0af0-4db0-8754-18040d665e9f"
+        - name: "6da33eab-5260-4bf4-84a9-b6101eab9247"
+          selector: "[id='6da33eab-5260-4bf4-84a9-b6101eab9247']"
           value: $ADDRESS_ZIP5
           required: true
-          # max length: 10
-        - name: "bdd27ef2-99fc-4221-ad25-f3df913cd644"
-          selector: "#bdd27ef2-99fc-4221-ad25-f3df913cd644"
+    - select:
+        - name: "2aa75e65-e936-44c5-b01e-a8cd83d36ad8"
+          selector: "[id='2aa75e65-e936-44c5-b01e-a8cd83d36ad8']"
+          value: $TOPIC
+          required: true
+        - name: "122ad7e3-62c2-4a78-b5d3-a53cfe0d412f"
+          selector: "[id='122ad7e3-62c2-4a78-b5d3-a53cfe0d412f']"
+          value: "N"
+          require: true
+          options:
+            "P": "Support"
+            "C": "Oppose"
+            "N": "None"
+    - fill_in:
+        - name: "f89ebf5f-d1f8-41f0-971c-5e74fae0b4e1"
+          selector: "[id='f89ebf5f-d1f8-41f0-971c-5e74fae0b4e1']"
           value: $MESSAGE
           required: true
     - recaptcha:
         - value: true
-          recaptcha_selector: "#captchaUI"
+          # recaptcha_selector: "#captchaUI"
     - click_on:
         - name: next
           selector: "#nextButton"
@@ -57,7 +71,7 @@ contact_form:
         - value: 5
     # Confirmation screen.
     - javascript:
-        - value: "document.querySelector('#hdn-f1d59b73-aee4-469a-9e8a-38efdaca963e').click()"
+        - value: "document.querySelector('#hdn-aca312b9-db51-4667-aadf-0da6dbc12e7f').click()"
     - click_on:
         - name: next
           selector: "#nextButton"
