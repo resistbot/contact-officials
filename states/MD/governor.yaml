@@ -91,4 +91,4 @@ contact_form:
           selector: "#cf7-submit"
   success:
     body:
-      contains: "Thank You for Contacting"
+      contains: "Thank you for your message"
