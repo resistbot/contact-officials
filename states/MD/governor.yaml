@@ -86,9 +86,6 @@ contact_form:
             "Unemployment": "Unemployment"
             "Veterans Affairs": "Veterans Affairs"
             "Women's Issues": "Women's Issues"
-    - recaptcha:
-        - value: true
-          version: "V3"
     - click_on:
         - value: Submit
           selector: "#cf7-submit"
