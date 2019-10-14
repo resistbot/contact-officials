@@ -41,4 +41,4 @@ contact_form:
           selector: "#btnSubmit"
   success:
     body:
-      contains: "E-mail has been successfully sent."
+      contains: "has been successfully sent."
