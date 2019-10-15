@@ -287,7 +287,7 @@ contact_form:
           required: true
     - select:
         - name: "j_id0:j_id2:j_id10:j_id29"
-          selector: "select[name='j_id0:j_id2:j_id10:j_id29'][class='oCounty']"
+          selector: "select[name='j_id0:j_id2:j_id10:County'][class='oCounty']"
           value: $ADDRESS_COUNTY
           required: true
           options:
@@ -325,7 +325,7 @@ contact_form:
           required: true
     - click_on:
         - value: "Submit Request"
-          selector: "input[type='submit'][name='j_id0:j_id2:j_id10:j_id72']"
+          selector: "input[type='submit'][name='j_id0:j_id2:j_id10:j_id73']"
   success:
     body:
       contains: "Your request has been submitted"
