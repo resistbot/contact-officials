@@ -48,11 +48,13 @@ contact_form:
         selector: "#edit-submitted-issue"
         value: "Other"
         required: true
+    - recaptcha:
+      - value: true
     - click_on:
-        - value: "EMAIL.OPTIN" # De-select the opt-in to emails
-          selector: "#edit-submitted-affl-1"
-        - value: "Send Message"
-          selector: "#edit-submit"
+      - value: "EMAIL.OPTIN" # De-select the opt-in to emails
+        selector: "#edit-submitted-affl-1"
+      - value: "Send Message"
+        selector: "#edit-submit"
   success:
     body:
       contains: "Your submission has been received"
