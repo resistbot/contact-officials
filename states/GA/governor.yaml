@@ -85,8 +85,6 @@ contact_form:
             "21": "Legislature"
             "22": "Medicaid"
             "23": "Transportation"
-    - recaptcha:
-        - value: true
     - click_on:
         - value: "Submit"
           selector: "input[name='op']"
