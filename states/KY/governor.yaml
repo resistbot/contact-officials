@@ -1,69 +1,142 @@
 contact_form:
   steps:
-    - visit: "https://governor.ky.gov/contact/"
-    - fill_in:
-      - name: "wpforms[fields][5]"
-        selector: "#wpforms-459-field_5"
-        value: $NAME_FIRST
-        required: true
-      - name: "wpforms[fields][6]"
-        selector: "#wpforms-459-field_6"
-        value: $NAME_LAST
-        required: true
-      - name: "wpforms[fields][8]"
-        selector: "#wpforms-459-field_8"
-        value: $ADDRESS_STREET
-        required: true
-      - name: "wpforms[fields][19]"
-        selector: "#wpforms-459-field_19"
-        value: $ADDRESS_STREET_2
-        required: false
-      - name: "wpforms[fields][13]"
-        selector: "#wpforms-459-field_13"
-        value: $ADDRESS_CITY
-        required: true
-      - name: "wpforms[fields][10]"
-        selector: "#wpforms-459-field_10"
-        value: $ADDRESS_ZIP5
-        required: true
-      - name: "wpforms[fields][14]"
-        selector: "#wpforms-459-field_14"
-        value: $PHONE_DIGITS_ONLY
-        required: true
-      - name: "wpforms[fields][1]"
-        selector: "#wpforms-459-field_1"
-        value: $EMAIL
-        required: true
-      - name: "wpforms[fields][20]"
-        selector: "#wpforms-459-field_20"
-        value: $SUBJECT
-        required: true
-      - name: "wpforms[fields][2]"
-        selector: "#wpforms-459-field_2"
-        value: $MESSAGE
-        required: true
+    - visit: "https://governor.ky.gov/Contact/Pages/Contact-Us.aspx"
     - select:
-      - name: "wpforms[fields][9]"
-        selector: "#wpforms-459-field_9"
-        value: $ADDRESS_STATE_FULL
-        required: true
-        options: US_STATES
-      - name: "wpforms[fields][12]"
-        selector: "#wpforms-459-field_12"
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$ddlPrefix"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_ddlPrefix"
         value: $NAME_PREFIX
         required: false
         options:
+          "Adm.": "Adm."
+          "Brigadier General": "Brigadier General"
+          "Col.": "Col."
+          "General": "General"
+          "Judge": "Judge"
+          "Lt. Col.": "Lt. Col."
+          "Mayor": "Mayor"
           "Mr.": "Mr."
-          "Ms.": "Ms."
           "Mrs.": "Mrs."
+          "Pastor": "Pastor"
+          "Pvt.": "Pvt."
+          "Senator": "Senator"
+          "The Honorable": "The Honorable"
+          "Admiral and Mrs.": "Admiral and Mrs."
+          "Capt.": "Capt."
           "Dr.": "Dr."
+          "His Excellency": "His Excellency"
+          "Lt.": "Lt."
+          "Major": "Major"
+          "Miss": "Miss"
+          "Mr. and Mrs.": "Mr. and Mrs."
+          "Ms.": "Ms."
+          "PFC": "PFC"
+          "Reverend": "Reverend"
+    - fill_in:
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$txtFirstName"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_txtFirstName"
+        value: $NAME_FIRST
+        required: true
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$txtLastName"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_txtLastName"
+        value: $NAME_LAST
+        required: true
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$txtAddress1"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_txtAddress1"
+        value: $ADDRESS_STREET
+        required: true
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$txtCity"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_txtCity"
+        value: $ADDRESS_CITY
+        required: true
+    - select:
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$ddlState"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_ddlState"
+        value: $ADDRESS_STATE_POSTAL_ABBREV
+        required: true
+        options:
+          "AL": "Alabama"
+          "AK": "Alaska"
+          "AZ": "Arizona"
+          "AR": "Arkansas"
+          "CA": "California"
+          "CO": "Colorado"
+          "CT": "Connecticut"
+          "DE": "Delaware"
+          "DC": "District Of Columbia"
+          "FL": "Florida"
+          "GA": "Georgia"
+          "HI": "Hawaii"
+          "ID": "Idaho"
+          "IL": "Illinois"
+          "IN": "Indiana"
+          "IA": "Iowa"
+          "KS": "Kansas"
+          "KY": "Kentucky"
+          "LA": "Louisiana"
+          "ME": "Maine"
+          "MD": "Maryland"
+          "MA": "Massachusetts"
+          "MI": "Michigan"
+          "MN": "Minnesota"
+          "MS": "Mississippi"
+          "MO": "Missouri"
+          "MT": "Montana"
+          "NE": "Nebraska"
+          "NV": "Nevada"
+          "NH": "New Hampshire"
+          "NJ": "New Jersey"
+          "NM": "New Mexico"
+          "NY": "New York"
+          "NC": "North Carolina"
+          "ND": "North Dakota"
+          "OH": "Ohio"
+          "OK": "Oklahoma"
+          "OR": "Oregon"
+          "PA": "Pennsylvania"
+          "RI": "Rhode Island"
+          "SC": "South Carolina"
+          "SD": "South Dakota"
+          "TN": "Tennessee"
+          "TX": "Texas"
+          "UT": "Utah"
+          "VT": "Vermont"
+          "VA": "Virginia"
+          "WA": "Washington"
+          "WV": "West Virginia"
+          "WI": "Wisconsin"
+          "WY": "Wyoming"
+          "AS": "American Samoa"
+          "GU": "Guam"
+          "MP": "Northern Mariana Islands"
+          "PR": "Puerto Rico"
+          "UM": "U.S. Minor Outlying Islands"
+          "VI": "U.S. Virgin Islands"
+    - fill_in:
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$txtZip"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_txtZip"
+        value: $ADDRESS_ZIP5
+        required: true
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$txtPhone"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_txtPhone"
+        value: $PHONE
+        required: true
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$txtEmail"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_txtEmail"
+        value: $EMAIL
+        required: true
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$txtSubject"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_txtSubject"
+        value: $SUBJECT
+        required: true
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$txtComment"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_txtComment"
+        value: $MESSAGE
+        required: true
     - recaptcha:
-        - value: true
-          callback: "wpformsRecaptchaCallback"
-          callback_selector: ".wpforms-recaptcha-hidden"
+      - value: true
     - click_on:
-        - value: "wpforms-submit"
-          selector: "#wpforms-submit-459"
+      - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$btnSubmit"
+        selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_btnSubmit"
   success:
     body:
-      contains: "Thanks for contacting us! We will be in touch with you shortly."
+      contains: "Your email was successfully sent."
