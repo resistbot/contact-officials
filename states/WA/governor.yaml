@@ -104,7 +104,7 @@ contact_form:
     - select:
         - name: qi_5
           selector: "#qi_5"
-          value: "Other"
+          value: $TOPIC
           required: true
           options:
             "Agriculture": "Agriculture"
@@ -143,9 +143,6 @@ contact_form:
     - click_on:
         - value: Submit
           selector: "#btn_submit"
-    - click_on:
-        - value: Submit
-          selector: "#btn_rev_submit"
   success:
     alert:
-      contains: "been submitted"
+      contains: "Your request has  been submitted"
