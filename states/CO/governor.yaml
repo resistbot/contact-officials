@@ -1,17 +1,24 @@
 contact_form:
   steps:
-    # Note that the form is inside of an iframe on this website: https://www.colorado.gov/governor/share-your-comments
-    - visit: "https://www.tfaforms.com/4679739?faIframeUniqueId=s8vcn0npxw&hostURL=https%3A%2F%2Fwww.colorado.gov%2Fgovernor%2Fshare-your-comments"
-    # This is a radio button asking if the comment is related to proposed legislation, and checks the "no" radio button.
+    # Note that the form is inside of an iframe on this website: https://www.colorado.gov/governor/share-comments
+    - visit: "https://cogov.tfaforms.net/3"
+    - select:
+        - name: "tfa_2758"
+          selector: "#tfa_2758"
+          value: "Governor"
+          required: true
+          options:
+            "tfa_2759": "Governor" # Governor
+            "tfa_2760": "Lieutenant Governor" # Lt Governor
     - check:
         - name: "tfa_2746"
           selector: "#tfa_2744"
           value: "tfa_2746"
           required: true
     - fill_in:
-        - name: "tfa_2748"
-          selector: "#tfa_2748"
-          value: $SUBJECT
+        - name: "tfa_2751"
+          selector: "#tfa_2751"
+          value: "Other" # "Other"
           required: true
         - name: "tfa_2725"
           selector: "#tfa_2725"
@@ -35,9 +42,14 @@ contact_form:
           value: $ADDRESS_COUNTY
           required: true
     - check:
+        - name: "tfa_2750"
+          selector: "#tfa_2750"
+          value: "tfa_2750"
+          required: false
         - name: "tfa_2727"
           selector: "#tfa_2727"
           value: "tfa_2727"
+          required: false
     - recaptcha:
         - value: true
           callback: "enableSubmitButton"
@@ -46,4 +58,4 @@ contact_form:
           selector: "#submit_button"
   success:
     body:
-      contains: "Thank you for submitting your comments"
+      contains: "Thank you!"
