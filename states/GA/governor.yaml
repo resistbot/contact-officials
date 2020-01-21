@@ -93,4 +93,4 @@ contact_form:
         - value: "accept"
   success:
     body:
-      contains: "Thank you for contacting Constituent Services"
+      contains: "Thank you for contacting the Governor"
