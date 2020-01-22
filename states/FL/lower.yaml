@@ -17,7 +17,7 @@ contact_form:
           value: $ADDRESS_STREET
           required: false
         - name: "ctl00$MainContent$Address2"
-          selector: "#ctl00_MainContent_Address2"
+          selector: "#Address2"
           value: $ADDRESS_STREET_2
           required: false
         - name: "ctl00$MainContent$City"
