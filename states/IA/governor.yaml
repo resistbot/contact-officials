@@ -2,58 +2,61 @@ contact_form:
   steps:
     - visit: "https://governor.iowa.gov/constituent-services/register-an-opinion"
     - fill_in:
-        - name: "submitted[contact_information][first_name]"
-          selector: "#edit-submitted-contact-information-first-name"
+        - name: "first_name"
+          selector: "#edit-first-name"
           value: $NAME_FIRST
           required: true
-        - name: "submitted[contact_information][last_name]"
-          selector: "#edit-submitted-contact-information-last-name"
+        - name: "last_name"
+          selector: "#edit-last-name"
           value: $NAME_LAST
           required: true
-        - name: "submitted[contact_information][email]"
-          selector: "#edit-submitted-contact-information-email"
+        - name: "email"
+          selector: "#edit-email"
           value: $EMAIL
           required: true
-        - name: "submitted[contact_information][address_1]"
-          selector: "#edit-submitted-contact-information-address-1"
+        - name: "address[address]"
+          selector: "#edit-address-address"
           value: $ADDRESS_STREET
           required: true
-        - name: "submitted[contact_information][address_2]"
-          selector: "#edit-submitted-contact-information-address-2"
+        - name: "address[address_2]"
+          selector: "#edit-address-address-2"
           value: $ADDRESS_STREET_2
           required: false
-        - name: "submitted[contact_information][city]"
-          selector: "#edit-submitted-contact-information-city"
+        - name: "address[city]"
+          selector: "#edit-address-city"
           value: $ADDRESS_CITY
           required: true
-        - name: "submitted[contact_information][zip]"
-          selector: "#edit-submitted-contact-information-zip"
-          value: $ADDRESS_ZIP5
-          required: true
-        - name: "submitted[contact_information][phone]"
-          selector: "#edit-submitted-contact-information-phone"
-          value: $PHONE_DIGITS_ONLY
-          required: true
-        - name: "submitted[message][message]"
-          selector: "#edit-submitted-message-message"
-          value: $MESSAGE
-          required: true
     - select:
-        - name: "submitted[contact_information][state]"
-          selector: "#edit-submitted-contact-information-state"
-          value: $ADDRESS_STATE_POSTAL_ABBREV
+        - name: "address[state_province]"
+          selector: "#edit-address-state-province"
+          value: $ADDRESS_STATE_FULL
           required: true
           options: US_STATES
-        - name: "submitted[message][message_subject]"
-          selector: "#edit-submitted-message-message-subject"
+    - fill_in:
+        - name: "address[postal_code]"
+          selector: "#edit-address-postal-code"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "phone"
+          selector: "#edit-phone"
+          value: $PHONE
+          required: true
+    - select:
+        - name: "message_subject"
+          selector: "#edit-message-subject"
           value: "Other"
+          required: true
+    - fill_in:
+        - name: "opinion_message"
+          selector: "#edit-opinion-message"
+          value: $MESSAGE
           required: true
     # To prevent being detected as spam
     - wait:
         - value: 5
     - click_on:
         - value: "Submit"
-          selector: ".webform-submit"
+          selector: "input[name='op'][type='submit'][value='Submit']"
   success:
     body:
-      contains: "Thank you, your submission has been received."
+      contains: "New submission added to Register an Opinion."
