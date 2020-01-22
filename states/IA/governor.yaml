@@ -56,7 +56,7 @@ contact_form:
         - value: 5
     - click_on:
         - value: "Submit"
-          selector: "#edit-submit"
+          selector: "input[name='op'][type='submit'][value='Submit']"
   success:
     body:
       contains: "New submission added to Register an Opinion."
