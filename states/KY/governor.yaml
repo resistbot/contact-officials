@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "https://governor.ky.gov/Contact/Pages/Contact-Us.aspx"
+    - visit: "https://governor.ky.gov/contact/contact-us"
     - select:
       - name: "ctl00$ctl00$m$g_280f7587_09c5_4642_bb1b_43e393834539$ddlPrefix"
         selector: "#ctl00_ctl00_m_g_280f7587_09c5_4642_bb1b_43e393834539_ddlPrefix"
