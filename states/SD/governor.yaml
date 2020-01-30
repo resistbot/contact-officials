@@ -1,53 +1,133 @@
 contact_form:
   steps:
-    - visit: "http://sd.gov/govmail/email.aspx"
+    - visit: "https://iqconnect.lmhostediq.com/iqextranet/EForm.aspx?__cid=FSL_SD_GOV&__fid=2100060"
     - fill_in:
-        - name: "txtFname"
-          selector: "#txtFname"
+        - name: "qi_1_prefix"
+          selector: "#qi_1_prefix"
+          value: $NAME_PREFIX
+          required: false
+        - name: "qi_1_first_name"
+          selector: "#qi_1_first_name"
           value: $NAME_FIRST
           required: true
-        - name: "txtLname"
-          selector: "#txtLname"
+        - name: "qi_1_last_name"
+          selector: "#qi_1_last_name"
           value: $NAME_LAST
           required: true
-        - name: "txtStAddress"
-          selector: "#txtStAddress"
+        - name: "qi_1_addr_1"
+          selector: "#qi_1_addr_1"
           value: $ADDRESS_STREET
           required: true
-        - name: "txtCity"
-          selector: "#txtCity"
+        - name: "qi_1_addr_2"
+          selector: "#qi_1_addr_2"
+          value: $ADDRESS_STREET_2
+          required: false
+        - name: "qi_1_city"
+          selector: "#qi_1_city"
           value: $ADDRESS_CITY
           required: true
-        - name: "txtState"
-          selector: "#txtState"
-          value: $ADDRESS_STATE_POSTAL_ABBREV
+    - select:
+        - name: "qi_1_state"
+          selector: "#qi_1_state"
+          value: $ADDRESS_STATE_FULL
           required: true
-        - name: "txtZIP"
-          selector: "#txtZIP"
+          options:
+            "0_AL": "Alabama"
+            "1_AK": "Alaska"
+            "2_AS": "America Samoa"
+            "3_AZ": "Arizona"
+            "4_AR": "Arkansas"
+            "5_CA": "California"
+            "6_CO": "Colorado"
+            "7_CT": "Connecticut"
+            "8_DC": "D.C."
+            "9_D.C.": "D.C."
+            "10_DE": "Delaware"
+            "11_FM": "Federated States of Micronesia"
+            "12_FL": "Florida"
+            "13_FC": "Foreign Correspondence"
+            "14_GA": "Georgia"
+            "15_GU": "Guam"
+            "16_HI": "Hawaii"
+            "17_ID": "Idaho"
+            "18_IL": "Illinois"
+            "19_IN": "Indiana"
+            "20_IA": "Iowa"
+            "21_KS": "Kansas"
+            "22_KY": "Kentucky"
+            "23_LA": "Louisiana"
+            "24_ME": "Maine"
+            "25_MH": "Marshall Islands"
+            "26_MD": "Maryland"
+            "27_MA": "Massachusetts"
+            "28_MI": "Michigan"
+            "29_MN": "Minnesota"
+            "30_MS": "Mississippi"
+            "31_MO": "Missouri"
+            "32_MT": "Montana"
+            "33_NE": "Nebraska"
+            "34_NV": "Nevada"
+            "35_NH": "New Hampshire"
+            "36_NJ": "New Jersey"
+            "37_NM": "New Mexico"
+            "38_NY": "New York"
+            "39_NC": "North Carolina"
+            "40_ND": "North Dakota"
+            "41_MP": "Northern Mariana Islands"
+            "42_OH": "Ohio"
+            "43_OK": "Oklahoma"
+            "44_OR": "Oregon"
+            "45_PW": "Palau"
+            "46_PA": "Pennsylvania"
+            "47_PR": "Puerto Rico"
+            "48_RI": "Rhode Island"
+            "49_SC": "South Carolina"
+            "50_SD": "South Dakota"
+            "51_TN": "Tennessee"
+            "52_TX": "Texas"
+            "53_TT": "Trust Territory"
+            "54_UT": "Utah"
+            "55_VT": "Vermont"
+            "56_VI": "Virgin Islands"
+            "57_VA": "Virginia"
+            "58_WA": "Washington"
+            "59_WV": "West Virginia"
+            "60_WI": "Wisconsin"
+            "61_WY": "Wyoming"
+    - fill_in:
+        - name: "qi_1_zip"
+          selector: "#qi_1_zip"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "txtEmail"
-          selector: "#txtEmail"
+        - name: "qi_1_email"
+          selector: "#qi_1_email"
           value: $EMAIL
           required: true
-        - name: "txtDesc"
-          selector: "#txtDesc"
+        - name: "qi_1_hphone"
+          selector: "#qi_1_hphone"
+          value: $PHONE
+          required: true
+        - name: "qi_2"
+          selector: "#qi_2"
           value: $SUBJECT
           required: true
-        - name: "txtMessage"
-          selector: "#txtMessage"
+        - name: "qi_3"
+          selector: "#qi_3"
           value: $MESSAGE
           required: true
+    # Need to unhide the element to click it.
+    - javascript:
+        - value: "document.querySelector('#qi_5_1').classList.remove('hidden');"
     - check:
-        - name: "Roptions"
-          selector: "#radResponse2"
-          value: "radResponse2"
+        - name: "qi_5"
+          selector: "#qi_5_1"
+          value: "1_Response Required - Web Form ID#2100060"
           required: true
     - recaptcha:
         - value: true
     - click_on:
         - value: "Submit"
-          selector: "#btnEmail"
+          selector: "#btn_submit"
   success:
-    body:
-      contains: "Thank you for contacting the Governor"
+    alert:
+      contains: "Thank you for taking your time to provide us with your valued comments"
