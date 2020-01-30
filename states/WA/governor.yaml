@@ -2,35 +2,36 @@ contact_form:
   steps:
     - visit: "https://iqconnect.lmhostediq.com/iqextranet/EForm.aspx?__cid=FSL_WA_GOV&__fid=100021"
     - fill_in:
-        - name: qi_2_first_name
-          selector: "#qi_2_first_name"
+        - name: qi_1_first_name
+          selector: "#qi_1_first_name"
           value: $NAME_FIRST
           required: true
-        - name: qi_2_last_name
-          selector: "#qi_2_last_name"
+        - name: qi_1_last_name
+          selector: "#qi_1_last_name"
           value: $NAME_LAST
           required: true
-        - name: qi_2_email
-          selector: "#qi_2_email"
+        - name: qi_1_email
+          selector: "#qi_1_email"
           value: $EMAIL
           required: true
-        - name: qi_2_hphone
-          selector: "#qi_2_hphone"
+        - name: qi_1_hphone
+          selector: "#qi_1_hphone"
           value: $PHONE
-        - name: qi_2_addr_1
-          selector: "#qi_2_addr_1"
+        - name: qi_1_addr_1
+          selector: "#qi_1_addr_1"
           value: $ADDRESS_STREET
           required: true
-        - name: qi_2_addr_1
-          selector: "#qi_2_addr_1"
+        - name: qi_1_addr_2
+          selector: "#qi_1_addr_2"
           value: $ADDRESS_STREET_2
-        - name: qi_2_city
-          selector: "#qi_2_city"
+          required: false
+        - name: qi_1_city
+          selector: "#qi_1_city"
           value: $ADDRESS_CITY
           required: true
     - select:
-        - name: qi_2_state
-          selector: "#qi_2_state"
+        - name: qi_1_state
+          selector: "#qi_1_state"
           value: $ADDRESS_STATE_FULL
           required: true
           options:
@@ -97,13 +98,13 @@ contact_form:
             "60_WI": "Wisconsin"
             "61_WY": "Wyoming"
     - fill_in:
-        - name: qi_2_zip
-          selector: "#qi_2_zip"
+        - name: qi_1_zip
+          selector: "#qi_1_zip"
           value: $ADDRESS_ZIP5
           required: true
     - select:
-        - name: qi_5
-          selector: "#qi_5"
+        - name: qi_4
+          selector: "#qi_4"
           value: $TOPIC
           required: true
           options:
@@ -136,8 +137,8 @@ contact_form:
             "Veterans": "Veterans"
             "Workers' Compensation": "Workers' Compensation"
     - fill_in:
-        - name: qi_6
-          selector: "#qi_6"
+        - name: qi_5
+          selector: "#qi_5"
           value: $MESSAGE
           required: true
     - click_on:
@@ -145,4 +146,4 @@ contact_form:
           selector: "#btn_submit"
   success:
     alert:
-      contains: "Your request has  been submitted"
+      contains: "Your request has been submitted"
