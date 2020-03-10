@@ -3,6 +3,8 @@
 contact_form:
   steps:
     - visit: "https://contact.governor.alabama.gov/contact.aspx"
+    - javascript:
+        - value: 'document.querySelector("#ContentPlaceHolder1_PREFIX").setAttribute("style","")'
     - select:
         - name: "ctl00$ContentPlaceHolder1$PREFIX"
           selector: "#ContentPlaceHolder1_PREFIX"
@@ -64,35 +66,35 @@ contact_form:
           value: $ADDRESS_ZIP5
           required: true
           # max length: 25
+    - javascript:
+        - value: 'document.querySelector("#ContentPlaceHolder1_EMAIL_ISSUE").setAttribute("style","")'
     - select:
         - name: "ctl00$ContentPlaceHolder1$EMAIL_ISSUE"
           selector: "#ContentPlaceHolder1_EMAIL_ISSUE"
-          value: "MISCELLANEOUS"
+          value: $TOPIC
           required: true
           options:
-            "CONSERVATION": "Conservation"
-            "DHR": "Department of Human Resources"
-            "DISASTER": "Disaster Assistance"
-            "ALEA-DRIVER LICENSE": "Driver License"
-            "BUD": "Economy &amp; Budget"
-            "EDU-GENERAL": "Education"
-            "ENVIRONMENT": "Environment"
-            "DOC-EXECUTIONS": "Executions"
-            "HC-GENERAL": "Healthcare"
-            "ISSUE-IMMIGRATION": "Immigration"
-            "INSURANCE-GENERAL": "Insurance"
-            "LABOR": "Labor"
-            "LS": "Legislative Session 2018"
-            "MILITARY": "Military"
-            "NRA": "NRA - Second Amendment"
-            "PARDONS &amp;PAROLES": "Pardons &amp; Paroles"
-            "FLAG": "Request for Flag"
-            "REQUEST FOR FUNDING": "Request for Funding"
-            "LETTERS - CEREMONIAL": "Request for Greeting Letter"
-            "REQUEST FOR ITEMS": "Request Photo/Request for Item"
-            "SENIOR SERVICES-GEN": "Senior Assistance"
-            "DOT": "Transportation"
-            "MISCELLANEOUS": "Other Issue"
+            "Conservation": "Conservation"
+            "Department of Human Resources": "Department of Human Resources"
+            "Disaster Assistance": "Disaster Assistance"
+            "Driver License": "Driver License"
+            "Economy &amp; Budget": "Economy &amp; Budget"
+            "Education": "Education"
+            "Environment": "Environment"
+            "Executions": "Executions"
+            "Healthcare": "Healthcare"
+            "Immigration": "Immigration"
+            "Insurance": "Insurance"
+            "Labor": "Labor"
+            "Legislative Session 2020": "Legislative Session 2020"
+            "Military": "Military"
+            "NRA - Second Amendment": "NRA - Second Amendment"
+            "Pardons &amp; Paroles": "Pardons &amp; Paroles"
+            "Request for Funding": "Request for Funding"
+            "Request for Greeting Letter": "Request for Greeting Letter"
+            "Request Photo/Request for Item": "Request Photo/Request for Item"
+            "Senior Assistance": "Senior Assistance"
+            "Transportation": "Transportation"
     - fill_in:
         - name: "ctl00$ContentPlaceHolder1$COMMENTS"
           selector: "#ContentPlaceHolder1_COMMENTS"
@@ -105,4 +107,4 @@ contact_form:
           selector: "#ContentPlaceHolder1_btnEmail"
   success:
     body:
-      contains: "Thank You for sharing your comments with"
+      contains: "Thank you for contacting Governor"
