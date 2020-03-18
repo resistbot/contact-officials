@@ -1,64 +1,51 @@
 contact_form:
   steps:
-    - visit: "https://arkansasgov.wufoo.com/forms/?formname=z10gjhti00fynaz"
-    - fill_in:
-      - name: "Field9"
-        selector: "#Field9"
-        value: $NAME_FIRST
-        required: true
-      - name: "Field11"
-        selector: "#Field11"
-        value: $NAME_LAST
-        required: true
-      - name: "Field13"
-        selector: "#Field13"
-        value: $ADDRESS_STREET
-        required: true
-      - name: "Field14"
-        selector: "#Field14"
-        value: $ADDRESS_CITY
-        required: true
-      - name: "Field16"
-        selector: "#Field16"
-        value: $ADDRESS_ZIP5
-        required: true
-      - name: "Field3"
-        selector: "#Field3"
-        value: $EMAIL
-        required: true
-      - name: "Field17"
-        selector: "#Field17"
-        value: $PHONE_AREA_CODE
-        required: true
-      - name: "Field17-1"
-        selector: "#Field17-1"
-        value: $PHONE3
-        required: true
-      - name: "Field17-2"
-        selector: "#Field17-2"
-        value: $PHONE4
-        required: true
-      - name: "Field4"
-        selector: "#Field4"
-        value: $MESSAGE
-        required: true
+    - visit: "https://governor.arkansas.gov/online-services/contact-us/"
     - select:
-      - name: "Field7"
-        selector: "#Field7"
-        value: "General Comments, Concerns"
-        required: true
-      - name: "Field8"
-        selector: "#Field8"
-        value: $NAME_PREFIX
-        required: true
-      - name: "Field25"
-        selector: "#Field25"
-        value: $ADDRESS_STATE_POSTAL_ABBREV
-        required: true
-        options: US_STATES
+        - name: "00Nt0000000IPWl"
+          selector: "select[id='00Nt0000000IPWl']"
+          value: "General Comments / Concerns"
+          required: false
+    - fill_in:
+        - name: "name"
+          selector: "#name"
+          value: $NAME_FULL
+          required: false
+        - name: "00Nt0000000IPXP"
+          selector: "input[id='00Nt0000000IPXP']"
+          value: $ADDRESS_STREET
+          required: false
+        - name: "00Nt0000000IPWn"
+          selector: "input[id='00Nt0000000IPWn']"
+          value: $ADDRESS_CITY
+          required: false
+    - select:
+        - name: "00Nt0000000IPXO"
+          selector: "select[id='00Nt0000000IPXO']"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: false
+          options: US_STATE_ABBREVIATIONS
+    - fill_in:
+        - name: "00Nt0000000IPXU"
+          selector: "input[id='00Nt0000000IPXU']"
+          value: $ADDRESS_ZIP5
+          required: false
+        - name: "email"
+          selector: "#email"
+          value: $EMAIL
+          required: false
+        - name: "phone"
+          selector: "#phone"
+          value: $PHONE
+          required: false
+        - name: "00Nt0000000IPWo"
+          selector: "textarea[id='00Nt0000000IPWo']"
+          value: $MESSAGE
+          required: false
     - click_on:
-      - value: "Submit"
-        selector: "#saveForm"
+        - name: "submit"
+          value: "submit"
+          selector: "input[type='submit']"
   success:
     body:
       contains: "Thank you for contacting the Governor's Office. "
