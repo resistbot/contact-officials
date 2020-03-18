@@ -15,11 +15,32 @@ contact_form:
           selector: "#tfa_2744"
           value: "tfa_2746"
           required: true
-    - fill_in:
-        - name: "tfa_2751"
-          selector: "#tfa_2751"
-          value: "Other" # "Other"
+    - select:
+        - name: "tfa_2909"
+          selector: "#tfa_2909"
+          value: "Governor's Office"
           required: true
+        - name: "tfa_2913"
+          selector: "#tfa_2913"
+          value: "Correspondence"
+          required: true
+          options:
+            "tfa_3162": "Accounting and Human resources"
+            "tfa_3163": "Boards &amp; Commissions"
+            "tfa_3164": "Chief of Staff"
+            "tfa_3165": "Community Engagement"
+            "tfa_3166": "Constituent Services"
+            "tfa_3167": "Correspondence"
+            "tfa_3168": "Front Desk"
+            "tfa_3169": "Human Resources"
+            "tfa_3170": "Legal Counsel"
+            "tfa_3171": "Legislative Affairs"
+            "tfa_3172": "Operations"
+            "tfa_3173": "Policy &amp; Research"
+            "tfa_3174": "Press Office"
+            "tfa_3175": "Support for Governor"
+            "tfa_3176": "Unique: Governor"
+    - fill_in:
         - name: "tfa_2725"
           selector: "#tfa_2725"
           value: $MESSAGE
