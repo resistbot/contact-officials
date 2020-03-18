@@ -1,62 +1,61 @@
 contact_form:
   steps:
-    - visit: "https://governor.iowa.gov/constituent-services/register-an-opinion"
+    - visit: "https://iqconnect.lmhostediq.com/iqextranet/EForm.aspx?__cid=FSL_IA_GOV&__fid=100007"
     - fill_in:
-        - name: "first_name"
-          selector: "#edit-first-name"
+        - name: "qi_2_first_name"
+          selector: "#qi_2_first_name"
           value: $NAME_FIRST
           required: true
-        - name: "last_name"
-          selector: "#edit-last-name"
+        - name: "qi_2_last_name"
+          selector: "#qi_2_last_name"
           value: $NAME_LAST
           required: true
-        - name: "email"
-          selector: "#edit-email"
-          value: $EMAIL
-          required: true
-        - name: "address[address]"
-          selector: "#edit-address-address"
+        - name: "qi_2_addr_1"
+          selector: "#qi_2_addr_1"
           value: $ADDRESS_STREET
           required: true
-        - name: "address[address_2]"
-          selector: "#edit-address-address-2"
+        - name: "qi_2_addr_2"
+          selector: "#qi_2_addr_2"
           value: $ADDRESS_STREET_2
           required: false
-        - name: "address[city]"
-          selector: "#edit-address-city"
+        - name: "qi_2_city"
+          selector: "#qi_2_city"
           value: $ADDRESS_CITY
           required: true
     - select:
-        - name: "address[state_province]"
-          selector: "#edit-address-state-province"
+        - name: "qi_2_state"
+          selector: "#qi_2_state"
           value: $ADDRESS_STATE_FULL
           required: true
           options: US_STATES
     - fill_in:
-        - name: "address[postal_code]"
-          selector: "#edit-address-postal-code"
+        - name: "qi_2_zip"
+          selector: "#qi_2_zip"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "phone"
-          selector: "#edit-phone"
+        - name: "qi_2_email"
+          selector: "#qi_2_email"
+          value: $EMAIL
+          required: true
+        - name: "qi_2_hphone"
+          selector: "#qi_2_hphone"
           value: $PHONE
           required: true
     - select:
-        - name: "message_subject"
-          selector: "#edit-message-subject"
+        - name: "qi_3"
+          selector: "#qi_3"
           value: "Other"
           required: true
     - fill_in:
-        - name: "opinion_message"
-          selector: "#edit-opinion-message"
+        - name: "qi_4"
+          selector: "#qi_4"
           value: $MESSAGE
           required: true
-    # To prevent being detected as spam
-    - wait:
-        - value: 5
+    - recaptcha:
+        - value: true
     - click_on:
         - value: "Submit"
-          selector: "input[name='op'][type='submit'][value='Submit']"
+          selector: "#btn_submit"
   success:
-    body:
-      contains: "New submission added to Register an Opinion."
+    alert:
+      contains: "Thank"
