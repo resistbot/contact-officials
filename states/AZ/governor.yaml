@@ -114,4 +114,4 @@ contact_form:
           selector: ".webform-submit"
   success:
     body:
-      contains: "Your email has been sent."
+      contains: "Thank you for contacting"
