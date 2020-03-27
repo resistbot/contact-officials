@@ -1,58 +1,56 @@
 contact_form:
   steps:
-    - visit: "http://www.oksenate.gov/Senators/biographies/SendEmails.aspx"
+    - visit: $META_OFFICIAL_URL
+    - javascript:
+        - value: document.querySelector("a[href^='/contact-senator']").setAttribute("target", "");
+    - click_on:
+        - selector: '#block-senate-content > section.section.section_ind_c.section_bg-color_b > div.bContainer > div > div > div:nth-child(2) > div:nth-child(2) > div > div.bSenBio__telMail > div.bSenBio__mail > a'
+    - javascript:
+        - value: "Array.prototype.forEach.call(document.querySelectorAll('style,[rel=\"stylesheet\"],[type=\"text/css\"]'), function(element){ try{ element.parentNode.removeChild(element) } catch(err){} });"
     - fill_in:
-        - name: TextBoxName
-          selector: "#TextBoxName"
+        - name: your_name
+          selector: "#edit-your-name"
           value: $NAME_FULL
           required: true
-        - name: TextBoxAddress
-          selector: "#TextBoxAddress"
+        - name: your_address
+          selector: "#edit-your-address"
           value: $ADDRESS_STREET
           required: true
-        - name: TextBoxCity
-          selector: "#TextBoxCity"
+        - name: your_city
+          selector: "#edit-your-city"
           value: $ADDRESS_CITY
           required: true
-        - name: TextBoxState
-          selector: "#TextBoxState"
-          value: $ADDRESS_STATE_POSTAL_ABBREV
-          required: true
-        - name: TextBoxZip
-          selector: "#TextBoxZip"
-          value: $ADDRESS_ZIP5
-          required: true
-        - name: TextBoxPhoneNumber
-          selector: "#TextBoxPhoneNumber"
-          value: $PHONE
-        - name: TextBoxSendersEmailAddress
-          selector: "#TextBoxSendersEmailAddress"
-          value: $EMAIL
-          required: true
-        - name: TextBoxSubject
-          selector: "#TextBoxSubject"
-          value: $SUBJECT
-          required: true
     - select:
-        - name: DropDownListReceiver
-          selector: '#DropDownListReceiver'
-          # Example: George Young
-          value: "$META_OFFICIAL_FULL_NAME"
+        - name: your_state
+          selector: "#edit-your-state"
+          value: $ADDRESS_STATE_FULL
           required: true
     - fill_in:
-        - name: TextBoxMessage
-          selector: "#TextBoxMessage"
+        - name: your_zipcode
+          selector: "#edit-your-zipcode"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: phone_number
+          selector: "#edit-phone-number"
+          value: $PHONE
+          required: false
+        - name: your_email_address
+          selector: "#edit-your-email-address"
+          value: $EMAIL
+          required: true
+        - name: subject
+          selector: "#edit-subject"
+          value: $SUBJECT
+          required: false
+        - name: type_your_message_here
+          selector: "#edit-type-your-message-here"
           value: $MESSAGE
           required: true
+    - recaptcha:
+        - value: true
     - click_on:
         - value: Submit
-          selector: "#ButtonSubmit"
-    - wait:
-        # Since we cannot wait for a success message to appear,
-        # explicitly give some time for form submission to finish.
-        - value: 15
+          selector: "#edit-submit"
   success:
     body:
-      # There is no good way to verify success after the click.
-      # The form displays a message by populating an <input> field... oy.
-      contains: "RESULTS"
+      contains: "Thank you for contacting your"
