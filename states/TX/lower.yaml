@@ -25,6 +25,9 @@ contact_form:
           selector: "input[name=name_last]"
           value: $NAME_LAST
           required: true
+        - selector: "input[name=business]"
+          value: "None"
+          required: true
         - name: address
           selector: "input[name=address]"
           value: $ADDRESS_STREET
