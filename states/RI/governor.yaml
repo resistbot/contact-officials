@@ -1,65 +1,66 @@
 contact_form:
   steps:
-    - visit: "http://www.governor.ri.gov/contact/"
+    # http://www.governor.ri.gov/contact/
+    - visit: "https://rigov.wufoo.com/embed/mkmt971l6pg0g/def/embedKey=mkmt971l6pg0g994342&entsource=&referrer="
     - fill_in:
-        - name: "firstname"
-          selector: "#firstname"
+        - name: "Field1"
+          selector: "#Field1"
           value: $NAME_FIRST
           required: true
-        - name: "lastname"
-          selector: "#lastname"
+        - name: "Field2"
+          selector: "#Field2"
           value: $NAME_LAST
           required: true
-        - name: "email"
-          selector: "#email"
+        - name: "Field4"
+          selector: "#Field4"
           value: $EMAIL
           required: true
-        - name: "area"
-          selector: "#area"
+        - name: "Field3"
+          selector: "#Field3"
           value: $PHONE_AREA_CODE
-          required: true
+          required: false
           # max length: 3
-        - name: "exchange"
-          selector: "#exchange"
+        - name: "Field3-1"
+          selector: "#Field3-1"
           value: $PHONE3
-          required: true
+          required: false
           # max length: 3
-        - name: "phnum"
-          selector: "#phnum"
+        - name: "Field3-2"
+          selector: "#Field3-2"
           value: $PHONE4
-          required: true
+          required: false
           # max length: 4
-        - name: "address1"
-          selector: "#address1"
+        - name: "Field122"
+          selector: "#Field122"
           value: $ADDRESS_STREET
           required: false
-        - name: "address2"
-          selector: "#address2"
+        - name: "Field123"
+          selector: "#Field123"
           value: $ADDRESS_STREET_2
           required: false
-        - name: "city"
-          selector: "#city"
+        - name: "Field126"
+          selector: "#Field126"
           value: $ADDRESS_CITY
           required: false
-        - name: "state"
-          selector: "#state"
-          value: "ADDRESS_STATE_POSTAL_ABBREV"
+        - name: "Field125"
+          selector: "#Field125"
+          value: "$ADDRESS_STATE_FULL"
           required: false
           # max length: 2
-        - name: "zip"
-          selector: "#zip"
+        - name: "Field126"
+          selector: "#Field126"
           value: $ADDRESS_ZIP5
           required: false
-          # max length: 5
-        - name: "message"
-          selector: "#message"
+          # max length: 15
+        - name: "Field118"
+          selector: "#Field118"
           value: $MESSAGE
           required: true
     - recaptcha:
         - value: true
     - click_on:
-        - value: "submit"
-          selector: "#submitcontact"
+        - value: "Submit"
+          selector: "#saveForm"
   success:
     body:
       contains: "Thank you for emailing Governor"
