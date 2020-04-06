@@ -1,6 +1,48 @@
 contact_form:
   steps:
     - visit: "https://gov.georgia.gov/contact-us/constituent-services"
+    - select:
+        - name: "please_select_which_agency_your_request_relates_to"
+          selector: "#edit-please-select-which-agency-your-request-relates-to"
+          value: $TOPIC
+          required: true
+          options:
+            "1": "Child Protective Services"
+            "2": "Child Support"
+            "3": "Consumer Protection"
+            "4": "Corrections (Prison System)"
+            "5": "Dept. of Agriculture"
+            "6": "Dept. of Community Affairs/Housing"
+            "7": "Dept. of Community Health"
+            "8": "Dept. of Driver Services"
+            "9": "Dept. of Natural Resources"
+            "10": "Dept. of Labor"
+            "11": "Dept. of Revenue"
+            "12": "Dept. of Public Safety"
+            "13": "Dept. of Veterans Services"
+            "14": "Education"
+            "15": "Environment"
+            "17": "Food Stamps"
+            "18": "Foster Care"
+            "19": "Healthcare"
+            "20": "Legal"
+            "21": "Legislature"
+            "22": "Medicaid"
+            "23": "Transportation"
+            "24": "COVID-19: Business Concerns"
+            "25": "COVID-19: Medical Concerns"
+            "26": "COVID-19: Other Concerns"
+    - fill_in:
+        - name: "please_provide_a_brief_description_about_your_request___concern"
+          selector: "#edit-please-provide-a-brief-description-about-your-request-concern"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - name: "op"
+          selector: "#edit-actions-wizard-next"
+          value: Next
+    - javascript:
+        - value: "Array.prototype.forEach.call(document.querySelectorAll('style,[rel=\"stylesheet\"],[type=\"text/css\"]'), function(element){ try{ element.parentNode.removeChild(element) } catch(err){} });"
     - fill_in:
         - name: "prefix"
           selector: "#edit-prefix"
@@ -37,60 +79,23 @@ contact_form:
           selector: "#edit-zip-code"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "phone_number"
-          selector: "#edit-phone-number"
+        - name: "cell_phone"
+          selector: "#edit-cell-phone"
           value: $PHONE_DIGITS_ONLY
           required: true
         - name: "email"
           selector: "#edit-email"
           value: $EMAIL
           required: true
-        # The field text is on the screen, but the text box is gone.  Assume it will be back in the future.
-        # - name: "submitted[organization_name]"
-        #   selector: "#edit-organization-name"
-        #   value: "None"
-        #   required: true
-          # max length: 128
-        - name: "please_provide_a_brief_description_about_your_request___concern"
-          selector: "#edit-please-provide-a-brief-description-about-your-request-concern"
-          value: $MESSAGE
-          required: true
-    - select:
-        - name: "please_select_which_agency_your_request_relates_to"
-          selector: "#edit-please-select-which-agency-your-request-relates-to"
-          value: "- None -"
-          required: false
-          options:
-            "": "- None -"
-            "1": "Child Protective Services"
-            "2": "Child Support"
-            "3": "Consumer Protection"
-            "4": "Corrections (Prison System)"
-            "5": "Dept. of Agriculture"
-            "6": "Dept. of Community Affairs/Housing"
-            "7": "Dept. of Community Health"
-            "8": "Dept. of Driver Services"
-            "9": "Dept. of Natural Resources"
-            "10": "Dept. of Labor"
-            "11": "Dept. of Revenue"
-            "12": "Dept. of Public Safety"
-            "13": "Dept. of Veterans Services"
-            "14": "Education"
-            "15": "Environment"
-            "16": "Federal"
-            "17": "Food Stamps"
-            "18": "Foster Care"
-            "19": "Healthcare"
-            "20": "Legal"
-            "21": "Legislature"
-            "22": "Medicaid"
-            "23": "Transportation"
     - click_on:
-        - value: "Submit"
-          selector: "input[name='op']"
-    # NOTE: Selenium cannot take screenshots when there are alerts present.  You may need to disable screenshots when running in debug mode.
-    - alert:
-        - value: "accept"
+        - name: "writing_on_behalf_who[radios]"
+          selector: "#edit-writing-on-behalf-who-radios-no"
+          value: "no"
+          required: true
+    - click_on:
+        - name: "op"
+          selector: "#edit-actions-01-submit"
+          value: "Send"
   success:
     body:
-      contains: "Thank you for contacting the Governor"
+      contains: "Form Submission Received"
