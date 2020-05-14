@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "https://governor.vermont.gov/contact-us/message"
+    - visit: "https://governor.vermont.gov/email"
     - fill_in:
       - name: "submitted[FIRST]"
         selector: "#edit-submitted-first"
