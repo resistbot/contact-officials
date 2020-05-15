@@ -123,8 +123,6 @@ contact_form:
           selector: "#qi_5_1"
           value: "1_Response Required - Web Form ID#2100060"
           required: true
-    - recaptcha:
-        - value: true
     - click_on:
         - value: "Submit"
           selector: "#btn_submit"
