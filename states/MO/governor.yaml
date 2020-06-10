@@ -118,6 +118,8 @@ contact_form:
           selector: "#qi_4"
           value: $MESSAGE
           required: true
+    - recaptcha:
+        - value: true
     - click_on:
         - value: "Submit"
           selector: "#btn_submit"
