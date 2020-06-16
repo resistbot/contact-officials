@@ -1,6 +1,11 @@
 contact_form:
   steps:
     - visit: "https://mn.gov/governor/contact/"
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "Submit"
+          selector: "input[type='submit'][value='Submit']"
     - fill_in:
         - name: "prefix"
           selector: "#prefix"
