@@ -3,6 +3,8 @@ contact_form:
     - visit: "https://mn.gov/governor/contact/"
     - recaptcha:
         - value: true
+    - wait:
+        - value: 10
     - click_on:
         - value: "Submit"
           selector: "input[type='submit'][value='Submit']"
