@@ -37,6 +37,7 @@ contact_form:
           selector: "#edit-please-provide-a-brief-description-about-your-request-concern"
           value: $MESSAGE
           required: true
+          max length: 400
     - click_on:
         - name: "op"
           selector: "#edit-actions-wizard-next"
