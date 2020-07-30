@@ -1,0 +1,123 @@
+bioguide:
+contact_form:
+  steps:
+    - visit: "https://www.indianahouserepublicans.com/forms/contact-your-representative/"
+    - select:
+        - name: "submitted[choose][rep]"
+          selector: "#edit-submitted-choose-rep"
+          value: "$CHOOSE_REP"
+          required: true
+          options:
+            "David Abbott": "Budget"
+            "Michael Aylesworth": "Education"
+            "Ron Bacon": "Environmental Conerns"
+            "Beau Baird": "General Views"
+            "Brad Barrett": "Homelessness"
+            "Steven Bartels": "Housing"
+            "Robert Behning": "Ideas or Suggestions"
+            "Bruce Borders": "Public Safety"
+            "Brian Bosma": "Brian Bosma"
+            "Tim Brown": "Tim Brown"
+            "Woody Burton": "Woody Burton"
+            "Martin Carbaugh": "Martin Carbaugh"
+            "Bob Cherry": "Bob Cherry"
+            "Ed Clere": "Ed Clere"
+            "Tony Cook": "Tony Cook"
+            "Steve Davisson": "Steve Davisson"
+            "Dale DeVon": "Dale DeVon"
+            "Sean Eberhart": "Sean Eberhart"
+            "Jeff Ellington": "Jeff Ellington"
+            "Karen Engleman": "Karen Engleman"
+            "Randy Frye": "Randy Frye"
+            "Chuck Goodrich": "Chuck Goodrich"
+            "Douglas Gutwien": "Douglas Gutwien"
+            "Bob Heaton": "Bob Heaton"
+            "Dave Heine": "Dave Heine"
+            "Matt Hostettler": "Matt Hostettler"
+            "Todd Huston": "Todd Huston"
+            "Jack Jordan": "Jack Jordan"
+            "Christopher Judy": "Christopher Judy"
+            "Mike Karickhoff": "Mike Karickhoff"
+            "Cindy Kirchhofer": "Cindy Kirchhofer"
+            "Ryan Lauer": "Ryan Lauer"
+            "Don Lehe": "Don Lehe"
+            "Matt Lehman": "Matt Lehman"
+            "Dan Leonard": "Dan Leonard"
+            "Shane Lindauer": "Shane Lindauer"
+            "Jim Lucas": "Jim Lucas"
+            "Randy Lyness": "Randy Lyness"
+            "Ethan Manning": "Ethan Manning"
+            "Chris May": "Chris May"
+            "Peggy Mayfield": "Peggy Mayfield"
+            "Wendy McNamara": "Wendy McNamara"
+            "Douglas Miller": "Douglas Miller"
+            "Bob Morris": "Bob Morris"
+            "Alan Morrison": "Alan Morrison"
+            "Sharon Negele": "Sharon Negele"
+            "Curt Nisly": "Curt Nisly"
+            "J.D Prescott": "J.D Prescott"
+            "Jim Pressel": "Jim Pressel"
+            "Tom Saunders": "Tom Saunders"
+            "Donna Schailbley": "Donna Schailbley"
+            "Dollyne Sherman": "Dollyne Sherman"
+            "Ben Smaltz": "Ben Smaltz"
+            "Ed Soliday": "Ed Soliday"
+            "Mike Speedy": "Mike Speedy"
+            "Greg Steuerwaid": "Greg Steuerwaid"
+            "Holli Sullivan": "Holli Sullivan"
+            "Jeff Thompson": "Jeff Thompson"
+            "Jerry Torr": "Jerry Torr"
+            "Heath VanNatter": "Heath VanNatter"
+            "Ann Vermillon": "Ann Vermillon"
+            "Timothy Wesco": "Timothy Wesco"
+            "David A. Wolkins": "David A. Wolkins"
+            "John Young": "John Young"
+            "Denny Zent": "Denny Zent"
+            "Cindy Ziemke": "Cindy Ziemke"
+    - fill_in:
+        - name: "contact_first_name_0"
+          selector: "#contact_first_name_0"
+          value: $FIRST_NAME
+          required: true
+        - name: "contact_middle_name_0"
+          selector: "#contact_middle_name_0"
+          value: $MIDDLE_NAME
+          required: true
+        - name: "contact_last_name_0"
+          selector: "#contact_last_name_0"
+          value: $LAST_NAME
+          required: true
+        - name: "contact_email_0"
+          selector: "#contact_email_0"
+          value: $EMAIL
+          required: true
+        - name: "contact_phone_0"
+          selector: "#contact_phone_0"
+          value: $PHONE
+          required: true
+        - name: "contact_address_1"
+          selector: "#contact_address_1"
+          value: $ADDRESS1
+          required: true
+        - name: "contact_address_2"
+          selector: "#contact_address_2"
+          value: $ADDRESS2
+          required: false
+        - name: "contact_city_0"
+          selector: "#contact_city_0"
+          value: $CITY
+          required: false
+        - name: "contact_zip_code_0"
+          selector: "#contact_zip_code_0"
+          value: $ZIP
+          required: true
+        - name: "contact_message_0"
+          selector: "#contact_message_0"
+          value: $MESSAGE
+          required: true
+    - click_on:
+        - value: "Sumbit"
+          selector: "#submit"
+  success:
+    body:
+      contains: "Thank you for your message. It has been sent."
