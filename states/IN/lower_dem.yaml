@@ -11,7 +11,7 @@ contact_form:
 
     - visit: "https://indianahousedemocrats.org/members/vernon-smith/full#form_individual-member-contact"
     - fill_in:
-      - name: full_name
+        - name: full_name
           selector: "input[name=full_name]"
           value: $NAME_FULL
           required: true
@@ -35,25 +35,19 @@ contact_form:
           selector: "input[name=phone]"
           value: $PHONE
           required: true 
-
-          #Skipped the file upload section
-
-         - name: subject_line
+        - name: subject_line
           selector: "input[name=subject_line]"
           value: $SUBJECT
           required: true 
-         - name: message
-          selector: "input[name=message]"
+        - name: message
+          selector: "textarea[name=message]"
           value: $MESSAGE
           required: true
-         - name: g-recaptcha-response
-          selector: '#g-recaptcha-response'
-          value: $CAPTCHA_SOLUTION  
-    - click_on:
-        - value: "button[class='button']"
     - recaptcha:
         - value: true
-
- success:
+    - click_on:
+        - value: "button[class='button']"
+          selector: "button[type=submit]"
+  success:
     body:
       contains: "Your form has been successfully submitted!"

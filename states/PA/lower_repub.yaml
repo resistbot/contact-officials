@@ -1,3 +1,4 @@
+bioguide:
 contact_form:
   steps:
     - visit: "http://www.stevebarrar.com/contact.aspx" # change to each web address
