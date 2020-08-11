@@ -17,16 +17,16 @@ contact_form:
         - name: "submitted[contact_information][first_name]"
           selector: "#edit-submitted-contact-information-first-name"
           value: $NAME_FIRST
-          # max length: 128
+          max_length: 128
         # There is a middle initial on the form, so here are the selectors for the sake of completeness, but we don't appear to have that data.
         # - name: "submitted[contact_information][initial]"
         #   selector: "#edit-submitted-contact-information-initial"
         #   value: ""
-        # # max length: 1
+        # # max_length: 1
         - name: "submitted[contact_information][last_name]"
           selector: "#edit-submitted-contact-information-last-name"
           value: "$NAME_LAST"
-          # max length: 128
+          max_length: 128
     # - select:
     #     - name: "submitted[contact_information][suffix]"
     #       selector: "#edit-submitted-contact-information-suffix"
@@ -44,11 +44,11 @@ contact_form:
         - name: "submitted[contact_information][address]"
           selector: "#edit-submitted-contact-information-address"
           value: "$ADDRESS_STREET"
-          # max length: 128
+          max_length: 128
         - name: "submitted[contact_information][city]"
           selector: "#edit-submitted-contact-information-city"
           value: "$ADDRESS_CITY"
-          # max length: 128
+          max_length: 128
     - select:
         - name: "submitted[contact_information][state]"
           selector: "#edit-submitted-contact-information-state"
@@ -116,7 +116,7 @@ contact_form:
         - name: "submitted[contact_information][zip]"
           selector: "#edit-submitted-contact-information-zip"
           value: "$ADDRESS_ZIP5"
-          # max length: 128
+          max_length: 128
         # - name: "submitted[contact_information][home_phone]"
         #   selector: "#edit-submitted-contact-information-home-phone"
         #   value: "$PHONE"
