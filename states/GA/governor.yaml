@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    - visit: "https://gov.georgia.gov/contact-us/constituent-services"
+    - visit: "https://georgia.gov/contact-georgiagov"
     - select:
         - name: "please_select_which_agency_your_request_relates_to"
           selector: "#edit-please-select-which-agency-your-request-relates-to"
@@ -37,11 +37,7 @@ contact_form:
           selector: "#edit-please-provide-a-brief-description-about-your-request-concern"
           value: $MESSAGE
           required: true
-          max length: 400
-    - click_on:
-        - name: "op"
-          selector: "#edit-actions-wizard-next"
-          value: Next
+          max_length: 500
     - javascript:
         - value: "Array.prototype.forEach.call(document.querySelectorAll('style,[rel=\"stylesheet\"],[type=\"text/css\"]'), function(element){ try{ element.parentNode.removeChild(element) } catch(err){} });"
     - fill_in:
@@ -49,26 +45,32 @@ contact_form:
           selector: "#edit-prefix"
           value: $NAME_PREFIX
           required: false
+          max_length: 255
         - name: "first_name"
           selector: "#edit-first-name"
           value: $NAME_FIRST
           required: true
+          max_length: 255
         - name: "last_name"
           selector: "#edit-last-name"
           value: $NAME_LAST
           required: true
+          max_length: 255
         - name: "address_line_1"
           selector: "#edit-address-line-1"
           value: $ADDRESS_STREET
           required: true
+          max_length: 255
         - name: "address_line_2"
           selector: "#edit-address-line-2"
           value: $ADDRESS_STREET_2
           required: false
+          max_length: 255
         - name: "city"
           selector: "#edit-city"
           value: $ADDRESS_CITY
           required: true
+          max_length: 255
     - select:
         - name: "state"
           selector: "#edit-state"
@@ -80,14 +82,22 @@ contact_form:
           selector: "#edit-zip-code"
           value: $ADDRESS_ZIP5
           required: true
+          max_length: 255
         - name: "cell_phone"
           selector: "#edit-cell-phone"
           value: $PHONE_DIGITS_ONLY
           required: true
+          max_length: 128
         - name: "email"
-          selector: "#edit-email"
+          selector: "#edit-email-mail-1"
           value: $EMAIL
           required: true
+          max_length: 254
+        - name: "email[mail_2]"
+          selector: "#edit-email-mail-2"
+          value: $EMAIL
+          required: true
+          max_length: 254
     - click_on:
         - name: "writing_on_behalf_who[radios]"
           selector: "#edit-writing-on-behalf-who-radios-no"
@@ -99,4 +109,4 @@ contact_form:
           value: "Send"
   success:
     body:
-      contains: "Form Submission Received"
+      contains: "Your message has been received"
