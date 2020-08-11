@@ -19,12 +19,12 @@ contact_form:
           selector: "#edit-submitted-first-name"
           value: $NAME_FIRST
           required: true
-          # max length: 128
+          max_length: 128
         - name: "submitted[last_name]"
           selector: "#edit-submitted-last-name"
           value: $NAME_LAST
           required: true
-          # max length: 128
+          max_length: 128
         - name: "submitted[email]"
           selector: "#edit-submitted-email"
           value: $EMAIL
@@ -33,15 +33,17 @@ contact_form:
           selector: "#edit-submitted-telephone-number"
           value: $PHONE
           required: true
-          # max length: 128 # because that makes sense.
+          max_length: 128
         - name: "submitted[address]"
           selector: "#edit-submitted-address"
           value: $ADDRESS_STREET
           required: true
+          max_length: 128
         - name: "submitted[city]"
           selector: "#edit-submitted-city"
           value: $ADDRESS_CITY
           required: true
+          max_length: 128
     - select:
         - name: "submitted[contact_form_state]"
           selector: "#edit-submitted-contact-form-state"
@@ -103,6 +105,7 @@ contact_form:
           selector: "#edit-submitted-zip-code-contact"
           value: "$ADDRESS_ZIP5"
           required: true
+          max_length: 128
     - select:
         - name: "submitted[topic]"
           selector: "#edit-submitted-topic"
@@ -153,7 +156,7 @@ contact_form:
           selector: "#edit-submitted-subject"
           value: "$SUBJECT"
           required: true
-          # max length: 128
+          max_length: 128
         - name: "submitted[message]"
           selector: "#edit-submitted-message"
           value: "$MESSAGE"

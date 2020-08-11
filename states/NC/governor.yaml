@@ -6,17 +6,17 @@ contact_form:
           selector: "#edit-submitted-first-name"
           value: $NAME_FIRST
           required: true
-          # max length: 20
+          max_length: 20
         - name: "submitted[last_name]"
           selector: "#edit-submitted-last-name"
           value: $NAME_LAST
           required: true
-          # max length: 30
+          max_length: 30
         - name: "submitted[city]"
           selector: "#edit-submitted-city"
           value: $ADDRESS_CITY
           required: true
-          # max length: 128
+          max_length: 128
     # This contact form uses some kind of reformatted style for the drop down box using a list inside spans.  The JS below just removes the "display; none" style from the underlying select element so that Selenium can interact with it.
     - javascript:
         - value: "document.querySelector('#edit-submitted-state').removeAttribute('style');"
