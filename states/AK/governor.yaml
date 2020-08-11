@@ -1,6 +1,3 @@
-# Max length is not used at this time.  However, unitedstates/contact-congress has an option for it, so it is included in this form as a comment in case there is a desire to implement it in the future.
-
-
 contact_form:
   steps:
     - visit: "http://aws.state.ak.us/CrmForms/Home/Feedback"
@@ -17,21 +14,21 @@ contact_form:
           selector: "#FirstName"
           value: $NAME_FIRST
           required: true
-          # max length: 50
+          max_length: 50
         - name: "LastName"
           selector: "#LastName"
           value: $NAME_LAST
           required: true
-          # max length: 50
+          max_length: 50
         - name: "Address"
           selector: "#Address"
           value: $ADDRESS_STREET
-          # max length: 150
+          max_length: 150
         - name: "City"
           selector: "#City"
           value: $ADDRESS_CITY
           required: true
-          # max length: 50
+          max_length: 50
     - select:
         - name: "State"
           selector: "#State"
@@ -93,17 +90,17 @@ contact_form:
           selector: "#Zip"
           value: $ADDRESS_ZIP5
           required: true
-          # max length: 5
+          max_length: 10
         # Note, Phone is not required by the form.  It is included here as a comment in case there is a desire to implement in the future
         # - name: "HomePhone"
         #   selector: "#HomePhone"
         #   value: $PHONE
-        #   # max length: 13
+        #   # max_length: 13
         - name: "Email"
           selector: "#Email"
           value: $EMAIL
           required: true
-          # max length: 150
+          max_length: 150
     - select:
         - name: "Topic"
           selector: "#Topic"
@@ -145,11 +142,11 @@ contact_form:
         - name: "TopicDetails"
           selector: "#TopicDetails"
           value: $SUBJECT
-          # max length: 100
+          max_length: 100
         - name: "Comments"
           selector: "#Comments"
           value: $MESSAGE
-          # max length: 4000
+          max_length: 4000
     - recaptcha:
         - value: true
     - click_on:

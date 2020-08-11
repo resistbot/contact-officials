@@ -121,7 +121,7 @@ contact_form:
           selector: "#Content_OpinionText"
           value: $MESSAGE
           required: true
-          # max length: 2000
+          max_length: 2000
     - recaptcha:
         - value: true
     - click_on:
