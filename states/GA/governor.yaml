@@ -38,6 +38,9 @@ contact_form:
           value: $MESSAGE
           required: true
           max_length: 500
+    # Although the character limit is 500, this form counts newlines as two characters.  Everything else in the world counts newlines as one character, so we need to replace them with a single space to make sure the message stays under the limit.
+    - javascript:
+        - value: document.querySelector('#edit-please-provide-a-brief-description-about-your-request-concern').value = document.querySelector('#edit-please-provide-a-brief-description-about-your-request-concern').value.replace(/\r\n|\n|\r/g,' ');
     - javascript:
         - value: "Array.prototype.forEach.call(document.querySelectorAll('style,[rel=\"stylesheet\"],[type=\"text/css\"]'), function(element){ try{ element.parentNode.removeChild(element) } catch(err){} });"
     - fill_in:
