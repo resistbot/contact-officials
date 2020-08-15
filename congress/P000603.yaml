@@ -45,6 +45,10 @@ contact_form:
           selector: "#edit-message"
           value: $MESSAGE
           required: true
+          max_length: 1200
+    # Although the character limit is 1200, this form counts newlines as two characters.  We need to replace them with a single space to make sure the message stays under the limit.
+    - javascript:
+        - value: document.querySelector('#edit-message').value = document.querySelector('#edit-message').value.replace(/\r\n|\n|\r/g,' ');
     - select:
         - name: issue
           selector: "#edit-issue"
