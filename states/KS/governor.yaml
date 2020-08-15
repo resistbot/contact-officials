@@ -138,4 +138,4 @@ contact_form:
           selector: "#gform_submit_button_23"
   success:
     body:
-      contains: "Thanks for your submission"
+      contains: "Thank you for your submission"
