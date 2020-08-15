@@ -3,53 +3,139 @@ contact_form:
     - visit: "https://governor.kansas.gov/questions_form/"
     - fill_in:
         - name: "input_1"
-          selector: "#input_20_1"
+          selector: "#input_23_1"
           value: $NAME_FIRST
           required: true
         - name: "input_2"
-          selector: "#input_20_2"
+          selector: "#input_23_2"
           value: $NAME_LAST
           required: true
-        - name: "input_15.1"
-          selector: "#input_20_15_1"
+    - find:
+        - selector: "#input_23_5"
+    - fill_in:
+        - name: "input_5"
+          selector: "#input_23_5"
+          value: $PHONE_DIGITS_ONLY
+          required: true
+        - name: "input_6"
+          selector: "#input_23_6"
+          value: $EMAIL
+          required: true
+        - name: "input_19"
+          selector: "#input_23_19"
           value: $ADDRESS_STREET
           required: true
-        - name: "input_15.2"
-          selector: "#input_20_15_2"
+        - name: "input_20"
+          selector: "#input_23_20"
           value: $ADDRESS_STREET_2
           required: false
-        - name: "input_15.3"
-          selector: "#input_20_15_3"
+        - name: "input_21"
+          selector: "#input_23_21"
           value: $ADDRESS_CITY
           required: true
     - select:
-        - name: "input_15.4"
-          selector: "#input_20_15_4"
+        - name: "input_33"
+          selector: "#input_23_33"
           value: $ADDRESS_STATE_FULL
           required: true
           options: US_STATES
     - fill_in:
-        - name: "input_15.5"
-          selector: "#input_20_15_5"
+        - name: "input_24"
+          selector: "#input_23_24"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "input_5"
-          selector: "#input_20_5"
-          value: $PHONE_DIGITS_ONLY
+    - select:
+        - name: "input_27"
+          selector: "#input_23_27"
+          value: "Comment"
           required: true
-        - name: "input_6"
-          selector: "#input_20_6"
-          value: $EMAIL
+          options:
+            "Legislative/Policy Concern": "Legislative/Policy Concern"
+            "State Agency Concern": "State Agency Concern"
+            "Question": "Question"
+            "Comment": "Comment"
+        - name: "input_28"
+          selector: "#input_23_28"
+          value: "No"
           required: true
+          options:
+            "Yes": "Yes"
+            "No": "No"
+        - name: "input_30"
+          selector: "#input_23_30"
+          value: $TOPIC
+          required: true
+          options:
+            "Abortion": "Abortion"
+            "Aging": "Aging"
+            "Agriculture": "Agriculture"
+            "Animal Cruelty": "Animal Cruelty"
+            "Child Abuse/Cinc": "Child Abuse/Cinc"
+            "Child Custody": "Child Custody"
+            "Child Support": "Child Support"
+            "Commerce": "Commerce"
+            "Corrections": "Corrections"
+            "COVID-19": "COVID-19"
+            "DCF": "DCF"
+            "Death Penalty": "Death Penalty"
+            "Drugs – Illegal": "Drugs – Illegal"
+            "Economic Development": "Economic Development"
+            "Education K-12": "Education K-12"
+            "Education – Higher Ed": "Education – Higher Ed"
+            "Education – General": "Education – General"
+            "Energy": "Energy"
+            "Environment": "Environment"
+            "Federal Issues": "Federal Issues"
+            "Health": "Health"
+            "Housing": "Housing"
+            "Hunting Licensing": "Hunting Licensing"
+            "Immigration": "Immigration"
+            "Insurance": "Insurance"
+            "KanCare/Medicaid Expansion": "KanCare/Medicaid Expansion"
+            "Kids Letters": "Kids Letters"
+            "KPERS": "KPERS"
+            "KS Budget": "KS Budget"
+            "KS House Bills": "KS House Bills"
+            "KS Senate Bills": "KS Senate Bills"
+            "Legal": "Legal"
+            "Legislation – General": "Legislation – General"
+            "Local Issues": "Local Issues"
+            "KS Lottery": "KS Lottery"
+            "Medicaid – General": "Medicaid – General"
+            "Mental Health": "Mental Health"
+            "National Guard": "National Guard"
+            "Nursing Homes": "Nursing Homes"
+            "Pardon/Clemency": "Pardon/Clemency"
+            "Parks": "Parks"
+            "Racing &amp; Gaming": "Racing &amp; Gaming"
+            "Rural Issues": "Rural Issues"
+            "State Employees": "State Employees"
+            "Tax Reform": "Tax Reform"
+            "Taxes – General": "Taxes – General"
+            "Transportation": "Transportation"
+            "Unemployment": "Unemployment"
+            "Utilities": "Utilities"
+            "Veterans": "Veterans"
+            "Workers Compensation": "Workers Compensation"
+            "Other": "Other"
+    - fill_in:
         - name: "input_7"
-          selector: "#input_20_7"
+          selector: "#input_23_7"
           value: $MESSAGE
           required: true
+    - select:
+        - name: "input_32"
+          selector: "#input_23_32"
+          value: "No"
+          required: true
+          options:
+            "Yes": "Yes"
+            "No": "No"
     - recaptcha:
         - value: true
     - click_on:
         - value: "Submit"
-          selector: "#gform_submit_button_20"
+          selector: "#gform_submit_button_23"
   success:
     body:
-      contains: "Thanks for contacting us"
+      contains: "Thanks for your submission"
