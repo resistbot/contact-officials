@@ -51,6 +51,7 @@ contact_form:
     - recaptcha:
         - value: true
           version: "V3"
+          response_selector: "_wpcf7_recaptcha_response"
     - click_on:
         - value: "Send"
           selector: ".wpcf7-submit"
