@@ -15,22 +15,26 @@ contact_form:
           selector: "#Field4"
           value: $EMAIL
           required: true
-          max_length: 255
+          options:
+            max_length: 255
         - name: "Field3"
           selector: "#Field3"
           value: $PHONE_AREA_CODE
           required: false
-          max_length: 3
+          options:
+            max_length: 3
         - name: "Field3-1"
           selector: "#Field3-1"
           value: $PHONE3
           required: false
-          max_length: 3
+          options:
+            max_length: 3
         - name: "Field3-2"
           selector: "#Field3-2"
           value: $PHONE4
           required: false
-          max_length: 4
+          options:
+            max_length: 4
         - name: "Field122"
           selector: "#Field122"
           value: $ADDRESS_STREET
@@ -51,7 +55,8 @@ contact_form:
           selector: "#Field126"
           value: $ADDRESS_ZIP5
           required: false
-          max_length: 15
+          options:
+            max_length: 15
         - name: "Field118"
           selector: "#Field118"
           value: $MESSAGE
