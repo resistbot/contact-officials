@@ -106,22 +106,26 @@ contact_form:
           selector: "#first"
           value: $NAME_FIRST
           required: true
-          max_length: 25
+          options:
+            max_length: 25
         - name: "last"
           selector: "#last"
           value: $NAME_LAST
           required: true
-          max_length: 25
+          options:
+            max_length: 25
         - name: "street"
           selector: "#street"
           value: $ADDRESS_STREET
           required: true
-          max_length: 50
+          options:
+            max_length: 50
         - name: "city"
           selector: "#city"
           value: $ADDRESS_CITY
           required: true
-          max_length: 50
+          options:
+            max_length: 50
     - select:
         - name: "state"
           selector: "select[name='state']"
@@ -192,12 +196,14 @@ contact_form:
           selector: "#zip"
           value: $ADDRESS_ZIP5
           required: true
-          max_length: 5
+          options:
+            max_length: 5
         # Phone is available, but not required by the form.  Here's the selector in case it's desired in the future.
         - name: "phone"
           selector: "#phone"
           value: ""
-          max_length: 15
+          options:
+            max_length: 15
         - name: "email"
           selector: "#email"
           value: $EMAIL

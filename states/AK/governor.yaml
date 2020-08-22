@@ -14,21 +14,25 @@ contact_form:
           selector: "#FirstName"
           value: $NAME_FIRST
           required: true
-          max_length: 50
+          options:
+            max_length: 50
         - name: "LastName"
           selector: "#LastName"
           value: $NAME_LAST
           required: true
-          max_length: 50
+          options:
+            max_length: 50
         - name: "Address"
           selector: "#Address"
           value: $ADDRESS_STREET
-          max_length: 150
+          options:
+            max_length: 150
         - name: "City"
           selector: "#City"
           value: $ADDRESS_CITY
           required: true
-          max_length: 50
+          options:
+            max_length: 50
     - select:
         - name: "State"
           selector: "#State"
@@ -90,17 +94,20 @@ contact_form:
           selector: "#Zip"
           value: $ADDRESS_ZIP5
           required: true
-          max_length: 10
+          options:
+            max_length: 10
         # Note, Phone is not required by the form.  It is included here as a comment in case there is a desire to implement in the future
         # - name: "HomePhone"
         #   selector: "#HomePhone"
         #   value: $PHONE
-        #   # max_length: 13
+        #   options:
+          #   max_length: 13
         - name: "Email"
           selector: "#Email"
           value: $EMAIL
           required: true
-          max_length: 150
+          options:
+            max_length: 150
     - select:
         - name: "Topic"
           selector: "#Topic"
@@ -142,11 +149,13 @@ contact_form:
         - name: "TopicDetails"
           selector: "#TopicDetails"
           value: $SUBJECT
-          max_length: 100
+          options:
+            max_length: 100
         - name: "Comments"
           selector: "#Comments"
           value: $MESSAGE
-          max_length: 4000
+          options:
+            max_length: 4000
     - recaptcha:
         - value: true
     - click_on:

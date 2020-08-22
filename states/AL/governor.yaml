@@ -18,52 +18,62 @@ contact_form:
           selector: "#ContentPlaceHolder1_FIRSTNAME"
           value: $NAME_FIRST
           required: true
-          max_length: 60
+          options:
+            max_length: 60
         - name: "ctl00$ContentPlaceHolder1$LASTNAME"
           selector: "#ContentPlaceHolder1_LASTNAME"
           value: $NAME_LAST
           required: true
-          max_length: 60
+          options:
+            max_length: 60
         - name: "ctl00$ContentPlaceHolder1$EMAILADDRESS"
           selector: "#ContentPlaceHolder1_EMAILADDRESS"
           value: $EMAIL
           required: true
-          max_length: 100
+          options:
+            max_length: 100
         - name: "ctl00$ContentPlaceHolder1$PHONE1"
           selector: "#ContentPlaceHolder1_PHONE1"
           value: $PHONE_AREA_CODE
           required: true
-          max_length: 3
+          options:
+            max_length: 3
         - name: "ctl00$ContentPlaceHolder1$PHONE2"
           selector: "#ContentPlaceHolder1_PHONE2"
           value: $PHONE3
           required: true
-          max_length: 3
+          options:
+            max_length: 3
         - name: "ctl00$ContentPlaceHolder1$PHONE3"
           selector: "#ContentPlaceHolder1_PHONE3"
           value: $PHONE4
           required: true
-          max_length: 4
+          options:
+            max_length: 4
         - name: "ctl00$ContentPlaceHolder1$STREET_ADDRESS"
           selector: "#ContentPlaceHolder1_STREET_ADDRESS"
           value: $ADDRESS_STREET
           required: true
-          max_length: 200
+          options:
+            max_length: 200
         - name: "ctl00$ContentPlaceHolder1$CITY"
           selector: "#ContentPlaceHolder1_CITY"
           value: $ADDRESS_CITY
           required: true
-          max_length: 100
+          options:
+            max_length: 100
         - name: "ctl00$ContentPlaceHolder1$STATE"
           selector: "#ContentPlaceHolder1_STATE"
           value: $ADDRESS_STATE_POSTAL_ABBREV
           required: true
-          max_length: 25
+          options:
+            max_length: 25
         - name: "ctl00$ContentPlaceHolder1$ZIP_CODE"
           selector: "#ContentPlaceHolder1_ZIP_CODE"
           value: $ADDRESS_ZIP5
           required: true
-          max_length: 25
+          options:
+            max_length: 25
     - javascript:
         - value: 'document.querySelector("#ContentPlaceHolder1_EMAIL_ISSUE").setAttribute("style","")'
     - select:
