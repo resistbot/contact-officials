@@ -2,45 +2,52 @@ contact_form:
   steps:
     - visit: "https://governor.wv.gov/Pages/SubmitaCommenttotheGovernor.aspx"
     - fill_in:
-      - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff1_1$ctl00$ctl00$TextField"
-        selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff1_1_ctl00_ctl00_TextField"
+      - name: "c035b73d-0e4b-4af1-a8ad-cfc03b4e4ebf"
+        selector: "input[id='c035b73d-0e4b-4af1-a8ad-cfc03b4e4ebf']"
         value: $NAME_FULL
         required: true
-      - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff3_1$ctl00$ctl00$TextField"
-        selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff3_1_ctl00_ctl00_TextField"
+      - name: "8df2d0be-7e05-4b2a-b659-9e43b748c78f"
+        selector: "input[id='8df2d0be-7e05-4b2a-b659-9e43b748c78f']"
         value: $ADDRESS_STREET
         required: true
-      - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff4_1$ctl00$ctl00$TextField"
-        selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff4_1_ctl00_ctl00_TextField"
+      - name: "07815028-a57e-44a9-ac2b-39c29d619c35"
+        selector: "input[id='07815028-a57e-44a9-ac2b-39c29d619c35']"
         value: $ADDRESS_STREET_2
         required: false
-      - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff5_1$ctl00$ctl00$TextField"
-        selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff5_1_ctl00_ctl00_TextField"
+      - name: "4e17f197-0d00-4015-b1b5-93c33074cc5e"
+        selector: "input[id='4e17f197-0d00-4015-b1b5-93c33074cc5e']"
         value: $ADDRESS_CITY
         required: true
-      - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff6_1$ctl00$ctl00$TextField"
-        selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff6_1_ctl00_ctl00_TextField"
+    - select:
+      - name: "bd05cff4-1211-4d80-b1c0-afbd30be7029"
+        selector: "#bd05cff4-1211-4d80-b1c0-afbd30be7029"
         value: $ADDRESS_STATE_POSTAL_ABBREV
         required: true
-      - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff7_1$ctl00$ctl00$TextField"
-        selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff7_1_ctl00_ctl00_TextField"
+        options: US_STATE_ABBREVIATIONS
+    - fill_in:
+      - name: "94bdb345-5969-4511-994e-c9766e2c3d5c"
+        selector: "input[id='94bdb345-5969-4511-994e-c9766e2c3d5c']"
         value: $ADDRESS_ZIP5
         required: true
-      - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff9_1$ctl00$ctl00$TextField"
-        selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff9_1_ctl00_ctl00_TextField"
+      - name: "e65b901f-4391-4cea-a909-16d49b8c3bff"
+        selector: "input[id='e65b901f-4391-4cea-a909-16d49b8c3bff']"
+        value: $PHONE
+        required: false
+      - name: "e0157e70-df14-48cc-99ee-19c1122012b8"
+        selector: "input[id='e0157e70-df14-48cc-99ee-19c1122012b8']"
         value: $EMAIL
         required: true
-      - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff10_1$ctl00$ctl00$TextField"
-        selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff10_1_ctl00_ctl00_TextField"
+      - name: "427809c5-83be-4149-a2a3-df27bca3854c"
+        selector: "input[id='427809c5-83be-4149-a2a3-df27bca3854c']"
         value: $SUBJECT
         required: true
-      - name: "ctl00$PlaceHolderMain$g_1aa949c5_afad_4f93_9c5b_1c3bf27389df$ff11_1$ctl00$ctl00$TextField"
-        selector: "#ctl00_PlaceHolderMain_g_1aa949c5_afad_4f93_9c5b_1c3bf27389df_ff11_1_ctl00_ctl00_TextField"
+      - name: "511466de-df23-4382-8287-afc2fcc68c75"
+        selector: "textarea[id='511466de-df23-4382-8287-afc2fcc68c75']"
         value: $MESSAGE
         required: true
     - click_on:
         - value: "Submit"
-          selector: "input[type='button'][name='btnFormAction']"
+          selector: "#nextButton"
   success:
     body:
       contains: "Thank you for your submission."
