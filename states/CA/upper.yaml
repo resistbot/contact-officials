@@ -39,6 +39,8 @@ contact_form:
           selector: "textarea[name=jv_text]"
           value: $MESSAGE
           required: true
+          options:
+            max_length: 2000
     - click_on:
         - value: Submit
           selector: "input[name=submitButton]"
