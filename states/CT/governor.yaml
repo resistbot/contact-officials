@@ -26,12 +26,14 @@ contact_form:
           selector: "#FirstName"
           value: $NAME_FIRST
           required: true
-          max_length: 40
+          options:
+            max_length: 40
         - name: "LastName"
           selector: "#LastName"
           value: $NAME_LAST
           required: true
-          max_length: 40
+          options:
+            max_length: 40
         - name: "NameSuffix"
           selector: "#NameSuffix"
           value: ""
@@ -40,42 +42,50 @@ contact_form:
           selector: "#HomePhone"
           value: $PHONE
           required: false
-          max_length: 12
+          options:
+            max_length: 12
         - name: "BusinessPhone"
           selector: "#BusinessPhone"
           value: ""
           required: false
-          max_length: 12
+          options:
+            max_length: 12
         - name: "CellPhone"
           selector: "#CellPhone"
           value: ""
           required: false
-          max_length: 12
+          options:
+            max_length: 12
         - name: "Email"
           selector: "#Email"
           value: $EMAIL
           required: true
-          max_length: 40
+          options:
+            max_length: 40
         - name: "Street"
           selector: "#Street"
           value: $ADDRESS_STREET
           required: true
-          max_length: 40
+          options:
+            max_length: 40
         - name: "City"
           selector: "#City"
           value: $ADDRESS_CITY
           required: true
-          max_length: 25
+          options:
+            max_length: 25
         - name: "State"
           selector: "#State"
           value: $ADDRESS_STATE_FULL
           required: true
-          max_length: 25
+          options:
+            max_length: 25
         - name: "ZipCode"
           selector: "#ZipCode"
           value: $ADDRESS_ZIP5
           required: true
-          max_length: 5
+          options:
+            max_length: 5
     - select:
         - name: "InterestArea"
           selector: "#InterestArea"
@@ -112,7 +122,8 @@ contact_form:
           selector: "#Comments"
           value: $MESSAGE
           required: true
-          max_length: 1000
+          options:
+            max_length: 1000
     - click_on:
         - value: "Submit Form"
           selector: "input[type='submit']"
