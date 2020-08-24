@@ -103,11 +103,13 @@ contact_form:
         - name: "qi_2"
           selector: "#qi_2"
           value: $SUBJECT
-          max_length: 53
+          options:
+            max_length: 53
         - name: "qi_3"
           selector: "#qi_3"
           value: $MESSAGE
-          max_length: 10000 ## How generous.
+          options:
+            max_length: 10000 ## How generous.
     - javascript:
         - value: "document.getElementById('qi_6').value = new Date().toLocaleDateString();"
     - click_on:

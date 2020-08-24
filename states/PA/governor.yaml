@@ -22,22 +22,26 @@ contact_form:
           selector: "#nf-field-3191"
           value: $NAME_FIRST
           required: true
-          max_length: 100
+          options:
+            max_length: 100
         - name: "nf-field-3201"
           selector: "#nf-field-3201"
           value: $NAME_LAST
           required: true
-          max_length: 100
+          options:
+            max_length: 100
         - name: "nf-field-3221"
           selector: "#nf-field-3221"
           value: "$ADDRESS_STREET"
           required: true
-          max_length: 100
+          options:
+            max_length: 100
         - name: "nf-field-3231"
           selector: "#nf-field-3231"
           value: "$ADDRESS_CITY"
           required: true
-          max_length: 100
+          options:
+            max_length: 100
     - select:
         - name: "nf-field-3251"
           selector: "#nf-field-3251"
@@ -176,7 +180,8 @@ contact_form:
           selector: "#nf-field-3261"
           value: $ADDRESS_ZIP5
           required: true
-          max_length: 5
+          options:
+            max_length: 5
         - name: "email"
           selector: "#nf-field-3271"
           value: "$EMAIL"
@@ -233,7 +238,8 @@ contact_form:
           selector: "#nf-field-3321"
           value: "$MESSAGE"
           required: true
-          max_length: 1000
+          options:
+            max_length: 1000
     - click_on:
         - value: "Submit"
           selector: "#nf-field-3331"
