@@ -36,6 +36,29 @@ contact_form:
           selector: "#field49752019"
           value: $EMAIL
           required: true
+    - select:
+        - name: "field90831234"
+          selector: "#field90831234"
+          value: "Comment"
+          required: true
+        - name: "field90831245"
+          selector: "#field90831245"
+          value: "Other"
+          required: true
+          options:
+            "Travel Guidance": "Travel Guidance"
+            "Reporting a Business or Gathering": "Reporting a Business or Gathering"
+            "School Guidance &amp; Childcare Assistance": "School Guidance &amp; Childcare Assistance"
+            "Unemployment Assistance": "Unemployment Assistance"
+            "COVID-19 Testing Options": "COVID-19 Testing Options"
+            "COVID-19 Health Care &amp; Insurance": "COVID-19 Health Care &amp; Insurance"
+            "Food Assistance Related to COVID-19": "Food Assistance Related to COVID-19"
+            "COVID-19 Housing Resources &amp; Information": "COVID-19 Housing Resources &amp; Information"
+            "Moratorium on Evictions": "Moratorium on Evictions"
+            "Phased Reopening": "Phased Reopening"
+            "Request a citation": "Request a citation"
+            "Other": "Other"
+    - fill_in:
         - name: "field49751965"
           selector: "#field49751965"
           value: $SUBJECT
