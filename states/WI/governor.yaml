@@ -42,20 +42,6 @@ contact_form:
           selector: "[id='6da33eab-5260-4bf4-84a9-b6101eab9247']"
           value: $ADDRESS_ZIP5
           required: true
-    - select:
-        - name: "2aa75e65-e936-44c5-b01e-a8cd83d36ad8"
-          selector: "[id='2aa75e65-e936-44c5-b01e-a8cd83d36ad8']"
-          value: $TOPIC
-          required: true
-        - name: "122ad7e3-62c2-4a78-b5d3-a53cfe0d412f"
-          selector: "[id='122ad7e3-62c2-4a78-b5d3-a53cfe0d412f']"
-          value: "N"
-          require: true
-          options:
-            "P": "Support"
-            "C": "Oppose"
-            "N": "None"
-    - fill_in:
         - name: "f89ebf5f-d1f8-41f0-971c-5e74fae0b4e1"
           selector: "[id='f89ebf5f-d1f8-41f0-971c-5e74fae0b4e1']"
           value: $MESSAGE
