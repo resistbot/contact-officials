@@ -1,9 +1,9 @@
 contact_form:
   steps:
     - visit: "https://www2.illinois.gov/sites/gov/contactus/Pages/VoiceAnOpinion.aspx"
-
-    # We skip the optional prefix.
-
+    # This is a reminder to fill out the Census and i assume will go away at some point.  Using an "if" statement to be sure we don't break when the alert goes away.
+    - javascript:
+        - value: "if (document.querySelector('#myModal')) document.querySelector('#btnSOIPopUpClose').click();"
     - select:
         - name: "ctl00$ctl38$g_fdf3309f_ded6_4491_9e00_80be8fa571ca$Prefix_x0020_Name"
           selector: "#ctl00_ctl38_g_fdf3309f_ded6_4491_9e00_80be8fa571ca_Prefix_x0020_Name"
