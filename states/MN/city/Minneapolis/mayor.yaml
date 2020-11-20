@@ -1,0 +1,66 @@
+# Sourced from http://www2.minneapolismn.gov/mayor/contact/
+contact_form:
+  steps:
+    - visit: "https://app.smartsheet.com/b/form/d189a2276e234cacb9f02db60dac0569"
+    - fill_in:
+      - name: "Z9Zgw96"
+        selector: 'input[id="text_box_First Name"]'
+        value: $NAME_FIRST
+        required: false
+        options:
+          max_length: 4000
+      - name: "JLZE3L0"
+        selector: 'input[id="text_box_Last Name"]'
+        value: $NAME_LAST
+        required: false
+        options:
+          max_length: 4000
+      - name: "1jErwjL"
+        selector: 'input[id="text_box_Email Address"]'
+        value: $EMAIL
+        required: false
+        options:
+          max_length: 4000
+      - name: "ALZ8OLE"
+        selector: 'textarea[id="textarea_Share your opinion or problem with the Mayor"]'
+        value: $MESSAGE
+        required: true
+        options:
+          max_length: 4000
+      - name: "L3ZRP3g"
+        selector: 'input[id="text_box_Phone"]'
+        value: $PHONE
+        required: false
+        options:
+          max_length: 4000
+      - name: "XLZnkLD"
+        selector: 'input[id="text_box_Address"]'
+        value: $ADDRESS_STREET
+        required: false
+        options:
+          max_length: 4000
+      - name: "rNzq6Ng"
+        selector: 'input[id="text_box_City"]'
+        value: $ADDRESS_CITY
+        required: false
+        options:
+          max_length: 4000
+    - javascript:
+      # Need to assume that the constituent state is MN b/c the form drop down isn't a select.
+      - value: "document.querySelector('.react-select__value-container').innerText = 'MN'"
+    - fill_in:
+      - name: "7earLek"
+        selector: 'input[id="text_box_Zip Code"]'
+        value: $ADDRESS_ZIP5
+        required: false
+        options:
+          max_length: 4000
+    - click_on:
+      - value: "submit"
+        selector: ".ekyxczq0"
+    - wait:
+      - value: 3
+  success:
+    body:
+      contains: "We've captured your response"
+
