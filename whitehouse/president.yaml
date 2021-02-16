@@ -134,7 +134,7 @@ contact_form:
         selector: "#Contact\\.Contact_Us_Email_Opt_In__c"
     - click_on:
       - value: Send
-        selector: "#btnsubmit"
+        selector: 'input[type=submit][value=Send]'
   success:
     body:
       contains: Thank you for your submission!
