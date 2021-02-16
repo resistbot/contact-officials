@@ -1,0 +1,53 @@
+bioguide:
+contact_form:
+  steps:
+    #Example: https://indianahousedemocrats.org/members/vernon-smith/full#form_individual-member-contact
+    
+    #Using MetaVariables so the config form doesn't have to be replaced often 
+    #Using Texas Lower.yaml as a guide
+
+    #https://indianahousedemocrats.org/members
+    #Link to all the memembers just have to press thier name and then click contact to get to the web form
+
+    - visit: "https://indianahousedemocrats.org/members/vernon-smith/full#form_individual-member-contact"
+    - fill_in:
+        - name: full_name
+          selector: "input[name=full_name]"
+          value: $NAME_FULL
+          required: true
+        - name: email
+          selector: "input[name=email]"
+          value: $EMAIL
+          required: true 
+        - name: street_address
+          selector: "input[name=street_address]"
+          value: $ADDRESS_STREET
+          required: true
+        - name: city
+          selector: "input[name=city]"
+          value: $ADDRESS_CITY
+          required: true 
+        - name: zip
+          selector: "input[name=zip]"
+          value: $ADDRESS_ZIP5
+          required: true 
+        - name: phone
+          selector: "input[name=phone]"
+          value: $PHONE
+          required: true 
+        - name: subject_line
+          selector: "input[name=subject_line]"
+          value: $SUBJECT
+          required: true 
+        - name: message
+          selector: "textarea[name=message]"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+    - click_on:
+        - value: "button[class='button']"
+          selector: "button[type=submit]"
+  success:
+    body:
+      contains: "Your form has been successfully submitted!"
