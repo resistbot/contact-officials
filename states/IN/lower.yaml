@@ -1,0 +1,106 @@
+### This form is unique.  We have the url for each member, and it looks the same for each memeber, with an 'send email' button that links to a contact form.  However, the contact from is apparently managed by the party, which means a different form for dems vs repubs.
+
+### We are leveraging the fact that both D and R forms only have fill in boxes.  Both form fields are attempted here, but if they aren't present on the screen, we will skip them, assuming we can use the opposite form.
+
+contact_form:
+  steps:
+    # - visit: $META_OFFICIAL_URL
+    # Test Republican:
+    - visit: "http://iga.in.gov/legislative/2020/legislators/legislator_donna_schaibley_1/"
+    # Test Democrat:
+    # - visit: "http://iga.in.gov/legislative/2020/legislators/legislator_terri_jo_austin_700/"
+    - click_on:
+        - name: "Send Email"
+          selector: 'a[href^="http://www.indianahouserepublicans.com/forms/contact"], a[href^="https://indianahousedemocrats.org/members"]'
+
+    ## Dems:
+    - fill_in:
+        - name: "full_name"
+          selector: "input[name='full_name']"
+          value: $NAME_FULL
+          required: true
+          skip_if_element_not_present: true
+        - name: "email"
+          selector: "input[name='email']"
+          value: $EMAIL
+          required: true
+          skip_if_element_not_present: true
+        - name: "street_address"
+          selector: "input[name='street_address']"
+          value: $ADDRESS_STREET
+          required: true
+          skip_if_element_not_present: true
+        - name: "city"
+          selector: "input[name='city']"
+          value: $ADDRESS_CITY
+          required: true
+          skip_if_element_not_present: true
+        - name: "zip"
+          selector: "input[name='zip']"
+          value: $ADDRESS_ZIP5
+          required: true
+          skip_if_element_not_present: true
+        - name: "phone"
+          selector: "input[name='phone']"
+          value: $PHONE
+          required: true
+          skip_if_element_not_present: true
+        - name: "subject_line"
+          selector: "input[name='subject_line']"
+          value: $SUBJECT
+          required: true
+          skip_if_element_not_present: true
+        - name: "message_line"
+          selector: "input[name='message_line']"
+          value: $MESSAGE
+          required: true
+          skip_if_element_not_present: true
+
+    ## Repubs:
+    - fill_in:
+        - name: "formField_First_Name"
+          selector: "#IDFormField_First_Name_0"
+          value: $NAME_FIRST
+          required: true
+          skip_if_element_not_present: true
+        - name: "formField_Last_Name"
+          selector: "#IDFormField_Last_Name_0"
+          value: $NAME_LAST
+          required: true
+          skip_if_element_not_present: true
+        - name: "formField_Email"
+          selector: "#IDFormField_Email_0"
+          value: $EMAIL
+          required: true
+          skip_if_element_not_present: true
+        - name: "formField_Phone"
+          selector: "#IDFormField_Phone_0"
+          value: $PHONE
+          required: true
+          skip_if_element_not_present: true
+        - name: "formField_Address"
+          selector: "#IDFormField_Address_0"
+          value: $ADDRESS_STREET
+          required: true
+          skip_if_element_not_present: true
+        - name: "formField_City"
+          selector: "#IDFormField_City_0"
+          value: $ADDRESS_CITY
+          required: true
+          skip_if_element_not_present: true
+        - name: "formField_Zip"
+          selector: "#IDFormField_Zip_0"
+          value: $ADDRESS_ZIP5
+          required: true
+          skip_if_element_not_present: true
+        - name: "formField_Comments"
+          selector: "#IDFormField_Comments_0"
+          value: $MESSAGE
+          required: true
+          skip_if_element_not_present: true
+
+    ## Common:
+    - recaptcha:
+        - value: true
+    - click_on:
+        - selector: "button[type='submit'][class='button']"
