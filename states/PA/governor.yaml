@@ -5,8 +5,8 @@ contact_form:
     - click_on:
         - selector: "#newsletterModal2 > button"
     - select:
-        - name: "nf-field-3181"
-          selector: "#nf-field-3181"
+        - name: "nf-field-7071"
+          selector: "#nf-field-7071"
           value: $NAME_PREFIX
           options:
             "Mr.": "Mr."
@@ -18,33 +18,33 @@ contact_form:
             "Rev.": "Rev."
             "Other": "Other"
     - fill_in:
-        - name: "nf-field-3191"
-          selector: "#nf-field-3191"
+        - name: "nf-field-7081"
+          selector: "#nf-field-7081"
           value: $NAME_FIRST
           required: true
           options:
             max_length: 100
-        - name: "nf-field-3201"
-          selector: "#nf-field-3201"
+        - name: "nf-field-7091"
+          selector: "#nf-field-7091"
           value: $NAME_LAST
           required: true
           options:
             max_length: 100
-        - name: "nf-field-3221"
-          selector: "#nf-field-3221"
+        - name: "nf-field-7111"
+          selector: "#nf-field-7111"
           value: "$ADDRESS_STREET"
           required: true
           options:
             max_length: 100
-        - name: "nf-field-3231"
-          selector: "#nf-field-3231"
+        - name: "nf-field-7121"
+          selector: "#nf-field-7121"
           value: "$ADDRESS_CITY"
           required: true
           options:
             max_length: 100
     - select:
-        - name: "nf-field-3251"
-          selector: "#nf-field-3251"
+        - name: "nf-field-7131"
+          selector: "#nf-field-7131"
           value: "$ADDRESS_STATE_POSTAL_ABBREV"
           required: true
           options:
@@ -102,8 +102,8 @@ contact_form:
             "AE": "ARMED FORCES AFRICA \ CANADA \ EUROPE \ MIDDLE EAST"
             "AA": "ARMED FORCES AMERICA (EXCEPT CANADA)"
             "AP": "ARMED FORCES PACIFIC"
-        - name: "nf-field-3241"
-          selector: "#nf-field-3241"
+        - name: "nf-field-7141"
+          selector: "#nf-field-7141"
           value: "$ADDRESS_COUNTY"
           required: true
           options:
@@ -177,22 +177,22 @@ contact_form:
             "york": "York"
     - fill_in:
         - name: "zip"
-          selector: "#nf-field-3261"
+          selector: "#nf-field-7151"
           value: $ADDRESS_ZIP5
           required: true
           options:
             max_length: 5
         - name: "email"
-          selector: "#nf-field-3271"
+          selector: "#nf-field-7161"
           value: "$EMAIL"
           required: true
         - name: "phone"
-          selector: "#nf-field-3281"
+          selector: "#nf-field-7171"
           value: $PHONE
           required: true
     - select:
-        - name: "nf-field-3311"
-          selector: "#nf-field-3311"
+        - name: "nf-field-7201"
+          selector: "#nf-field-7201"
           value: "Other"
           required: true
           options:
@@ -234,15 +234,15 @@ contact_form:
             "unemployment": "Unemployment"
             "women-s-issues": "Women’s issues"
     - fill_in:
-        - name: "nf-field-3321"
-          selector: "#nf-field-3321"
+        - name: "nf-field-7211"
+          selector: "#nf-field-7211"
           value: "$MESSAGE"
           required: true
           options:
             max_length: 1000
     - click_on:
         - value: "Submit"
-          selector: "#nf-field-3331"
+          selector: "#nf-field-7221"
     # The submit button on the page changes to "processing" for a substantial length of time.  An unscientific test averaged about 10 seconds before the success message appears.  A 20 second delay seems to be a reasonable compromise between speed and ensuring success.
     - wait:
         - value: 10
