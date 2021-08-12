@@ -2,11 +2,12 @@ contact_form:
   steps:
     - visit: "https://www.governor.ny.gov/content/governor-contact-form"
     - select:
-        - name: "submitted[salutation]"
-          selector: "#edit-submitted-salutation"
+        - name: "salutation"
+          selector: "#edit-salutation"
           value: $NAME_PREFIX
           required: true
           options:
+            "mx": "Mx."
             "mr": "Mr."
             "ms": "Ms."
             "mrs": "Mrs."
@@ -15,43 +16,43 @@ contact_form:
             "mrs_and_mrs": "Mrs. & Mrs."
             "blank": "Blank"
     - fill_in:
-        - name: "submitted[first_name]"
-          selector: "#edit-submitted-first-name"
+        - name: "first_name"
+          selector: "#edit-first-name"
           value: $NAME_FIRST
           required: true
           options:
-            max_length: 128
-        - name: "submitted[last_name]"
-          selector: "#edit-submitted-last-name"
+            max_length: 255
+        - name: "last_name"
+          selector: "#edit-last-name"
           value: $NAME_LAST
           required: true
           options:
-            max_length: 128
-        - name: "submitted[email]"
-          selector: "#edit-submitted-email"
+            max_length: 255
+        - name: "email"
+          selector: "#edit-email"
           value: $EMAIL
           required: true
-        - name: "submitted[telephone_number]"
-          selector: "#edit-submitted-telephone-number"
+        - name: "telephone_number"
+          selector: "#edit-telephone-number"
           value: $PHONE
           required: true
           options:
-            max_length: 128
-        - name: "submitted[address]"
-          selector: "#edit-submitted-address"
+            max_length: 255
+        - name: "address"
+          selector: "#edit-address"
           value: $ADDRESS_STREET
           required: true
           options:
-            max_length: 128
-        - name: "submitted[city]"
-          selector: "#edit-submitted-city"
+            max_length: 255
+        - name: "city"
+          selector: "#edit-city"
           value: $ADDRESS_CITY
           required: true
           options:
-            max_length: 128
+            max_length: 255
     - select:
-        - name: "submitted[contact_form_state]"
-          selector: "#edit-submitted-contact-form-state"
+        - name: "contact_form_state"
+          selector: "#edit-contact-form-state"
           value: "$ADDRESS_STATE_FULL"
           options:
             "Alabama": "Alabama"
@@ -106,15 +107,15 @@ contact_form:
             "Wisconsin": "Wisconsin"
             "Wyoming": "Wyoming"
     - fill_in:
-        - name: "submitted[zip_code_contact]"
-          selector: "#edit-submitted-zip-code-contact"
+        - name: "zip_code_contact"
+          selector: "#edit-zip-code-contact"
           value: "$ADDRESS_ZIP5"
           required: true
           options:
-            max_length: 128
+            max_length: 255
     - select:
-        - name: "submitted[topic]"
-          selector: "#edit-submitted-topic"
+        - name: "topic"
+          selector: "#edit-topic"
           value: "Other"
           required: true
           options:
@@ -158,19 +159,19 @@ contact_form:
             "women_s_agenda_2018": "Women's Agenda 2018"
             "worker_exploitation": "Worker Exploitation"
     - fill_in:
-        - name: "submitted[subject]"
-          selector: "#edit-submitted-subject"
+        - name: "subject"
+          selector: "#edit-subject"
           value: "$SUBJECT"
           required: true
           options:
-            max_length: 128
-        - name: "submitted[message]"
-          selector: "#edit-submitted-message"
+            max_length: 255
+        - name: "message"
+          selector: "#edit-message"
           value: "$MESSAGE"
           required: true
     # In the case of the constituent's prefix being unavailable on the form option (Dr. is a good example), select the "blank", which the form will accept.
     - javascript:
-        - value: "if ( document.getElementById('edit-submitted-salutation').value == '' ) { document.getElementById('edit-submitted-salutation').value = 'blank' } ;"
+        - value: "if ( document.getElementById('edit-salutation').value == '' ) { document.getElementById('edit-salutation').value = 'blank' };"
     - click_on:
         - value: "Submit"
           selector: "input[type='submit'][name='op']"
