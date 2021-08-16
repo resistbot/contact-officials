@@ -112,6 +112,8 @@ contact_form:
             max_length: 10000 ## How generous.
     - javascript:
         - value: "document.getElementById('qi_6').value = new Date().toLocaleDateString();"
+    - recaptcha:
+        - value: true
     - click_on:
         - value: "Send"
           selector: "#btn_submit"
