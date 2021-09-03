@@ -45,13 +45,13 @@ contact_form:
           required: true
           options:
             max_length: 60
-    - select:
-        - name: IssueListBox
-          selector: "#IssueListBox"
-          value: $TOPIC # Different members have different options.
-          required: false
-    - fill_in:
-        - name: jv_text
+    ### Sometimes an additional radio button appears based on the option selected.  Select is not required, so skip it.
+    # - select:
+    #     - name: IssueListBox
+    #       selector: "#IssueListBox"
+    #       value: $TOPIC # Different members have different options.
+    #       required: false
+    # - fill_in:        - name: jv_text
           selector: "#comments"
           value: $MESSAGE
           required: true
