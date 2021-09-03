@@ -1,6 +1,6 @@
 contact_form:
   steps:
-    # Example: https://house.texas.gov/members/member-page/?district=49
+    # - visit: https://house.texas.gov/members/member-page/?district=49
     - visit: "$META_OFFICIAL_URL"
     - click_on:
         - selector: "h4.button-email > a"
@@ -66,15 +66,7 @@ contact_form:
           value: $MESSAGE
           required: true
     - click_on:
-        - value: "Send Message"
-          selector: "#email-button"
-    # That triggers javascript that rewrites the form into a read-only "Does this look right?"
-    # view with the same "Send Message" button.
-    - wait:
-         - value: 3
-    - click_on:
-        - value: "Send Message"
-          selector: "#email-button"
+        - selector: "input[type='submit'][name='Submit']"
   success:
     body:
       contains: "Thank You"
