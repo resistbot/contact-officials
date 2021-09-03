@@ -1,48 +1,65 @@
 contact_form:
   steps:
+    # - visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=AD09"
     - visit: "https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopup.php?district=AD$META_OFFICIAL_DISTRICT_ZFILL"
     - fill_in:
         - name: txtFirstName
-          selector: "#txtFirstName"
+          selector: "#form_name"
           value: $NAME_FIRST
           required: true
+          options:
+            max_length: 80
         - name: txtLastName
-          selector: "#txtLastName"
+          selector: "#form_lastname"
           value: $NAME_LAST
           required: true
+          options:
+            max_length: 80
         - name: txtAddress
-          selector: "#txtAddress"
+          selector: "#form_address"
           value: $ADDRESS_STREET
           required: true
+          options:
+            max_length: 60
         - name: txtCity
-          selector: "#txtCity"
+          selector: "#form_city"
           value: $ADDRESS_CITY
           required: true
+          options:
+            max_length: 60
         - name: txtZip
-          selector: "#txtZip"
+          selector: "#form_zip"
           value: $ADDRESS_ZIP5
           required: true
-        - name: txtAreaCode
-          selector: "#txtAreaCode"
-          value: $PHONE_AREA_CODE
-        - name: txtPhone1
-          selector: "#txtPhone1"
-          value: $PHONE3
-        - name: txtPhone2
-          selector: "#txtPhone2"
-          value: $PHONE4
+          options:
+            max_length: 5
+        - name: txtPhNumber
+          selector: "#txtPhNumber"
+          value: $PHONE_DIGITS_ONLY
+          required: false
+          options:
+            max_length: 14
         - name: txtEmail
-          selector: "#txtEmail"
+          selector: "#form_email"
           value: $EMAIL
           required: true
+          options:
+            max_length: 60
+    - select:
+        - name: IssueListBox
+          selector: "#IssueListBox"
+          value: $TOPIC # Different members have different options.
+          required: false
+    - fill_in:
         - name: jv_text
-          selector: "textarea[name=jv_text]"
+          selector: "#comments"
           value: $MESSAGE
           required: true
           options:
             max_length: 2000
     - click_on:
-        - value: Submit
-          selector: "input[name=submitButton]"
+        - name: submitButton
+          value: Submit
+          selector: "#submitButton"
   success:
     selector: "input[value='Close Window']"
