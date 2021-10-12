@@ -177,4 +177,4 @@ contact_form:
           selector: "input[type='submit'][name='op']"
   success:
     body:
-      contains: "Thank you for your submission"
+      contains: "Thank you very much for your email"
