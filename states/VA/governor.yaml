@@ -1,121 +1,87 @@
 contact_form:
   steps:
-    # The main page address is https://www.governor.virginia.gov/constituent-services/communicating-with-the-governors-office/.  Note that this link is inside of an iframe and required to successfully submit the form.
-    - visit: "https://solutions.virginia.gov/communityrelations2018/form/email"
+    # The main page address is https://www.governor.virginia.gov/communicating-with-the-governors-office/.  Note that this link is inside of an iframe and required to successfully submit the form.
+    - visit: "https://gov-cs-prod.powerappsportals.us/emailtogovernor/"
     - fill_in:
-        - name: "RequestedByTitle"
-          selector: "#RequestedByTitle"
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_title"
+          selector: "#cr_title"
           value: $NAME_PREFIX
           required: true
-        - name: "RequestedByFirstName"
-          selector: "#RequestedByFirstName"
+          options:
+            max_length: 255
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_firstname"
+          selector: "#cr_firstname"
           value: $NAME_FIRST
           required: true
-        - name: "RequestedByLastName"
-          selector: "#RequestedByLastName"
+          options:
+            max_length: 250
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_lastname"
+          selector: "#cr_lastname"
           value: $NAME_LAST
           required: true
-        - name: "RequestedByStreetAddress"
-          selector: "#RequestedByStreetAddress"
+          options:
+            max_length: 255
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_streetaddress"
+          selector: "#cr_streetaddress"
           value: $ADDRESS_STREET
           required: true
-        - name: "RequestedByCity"
-          selector: "#RequestedByCity"
+          options:
+            max_length: 255
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_city"
+          selector: "#cr_city"
           value: $ADDRESS_CITY
           required: true
-    - select:
-        - name: "RequestedByState"
-          selector: "#RequestedByState"
+          options:
+            max_length: 255
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_state"
+          selector: "#cr_state"
           value: $ADDRESS_STATE_FULL
           required: true
           options:
-            "Alabama": "Alabama"
-            "Alaska": "Alaska"
-            "American Samoa": "American Samoa"
-            "Arizona": "Arizona"
-            "Arkansas": "Arkansas"
-            "California": "California"
-            "Colorado": "Colorado"
-            "Connecticut": "Connecticut"
-            "Delaware": "Delaware"
-            "District of Columbia": "District of Columbia"
-            "Florida": "Florida"
-            "Georgia": "Georgia"
-            "Guam": "Guam"
-            "Hawaii": "Hawaii"
-            "Idaho": "Idaho"
-            "Illinois": "Illinois"
-            "Indiana": "Indiana"
-            "Iowa": "Iowa"
-            "Kansas": "Kansas"
-            "Kentucky": "Kentucky"
-            "Louisiana": "Louisiana"
-            "Maine": "Maine"
-            "Maryland": "Maryland"
-            "Massachusetts": "Massachusetts"
-            "Michigan": "Michigan"
-            "Minnesota": "Minnesota"
-            "Mississippi": "Mississippi"
-            "Missouri": "Missouri"
-            "Montana": "Montana"
-            "Nebraska": "Nebraska"
-            "Nevada": "Nevada"
-            "New Hampshire": "New Hampshire"
-            "New Jersey": "New Jersey"
-            "New Mexico": "New Mexico"
-            "New York": "New York"
-            "North Carolina": "North Carolina"
-            "North Dakota": "North Dakota"
-            "Northern Marianas Islands": "Northern Marianas Islands"
-            "Ohio": "Ohio"
-            "Oklahoma": "Oklahoma"
-            "Oregon": "Oregon"
-            "Pennsylvania": "Pennsylvania"
-            "Puerto Rico": "Puerto Rico"
-            "Rhode Island": "Rhode Island"
-            "South Carolina": "South Carolina"
-            "South Dakota": "South Dakota"
-            "Tennessee": "Tennessee"
-            "Texas": "Texas"
-            "Utah": "Utah"
-            "Vermont": "Vermont"
-            "Virginia": "Virginia"
-            "Virgin Islands": "Virgin Islands"
-            "Washington": "Washington"
-            "West Virginia": "West Virginia"
-            "Wisconsin": "Wisconsin"
-            "Wyoming": "Wyoming"
-    - fill_in:
-        - name: "RequestedByZipCode"
-          selector: "#RequestedByZipCode"
+            max_length: 255
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_zipcode"
+          selector: "#cr_zipcode"
           value: $ADDRESS_ZIP5
           required: true
-        - name: "RequestedByPhone"
-          selector: "#RequestedByPhone"
+          options:
+            max_length: 100
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_phone"
+          selector: "#cr_phone"
           value: $PHONE
           required: true
-        - name: "RequestedByEmail"
-          selector: "#RequestedByEmail"
+          options:
+            max_length: 100
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_emailaddress"
+          selector: "#cr_emailaddress"
           value: $EMAIL
           required: true
-        - name: "MessageSubject"
-          selector: "#MessageSubject"
+          options:
+            max_length: 255
+    - check:
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_responserequired"
+          selector: "#cr_responserequired_1"
+          value: "1"
+    - fill_in:
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_messagesubject"
+          selector: "#cr_messagesubject"
           value: $SUBJECT
           required: true
-    - check:
-        - name: "ResponseRequired"
-          selector: "#ResponseRequired"
-          value: "Yes"
-    - fill_in:
-        - name: "MessageBody"
-          selector: "#MessageBody"
+          options:
+            max_length: 200
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_messagebody"
+          selector: "#cr_messagebody"
           value: $MESSAGE
           required: true
-    - recaptcha:
-        - value: true
+          options:
+            max_length: 1000000  #wow
+        - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$captcha$CaptchaTextBox"
+          selector: "#ctl00_ContentContainer_EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView_captcha_CaptchaTextBox"
+          captcha_selector: "#ctl00_ContentContainer_EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView_captcha_CaptchaImageUP"
+          value: $CAPTCHA_SOLUTION
+          required: true
     - click_on:
         - value: "Submit"
-          selector: "input[type='submit']"
+          selector: "#InsertButton"
   success:
     body:
       contains: "Your request has been sent to the Governor's office"
