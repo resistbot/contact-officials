@@ -2,25 +2,45 @@ contact_form:
   steps:
     - visit: "$META_OFFICIAL_URL/contact"
     - fill_in:
-        - name: tbxFirstName
-          selector: "#tbxFirstName"
+        - name: firstName
+          selector: "#first-name"
           value: $NAME_FIRST
           required: true
-        - name: tbxLastName
-          selector: "#tbxLastName"
+          options:
+            max_length: 25
+        - name: lastName
+          selector: "#last-name"
           value: $NAME_LAST
           required: true
-        - name: tbxAddress
-          selector: "#tbxAddress"
+          options:
+            max_length: 25
+        - name: email
+          selector: "#email"
+          value: $EMAIL
+          required: true
+          options:
+            max_length: 50
+        - name: phone
+          selector: "#phone"
+          value: $PHONE_DIGITS_ONLY
+          required: true
+          options:
+            max_length: 14
+        - name: address.addressLine1
+          selector: "#address-line-1"
           value: $ADDRESS_STREET
           required: true
-        - name: tbxCity
-          selector: "#tbxCity"
+          options:
+            max_length: 50
+        - name: address.city
+          selector: "#city"
           value: $ADDRESS_CITY
           required: true
+          options:
+            max_length: 50
     - select:
-        - name: ddlState
-          selector: '#ddlState'
+        - name: address.state
+          selector: "#state"
           value: $ADDRESS_STATE_POSTAL_ABBREV
           required: true
           options:
@@ -76,36 +96,28 @@ contact_form:
             - WI
             - WY
     - fill_in:
-        - name: tbxZipCode
-          selector: "#tbxZipCode"
+        - name: address.zip
+          selector: "#zip"
           value: $ADDRESS_ZIP5
           required: true
-        - name: tbxAreaCode
-          selector: "#tbxAreaCode"
-          value: $PHONE_AREA_CODE
-          required: true
-        - name: tbxPrefix
-          selector: "#tbxPrefix"
-          value: $PHONE3
-          required: true
-        - name: tbxLineNumber
-          selector: "#tbxLineNumber"
-          value: $PHONE4
-          required: true
-        - name: tbxEmail
-          selector: "#tbxEmail"
-          value: $EMAIL
-          required: true
-        - name: tbxSubject
-          selector: "#tbxSubject"
+          options:
+            max_length: 5
+        - name: subject
+          selector: "#subject"
           value: $SUBJECT
           required: true
-        - name: tbxMessage
-          selector: "#tbxMessage"
+          options:
+            max_length: 50
+        - name: message
+          selector: "#message"
           value: $MESSAGE
           required: true
+          options:
+            max_length: 3800
+    - recaptcha:
+        - value: true
     - click_on:
-        - selector: "#ibtSubmit"
+        - selector: 'button[type="submit"]'
   success:
     body:
       contains: "Message Sent Successfully"
