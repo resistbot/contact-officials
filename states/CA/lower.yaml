@@ -51,7 +51,8 @@ contact_form:
     #       selector: "#IssueListBox"
     #       value: $TOPIC # Different members have different options.
     #       required: false
-    # - fill_in:        - name: jv_text
+    # - fill_in:
+        - name: jv_text
           selector: "#comments"
           value: $MESSAGE
           required: true
