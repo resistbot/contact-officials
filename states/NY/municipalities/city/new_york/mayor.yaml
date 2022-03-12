@@ -1,0 +1,94 @@
+contact_form:
+  steps:
+    - visit: "https://www1.nyc.gov/office-of-the-mayor/mayor-contact.page"
+    - select:
+      - name: "Topic"
+        selector: "select[name='Topic']"
+        value: "VIEWS"
+        required: true
+        options:
+          "BUD": "Budget"
+          "ED": "Education"
+          "ENVIRONMENT": "Environmental Concerns"
+          "VIEWS": "General Views"
+          "HOMELESS": "Homelessness"
+          "HOUSING": "Housing"
+          "IDEAS": "Ideas or Suggestions"
+          "PUBLICSAFETY": "Public Safety"
+          "QOL": "Quality of Life"
+          "CASE": "Request for Assistance"
+          "SCHED": "Scheduling Requests"
+          "TRANSPORT": "Traffic Safety"
+          "TRANSPORT": "Transportation"
+          "OTHER": "Other"
+    - fill_in:
+      - name: "Message"
+        selector: "textarea[name='Message']"
+        value: $MESSAGE
+        required: true
+      - name: "M/M"
+        selector: "input[name='M/M']"
+        value: $NAME_PREFIX
+        required: false
+      - name: "First Name"
+        selector: "input[name='First Name']"
+        value: $NAME_FIRST
+        required: false
+      - name: "Middle Name"
+        selector: "input[name='Middle Name']"
+        value: ""
+        required: false
+      - name: "Last Name"
+        selector: "input[name='Last Name']"
+        value: $NAME_LAST
+        required: false
+      - name: "Suffix"
+        selector: "input[name='Suffix']"
+        value: ""
+        required: false
+      - name: "Street Address"
+        selector: "input[name='Street Address']"
+        value: $ADDRESS_STREET
+        required: false
+      - name: "Address Number" ## label says 'Address 2'
+        selector: "input[name='Address Number']"
+        value: $ADDRESS_STREET_2
+        required: false
+      - name: "City"
+        selector: "input[name='City']"
+        value: $ADDRESS_CITY
+        required: false
+    - select:
+      - name: "State"
+        selector: "select[name='State']"
+        value: $ADDRESS_STATE_POSTAL_ABBREV
+        required: false
+        options: US_STATES
+    - fill_in:
+      - name: "Postal Code"
+        selector: "input[name='Postal Code']"
+        value: $ADDRESS_ZIP5
+        required: true
+        options:
+          max_length: 10
+    - select:
+      - name: "Country"
+        selector: "select[name='Country']"
+        value: "United States"
+        required: false
+    - fill_in:
+      - name: "Work Phone #" ## label says 'Phone'
+        selector: "input[name='Work Phone #']"
+        value: $PHONE
+        required: false
+      - name: "Email Address"
+        selector: "input[name='Email Address']"
+        value: $EMAIL
+        required: false
+    - recaptcha:
+      - value: true
+    - click_on:
+      - selector: "button.btn.btn-form-submit"
+  success:
+    body:
+      contains: "Thank You For Filling Out This Form"
