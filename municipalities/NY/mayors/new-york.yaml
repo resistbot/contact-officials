@@ -51,7 +51,7 @@ contact_form:
         selector: "input[name='Street Address']"
         value: $ADDRESS_STREET
         required: false
-      - name: "Address Number" ## label says 'Address 2'
+      - name: "Address Number"  ## label says 'Address 2'
         selector: "input[name='Address Number']"
         value: $ADDRESS_STREET_2
         required: false
@@ -78,7 +78,7 @@ contact_form:
         value: "United States"
         required: false
     - fill_in:
-      - name: "Work Phone #" ## label says 'Phone'
+      - name: "Work Phone #"  ## label says 'Phone'
         selector: "input[name='Work Phone #']"
         value: $PHONE
         required: false
