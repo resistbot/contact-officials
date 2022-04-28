@@ -9,10 +9,10 @@
 
 contact_form:
   steps:
-    - visit: "https://forms.whitehouse.gov/contact/"
+    - visit: "https://www.whitehouse.gov/contact/"
     - select:
-      - name: Contact.Case.Who_are_you_trying_to_contact__c
-        selector: "select[name='Contact.Case.Who_are_you_trying_to_contact__c']"
+      - name: Subject
+        selector: "select[name='Subject']"
         value: "Contact the President"
         required: true
         options:
@@ -20,56 +20,56 @@ contact_form:
           - "Contact the Vice President"
           - "Help with a Federal Agency"
           - "Question about the Website"
-      - name: Contact.Salutation
-        selector: "select[name='Contact.Salutation']"
+      - name: Prefix
+        selector: "select[name='Prefix']"
         value: $NAME_PREFIX
         required: false
     - fill_in:
-      - name: Contact.FirstName
-        selector: "input[name='Contact.FirstName']"
+      - name: FirstName
+        selector: "input[name='FirstName']"
         value: $NAME_FIRST
         required: true
         options:
           max_length: 40
-      - name: Contact.LastName
-        selector: "input[name='Contact.LastName']"
+      - name: lastName
+        selector: "input[name='lastName']"
         value: $NAME_LAST
         required: true
         options:
           max_length: 80
-      - name: Contact.Email
-        selector: "input[name='Contact.Email']"
+      - name: email_address
+        selector: "input[name='email_address']"
         value: $EMAIL
         required: true
         options:
           max_length: 80
-      - name: Contact.HomePhone
-        selector: "input[name='Contact.HomePhone']"
+      - name: phone
+        selector: "input[name='phone']"
         value: $PHONE
         required: true
         options:
           max_length: 40
     - select:
-      - name: Contact.MailingCountryCode
-        selector: "select[name='Contact.MailingCountryCode']"
+      - name: country
+        selector: "select[name='country']"
         value: "United States"
         required: true
     - fill_in:
-      - name: Contact.MailingStreet
-        selector: "textarea[name='Contact.MailingStreet']"
+      - name: Street
+        selector: "textarea[name='Street']"
         value: $ADDRESS_STREET
         required: true
         options:
           max_length: 255
-      - name: Contact.MailingCity
-        selector: "input[name='Contact.MailingCity']"
+      - name: City
+        selector: "input[name='City']"
         value: $ADDRESS_CITY
         required: true
         options:
           max_length: 40
     - select:
-      - name: Contact.MailingState
-        selector: "select[name='Contact.MailingState']"
+      - name: State
+        selector: "select[name='State']"
         value: $ADDRESS_STATE_FULL
         required: true
         options:
@@ -137,21 +137,25 @@ contact_form:
           - Wisconsin
           - Wyoming
     - fill_in:
-      - name: Contact.MailingPostalCode
-        selector: "input[name='Contact.MailingPostalCode']"
+      - name: zipcode
+        selector: "input[name='zipcode']"
         value: $ADDRESS_ZIP5
         required: true
         options:
-          max_length: 20
-      - name: Contact.Case.Description
-        selector: "textarea[name='Contact.Case.Description']"
+          max_length: 5
+      - name: message
+        selector: "textarea[name='message']"
         value: $MESSAGE
         required: true
         options:
           max_length: 2000
     - uncheck:
-      - name: Contact.Contact_Us_Email_Opt_In__c
-        selector: "input[name='Contact.Contact_Us_Email_Opt_In__c']"
+      - name: Optin_code
+        selector: "input[name='Optin_code']"
+    - recaptcha:
+        - value: true
+          version: "V3"
+          response_selector: "recaptcha"
     - click_on:
       - value: Send
         selector: 'input[type=submit][value=Send]'
