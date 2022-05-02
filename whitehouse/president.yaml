@@ -149,6 +149,9 @@ contact_form:
           required: true
           options:
             max_length: 2000
+    - uncheck:
+        - name: Optin_code
+          selector: "input[name='Optin_code']"
     - javascript:
         - value: var input = document.createElement('input'); input.type = 'textarea'; input.setAttribute('id','g-recaptcha-response');
     - javascript:
