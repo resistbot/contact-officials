@@ -1,0 +1,40 @@
+contact_form:
+  steps:
+    - visit: "https://www.supremecourt.gov/contact/contact_pio.aspx"
+    - fill_in:
+        - name: "ctl00$ctl00$MainEditable$mainContent$txbName"
+          selector: "#ctl00_ctl00_MainEditable_mainContent_txbName"
+          value: $NAME_FULL
+          required: true
+          options:
+            max_length: 60
+        - name: "ctl00$ctl00$MainEditable$mainContent$txbEmailAddress"
+          selector: "#ctl00_ctl00_MainEditable_mainContent_txbEmailAddress"
+          value: $EMAIL
+          required: true
+          options:
+            max_length: 60
+        - name: "ctl00$ctl00$MainEditable$mainContent$txbSubject"
+          selector: "#ctl00_ctl00_MainEditable_mainContent_txbSubject"
+          value: $SUBJECT
+          required: true
+          options:
+            max_length: 60
+        - name: "ctl00$ctl00$MainEditable$mainContent$txbEbody"
+          selector: "#ctl00_ctl00_MainEditable_mainContent_txbEbody"
+          value: $MESSAGE
+          required: true
+    - fill_in:
+        - name: ctl00$ctl00$MainEditable$mainContent$CaptchaCodeTextBox
+          selector: "#ctl00_ctl00_MainEditable_mainContent_CaptchaCodeTextBox"
+          captcha_selector: "#c_contact_contact_pio_ctl00_ctl00_maineditable_maincontent_captcha1_CaptchaImage"
+          captcha_append_guidance: "type the letters in the image"
+          value: $CAPTCHA_SOLUTION
+          required: true
+    - click_on:
+        - name: "ctl00$ctl00$MainEditable$mainContent$btnSend"
+          selector: "#ctl00_ctl00_MainEditable_mainContent_btnSend"
+          value: "Send"
+  success:
+    body:
+      contains: "Message Sent!"
