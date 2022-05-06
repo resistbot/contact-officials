@@ -166,6 +166,7 @@ contact_form:
         - value: true
           version: "V3"
           response_selector: "recaptcha"
+          v3_action: "contact_2022_03_14"
     - click_on:
         - value: Send
           selector: 'input[type=submit][value=Send]'
