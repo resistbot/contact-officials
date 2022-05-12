@@ -42,6 +42,10 @@ easier for everybody to be heard in local politics.
   * president.yml  # for the White House
   ... configs for other federal executives with web forms, as Resistbot adds support ...
 
+- us
+  * scotus.yml  # for SCOTUS
+  ... configs for other national levels with web forms, as Resistbot adds support ...
+
 - municipalities
   - NY
     - mayors
