@@ -1,124 +1,75 @@
 contact_form:
   steps:
     - visit: "https://governor.nc.gov/contact/contact-governor-cooper"
+    - find:
+        - selector: "#edit-first-name"
     - fill_in:
-        - name: submitted[first_name]
-          selector: "#edit-submitted-first-name"
+        - name: "first_name"
+          selector: "#edit-first-name"
           value: $NAME_FIRST
           required: true
           options:
-            max_length: 20
-        - name: "submitted[last_name]"
-          selector: "#edit-submitted-last-name"
+            max_length: 255
+        - name: "last_name"
+          selector: "#edit-last-name"
           value: $NAME_LAST
           required: true
           options:
-            max_length: 30
-        - name: "submitted[city]"
-          selector: "#edit-submitted-city"
+            max_length: 255
+        - name: "city"
+          selector: "#edit-city"
           value: $ADDRESS_CITY
           required: true
           options:
-            max_length: 128
-    # This contact form uses some kind of reformatted style for the drop down box using a list inside spans.  The JS below just removes the "display; none" style from the underlying select element so that Selenium can interact with it.
-    - javascript:
-        - value: "document.querySelector('#edit-submitted-state').removeAttribute('style');"
+            max_length: 255
     - select:
-        - name: "submitted[state]"
-          selector: "#edit-submitted-state"
-          value: "$ADDRESS_STATE_POSTAL_ABBREV"
+        - name: "state"
+          selector: "#edit-state"
+          value: "$ADDRESS_STATE_FULL"
           required: true
-          options:
-            "AL": "Alabama"
-            "AK": "Alaska"
-            "AS": "American Samoa"
-            "AZ": "Arizona"
-            "AR": "Arkansas"
-            "CA": "California"
-            "CO": "Colorado"
-            "CT": "Connecticut"
-            "DE": "Delaware"
-            "DC": "District of Columbia"
-            "FL": "Florida"
-            "GA": "Georgia"
-            "GU": "Guam"
-            "HI": "Hawaii"
-            "ID": "Idaho"
-            "IL": "Illinois"
-            "IN": "Indiana"
-            "IA": "Iowa"
-            "KS": "Kansas"
-            "KY": "Kentucky"
-            "LA": "Louisiana"
-            "ME": "Maine"
-            "MH": "Marshall Islands"
-            "MD": "Maryland"
-            "MA": "Massachusetts"
-            "MI": "Michigan"
-            "MN": "Minnesota"
-            "MS": "Mississippi"
-            "MO": "Missouri"
-            "MT": "Montana"
-            "NE": "Nebraska"
-            "NV": "Nevada"
-            "NH": "New Hampshire"
-            "NJ": "New Jersey"
-            "NM": "New Mexico"
-            "NY": "New York"
-            "NC": "North Carolina"
-            "ND": "North Dakota"
-            "MP": "Northern Marianas Islands"
-            "OH": "Ohio"
-            "OK": "Oklahoma"
-            "OR": "Oregon"
-            "PW": "Palau"
-            "PA": "Pennsylvania"
-            "PR": "Puerto Rico"
-            "RI": "Rhode Island"
-            "SC": "South Carolina"
-            "SD": "South Dakota"
-            "TN": "Tennessee"
-            "TX": "Texas"
-            "UT": "Utah"
-            "VT": "Vermont"
-            "VI": "Virgin Islands"
-            "VA": "Virginia"
-            "WA": "Washington"
-            "WV": "West Virginia"
-            "WI": "Wisconsin"
-            "WY": "Wyoming"
+          options: US_STATES
     - fill_in:
-        - name: "submitted[email]"
-          selector: "#edit-submitted-email"
+        - name: "email"
+          selector: "#edit-email"
           value: $EMAIL
           required: true
     - check:
-        - name: "submitted[does_this_email_require_a_response]"
-          selector: "#edit-submitted-does-this-email-require-a-response-1"
-          value: "1"
+        - name: "does_this_email_require_a_response_"
+          selector: "#edit-does-this-email-require-a-response-yes"
+          value: "Yes"
           required: true
     - fill_in:
-        - name: "submitted[phone_number]"
-          selector: "#edit-submitted-phone-number"
+        - name: "telephone_number"
+          selector: "#edit-telephone-number"
           value: "$PHONE"
-    - check:
-        - name: "submitted[issue]"
-          selector: "#edit-submitted-issue-11"
-          value: "11"
+    - select:
+        - name: "issue[select]"
+          selector: "#edit-issue-select"
+          value: "_other_"
           required: true
+          values:
+            "disaster_recovery": "Disaster Recovery"
+            "education": "Education"
+            "environment": "environment"
+            "healthcare": "healthcare"
+            "infrastructure": "Infrastructure"
+            "jobs_economy": "Jobs/Economy"
+            "military_veterans": "Military/Veterans"
+            "pubic_safety": "Public Safety"
+            "transport": " Transportation/Eminent Domain"
+            "workforce": "Workforce Development"
+            "_other_": "Other issue…"
     - fill_in:
-        - name: "submitted[other_issue]"
-          selector: "#edit-submitted-other-issue"
+        - name: "issue[other]"
+          selector: "#edit-issue-other"
           value: "$SUBJECT"
-        - name: "submitted[message]"
-          selector: "#edit-submitted-message"
+        - name: "message"
+          selector: "#edit-message"
           value: "$MESSAGE"
           require: true
-    - recaptcha:
-        - value: true
     - click_on:
         - value: "Submit"
           selector: "input[value=Submit][name=op]"
   success:
     body:
-      contains: "This message confirms we have received your email"
+      contains: "New submission added to Contact Governor Cooper"
