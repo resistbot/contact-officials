@@ -1,9 +1,6 @@
 contact_form:
   steps:
     - visit: "https://www.governor.pa.gov/contact/#OnlineForm"
-    # This click is to close a pop-up frame to sign up for a newsletter.  It only appears once on a normal browser:
-    - click_on:
-        - selector: "#newsletterModal2 > button"
     - select:
         - name: "nf-field-7071"
           selector: "#nf-field-7071"
