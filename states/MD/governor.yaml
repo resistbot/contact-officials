@@ -26,6 +26,10 @@ contact_form:
           selector: "#zip"
           value: $ADDRESS_ZIP5
           required: true
+        - name: "phone"
+          selector: "#phone"
+          value: $PHONE
+          required: false
         - name: "email"
           selector: "#email"
           value: $EMAIL
@@ -86,6 +90,8 @@ contact_form:
             "Unemployment": "Unemployment"
             "Veterans Affairs": "Veterans Affairs"
             "Women's Issues": "Women's Issues"
+    - recaptcha:
+        - value: true
     - click_on:
         - value: Submit
           selector: "#cf7-submit"
