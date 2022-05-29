@@ -1,6 +1,8 @@
 contact_form:
   steps:
     - visit: "https://iqconnect.lmhostediq.com/iqextranet/EForm.aspx?__cid=FSL_SD_GOV&__fid=2100060"
+    - javascript:
+        - value: "Array.prototype.forEach.call(document.querySelectorAll('style,[rel=\"stylesheet\"],[type=\"text/css\"]'), function(element){ try{ element.parentNode.removeChild(element) } catch(err){} });"
     - fill_in:
         - name: "qi_1_prefix"
           selector: "#qi_1_prefix"
@@ -115,9 +117,6 @@ contact_form:
           selector: "#qi_3"
           value: $MESSAGE
           required: true
-    # Need to unhide the element to click it.
-    - javascript:
-        - value: "document.querySelector('#qi_5_1').classList.remove('hidden');"
     - check:
         - name: "qi_5"
           selector: "#qi_5_1"
