@@ -2,80 +2,116 @@ contact_form:
   steps:
     - visit: "https://gov.texas.gov/apps/contact/opinion.aspx"
     - select:
-        - name: "ctl00$ContentPlaceHolder1$DropDownList1"
-          selector: "#ctl00_ContentPlaceHolder1_DropDownList1"
+        - name: "ContactDto.Prefix"
+          selector: "#ContactDto_Prefix"
           value: $NAME_PREFIX
           required: true
           options:
-            "Mr.": "2"
-            "Ms.": "3"
-            "Mrs.": "1"
-            "Dr.": "5"
-        - name: "ctl00$ContentPlaceHolder1$Dropdownlist3"
-          selector: "#ctl00_ContentPlaceHolder1_Dropdownlist3"
+            "Mr.": Mr.
+            "Ms.": Ms.
+            "Mrs.": Mrs.
+            "Miss": Miss
+            "Mr. and Mrs.": Mr. and Mrs.
+            "Dr.": Dr.
+            "The Honorable": The Honorable
+            "None": None
+    - fill_in:
+        - name: "ContactDto.FirstName"
+          selector: "#ContactDto_FirstName"
+          value: $NAME_FIRST
+          required: true
+        - name: "ContactDto.LastName"
+          selector: "#ContactDto_LastName"
+          value: $NAME_LAST
+          required: true
+    - check:
+        - name: "ContactDto.AddressType"
+          selector: "#addressType1"
+          value: "Street Address"
+          required: true
+    - fill_in:
+        - name: "ContactDto.Address"
+          selector: "#ContactDto_Address"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "ContactDto.City"
+          selector: "#ContactDto_City"
+          value: $ADDRESS_CITY
+          required: true
+    - select:
+        - name: "ContactDto.State"
+          selector: "#ContactDto_State"
           value: $ADDRESS_STATE_POSTAL_ABBREV
           required: true
           options: US_STATES
-        - name: "ctl00$ContentPlaceHolder1$DropDownList2"
-          selector: "#ctl00_ContentPlaceHolder1_DropDownList2"
+    - fill_in:
+        - name: "ContactDto.ZipCode"
+          selector: "#ContactDto_ZipCode"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "ContactDto.Email"
+          selector: "#ContactDto_Email"
+          value: $EMAIL
+          required: true
+        - name: "ContactDto.ConfirmEmail"
+          selector: "#ContactDto_ConfirmEmail"
+          value: $EMAIL
+          required: true
+        - name: "ContactDto.Phone"
+          selector: "#ContactDto_Phone"
+          value: $PHONE
+          required: false
+    - select:
+        - name: "ContactDto.Issue"
+          selector: "#ContactDto_Issue"
           value: "Other"
           required: true
           options:
-            "Property Tax": "161"
-            "Insurance": "162"
-            "Education - Public": "157"
-            "Environment": "152"
-            "Gun Control": "158"
-            "Immigration": "140"
-            "Renewable Energy": "155"
-            "Transportation": "153"
-            "Water Issues": "156"
-            "Other": "160"
+            "Agriculture and Livestock": Agriculture and Livestock
+            "Border Security": Border Security
+            "Business and Commerce": Business and Commerce
+            "Ceremonial Items": Ceremonial Items
+            "Civil Law and Rights": Civil Law and Rights
+            "Corrections": Corrections
+            "Criminal Law and Justice": Criminal Law and Justice
+            "Culture and History": Culture and History
+            "Education": Education
+            "Elections": Elections
+            "Emergency Management": Emergency Management
+            "Energy": Energy
+            "Environment": Environment
+            "Finance and Spending": Finance and Spending
+            "Governor": Governor
+            "Health": Health
+            "Higher Education": Higher Education
+            "Human Services": Human Services
+            "Insurance": Insurance
+            "Judiciary": Judiciary
+            "Legislature": Legislature
+            "Local Government": Local Government
+            "Military and Veterans": Military and Veterans
+            "Parks and Wildlife": Parks and Wildlife
+            "Public Safety": Public Safety
+            "Regulated Industries": Regulated Industries
+            "Regulated Occupations": Regulated Occupations
+            "Retirement Systems": Retirement Systems
+            "Scheduling Requests": Scheduling Requests
+            "Taxes and Revenue": Taxes and Revenue
+            "Texas Government": Texas Government
+            "Transportation": Transportation
+            "US Government": US Government
+            "Utilities": Utilities
+            "Workforce": Workforce
+            "Other": Other
     - fill_in:
-        - name: "ctl00$ContentPlaceHolder1$txtFirst"
-          selector: "#ctl00_ContentPlaceHolder1_txtFirst"
-          value: $NAME_FIRST
-          required: true
-        - name: "ctl00$ContentPlaceHolder1$txtLast"
-          selector: "#ctl00_ContentPlaceHolder1_txtLast"
-          value: $NAME_LAST
-          required: true
-        - name: "ctl00$ContentPlaceHolder1#txtAddress"
-          selector: "#ctl00_ContentPlaceHolder1_txtAddress"
-          value: $ADDRESS_STREET
-          required: true
-        - name: "ctl00$ContentPlaceHolder1$txtCity"
-          selector: "#ctl00_ContentPlaceHolder1_txtCity"
-          value: $ADDRESS_CITY
-          required: true
-        - name: "ctl00$ContentPlaceHolder1$txtZip"
-          selector: "#ctl00_ContentPlaceHolder1_txtZip"
-          value: $ADDRESS_ZIP5
-          required: true
-        - name: "ctl00$ContentPlaceHolder1$txtEmail"
-          selector: "#ctl00_ContentPlaceHolder1_txtEmail"
-          value: $EMAIL
-          required: true
-        - name: "ctl00$ContentPlaceHolder1$txtEmail2"
-          selector: "#ctl00_ContentPlaceHolder1_txtEmail2"
-          value: $EMAIL
-          required: true
-        - name: "ctl00$ContentPlaceHolder1$txtPhone"
-          selector: "#ctl00_ContentPlaceHolder1_txtPhone"
-          value: $PHONE
-          required: false
-        - name: "ctl00$ContentPlaceHolder1$txtMessage"
-          selector: "#ctl00_ContentPlaceHolder1_txtMessage"
+        - name: "ContactDto.Comments"
+          selector: "#ContactDto_Comments"
           value: $MESSAGE
           required: true
-    - check:
-        - name: "ctl00$ContentPlaceHolder1$RadioButtonList1$0"
-          selector: "#ctl00_ContentPlaceHolder1_RadioButtonList1_0"
-          value: "1"
-          required: true
     - click_on:
-        - value: "Send Message"
-          selector: "#ctl00_ContentPlaceHolder1_Button1"
+        - name: "submit"
+          value: "Send Message"
+          selector: "#submit"
   success:
     body:
       contains: "Thank You for Contacting"
