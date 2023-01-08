@@ -61,6 +61,8 @@ contact_form:
         - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_responserequired"
           selector: "#cr_responserequired_1"
           value: "1"
+    - javascript:
+        - value:  document.querySelector('input[name="ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_topicid"]').value = 'b16e750e-6e72-ed11-9562-001dd807278f';
     - fill_in:
         - name: "ctl00$ContentContainer$EntityFormControl_640fb563c235ec11b6e5001dd804c15c$EntityFormControl_640fb563c235ec11b6e5001dd804c15c_EntityFormView$cr_messagesubject"
           selector: "#cr_messagesubject"
