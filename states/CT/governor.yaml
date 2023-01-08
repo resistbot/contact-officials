@@ -1,132 +1,69 @@
 contact_form:
   steps:
-    - visit: "https://portal.ct.gov/Office-of-the-Governor/Contact/Email-Governor-Lamont"
+    - visit: "https://iqconnect.lmhostediq.com/iqextranet/EForm.aspx?__cid=lmhostedCTGov&__fid=100003"
     - select:
-        - name: "NamePrefix"
-          selector: "#NamePrefix"
+        - name: "qi_1_prefix"
+          selector: "#qi_1_prefix"
           value: $NAME_PREFIX
           required: false
           options:
-            "Chaplain": "Chaplain"
-            "Congressman": "Congressman"
-            "Congresswoman": "Congresswoman"
-            "Dr": "Dr."
-            "Father": "Father"
-            "Miss": "Miss"
-            "Mr": "Mr."
-            "Mr and Mrs": "Mr. and Mrs."
-            "Mrs": "Mrs."
-            "Ms": "Ms."
-            "Rabbi": "Rabbi"
-            "Representative": "Representative"
-            "Honorable": "Honorable"
-            "The Reverend": "The Reverend"
+            "0_Miss": "Miss"
+            "1_Mr.": "Mr."
+            "2_Mr. and Mrs.": "Mr. and Mrs."
+            "3_Mrs.": "Mrs."
+            "4_Ms.": "Ms."
     - fill_in:
-        - name: "FirstName"
-          selector: "#FirstName"
+        - name: "qi_1_first_name"
+          selector: "#qi_1_first_name"
           value: $NAME_FIRST
           required: true
-          options:
-            max_length: 40
-        - name: "LastName"
-          selector: "#LastName"
+        - name: "qi_1_last_name"
+          selector: "#qi_1_last_name"
           value: $NAME_LAST
           required: true
-          options:
-            max_length: 40
-        - name: "NameSuffix"
-          selector: "#NameSuffix"
-          value: ""
-          required: false
-        - name: "HomePhone"
-          selector: "#HomePhone"
-          value: $PHONE
-          required: false
-          options:
-            max_length: 12
-        - name: "BusinessPhone"
-          selector: "#BusinessPhone"
-          value: ""
-          required: false
-          options:
-            max_length: 12
-        - name: "CellPhone"
-          selector: "#CellPhone"
-          value: ""
-          required: false
-          options:
-            max_length: 12
-        - name: "Email"
-          selector: "#Email"
-          value: $EMAIL
-          required: true
-          options:
-            max_length: 40
-        - name: "Street"
-          selector: "#Street"
+        - name: "qi_1_addr_1"
+          selector: "#qi_1_addr_1"
           value: $ADDRESS_STREET
           required: true
-          options:
-            max_length: 40
-        - name: "City"
-          selector: "#City"
+        - name: "qi_1_city"
+          selector: "#qi_1_city"
           value: $ADDRESS_CITY
           required: true
-          options:
-            max_length: 25
-        - name: "State"
-          selector: "#State"
+    - select:
+        - name: "qi_1_state"
+          selector: "#qi_1_state"
           value: $ADDRESS_STATE_FULL
           required: true
-          options:
-            max_length: 25
-        - name: "ZipCode"
-          selector: "#ZipCode"
+          options: US_STATES
+    - fill_in:
+        - name: "qi_1_zip"
+          selector: "#qi_1_zip"
           value: $ADDRESS_ZIP5
           required: true
-          options:
-            max_length: 5
+        - name: "qi_1_email"
+          selector: "#qi_1_email"
+          value: $EMAIL
+          required: true
+        - name: "qi_1_hphone"
+          selector: "#qi_1_hphone"
+          value: $PHONE
+          required: false
     - select:
-        - name: "InterestArea"
-          selector: "#InterestArea"
+        - name: "qi_2"
+          selector: "#qi_2"
           value: "General Comments"
           required: true
-          options:
-            "HEALTHAHA": "Affordable Healthcare Act"
-            "BANKINGGEN": "Banking"
-            "BUDGETGEN": "Budget"
-            "CONSUMGEN": "Consumer Protection"
-            "CORRECTGEN": "Corrections"
-            "DDSGEN": "Developmental Services"
-            "ECONDEVGEN": "Economic Development"
-            "EDUCGEN": "Education"
-            "ENERGYGEN": "Energy"
-            "ENVIROGEN": "Environment"
-            "COMMENTSGEN": "General Comments"
-            "COMPLAINTSGEN": "General Complaints"
-            "HEALTHGEN": "Healthcare Issues"
-            "HIGHERED": "Higher Education"
-            "InsuranceGEN": "Insurance"
-            "JUDICIALGEN": "Judicial/Legal"
-            "LegislativeISSUE": "Legislative"
-            "HOUSINGMORTGEN": "Mortgage Issues"
-            "PUBSAFEGEN": "Public Safety"
-            "REVSVCGENERAL": "Revenue Services"
-            "Social Services": "Social Services"
-            "Taxes": "Taxes"
-            "DOTGEN": "Transportation"
-            "Transportation Infrastructure": "Transportation Infrastructure"
-            "VETGENERAL": "Veterans"
     - fill_in:
-        - name: "Comments"
-          selector: "#Comments"
+        - name: "qi_3"
+          selector: "#qi_3"
           value: $MESSAGE
           required: true
-          options:
-            max_length: 1000
     - click_on:
-        - value: "Submit Form"
-          selector: "input[type='submit']"
+        - value: "Submit"
+          selector: "input[type='submit'][id='btn_submit']"
+    - click_on:
+        - value: "Submit"
+          selector: "input[type='submit'][id='btn_rev_submit']"
   success:
-    body:
-      contains: "Your email has been received"
+    alert:
+      contains: "Thank You"
