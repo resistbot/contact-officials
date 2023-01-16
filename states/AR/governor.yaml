@@ -1,51 +1,73 @@
 contact_form:
   steps:
-    - visit: "https://governor.arkansas.gov/online-services/contact-us/"
+    - visit: "https://governor.arkansas.gov/online-services/contact-the-governor/"
+    ### technically, nothing is required by this form.  it can be submitted completely blank.
     - select:
-        - name: "00Nt0000000IPWl"
-          selector: "select[id='00Nt0000000IPWl']"
-          value: "General Comments / Concerns"
+        - name: "input_1"
+          selector: "#input_7_1"
+          value: "Governor"
           required: false
+          ## The prefix options are very limiting (Thanks Arkansas!)  By making required:false, if we can't match the correct prefix, we'll just use whatever the page shows, perhaps incorrectly, but the submission won't fail.
+        - name: "input_3"
+          selector: "#input_7_3"
+          value: $NAME_PREFIX
+          required: false
+          options:
+            "Mr.": "Mr."
+            "Ms.": "Ms."
+            "Mrs.": "Mrs."
+            "Other": "Other"
     - fill_in:
-        - name: "name"
-          selector: "#name"
-          value: $NAME_FULL
+        - name: "input_4.3"
+          selector: "#input_7_4_3"
+          value: $NAME_FIRST
           required: false
-        - name: "00Nt0000000IPXP"
-          selector: "input[id='00Nt0000000IPXP']"
+        - name: "input_4.6"
+          selector: "#input_7_4_6"
+          value: $NAME_LAST
+          required: false
+        - name: "input_5.1"
+          selector: "#input_7_5_1"
           value: $ADDRESS_STREET
           required: false
-        - name: "00Nt0000000IPWn"
-          selector: "input[id='00Nt0000000IPWn']"
+        - name: "input_5.2"
+          selector: "#input_7_5_2"
+          value: $ADDRESS_STREET_2
+          required: false
+        - name: "input_5.3"
+          selector: "#input_7_5_3"
           value: $ADDRESS_CITY
           required: false
-    - select:
-        - name: "00Nt0000000IPXO"
-          selector: "select[id='00Nt0000000IPXO']"
-          value: $ADDRESS_STATE_POSTAL_ABBREV
+        - name: "input_5.4"
+          selector: "#input_7_5_4"
+          value: $ADDRESS_STATE_FULL
           required: false
-          options: US_STATE_ABBREVIATIONS
-    - fill_in:
-        - name: "00Nt0000000IPXU"
-          selector: "input[id='00Nt0000000IPXU']"
+        - name: "input_5.5"
+          selector: "#input_7_5_5"
           value: $ADDRESS_ZIP5
           required: false
-        - name: "email"
-          selector: "#email"
+    - select:
+        - name: "input_5.6"
+          selector: "#input_7_5_6"
+          value: "United States"
+          required: false
+    - fill_in:
+        - name: "input_6"
+          selector: "#input_7_6"
           value: $EMAIL
           required: false
-        - name: "phone"
-          selector: "#phone"
+        - name: "input_7"
+          selector: "#input_7_7"
           value: $PHONE
           required: false
-        - name: "00Nt0000000IPWo"
-          selector: "textarea[id='00Nt0000000IPWo']"
+        - name: "input_14"
+          selector: "#input_7_14"
           value: $MESSAGE
           required: false
     - click_on:
         - name: "submit"
-          value: "submit"
-          selector: "input[type='submit']"
+          value: "Submit"
+          selector: "#gform_submit_button_7"
   success:
     body:
-      contains: "Thank you for contacting the Governor's Office. "
+      contains: "Thanks for contacting us"
