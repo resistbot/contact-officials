@@ -152,6 +152,9 @@ contact_form:
         - name: "btn_submit"
           value: "Submit"
           selector: "#btn_submit"
+        - name: "btn_rev_submit"
+          value: "Submit"
+          selector: "#btn_rev_submit"
   success:
     alert:
       contains: "Thank"
