@@ -164,7 +164,7 @@ contact_form:
         - selector: "#g-recaptcha-response"
     - javascript:
         - value: |
-            var recaptcha_id = document.querySelector("input[name^=recaptcha]").getAttribute("id"); window.WHReCaptchaForms[recaptcha_id] = function (callback) { callback(); };
+            var form_id = document.querySelector("form[id^=form]").getAttribute("id"); window.WHReCaptchaForms[form_id] = function (callback) { callback(); };
     - recaptcha:
         - value: true
           version: "V3"
