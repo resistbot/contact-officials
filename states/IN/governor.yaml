@@ -212,9 +212,8 @@ contact_form:
           selector: "#message"
           value: $MESSAGE
           required: true
-    - click_on:
-        - value: "Submit"
-          selector: "input[type='submit'][value='Submit']"
+    - javascript:
+        - value: document.querySelector("#submit-form").click();
   success:
     body:
       contains: "Thank you for your email"
