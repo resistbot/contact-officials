@@ -1,111 +1,105 @@
+# This is a direct copy from contact-congress.
+# At this time, unknown if we _need_ this here but Discovery might
+# assume it's here for integration testing.
 bioguide: P000603
 contact_form:
-  method: post
-  action: "/connect/email-rand"
-  steps:
-    - visit: "https://www.paul.senate.gov/connect/email-rand"
-    - fill_in:
-        - name: prefix
-          selector: "#edit-prefix"
-          value: $NAME_PREFIX
-          required: true
-        - name: first
-          selector: "#edit-first"
-          value: $NAME_FIRST
-          required: true
-        - name: last
-          selector: "#edit-last"
-          value: $NAME_LAST
-          required: true
-        - name: addr1
-          selector: "#edit-addr1"
-          value: $ADDRESS_STREET
-          required: true
-        - name: city
-          selector: "#edit-city"
-          value: $ADDRESS_CITY
-          required: true
-        - name: zip
-          selector: "#edit-zip"
-          value: $ADDRESS_ZIP5
-          required: true
-        - name: phone
-          selector: "#edit-phone"
-          value: $PHONE
-          required: true
-        - name: email
-          selector: "#edit-email"
-          value: $EMAIL
-          required: true
-        - name: subject
-          selector: "#edit-subject"
-          value: $SUBJECT
-          required: true
-        - name: message
-          selector: "#edit-message"
-          value: $MESSAGE
-          required: true
-          options:
-            max_length: 1200
-    # Although the character limit is 1200, this form counts newlines as two characters.  We need to replace them with a single space to make sure the message stays under the limit.
-    - javascript:
-        - value: document.querySelector('#edit-message').value = document.querySelector('#edit-message').value.replace(/\r\n|\n|\r/g,' ');
-    - select:
-        - name: issue
-          selector: "#edit-issue"
-          value: $TOPIC
-          required: true
-          options:
-            Abortion and Pro-Life: "ABORTION"
-            Adoption: "ADOPTION"
-            Agriculture: "AGR"
-            Animal Welfare: "ANIMAL"
-            Appropriations: "APPROPRIATIONS"
-            Arts and Humanities: "ARTS"
-            Banking: "BANKING"
-            Budget: "BUD"
-            Census: "CENSUS"
-            Courts and Judges - Judicial: "COURTS AND JUDGES"
-            Crime and Law Enforcement: "CRIME"
-            Defense and Armed Services: "DEF"
-            Economic and Rural Development: "ECONOMIC AND RURAL"
-            Education: "EDU"
-            Energy and Natural Resources: "ENE"
-            Environment: "ENV"
-            Foreign Affairs: "FA"
-            Food and Drug Administration: "FDA"
-            FEMA: "FEMA"
-            Government Oversight and Reform: "GOV"
-            Health Care: "HEA"
-            Homeland Security and TSA: "HOM"
-            Housing: "HOUSING"
-            Illegal Drugs: "ILLEGALDRUGS"
-            Immigration and Border Security: "IMM"
-            Intelligence: "INTELLIGENCE"
-            Labor and Pensions: "LABOR"
-            Medicare/Medicaid: "MEDICARE/MEDICAID"
-            Post Offices and Postal Service: "POSTAL"
-            Religion: "RELIGION"
-            Science and Technology: "SCIENCE AND TECH"
-            Small Business: "SMALLBUS"
-            Space and NASA: "SPACE AND NASA"
-            Social Security: "SSEC"
-            Taxes: "TAX"
-            Telecommunications: "TEL"
-            Transportation: "TRA"
-            Trade and Commerce: "TRADE"
-            Veterans Issues: "VETS"
-            Welfare: "WEL"
-    - javascript:
-        - value: document.querySelector("#edit-message").value = document.querySelector("#edit-message").value.replace(/"/g, '');
-    - recaptcha:
-        - value: true
-    - javascript:
-        - value: document.querySelector("#edit-submit--2").click();
-    - find:
-        - selector: ".alert-success"
-  success:
-    headers:
-      status: 200
-    body:
-      contains: Thank you for your email.
+    method: post
+    action: "/connect/email-rand"
+    steps:
+        - visit: "https://www.paul.senate.gov/connect/email-rand"
+        - fill_in:
+              - name: FirstName
+                selector: "input[name='FirstName']"
+                value: $NAME_FIRST
+                required: true
+              - name: LastName
+                selector: "input[name='LastName']"
+                value: $NAME_LAST
+                required: true
+              - name: Address1
+                selector: "input[name='Address1']"
+                value: $ADDRESS_STREET
+                required: true
+              - name: City
+                selector: "input[name='City']"
+                value: $ADDRESS_CITY
+                required: true
+              - name: ZipCode
+                selector: "input[name='ZipCode']"
+                value: $ADDRESS_ZIP5
+                required: true
+              - name: your-email
+                selector: "input[name='your-email']"
+                value: $EMAIL
+                required: true
+              - name: subject
+                selector: "input[name='subject']"
+                value: $SUBJECT
+                required: true
+              - name: your-message
+                selector: "textarea[name='your-message']"
+                value: $MESSAGE
+                required: true
+                options:
+                    max_length: 1200
+        - select:
+              - name: Prefix
+                selector: "select[name='Prefix']"
+                value: $NAME_PREFIX
+                required: true
+                options:
+                    Mr.: "Mr."
+                    Ms.: "Ms."
+                    Mrs.: "Mrs."
+                    Miss: "Miss"
+                    "Mr. and Mrs.": "Mr. and Mrs."
+                    Dr.: "Dr."
+                    Mx: "Mx"
+              - name: Topic
+                selector: "select[name='Topic']"
+                value: $TOPIC
+                required: true
+                options:
+                    - Abortion
+                    - Agriculture
+                    - Animal Welfare
+                    - Appropriations and Budget
+                    - Arts and Humanities
+                    - Banking
+                    - Judicial Nominations
+                    - Crime and Law Enforcement
+                    - National Security, Armed Services, and Intelligence
+                    - Economic and Rural Development
+                    - Education
+                    - Energy and Natural Resources
+                    - Environment
+                    - Foreign Affairs
+                    - FEMA
+                    - Guns / Second Amendment
+                    - Healthcare
+                    - Homeland Security
+                    - Immigration
+                    - Labor and Pensions
+                    - Postal Issues
+                    - Science, Space, and Technology
+                    - Small Business
+                    - Social Security
+                    - Taxes
+                    - Internet, Radio, and Television
+                    - Transportation
+                    - Trade and Commerce
+                    - Veterans Issues
+                    - Constitutional Issues
+        - javascript:
+              - value: document.querySelector("textarea[name='your-message']").value = document.querySelector("textarea[name='your-message']").value.replace(/"/g, '');
+        - javascript:
+              - value: document.querySelector("input.wpcf7-submit").click();
+        - wait:
+              - value: 5
+        - find:
+              - selector: "div.wpcf7-response-output"
+    success:
+        headers:
+            status: 200
+        body:
+            contains: Thank you for your message
