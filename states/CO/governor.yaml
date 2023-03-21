@@ -1,82 +1,75 @@
 contact_form:
-  steps:
-    # Note that the form is inside of an iframe on this website: https://www.colorado.gov/governor/share-comments
-    - visit: "https://cogov.tfaforms.net/3"
-    - select:
-        - name: "tfa_2758"
-          selector: "#tfa_2758"
-          value: "Governor"
-          required: true
-          options:
-            "tfa_2759": "Governor" # Governor
-            "tfa_2760": "Lieutenant Governor" # Lt Governor
-    - check:
-        - name: "tfa_2746"
-          selector: "#tfa_2744"
-          value: "tfa_2746"
-          required: true
-    - select:
-        - name: "tfa_2909"
-          selector: "#tfa_2909"
-          value: "Governor's Office"
-          required: true
-        - name: "tfa_2913"
-          selector: "#tfa_2913"
-          value: "Correspondence"
-          required: true
-          options:
-            "tfa_3162": "Accounting and Human resources"
-            "tfa_3163": "Boards &amp; Commissions"
-            "tfa_3164": "Chief of Staff"
-            "tfa_3165": "Community Engagement"
-            "tfa_3166": "Constituent Services"
-            "tfa_3167": "Correspondence"
-            "tfa_3168": "Front Desk"
-            "tfa_3169": "Human Resources"
-            "tfa_3170": "Legal Counsel"
-            "tfa_3171": "Legislative Affairs"
-            "tfa_3172": "Operations"
-            "tfa_3173": "Policy &amp; Research"
-            "tfa_3174": "Press Office"
-            "tfa_3175": "Support for Governor"
-            "tfa_3176": "Unique: Governor"
-    - fill_in:
-        - name: "tfa_2725"
-          selector: "#tfa_2725"
-          value: $MESSAGE
-          required: true
-        - name: "tfa_62"
-          selector: "#tfa_62"
-          value: $NAME_FIRST
-          required: true
-        - name: "tfa_63"
-          selector: "#tfa_63"
-          value: $NAME_LAST
-          required: true
-        - name: "tfa_64"
-          selector: "#tfa_64"
-          value: $EMAIL
-          required: true
-    - select:
-        - name: "tfa_71"
-          selector: "#tfa_71"
-          value: $ADDRESS_COUNTY
-          required: true
-    - check:
-        - name: "tfa_2750"
-          selector: "#tfa_2750"
-          value: "tfa_2750"
-          required: false
-        - name: "tfa_2727"
-          selector: "#tfa_2727"
-          value: "tfa_2727"
-          required: false
-    - recaptcha:
-        - value: true
-          callback: "enableSubmitButton"
-    - click_on:
-        - value: "Submit"
-          selector: "#submit_button"
-  success:
-    body:
-      contains: "Thank you!"
+    steps:
+        # Note that the form is inside of an iframe on this website: https://www.colorado.gov/governor/share-comments
+        - visit: "https://cogov.tfaforms.net/25?faIframeUniqueId=xka8w8vjsh&jsid=null&hostURL=https%3A%2F%2Fwww.colorado.gov%2Fgovernor%2Fshare-comments"
+        - check:
+              - name: "Wait for web app to load"
+                selector: "#tfa_2909-D"
+                value: "How can we help?"
+                required: true
+        - select:
+              - name: "tfa_2909"
+                selector: "#tfa_2909"
+                value: "I want to share my comments."
+                required: true
+                options:
+                    "I need assistance.": "tfa_2910"
+                    "I want to share my comments.": "tfa_2911"
+        - select:
+              - name: "tfa_2758"
+                selector: "#tfa_2758"
+                value: "Governor"
+                required: true
+                options:
+                    "Governor": "tfa_2759"
+                    "Lieutenant Governor": "tfa_2760"
+
+        # Index 19 is the "other" option. Using the normal `select` ways to this were unsuccessful.
+        - javascript:
+              - value: "document.getElementById('tfa_2751').selectedIndex = 19;"
+
+        - fill_in:
+              - name: "tfa_2725"
+                selector: "#tfa_2725"
+                value: $MESSAGE
+                required: true
+              - name: "tfa_62"
+                selector: "#tfa_62"
+                value: $NAME_FIRST
+                required: true
+              - name: "tfa_63"
+                selector: "#tfa_63"
+                value: $NAME_LAST
+                required: true
+              - name: "tfa_64"
+                selector: "#tfa_64"
+                value: $EMAIL
+                required: true
+        - select:
+              - name: "tfa_71"
+                selector: "#tfa_71"
+                value: $ADDRESS_COUNTY
+                required: true
+        - check:
+              - name: "tfa_2750"
+                selector: "#tfa_2750"
+                value: "tfa_2750"
+                required: false
+              - name: "tfa_2727"
+                selector: "#tfa_2727"
+                value: "tfa_2727"
+                required: false
+        - javascript:
+              - value: "document.getElementById('g-recaptcha-response').style.removeProperty('display');"
+        - recaptcha:
+              - value: true
+                callback: enableSubmitButton
+        # This correctly enables the button, but still seems like the recap isn't being added in correctly.
+        # - javascript:
+        #       - value: "document.getElementById('submit_button').disabled = false;"
+        - click_on:
+              - value: "Submit"
+                selector: "#submit_button"
+    success:
+        body:
+            contains: "Thank you!"
