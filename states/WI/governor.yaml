@@ -46,9 +46,6 @@ contact_form:
                 selector: "[id='f89ebf5f-d1f8-41f0-971c-5e74fae0b4e1']"
                 value: $MESSAGE
                 required: true
-        # - recaptcha:
-        #     - value: true
-        # recaptcha_selector: "#captchaUI"
         - click_on:
               - name: next
                 selector: "#nextButton"
