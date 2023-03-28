@@ -162,10 +162,14 @@ contact_form:
         - value: document.querySelector("#g-recaptcha-response").style.display = "block";
     - find:
         - selector: "#g-recaptcha-response"
+    - javascript:
+        - value: |
+            var form_id = document.querySelector("form[id^=form]").getAttribute("id"); window.WHReCaptchaForms[form_id] = function (callback) { callback(); };
     - recaptcha:
         - value: true
           version: "V3"
           response_selector: "recaptcha"
+          v3_action: "contact_2022_03_14"
     - click_on:
         - value: Send
           selector: 'input[type=submit][value=Send]'
