@@ -5,7 +5,7 @@ contact_form:
         - name: "qi_1"
           selector: "#qi_1"
           value: "General"
-          required: Yes
+          required: true
           options:
             "General": "0_GENERAL"
             "Alcohol and Drug Addiction Services": "1_ADAS"
@@ -39,11 +39,11 @@ contact_form:
         - name: "qi_2_first_name"
           selector: "#qi_2_first_name"
           value: $NAME_FIRST
-          required: Yes
+          required: true
         - name: "qi_2_last_name"
           selector: "#qi_2_last_name"
           value: $NAME_LAST
-          required: Yes
+          required: true
         - name: "qi_2_addr_1"
           selector: "#qi_2_addr_1"
           value: $ADDRESS_STREET
@@ -68,7 +68,7 @@ contact_form:
         - name: "qi_3"
           selector: "#qi_3"
           value: $MESSAGE
-          required: Yes
+          required: true
     - recaptcha:
         - value: true
     - click_on:
