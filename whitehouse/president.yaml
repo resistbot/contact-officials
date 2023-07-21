@@ -167,8 +167,11 @@ contact_form:
         - recaptcha:
               - value: true
                 version: "V3"
+                recaptcha_site_key: "6Lf_3G4dAAAAAFUmrvkYbR5Fw5DugtBiIODi9DPf"
                 response_selector: "recaptcha"
-                v3_action: "contact_2022_03_14"
+                v3_action: "contact_v3"
+        - wait:
+              - value: 5
         - javascript:
               - value: "document.querySelector('input[type=submit][value=Send]').click()"
         - wait:
