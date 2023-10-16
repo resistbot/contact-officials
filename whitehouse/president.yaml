@@ -169,7 +169,7 @@ contact_form:
                 version: "V3"
                 recaptcha_site_key: "6Lf_3G4dAAAAAFUmrvkYbR5Fw5DugtBiIODi9DPf"
                 response_selector: "recaptcha"
-                v3_action: "contact_v3"
+                v3_action: "contact_v4"
         - wait:
               - value: 5
         - javascript:
