@@ -1,5 +1,7 @@
 # Submits message to the White House Contact page.
 #
+# This is almost identical to the White House, but doesn't have the topic selector
+#
 # Heads Up:
 #   - Mailing address only has one field, but could be multiple lines
 #   - Message length max of 2000 chars
@@ -9,17 +11,8 @@
 
 contact_form:
     steps:
-        - visit: "https://www.whitehouse.gov/contact/share/"
+        - visit: "https://www.whitehouse.gov/contact/vicepresident/"
         - select:
-              - name: Subject
-                selector: "select[name='Subject']"
-                value: "Contact the President"
-                required: true
-                options:
-                    - "Contact the President"
-                    - "Contact the Vice President"
-                    - "Help with a Federal Agency"
-                    - "Question about the Website"
               - name: Prefix
                 selector: "select[name='Prefix']"
                 value: $NAME_PREFIX
@@ -169,7 +162,7 @@ contact_form:
                 version: "V3"
                 recaptcha_site_key: "6Lf_3G4dAAAAAFUmrvkYbR5Fw5DugtBiIODi9DPf"
                 response_selector: "recaptcha"
-                v3_action: "potus_contact_v1"
+                v3_action: "vpotus_contact_v1"
         - wait:
               - value: 5
         - javascript:
