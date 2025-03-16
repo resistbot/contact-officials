@@ -1,0 +1,42 @@
+bioguide:
+contact_form:
+  steps:
+    - visit: "http://www.stevebarrar.com/contact.aspx" # change to each web address
+    - fill_in:
+        - name: "ctl00$ContentPlaceHolder1$txtFirstName"
+          selector: "ctl00_ContentPlaceHolder1_txtFirstName"
+          value: $NAME_FIRST
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtLastName"
+          selector: "ctl00_ContentPlaceHolder1_txtLastName"
+          value: $NAME_LAST
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtPhone"
+          selector: "ctl00_ContentPlaceHolder1_txtPhone"
+          value: $PHONE
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtEmail"
+          selector: "ctl00_ContentPlaceHolder1_txtEmail"
+          value: $EMAIL
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtFindYourRepAddress"
+          selector: "ctl00_ContentPlaceHolder1_txtFindYourRepAddress"
+          value: $ADDRESS_STREET
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtFindYourRepCity"
+          selector: "ctl00_ContentPlaceHolder1_txtFindYourRepCity"
+          value: $ADDRESS_CITY
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtFindYourRepZip"
+          selector: "ctl00_ContentPlaceHolder1_txtFindYourRepZip"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "ctl00$ContentPlaceHolder1$txtAction"
+          selector: "ctl00_ContentPlaceHolder1_txtAction"
+          value: $MESSAGE
+    - click_on:
+        - value: ""
+          selector: "ctl00_ContentPlaceHolder1_btnSubmitContact"
+  success:
+    body:
+      contains: "Your feedback has been received"

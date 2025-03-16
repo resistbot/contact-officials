@@ -1,0 +1,58 @@
+bioguide:
+contact_form:
+  steps:
+    # - visit: "https://www.pahouse.com/name=$META_OFFICIAL_LAST_NAME"
+    - visit: "https://www.pahouse.com/1/Contact/"
+
+    #this zipcode check happens occassionally. 
+    - find:
+        - selector: "#zipcode"
+    - fill_in:
+        - name: zipcode
+          selector: "#zipcode"
+          value: $ADDRESS_ZIP5
+
+    - click_on:
+        - value: "Find Me!"
+          selector: gpsAllow
+
+    - fill_in:
+        - name: "input-modal-ContactForm-fName"
+          value: "$NAME_FIRST"
+          require: true
+        - name: "input-modal-ContactForm-lName"
+          value: "$NAME_LAST"
+          require: true
+        - name: "input-modal-ContactForm-Email"
+          value: "$EMAIL"
+          require: true
+        - name: "input-modal-ContactForm-Address"
+          value: "$ADDRESS_STREET"
+          require: true
+        - name: "input-modal-ContactForm-Phone"
+          value: "$PHONE"
+          require: true
+        - name: "input-modal-ContactForm-City"
+          value: "$ADDRESS_CITY"
+          require: true
+    - select:
+        - name: "input-modal-ContactForm-State"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: true
+          options: US_STATES
+    - fill_in:
+        - name: "input-modal-ContactForm-Zip"
+          value: "$ADDRESS_ZIP5"
+          require: true
+        - name: "input-modal-ContactForm-Subject"
+          value: "$SUBJECT"
+          require: true
+        - name: "input-modal-ContactForm-Message"
+          value: "$MESSAGE"
+          require: true
+    - click_on:
+        - value: "Submit"
+          selector: "modalContactForm-submit"
+  success:
+    body:
+      contains: "Thank you. Your feedback has been sent"
