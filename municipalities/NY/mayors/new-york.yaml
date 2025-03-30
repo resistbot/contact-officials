@@ -24,72 +24,80 @@ contact_form:
           "OTHER": "Other"
     - fill_in:
       - name: "Message"
-        selector: "textarea[name='Message']"
+        selector: "textarea[name='MSG']"
         value: $MESSAGE
+        limit: 500
         required: true
-      - name: "M/M"
-        selector: "input[name='M/M']"
+      - name: "PREFIX"
+        selector: "input[name='PREFIX']"
         value: $NAME_PREFIX
         required: false
       - name: "First Name"
-        selector: "input[name='First Name']"
+        selector: "input[name='FIRST']"
         value: $NAME_FIRST
         required: false
       - name: "Middle Name"
-        selector: "input[name='Middle Name']"
+        selector: "input[name='MIDDLE']"
         value: ""
         required: false
       - name: "Last Name"
-        selector: "input[name='Last Name']"
+        selector: "input[name='LAST']"
         value: $NAME_LAST
         required: false
       - name: "Suffix"
-        selector: "input[name='Suffix']"
+        selector: "input[name='SUFFIX']"
         value: ""
         required: false
       - name: "Street Address"
-        selector: "input[name='Street Address']"
+        selector: "input[name='ADDR1']"
         value: $ADDRESS_STREET
         required: false
       - name: "Address Number"  ## label says 'Address 2'
-        selector: "input[name='Address Number']"
+        selector: "input[name='ADDR2']"
         value: $ADDRESS_STREET_2
         required: false
       - name: "City"
-        selector: "input[name='City']"
+        selector: "input[name='CITY']"
         value: $ADDRESS_CITY
         required: false
     - select:
       - name: "State"
-        selector: "select[name='State']"
+        selector: "select[name='STATE']"
         value: $ADDRESS_STATE_POSTAL_ABBREV
         required: false
         options: US_STATES
     - fill_in:
-      - name: "Postal Code"
-        selector: "input[name='Postal Code']"
+      - name: "ZIP Code"
+        selector: "input[name='ZIP']"
         value: $ADDRESS_ZIP5
         required: true
         options:
           max_length: 10
     - select:
       - name: "Country"
-        selector: "select[name='Country']"
+        selector: "select[name='COUNTRY']"
         value: "United States"
         required: false
     - fill_in:
-      - name: "Work Phone #"  ## label says 'Phone'
-        selector: "input[name='Work Phone #']"
+      - name: "Phone"  ## label says 'Phone'
+        selector: "input[name='PHONE_B']"
         value: $PHONE
         required: false
-      - name: "Email Address"
-        selector: "input[name='Email Address']"
+      - name: "Email"
+        selector: "input[name='EMAIL']"
         value: $EMAIL
         required: false
+    - javascript:
+        - value:  $('#message-to-the-mayor').prepend('<input id="g-recaptcha-response-field" name="g-recaptcha-response" value="">');
     - recaptcha:
-      - value: true
+              - value: true
+                version: "V3"
+                v3_action: "submit_form"
+                response_selector: "recaptcha"
     - click_on:
-      - selector: "button.btn.btn-form-submit"
+        - selector: "button.btn.btn-form-submit"
+    - wait:
+        - value: 5
   success:
     body:
       contains: "Thank You For Filling Out This Form"
