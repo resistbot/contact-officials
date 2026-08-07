@@ -1,0 +1,175 @@
+# Overrides contact-congress's J000293.yaml (Sen. Ron Johnson). Upstream
+# config targets an old widget whose selectors no longer exist on the live
+# page. The site has migrated to Gravity Forms (form id 3). All ids below
+# were re-derived from the live DOM.
+#
+# Data-shape changes from the old config, not just id renames:
+#   - STATE select values are now full state names ("Ohio"), not postal
+#     abbreviations.
+#   - TOPIC select values keep the same abbreviated-code scheme as the old
+#     config (e.g. "AGR" -> "Agriculture"), with one exception: a new
+#     "Covid" option was added where value equals label. Old option mapping
+#     preserved as-is plus the new Covid entry.
+#   - The old config's recaptcha step is removed: no recaptcha widget is
+#     present on the migrated page.
+#   - A new optional free-text Prefix field (input_3_13) exists (not a
+#     select, unlike most other NAME_PREFIX fields) -- filled but not
+#     required.
+#   - A newsletter opt-in checkbox (choice_3_12_1) exists and is
+#     intentionally left unchecked.
+#
+# contact-congress is upstream and unlikely to accept this fix, so it
+# lives here instead.
+#
+# The post-submit success block below is carried over from the old config
+# and is UNVERIFIED against the new Gravity Forms confirmation behavior --
+# confirm via a live run before treating this as fully fixed.
+bioguide: J000293
+contact_form:
+  method: post
+  action: ""
+  steps:
+    - visit: "https://www.ronjohnson.senate.gov/public/index.cfm/email-the-senator"
+    - fill_in:
+        - name: input_13
+          selector: "#input_3_13"
+          value: $NAME_PREFIX
+          required: false
+        - name: input_3
+          selector: "#input_3_3"
+          value: $NAME_FIRST
+          required: true
+        - name: input_4
+          selector: "#input_3_4"
+          value: $NAME_LAST
+          required: true
+        - name: input_5.1
+          selector: "#input_3_5_1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: input_5.3
+          selector: "#input_3_5_3"
+          value: $ADDRESS_CITY
+          required: true
+        - name: input_5.5
+          selector: "#input_3_5_5"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: input_6
+          selector: "#input_3_6"
+          value: $PHONE
+          required: true
+        - name: input_7
+          selector: "#input_3_7"
+          value: $EMAIL
+          required: true
+        - name: input_9
+          selector: "#input_3_9"
+          value: $SUBJECT
+          required: false
+        - name: input_10
+          selector: "#input_3_10"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: input_5.4
+          selector: "#input_3_5_4"
+          value: $ADDRESS_STATE_FULL
+          required: true
+          options:
+            Alabama: Alabama
+            Alaska: Alaska
+            American Samoa: American Samoa
+            Arizona: Arizona
+            Arkansas: Arkansas
+            California: California
+            Colorado: Colorado
+            Connecticut: Connecticut
+            Delaware: Delaware
+            District of Columbia: District of Columbia
+            Florida: Florida
+            Georgia: Georgia
+            Guam: Guam
+            Hawaii: Hawaii
+            Idaho: Idaho
+            Illinois: Illinois
+            Indiana: Indiana
+            Iowa: Iowa
+            Kansas: Kansas
+            Kentucky: Kentucky
+            Louisiana: Louisiana
+            Maine: Maine
+            Maryland: Maryland
+            Massachusetts: Massachusetts
+            Michigan: Michigan
+            Minnesota: Minnesota
+            Mississippi: Mississippi
+            Missouri: Missouri
+            Montana: Montana
+            Nebraska: Nebraska
+            Nevada: Nevada
+            New Hampshire: New Hampshire
+            New Jersey: New Jersey
+            New Mexico: New Mexico
+            New York: New York
+            North Carolina: North Carolina
+            North Dakota: North Dakota
+            Northern Mariana Islands: Northern Mariana Islands
+            Ohio: Ohio
+            Oklahoma: Oklahoma
+            Oregon: Oregon
+            Pennsylvania: Pennsylvania
+            Puerto Rico: Puerto Rico
+            Rhode Island: Rhode Island
+            South Carolina: South Carolina
+            South Dakota: South Dakota
+            Tennessee: Tennessee
+            Texas: Texas
+            Utah: Utah
+            U.S. Virgin Islands: U.S. Virgin Islands
+            Vermont: Vermont
+            Virginia: Virginia
+            Washington: Washington
+            West Virginia: West Virginia
+            Wisconsin: Wisconsin
+            Wyoming: Wyoming
+            Armed Forces Americas: Armed Forces Americas
+            Armed Forces Europe: Armed Forces Europe
+            Armed Forces Pacific: Armed Forces Pacific
+        - name: input_8
+          selector: "#input_3_8"
+          value: $TOPIC
+          required: true
+          options:
+            Agriculture: AGR
+            Budget: BUD
+            Covid: Covid
+            Defense: DEF
+            "Economy & Jobs": ECO
+            Education and Labor: EDU
+            Energy: ENE
+            Environmental: ENV
+            Foreign Relations: INT
+            Health: HEA
+            Homeland Security: HOM
+            Immigration: IMM
+            Judiciary: JUD
+            Social Issues: SOC
+            Social Security: SSEC
+            Taxes and Trade: TAX
+            Telecommunications: TEL
+            Transportation: TRA
+            Veterans: VET
+            Welfare: WEL
+            Other: OTH
+    - javascript:
+        - value: document.querySelector("#input_3_10").value = document.querySelector("#input_3_10").value.replace(/"/g, '');
+    - click_on:
+        - selector: "#gform_submit_button_3"
+    - wait:
+        - value: 3
+  success:
+    headers:
+      status: 200
+    body:
+      contains: Thank you

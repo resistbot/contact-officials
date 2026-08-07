@@ -1,75 +1,91 @@
 contact_form:
+  # Site migrated its contact form off the old Drupal webform to an
+  # embedded iQ Extranet EForm hosted on a separate subdomain
+  # (oce-connect.governor.nc.gov). The public-facing page now only embeds
+  # it in an iframe; visiting the iframe's src directly gets the same
+  # form without cross-frame handling. Also carries a visible reCAPTCHA
+  # v2 checkbox that wasn't present in the prior version of this form.
   steps:
-    - visit: "https://governor.nc.gov/contact/contact-governor-cooper"
-    - find:
-        - selector: "#edit-first-name"
+    - visit: "https://oce-connect.governor.nc.gov/iqextranet/EForm.aspx?__cid=FSL_NCGOV&__fid=100004&iframe=Y"
+    - select:
+        - name: "prefix"
+          selector: "#qi_1_prefix"
+          value: $NAME_PREFIX
+          required: true
+          options:
+            "Imam": Imam
+            "Miss": Miss
+            "Mr.": Mr.
+            "Ms.": Ms.
+            "Pastor": Pastor
+            "Rabbi": Rabbi
+            "Rev. Dr.": Rev. Dr.
+            "Reverend": Reverend
     - fill_in:
         - name: "first_name"
-          selector: "#edit-first-name"
+          selector: "#qi_1_first_name"
           value: $NAME_FIRST
           required: true
-          options:
-            max_length: 255
         - name: "last_name"
-          selector: "#edit-last-name"
+          selector: "#qi_1_last_name"
           value: $NAME_LAST
           required: true
-          options:
-            max_length: 255
+        - name: "address_1"
+          selector: "#qi_1_addr_1"
+          value: $ADDRESS_STREET
+          required: true
         - name: "city"
-          selector: "#edit-city"
+          selector: "#qi_1_city"
           value: $ADDRESS_CITY
           required: true
-          options:
-            max_length: 255
     - select:
         - name: "state"
-          selector: "#edit-state"
+          selector: "#qi_1_state"
           value: "$ADDRESS_STATE_FULL"
           required: true
           options: US_STATES
     - fill_in:
+        - name: "zip"
+          selector: "#qi_1_zip"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: "phone"
+          selector: "#qi_1_cphone"
+          value: $PHONE
+          required: true
         - name: "email"
-          selector: "#edit-email"
+          selector: "#qi_1_email"
           value: $EMAIL
           required: true
-    - check:
-        - name: "does_this_email_require_a_response_"
-          selector: "#edit-does-this-email-require-a-response-yes"
-          value: "Yes"
-          required: true
-    - fill_in:
-        - name: "telephone_number"
-          selector: "#edit-telephone-number"
-          value: "$PHONE"
     - select:
-        - name: "issue[select]"
-          selector: "#edit-issue-select"
-          value: "_other_"
+        - name: "issue"
+          selector: "#qi_2"
+          value: "Other"
           required: true
-          values:
-            "disaster_recovery": "Disaster Recovery"
-            "education": "Education"
-            "environment": "environment"
-            "healthcare": "healthcare"
-            "infrastructure": "Infrastructure"
-            "jobs_economy": "Jobs/Economy"
-            "military_veterans": "Military/Veterans"
-            "pubic_safety": "Public Safety"
-            "transport": " Transportation/Eminent Domain"
-            "workforce": "Workforce Development"
-            "_other_": "Other issue…"
+          options:
+            "Disaster Recovery": Disaster Recovery
+            "Education": Education
+            "Environment": Environment
+            "HealthCare": HealthCare
+            "Infrastructure": Infrastructure
+            "Jobs/Economy": Jobs/Economy
+            "Military Veterans": Military Veterans
+            "Public Safety": Public Safety
+            "Transportation/Eminent Domain": Transportation/Eminent Domain
+            "Workforce Development": Workforce Development
+            "Other": Other
     - fill_in:
-        - name: "issue[other]"
-          selector: "#edit-issue-other"
-          value: "$SUBJECT"
         - name: "message"
-          selector: "#edit-message"
-          value: "$MESSAGE"
-          require: true
+          selector: "#qi_3"
+          value: $MESSAGE
+          required: true
+    - recaptcha:
+        - value: true
+          callback: "captchaSuccess"
     - click_on:
-        - value: "Submit"
-          selector: "input[value=Submit][name=op]"
+        - name: "submit"
+          value: "Submit"
+          selector: "#btn_submit"
   success:
     body:
-      contains: "New submission added to Contact Governor Cooper"
+      contains: "Summary of Information"

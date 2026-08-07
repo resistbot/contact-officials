@@ -1,4 +1,10 @@
 contact_form:
+  # Site redesign since this config was last verified: the address-type
+  # radio group was removed (no radio inputs exist on the page anymore),
+  # and the submit button now uses invisible reCAPTCHA v3
+  # (class="g-recaptcha", data-sitekey, data-callback="onSubmit",
+  # data-action="submit"). Both changes broke every submission with a
+  # timeout waiting on the old #submit selector.
   steps:
     - visit: "https://gov.texas.gov/apps/contact/opinion.aspx"
     - select:
@@ -23,11 +29,6 @@ contact_form:
         - name: "ContactDto.LastName"
           selector: "#ContactDto_LastName"
           value: $NAME_LAST
-          required: true
-    - check:
-        - name: "ContactDto.AddressType"
-          selector: "#addressType1"
-          value: "Street Address"
           required: true
     - fill_in:
         - name: "ContactDto.Address"
@@ -108,10 +109,12 @@ contact_form:
           selector: "#ContactDto_Comments"
           value: $MESSAGE
           required: true
-    - click_on:
-        - name: "submit"
-          value: "Send Message"
-          selector: "#submit"
+    - recaptcha:
+        - value: true
+          version: "V3"
+          v3_action: "submit"
+          callback: "onSubmit"
+          recaptcha_selector: "button.g-recaptcha"
   success:
     body:
       contains: "Thank You for Contacting"
