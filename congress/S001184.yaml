@@ -1,0 +1,118 @@
+# Overrides contact-congress's S001184.yaml (Sen. Rick Scott). Selectors are
+# all current (Gravity Forms, form id 14). The only issue is a
+# case-sensitivity bug: the config's post-submit heading check expects
+# mixed-case "Thank You", but the live confirmation heading reads "THANK
+# YOU" (all caps). Confirmed via a live submission, which showed the
+# correct body text but got stuck on this heading mismatch. Not a stale
+# selector, not a vendor migration, not a missing captcha -- an exact-text
+# match against a heading whose case didn't match the original assumption.
+# Every other selector/step is unchanged from upstream.
+#
+# contact-congress is upstream and unlikely to accept this fix, so it lives
+# here instead.
+bioguide: S001184
+contact_form:
+  method: post
+  action: /contact/email-me
+  steps:
+    - visit: "http://www.scott.senate.gov/contact/email-me"
+    - find:
+        - selector: "#input_14_2"
+    - fill_in:
+        - name: input_2
+          selector: "#input_14_2"
+          value: $NAME_FIRST
+          required: true
+        - name: input_3
+          selector: "#input_14_3"
+          value: $NAME_LAST
+          required: true
+        - name: input_6.1
+          selector: "#input_14_6_1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: input_6.3
+          selector: "#input_14_6_3"
+          value: $ADDRESS_CITY
+          required: true
+        - name: input_6.5
+          selector: "#input_14_6_5"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: input_7
+          selector: "#input_14_7"
+          value: $PHONE
+          required: true
+        - name: input_9
+          selector: "#input_14_9"
+          value: $EMAIL
+          required: true
+        - name: input_9_2
+          selector: "#input_14_9_2"
+          value: $EMAIL
+          required: true
+        - name: input_12
+          selector: "#input_14_12"
+          value: $MESSAGE
+          required: true
+        - name: input_11
+          selector: "#input_14_11"
+          value: $SUBJECT
+          required: true
+    - select:
+        - name: input_1
+          selector: "#input_14_1"
+          value: $NAME_PREFIX
+          required: true
+          options:
+            Mr.: Mr.
+            Ms.: Ms.
+            Mrs.: Mrs.
+            Professor: Professor
+            Dr.: Dr.
+        - name: input_17
+          selector: "#input_14_17"
+          value: $TOPIC
+          required: true
+          options:
+            Aging and Seniors: SSEC_MEDICARE
+            Agriculture: AGR
+            Finance: FIN
+            Budget/Appropriations: BUD
+            Business/Commerece: ECON
+            Civil Rights/Social Issues: SOC
+            Congressional Issues: GOV
+            Defense/Intelligence: DEF
+            Education: EDU
+            Energy: ENE
+            Environment/Fisheries: ENV
+            Foreign Relations: INT
+            Guns: GUN
+            Health Care: HEA
+            Homeland Security: HOM
+            Housing: HOU
+            Immigration: IMM
+            Indian Affairs: IND
+            Judiciary: JUD
+            Labor: LAB
+            Medicaid: MEDICAID
+            Medicare: MEDICARE
+            Natural Resources: NAT
+            Pensions/Social Security: SSEC
+            Postal: POST
+            Science/Space/Technology: SCI/TECH
+            Taxes: TAX
+            Telecommunications: TEL
+            Trade: TRADE
+            Transportation: TRA
+            Veterans: VET
+    - click_on:
+        - selector: ".gform_button#gform_submit_button_14"
+    - find:
+        - selector: h2
+          value: THANK YOU
+  success:
+    headers:
+      status: 200
+    body:
+      contains: Thank you for contacting my office.

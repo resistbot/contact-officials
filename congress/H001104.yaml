@@ -1,0 +1,214 @@
+# Overrides contact-congress's H001104.yaml (Husted). Upstream config
+# targets an Elementor Pro Forms widget; the live page has migrated to
+# Gravity Forms entirely (different field ids, submit button, and hidden
+# fields) -- a plugin change, not just reshuffled ids. All ids/options
+# below were re-derived from the live DOM.
+#
+# Data-shape changes from the old config, not just id renames:
+#   - STATE select values are now full state names ("Ohio"), not postal
+#     abbreviations.
+#   - TOPIC select values are now literal option text ("Agriculture"), not
+#     abbreviated codes -- value equals label for every option now.
+#   - The compound Address field exposes an optional Address Line 2
+#     subfield (input_2_6_2) not present before; left unfilled here since
+#     there is no corresponding field mapping today.
+#
+# contact-congress is upstream and unlikely to accept this fix, so it
+# lives here instead.
+#
+# The post-submit success block below is carried over from the old
+# Elementor-based config and is UNVERIFIED against Gravity Forms' actual
+# confirmation markup/behavior -- confirm via a live run before treating
+# this as fully fixed.
+bioguide: H001104
+contact_form:
+  method: post
+  action: ""
+  steps:
+  - visit: "https://www.husted.senate.gov/contact-jon/"
+  - fill_in:
+        - name: input_44
+          selector: "#input_2_44"
+          value: $NAME_PREFIX
+          required: false
+        - name: input_2
+          selector: "#input_2_2"
+          value: $NAME_FIRST
+          required: true
+        - name: input_3
+          selector: "#input_2_3"
+          value: $NAME_LAST
+          required: true
+        - name: input_6.1
+          selector: "#input_2_6_1"
+          value: $ADDRESS_STREET
+          required: true
+        - name: input_6.3
+          selector: "#input_2_6_3"
+          value: $ADDRESS_CITY
+          required: true
+        - name: input_6.5
+          selector: "#input_2_6_5"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: input_41
+          selector: "#input_2_41"
+          value: $PHONE
+          required: true
+        - name: input_9
+          selector: "#input_2_9"
+          value: $EMAIL
+          required: true
+        - name: input_11
+          selector: "#input_2_11"
+          value: $SUBJECT
+          required: true
+        - name: input_12
+          selector: "#input_2_12"
+          value: $MESSAGE
+          required: true
+  - select:
+      - name: input_6.4
+        selector: "#input_2_6_4"
+        value: $ADDRESS_STATE_FULL
+        required: true
+        options:
+          Alabama: Alabama
+          Alaska: Alaska
+          American Samoa: American Samoa
+          Arizona: Arizona
+          Arkansas: Arkansas
+          California: California
+          Colorado: Colorado
+          Connecticut: Connecticut
+          Delaware: Delaware
+          District of Columbia: District of Columbia
+          Florida: Florida
+          Georgia: Georgia
+          Guam: Guam
+          Hawaii: Hawaii
+          Idaho: Idaho
+          Illinois: Illinois
+          Indiana: Indiana
+          Iowa: Iowa
+          Kansas: Kansas
+          Kentucky: Kentucky
+          Louisiana: Louisiana
+          Maine: Maine
+          Maryland: Maryland
+          Massachusetts: Massachusetts
+          Michigan: Michigan
+          Minnesota: Minnesota
+          Mississippi: Mississippi
+          Missouri: Missouri
+          Montana: Montana
+          Nebraska: Nebraska
+          Nevada: Nevada
+          New Hampshire: New Hampshire
+          New Jersey: New Jersey
+          New Mexico: New Mexico
+          New York: New York
+          North Carolina: North Carolina
+          North Dakota: North Dakota
+          Northern Mariana Islands: Northern Mariana Islands
+          Ohio: Ohio
+          Oklahoma: Oklahoma
+          Oregon: Oregon
+          Pennsylvania: Pennsylvania
+          Puerto Rico: Puerto Rico
+          Rhode Island: Rhode Island
+          South Carolina: South Carolina
+          South Dakota: South Dakota
+          Tennessee: Tennessee
+          Texas: Texas
+          Utah: Utah
+          U.S. Virgin Islands: U.S. Virgin Islands
+          Vermont: Vermont
+          Virginia: Virginia
+          Washington: Washington
+          West Virginia: West Virginia
+          Wisconsin: Wisconsin
+          Wyoming: Wyoming
+          Armed Forces Americas: Armed Forces Americas
+          Armed Forces Europe: Armed Forces Europe
+          Armed Forces Pacific: Armed Forces Pacific
+      - name: input_17
+        selector: "#input_2_17"
+        value: $TOPIC
+        required: true
+        options:
+          Agriculture: Agriculture
+          Animals: Animals
+          Arts and Humanities: Arts and Humanities
+          Banking: Banking
+          Budget and Economy: Budget and Economy
+          Campaign Finance: Campaign Finance
+          Help with a Federal Agency: Help with a Federal Agency
+          Campaign Finance Reform: Campaign Finance Reform
+          Civil Rights/Humanities: Civil Rights/Humanities
+          Civil Service/Postal: Civil Service/Postal
+          Congress and Elections: Congress and Elections
+          Congressional Issues: Congressional Issues
+          Child Tax Credit: Child Tax Credit
+          CWC-Opt-in: CWC-Opt-in
+          Defense and Military: Defense and Military
+          Defense: Defense
+          Economy: Economy
+          Education Higher: Education Higher
+          Education: ED
+          eForm Response: eForm Response
+          Energy: Energy
+          E-News Reply: E-News Reply
+          E-News Subscribe: E-News Subscribe
+          Environmental: Environmental
+          Family/Marriage: Family/Marriage
+          Federal Employees: Federal Employees
+          Flag Request: Flag Request
+          Food Safety: Food Safety
+          Foreign Relations: Foreign Relations
+          Governmental Reform: Governmental Reform
+          Guns: Guns
+          Health: Health
+          Homeland Security: Homeland Security
+          Housing: Housing
+          Housing & Urban Development: Housing & Urban Development
+          Immigration: Immigration
+          Infrastructure: Infrastructure
+          International Relations: International Relations
+          Internship Request: Internship Request
+          IRS: IRS
+          Jobs and the Economy: Jobs and the Economy
+          Judiciary: Judiciary
+          Labor: Labor
+          LGBT: LGBT
+          Military: Military
+          No Response Necessary: No Response Necessary
+          CWC-No Response Necessary: CWC-No Response Necessary
+          Website-No Response Necessary: Website-No Response Necessary
+          Office Registry Web Form: Office Registry Web Form
+          Other Issues: Other Issues
+          Passport Casework: Passport Casework
+          Post Office: Post Office
+          REGISTER to RESPOND: REGISTER to RESPOND
+          Response Reply: Response Reply
+          Science and Technology: Science and Technology
+          Security: Security
+          Senior Citizens: Senior Citizens
+          Services Reply: Services Reply
+          Small Business: Small Business
+          Social Issues: Social Issues
+          Social Services: Social Services
+          Spam Opt-Out: Spam Opt-Out
+          Social Security: Social Security
+          Veterans: Veterans
+  - javascript:
+      - value: document.querySelector("#input_2_12").value = document.querySelector("#input_2_12").value.replace(/"/g, '');
+  - click_on:
+      - selector: "#gform_submit_button_2"
+  - wait:
+      - value: 3
+  success:
+    headers:
+      status: 200
+    body:
+      contains: "Contact Jon"

@@ -1,0 +1,259 @@
+# Overrides contact-congress's K000384.yaml (Kaine). Upstream config's field
+# selectors are keyed to an old widget's GUID-style ids. The live form has
+# migrated to a different widget with a new id family, a new required STATE
+# dropdown not present in the old form, and reworded field labels/topic
+# list. All ids below were re-derived from the live DOM. contact-congress
+# is upstream and unlikely to accept this fix, so it lives here instead.
+#
+# The post-submit success block below is carried over from the old config
+# and is UNVERIFIED -- the widget migration may also have changed the
+# confirmation page/copy. Verify with a record/replay test or a live run
+# before treating this fix as fully done.
+bioguide: K000384
+contact_form:
+  method: POST
+  action: ""
+  steps:
+    - visit: https://www.kaine.senate.gov/contact/share-your-opinion
+    - find:
+      - selector: "#input-C37493FA-32C9-4AC5-8741-DBB15B656231"
+    - fill_in:
+      - name: first
+        selector: "#input-C37493FA-32C9-4AC5-8741-DBB15B656231"
+        value: $NAME_FIRST
+        required: Yes
+      - name: last
+        selector: "#input-FA29AA7F-6264-43AD-93A0-A9C8E4137B5C"
+        value: $NAME_LAST
+        required: Yes
+      - name: addr1
+        selector: "#input-0EAD335B-9386-4CE4-BEEC-4EB7A25154B0"
+        value: $ADDRESS_STREET
+        required: Yes
+      - name: city
+        selector: "#input-FDAA72A6-BACD-478E-B29C-71F3517BEC76"
+        value: $ADDRESS_CITY
+        required: Yes
+      - name: zip
+        selector: "#input-7C66D390-A85C-4BB2-B6D4-D4B2A84642BB"
+        value: $ADDRESS_ZIP5
+        required: Yes
+      - name: phone
+        selector: "#input-74E0EC54-C170-4BCB-96AC-0A9CDECF046D"
+        value: $PHONE
+        required: Yes
+      - name: email
+        selector: "#email"
+        value: $EMAIL
+        required: Yes
+      - name: subject
+        selector: "#input-6113487C-5FF6-4D9E-BE80-52D0AF0F5877"
+        value: $SUBJECT
+        required: Yes
+      - name: message
+        selector: "#input-B11EA673-0986-41A8-96BF-81980A38B3F6"
+        value: $MESSAGE
+        required: Yes
+    - select:
+      - name: prefix
+        selector: "#prefixtoggle"
+        value: $NAME_PREFIX
+        required: Yes
+        options:
+          - "Mr."
+          - "Ms."
+          - "Mrs."
+          - "Mx."
+          - "Miss"
+          - "Mr. and Mrs."
+          - "Dr."
+          - "Professor"
+          - "Senator"
+          - "Governor"
+          - "Congressman"
+          - "Congresswoman"
+          - "Delegate"
+          - "Father"
+          - "Sister"
+          - "Rabbi"
+          - "Reverend"
+          - "Rev. Dr."
+          - "Admiral"
+          - "Airman"
+          - "Brigadier General"
+          - "Captain"
+          - "Chief Petty Officer"
+          - "Chief Warrant Officer"
+          - "Colonel"
+          - "Commander"
+          - "Corporal"
+          - "Ensign"
+          - "Fleet Admiral"
+          - "General"
+          - "Lieutenant"
+          - "Lieutenant Colonel"
+          - "Lieutenant Commander"
+          - "Lieutenant General"
+          - "Major"
+          - "Major General"
+          - "Petty Officer"
+          - "Private"
+          - "Rear Admiral"
+          - "Seaman"
+          - "Sergeant"
+          - "Vice Admiral"
+          - "Warrant Officer"
+          - "Other"
+      - name: state
+        selector: "#input-7924F194-C509-4A20-AABE-20E48C6841D9"
+        value: $ADDRESS_STATE_POSTAL_ABBREV
+        required: Yes
+        options:
+          - AL
+          - AK
+          - AR
+          - AZ
+          - CA
+          - CO
+          - CT
+          - DC
+          - DE
+          - FL
+          - GA
+          - HI
+          - ID
+          - IL
+          - IN
+          - IA
+          - KS
+          - KY
+          - LA
+          - ME
+          - MD
+          - MA
+          - MI
+          - MN
+          - MS
+          - MO
+          - MT
+          - NE
+          - NV
+          - NH
+          - NJ
+          - NM
+          - NY
+          - NC
+          - ND
+          - OH
+          - OK
+          - OR
+          - PA
+          - RI
+          - SC
+          - SD
+          - TN
+          - TX
+          - UT
+          - VT
+          - VA
+          - WA
+          - WV
+          - WI
+          - WY
+      - name: topic
+        selector: "#input-7B718140-BE58-48FA-AB5C-74CC385B8D07"
+        value: $TOPIC
+        required: Yes
+        options:
+          --- Please Select an Option ---: ""
+          Agriculture: Agriculture
+          Animal Welfare: Animal Welfare
+          Appropriations: Appropriations
+          Arts & Humanities: Arts & Humanities
+          Banking & Financial Reform: Banking & Financial Reform
+          Budget: Budget
+          Business: Business
+          Campaign Finance Reform: Campaign Finance Reform
+          Childrens Issues: Children's Issues
+          Civil Rights: Civil Rights
+          Congress & Executive Office Reform: Congress & Executive Office Reform
+          Crime & Law Enforcement: Crime & Law Enforcement
+          Cybersecurity: Cybersecurity
+          DC Issues: D.C. Issues
+          Disabilities: Disabilities
+          Disaster Relief: Disaster Relief
+          Domestic Violence/Sexual Assault: Domestic Violence/Sexual Assault
+          Economy: Economy
+          Education: Education
+          Election Issues: Election Issues
+          Emergency Management: Emergency Management
+          Energy: Energy
+          Environment & Wildlife Protection: Environment & Wildlife Protection
+          Federal Employees: Federal Employees
+          Foreign Aid: Foreign Aid
+          Foreign Relations: Foreign Relations
+          Gun Violence: Gun Violence
+          Health: Health
+          Homeland Security: Homeland Security
+          Housing: Housing
+          Immigration: Immigration
+          Intellectual Property: Intellectual Property
+          Intelligence: Intelligence
+          Judicial Issues & Nominations: Judicial Issues & Nominations
+          Labor: Labor
+          LGBT: LGBT
+          Medicare: Medicare
+          Mental Health: Mental Health
+          Military/Armed Services/Defense: Military/Armed Services/Defense
+          Native American Issues: Native American Issues
+          Nutrition/SNAP: Nutrition/SNAP
+          Pensions: Pensions
+          Postal Issues: Postal Issues
+          Public Lands & Natural Resources: Public Lands & Natural Resources
+          Reproductive Rights: Reproductive Rights
+          Rules & Ethics: Rules & Ethics
+          Science & Technology: Science & Technology
+          Second Amendment Rights: Second Amendment Rights
+          Small Business: Small Business
+          Social Security: Social Security
+          Space: Space
+          Taxes: Taxes
+          Telecommunications & Internet: Telecommunications & Internet
+          Trade: Trade
+          Transportation & Infrastructure: Transportation & Infrastructure
+          Veterans: Veterans
+          Voting Rights: Voting Rights
+          Workforce & Labor: Workforce & Labor
+      - name: response
+        selector: "#input-569786FF-5652-42DE-A5EE-A7FBD312BC39"
+        value: "Yes"
+        required: Yes
+        options:
+          - "---"
+          - "Yes"
+          - "No"
+      - name: newsletter
+        selector: "#newslettertoggle"
+        value: "Yes"
+        required: Yes
+        options:
+          - "---"
+          - "Yes"
+          - "No"
+    - javascript:
+        - value: document.querySelector("#input-B11EA673-0986-41A8-96BF-81980A38B3F6").value = document.querySelector("#input-B11EA673-0986-41A8-96BF-81980A38B3F6").value.replace(/"/g, '');
+    - wait:
+      - value: 2
+    - click_on:
+      - value: Submit
+        selector: ".controls button[type='submit']"
+    - wait:
+      - value: 2
+    - find:
+      - selector: "h2"
+        value: "Thank You"
+  success:
+    headers:
+      status: 200
+    body:
+      contains: Thanks for taking the time to share your thoughts with me.

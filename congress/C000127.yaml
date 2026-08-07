@@ -1,0 +1,111 @@
+# Override of upstream contact-congress config. Form is FormAssembly-embedded;
+# success confirmation renders asynchronously after the outer page returns 200,
+# so the default success-criteria timeout can elapse before confirmation
+# appears. success.timeout extended to reduce false-negative failures.
+bioguide:  C000127
+contact_form:
+  method: post
+  action: "https://www.cantwell.senate.gov/contact/email/form"
+  steps:
+    - visit: "https://www.cantwell.senate.gov/contact/email/form"
+    - find:
+        - selector: "#input-B03E05C4-4040-F985-52CD-9CA44623DE5E"
+    - fill_in:
+        - name: input_B03E05C4-4040-F985-52CD-9CA44623DE5E
+          selector: "#input-B03E05C4-4040-F985-52CD-9CA44623DE5E"
+          value: $NAME_FIRST
+          required: true
+        - name: input_B03E04BD-4040-F985-52CD-48E090E769DA
+          selector: "#input-B03E04BD-4040-F985-52CD-48E090E769DA"
+          value: $NAME_LAST
+          required: true
+        - name: input_B03E05F1-4040-F985-52CD-A580E72A7D41
+          selector: "#input-B03E05F1-4040-F985-52CD-A580E72A7D41"
+          value: $ADDRESS_STREET
+          required: true
+        - name: input_B03E0595-4040-F985-52CD-C572364023FE
+          selector: "#input-B03E0595-4040-F985-52CD-C572364023FE"
+          value: $ADDRESS_CITY
+          required: true
+        - name: input_B03E04CC-4040-F985-52CD-4DDB58DA474A
+          selector: "#input-B03E04CC-4040-F985-52CD-4DDB58DA474A"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: input_B03E046E-4040-F985-52CD-A2F10450D58D
+          selector: "#input-B03E046E-4040-F985-52CD-A2F10450D58D"
+          value: $PHONE
+          required: true
+        - name: input_B03E0536-4040-F985-52CD-AFE12CDE8D31
+          selector: "#email"
+          value: $EMAIL
+          required: true
+        - name: input_B03E05A4-4040-F985-52CD-730C08912F4F
+          selector: "#input-B03E05A4-4040-F985-52CD-730C08912F4F"
+          value: $EMAIL
+          required: true
+        - name: input_0947E235-5056-A066-60AC-246CC0918F23
+          selector: "#input-0947E235-5056-A066-60AC-246CC0918F23"
+          value: $SUBJECT
+          required: true
+        - name: input_B03E05B4-4040-F985-52CD-8DF0BC10EEE2
+          selector: "#input-B03E05B4-4040-F985-52CD-8DF0BC10EEE2"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: input_549D12B1-5056-A066-6062-C139550076B3
+          selector: "#title"
+          value: $NAME_PREFIX
+          required: true
+          options:
+            - Mr.
+            - Mrs.
+            - Ms.
+            - Miss
+        - name: input_B03E04DB-4040-F985-52CD-18F332336F99
+          selector: "#input-B03E04DB-4040-F985-52CD-18F332336F99"
+          value: $TOPIC
+          required: true
+          options:
+            Agriculture: Agriculture
+            Department of Defense: Department of Defense
+            "Economy & Jobs": JOBS
+            Education: Education
+            Energy: Energy
+            Environment: Environment
+            First Responders: LAWENFORCEMENT
+            Foreign Affairs: FOREIGNRELATIONS
+            Gun Violence: GUN CONTROL
+            Health Care: HEALTH
+            Housing: Housing
+            Immigration: Immigration
+            Indian Affairs: INDIAN
+            Intelligence: INTELLIGENCE
+            Judicial Issues: JUDICIARY
+            Labor: Labor
+            Law Enforcement: LAWENFORCEMENT
+            Nominations: NOMINATIONS
+            "Pensions & Retirement": PENSIONS
+            Science: SCIENCE
+            Social Security: Social Security
+            Small Business: SMALLBUSINESS
+            Taxes: TAX
+            Technology: TECH
+            Transportation: Transportation
+            Veterans: Veterans
+    - check:
+        - name: input_072CAC5F-5056-A066-6015-FC4219539F7B
+          selector: "#response"
+          value: "Yes"
+    - javascript:
+        - value: document.querySelector("#input-B03E05B4-4040-F985-52CD-8DF0BC10EEE2").value = document.querySelector("#input-B03E05B4-4040-F985-52CD-8DF0BC10EEE2").value.replace(/"/g, '');
+    - click_on:
+        - value: Submit
+          selector: input.btn
+    - wait:
+        - value: 3
+  success:
+    timeout: 45
+    headers:
+      status: 200
+    body:
+      contains: Thank you

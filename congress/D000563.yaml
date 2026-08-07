@@ -1,0 +1,313 @@
+# Overrides contact-congress's D000563.yaml (Durbin). Form is FormAssembly-
+# embedded; success confirmation renders asynchronously after the outer
+# page returns 200. The upstream config's trailing `find h2 "Thank You"`
+# step checks this against a fixed, non-configurable 10s timeout and fails
+# before confirmation renders, which is the observed root cause of this
+# bioguide's element_timeout volume. That step is redundant with the
+# success block below, which checks the same confirmation text and does
+# support a configurable timeout. Removed the find step; extended
+# success.timeout.
+bioguide:  D000563
+contact_form:
+  method: post
+  action: /contact/email
+  steps:
+    - visit: "http://www.durbin.senate.gov/contact/email"
+    - wait:
+        - value: 2
+    - select:
+        - name: actions
+          selector: "#topicissues"
+          value: $TOPIC
+          required: true
+          options:
+            Abortion: ABORTION
+            Affordable Care Act Stories: ACASTORIES
+            Agriculture: AG00
+            Animal Rights: AN00
+            Banking/Credit: BK00
+            "Budget, Federal": BUDGET
+            Business/Commerce: AA005
+            Campaign Finance/Elections: CR00
+            Children Issues: CF00
+            Civil Rights and Liberties: JC00
+            Crime/Drugs: JC00
+            Defense/Military: DE00
+            Dietary Supplements: DIETSUP
+            Economy: EC00
+            Education: ED00
+            Energy: EN00
+            Environment: EV00
+            Foreign Policy: FP00
+            Guns: GU00
+            Health: HE00
+            Homeland Security: HM00
+            Housing: HS00
+            Immigration: IM00
+            Iraq: FP00
+            Judicial Nominations: JC00
+            Labor/Employment: LA00
+            Media/Telecommunications: TE00
+            Medicare: HE00
+            Middle East: FP00
+            Postal Service: GA00
+            Social Security/Seniors: SS00
+            Taxes: TX00
+            Trade: TR00
+            Transportation: TN00
+            Veterans: VA00
+            War: FP00
+            Welfare: WE00
+            Women's Issues: WM00
+            Other: OT00
+    - find:
+        - selector: "#input-9A6D9EFF-C5B9-43AE-BB7D-45AA94C0A712"
+    - fill_in:
+        - name: fname
+          selector: "#input-9A6D9EFF-C5B9-43AE-BB7D-45AA94C0A712"
+          value: $NAME_FIRST
+          required: true
+        - name: lname
+          selector: "#input-0798EB9C-EFB8-4A76-914C-7A997B55638D"
+          value: $NAME_LAST
+          required: true
+        - name: mailing_streetAddress1
+          selector: "#input-44D88FC9-4E92-4595-83B2-6454E29B4E1E"
+          value: $ADDRESS_STREET
+          required: true
+        - name: mailing_streetAddress2
+          selector: "#input-D3B9CA9F-C832-4651-BCC5-4520ADBB72CA"
+          value: $ADDRESS_STREET_2
+          required: false
+        - name: mailing_city
+          selector: "#input-FF61F49E-9758-43DD-A943-11C33EA203E1"
+          value: $ADDRESS_CITY
+          required: true
+        - name: mailing_zipCode
+          selector: "#input-A15F268F-D94A-4FB5-8378-8AA10C927CE0"
+          value: $ADDRESS_ZIP5
+          required: true
+        - name: home_phone_number
+          selector: "#input-D9B6481B-F956-4197-8715-8247B03BB36A"
+          value: $PHONE
+          required: true
+        - name: email_address
+          selector: "#email"
+          value: $EMAIL
+          required: true
+        - name: subjecttext
+          selector: "#input-CB7E9D81-2598-47CA-B041-B1C09EBFE681"
+          value: $SUBJECT
+          required: true
+        - name: message
+          selector: "#input-2ED44860-E200-4A7A-91BF-01BEF2FD8E60"
+          value: $MESSAGE
+          required: true
+    - select:
+        - name: salutation
+          selector: "#input-CF630D98-B981-406D-8C31-965FBE03BA42"
+          value: $NAME_PREFIX
+          required: true
+          options:
+            - Mr.
+            - Ms.
+            - Mrs.
+            - Professor
+            - Dr.
+            - Father
+            - Sister
+            - Rabbi
+            - Reverend
+            - Air Force - General
+            - Air Force - Lieutenant General
+            - Air Force - Major General
+            - Air Force - Brigadier General
+            - Air Force - Colonel
+            - Air Force - Lieutenant Colonel
+            - Air Force - Major
+            - Air Force - Captain
+            - Air Force - First Lieutenant
+            - Air Force - Second Lieutenant
+            - Air Force - Chief Master Sergeant of the Air Force
+            - Air Force - Command Chief Master Sergeant
+            - Air Force - First Sergeant (E-9)
+            - Air Force - Chief Master Sergeant
+            - Air Force - First Sergeant (E-8)
+            - Air Force - Senior Master Sergeant
+            - Air Force - First Sergeant (E-7)
+            - Air Force - Master Sergeant
+            - Air Force - Technical Sergeant
+            - Air Force - Staff Sergeant
+            - Air Force - Senior Airman
+            - Air Force - Airman First Class
+            - Air Force - Airman
+            - Air Force - Airman Basic
+            - Army - General
+            - Army - Lieutenant General
+            - Army - Major General
+            - Army - Brigadier General
+            - Army - Colonel
+            - Army - Lieutenant Colonel
+            - Army - Major
+            - Army - Captain
+            - Army - First Lieutenant
+            - Army - Second Lieutenant
+            - Army - Chief Warrant Officer - 5
+            - Army - Chief Warrant Officer - 4
+            - Army - Chief Warrant Officer - 3
+            - Army - Chief Warrant Officer - 2
+            - Army - Warrant Officer
+            - Army - Sergeant Major of the Army
+            - Army - Command Sergeant Major
+            - Army - Sergeant Major
+            - Army - First Sergeant
+            - Army - Master Sergeant
+            - Army - Sergeant First Class
+            - Army - Staff Sergeant
+            - Army - Sergeant
+            - Army - Corporal
+            - Army - Specialist
+            - Army - Private First Class
+            - Army - Private (E-2)
+            - Army - Private
+            - Coast Guard - Admiral
+            - Coast Guard - Vice Admiral
+            - "Coast Guard - Rear Admiral, Upper Half"
+            - "Coast Guard - Rear Admiral, Lower Half"
+            - Coast Guard - Captain
+            - Coast Guard - Commander
+            - Coast Guard - Lieutenant Commander
+            - Coast Guard - Lieutenant
+            - Coast Guard - Lieutenant Junior Grade
+            - Coast Guard - Ensign
+            - Coast Guard - Chief Warrant Officer - 4
+            - Coast Guard - Chief Warrant Officer - 3
+            - Coast Guard - Chief Warrant Officer - 2
+            - Coast Guard - Master Chief Petty Officer of the Coast Guard
+            - Coast Guard - Master Chief Petty Officer
+            - Coast Guard - Senior Chief Petty Officer
+            - Coast Guard - Chief Petty Officer
+            - Coast Guard - Petty Officer First Class
+            - Coast Guard - Petty Officer Second Class
+            - Coast Guard - Petty Officer Third Class
+            - Coast Guard - Seaman
+            - Coast Guard - Seaman Apprentice
+            - Coast Guard - Seaman Recruit
+            - Marine Corps - General
+            - Marine Corps - Lieutenant General
+            - Marine Corps - Major General
+            - Marine Corps - Brigadier General
+            - Marine Corps - Colonel
+            - Marine Corps - Lieutenant Colonel
+            - Marine Corps - Major
+            - Marine Corps - Captain
+            - Marine Corps - First Lieutenant
+            - Marine Corps - Second Lieutenant
+            - Marine Corps - Chief Warrant Officer - 5
+            - Marine Corps - Chief Warrant Officer - 4
+            - Marine Corps - Chief Warrant Officer - 3
+            - Marine Corps - Chief Warrant Officer - 2
+            - Marine Corps - Warrant Officer
+            - Marine Corps - Sergeant Major of the Marine Corps
+            - Marine Corps - Sergeant Major
+            - Marine Corps - Master Gunnery Sergeant
+            - Marine Corps - First Sergeant
+            - Marine Corps - Master Sergeant
+            - Marine Corps - Gunnery Sergeant
+            - Marine Corps - Staff Sergeant
+            - Marine Corps - Sergeant
+            - Marine Corps - Corporal
+            - Marine Corps - Lance Corporal
+            - Marine Corps - Private First Class
+            - Marine Corps - Private
+            - Navy - Admiral
+            - Navy - Vice Admiral
+            - "Navy - Rear Admiral, Upper Half"
+            - "Navy - Rear Admiral, Lower Half"
+            - Navy - Captain
+            - Navy - Commander
+            - Navy - Lieutenant Commander
+            - Navy - Lieutenant
+            - Navy - Lieutenant Junior Grade
+            - Navy - Ensign
+            - Navy - Chief Warrant Officer - 4
+            - Navy - Chief Warrant Officer - 3
+            - Navy - Chief Warrant Officer - 2
+            - Navy - Master Chief Petty Officer of the Navy
+            - Navy - Master Chief Petty Officer
+            - Navy - Senior Chief Petty Officer
+            - Navy - Chief Petty Officer
+            - Navy - Petty Officer First Class
+            - Navy - Petty Officer Second Class
+            - Navy - Petty Officer Third Class
+            - Navy - Seaman Apprentice
+            - Navy - Seaman
+            - Navy - Seaman Recruit
+        - name: state
+          selector: "#input-162A312B-5B50-40A5-BC01-331E52108F1D"
+          value: $ADDRESS_STATE_POSTAL_ABBREV
+          required: false
+          options:
+            AK: AK
+            AL: AL
+            AR: AR
+            AZ: AZ
+            CA: CA
+            CO: CO
+            CT: CT
+            DC: DC
+            DE: DE
+            FL: FL
+            GA: GA
+            HI: HI
+            IA: IA
+            ID: ID
+            IL: IL
+            IN: IN
+            KS: KS
+            KY: KY
+            LA: LA
+            MA: MA
+            MD: MD
+            ME: ME
+            MI: MI
+            MN: MN
+            MO: MO
+            MS: MS
+            MT: MT
+            NC: NC
+            ND: ND
+            NE: NE
+            NH: NH
+            NJ: NJ
+            NM: NM
+            NV: NV
+            NY: NY
+            OH: OH
+            OK: OK
+            OR: OR
+            PA: PA
+            RI: RI
+            SC: SC
+            SD: SD
+            TN: TN
+            TX: TX
+            UT: UT
+            VA: VA
+            VT: VT
+            WA: WA
+            WI: WI
+            WV: WV
+            WY: WY
+    - javascript:
+        - value: document.querySelector("#input-2ED44860-E200-4A7A-91BF-01BEF2FD8E60").value = document.querySelector("#input-2ED44860-E200-4A7A-91BF-01BEF2FD8E60").value.replace(/"/g, '');
+    - click_on:
+        - selector: "#responsetoggle"
+        - value: Send
+          selector: "input[type=submit]"
+  success:
+    timeout: 45
+    headers:
+      status: 200
+    body:
+      contains: Thank you for

@@ -16,20 +16,31 @@
 # This will stop the dropdown from closing when you try to inspect the sub-elements.
 
 contact_form:
+    # Reproducibly fails at final submit with a backend 500
+    # ("An error occurred. Please try again soon.") from
+    # forms.indigov.com's /api/form endpoint. Confirmed via manual and
+    # automated runs -- form fills and reaches the final page correctly,
+    # submit is clicked, backend rejects every time. The submit button
+    # is guarded by an invisible reCAPTCHA Enterprise widget
+    # (grecaptcha.enterprise, size=invisible) that the page's own script
+    # executes automatically; this may be a risk-score rejection of
+    # automated browsers rather than a config problem. Not resolved.
     steps:
         # iframe in https://www.gov.ca.gov/contact/
         - visit: "https://forms.indigov.com/customers/californiagovernor/contact"
         - check:
               - name: "Wait for web app to load"
-                selector: ".text-3xl"
-                value: "By Email"
+                selector: "h1"
+                value: "What is your request or comment about?"
                 required: true
         - click_on:
               - value: "Topic"
                 selector: "#react-select-2-input"
-        - click_on:
-              - value: "OTHER"
-                selector: "#react-select-2-option-27"
+        - javascript:
+              # Topic option list grows over time, so the "OTHER" option's
+              # numeric id shifts (was option-27, now option-43). Match by
+              # visible text instead of a hardcoded id.
+              - value: "document.querySelectorAll(\"[id^='react-select-2-option']\").forEach(function(el) { if (el.textContent.trim().toUpperCase() === 'OTHER') { el.click(); } });"
         - check:
               # This is an invalid id (the spaces) but this seems to "work"
               - name: "Reason radio button"
