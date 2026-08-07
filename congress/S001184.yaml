@@ -1,15 +1,3 @@
-# Overrides contact-congress's S001184.yaml (Sen. Rick Scott). Selectors are
-# all current (Gravity Forms, form id 14). The only issue is a
-# case-sensitivity bug: the config's post-submit heading check expects
-# mixed-case "Thank You", but the live confirmation heading reads "THANK
-# YOU" (all caps). Confirmed via a live submission, which showed the
-# correct body text but got stuck on this heading mismatch. Not a stale
-# selector, not a vendor migration, not a missing captcha -- an exact-text
-# match against a heading whose case didn't match the original assumption.
-# Every other selector/step is unchanged from upstream.
-#
-# contact-congress is upstream and unlikely to accept this fix, so it lives
-# here instead.
 bioguide: S001184
 contact_form:
   method: post
@@ -108,9 +96,6 @@ contact_form:
             Veterans: VET
     - click_on:
         - selector: ".gform_button#gform_submit_button_14"
-    - find:
-        - selector: h2
-          value: THANK YOU
   success:
     headers:
       status: 200

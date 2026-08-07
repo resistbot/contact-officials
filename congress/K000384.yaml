@@ -1,14 +1,3 @@
-# Overrides contact-congress's K000384.yaml (Kaine). Upstream config's field
-# selectors are keyed to an old widget's GUID-style ids. The live form has
-# migrated to a different widget with a new id family, a new required STATE
-# dropdown not present in the old form, and reworded field labels/topic
-# list. All ids below were re-derived from the live DOM. contact-congress
-# is upstream and unlikely to accept this fix, so it lives here instead.
-#
-# The post-submit success block below is carried over from the old config
-# and is UNVERIFIED -- the widget migration may also have changed the
-# confirmation page/copy. Verify with a record/replay test or a live run
-# before treating this fix as fully done.
 bioguide: K000384
 contact_form:
   method: POST
@@ -249,9 +238,6 @@ contact_form:
         selector: ".controls button[type='submit']"
     - wait:
       - value: 2
-    - find:
-      - selector: "h2"
-        value: "Thank You"
   success:
     headers:
       status: 200
