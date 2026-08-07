@@ -1,10 +1,3 @@
-# Override for C001098 (Sen. Ted Cruz). Upstream config has no captcha
-# handling, but a live reCAPTCHA v2 checkbox widget is present on the form
-# (`.g-recaptcha` DOM class). The widget renders intermittently rather than
-# on every load, which is likely why earlier testing missed it. Added a
-# recaptcha step before the final submit; it is a no-op when no
-# sitekey/widget is present, so this is safe on runs where it doesn't
-# render. All other selectors are unchanged from upstream.
 bioguide: C001098
 contact_form:
     method: post
@@ -182,13 +175,7 @@ contact_form:
               - value: true
         - javascript:
               - value: document.querySelector('button[type="submit"].btn').click();
-        ## The success screen has no new text on it, rather it just has an image.  Doing a find on the image alt text here to see if it is present before declaring success by the text in the body.
-        - wait:
-              - value: 2
-        - find:
-              - selector: 'img[alt="thank you from ted image"]'
     success:
         headers:
             status: 200
-        body:
-            contains: ""
+        selector: "img[src*='thankyou_tedsignature.png']"
