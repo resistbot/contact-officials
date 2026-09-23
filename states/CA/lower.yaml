@@ -63,4 +63,5 @@ contact_form:
           value: Submit
           selector: "#submitButton"
   success:
-    selector: "input[value='Close Window']"
+    body:
+      contains: "Thank"
